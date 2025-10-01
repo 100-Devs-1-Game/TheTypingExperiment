@@ -395,10 +395,17 @@ var is_typing_message: bool = false
 func _on_message_ready(message: String, message_type: String) -> void:
 	# Wait for any previous message to finish typing before starting new one
 	while is_typing_message:
+		# Check if tree is still valid during scene transitions
+		if not get_tree():
+			return
 		await get_tree().process_frame
 	_show_message(message)
 
 func _show_message(message: String) -> void:
+	# Check if we're still in a valid scene
+	if not get_tree() or not message_overlay:
+		return
+
 	# Day 2 - Subtle eerie effects begin
 	message_overlay.visible = true
 	var red_tint = Color(1, 0.8, 0.8, 0)  # Preserve red tint but start invisible
@@ -424,14 +431,27 @@ func _type_message_eerily(message: String) -> void:
 	is_typing_message = true
 	var typing_speed = 0.05  # Slow typing for eerie effect
 
+	# Check if we're still in a valid scene
+	if not get_tree() or not message_overlay:
+		is_typing_message = false
+		return
+
 	message_overlay.text = ""
 
 	for i in range(message.length()):
+		# Check if scene is still valid during typing
+		if not get_tree() or not message_overlay:
+			is_typing_message = false
+			return
+
 		message_overlay.text += message[i]
 		await get_tree().create_timer(typing_speed).timeout
 
 		# Occasional pause for dramatic effect
 		if message[i] == "." or message[i] == "?" or message[i] == "!":
+			if not get_tree():
+				is_typing_message = false
+				return
 			await get_tree().create_timer(0.3).timeout
 
 	is_typing_message = false
