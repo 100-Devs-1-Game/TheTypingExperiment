@@ -15,7 +15,7 @@ signal day_completed()
 @onready var day_stage_label: Label = %DayStageLabel
 @onready var progress_label: Label = %ProgressLabel
 @onready var restart_button: Button = %RestartButton
-@onready var message_display: Label = %MessageDisplay
+@onready var message_overlay: Label = %MessageOverlay
 
 # Typing state
 var practice_text: String = ""
@@ -79,7 +79,7 @@ func _setup_ui_theme() -> void:
 	wpm_label.modulate = green_color
 	day_stage_label.modulate = red_tint  # Hint of corruption starting
 	progress_label.modulate = green_color
-	message_display.modulate = red_tint
+	message_overlay.modulate = red_tint
 
 func _setup_interface() -> void:
 	invisible_input.grab_focus()
@@ -89,14 +89,6 @@ func _setup_interface() -> void:
 
 	text_display.selection_enabled = false
 	text_display.scroll_active = false
-
-	# Configure message display for proper text wrapping
-	message_display.visible = false
-	message_display.text = ""
-	message_display.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	message_display.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	message_display.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-
 
 func _start_new_stage() -> void:
 	# Generate English text for typing from DayManager
@@ -372,17 +364,23 @@ func _complete_stage() -> void:
 func _restart_stage() -> void:
 	_start_new_stage()
 
+var is_typing_message: bool = false
+
 func _on_message_ready(message: String, message_type: String) -> void:
+	# Wait for any previous message to finish typing before starting new one
+	while is_typing_message:
+		await get_tree().process_frame
 	_show_message(message)
 
 func _show_message(message: String) -> void:
 	# Day 2 - Subtle eerie effects begin
-	message_display.visible = true
-	message_display.modulate.a = 0.0
+	message_overlay.visible = true
+	var red_tint = Color(1, 0.8, 0.8, 0)  # Preserve red tint but start invisible
+	message_overlay.modulate = red_tint
 
 	# Slowly fade in the message
 	var fade_in_tween = create_tween()
-	fade_in_tween.tween_property(message_display, "modulate:a", 1.0, 1.0)
+	fade_in_tween.tween_property(message_overlay, "modulate:a", 1.0, 1.0)
 
 	# Type out the message character by character for eerie effect
 	_type_message_eerily(message)
@@ -392,21 +390,25 @@ func _show_message(message: String) -> void:
 
 	# Fade out
 	var fade_out_tween = create_tween()
-	fade_out_tween.tween_property(message_display, "modulate:a", 0.0, 1.0)
+	fade_out_tween.tween_property(message_overlay, "modulate:a", 0.0, 1.0)
 	await fade_out_tween.finished
-	message_display.visible = false
+	message_overlay.visible = false
 
 func _type_message_eerily(message: String) -> void:
+	is_typing_message = true
 	var typing_speed = 0.05  # Slow typing for eerie effect
-	message_display.text = ""
+
+	message_overlay.text = ""
 
 	for i in range(message.length()):
-		message_display.text += message[i]
+		message_overlay.text += message[i]
 		await get_tree().create_timer(typing_speed).timeout
 
 		# Occasional pause for dramatic effect
 		if message[i] == "." or message[i] == "?" or message[i] == "!":
 			await get_tree().create_timer(0.3).timeout
+
+	is_typing_message = false
 
 func _on_stage_completed(day: int, stage: int) -> void:
 	if day == DAY_NUMBER:
