@@ -115,6 +115,11 @@ func _start_new_stage() -> void:
 	# Position cursor at the beginning
 	if cursor:
 		cursor.visible = true
+		# Reset cursor to starting position - calculate proper line height
+		var font = text_display.get_theme_default_font()
+		var font_size = text_display.get_theme_font_size("normal_font_size")
+		var line_height = font.get_height(font_size)
+		cursor.position = Vector2(30.0, 30.0 + line_height)  # 30px margin + line height
 		_start_cursor_blinking()
 
 	progress_bar.value = 0.0
@@ -131,6 +136,7 @@ func _start_new_stage() -> void:
 
 	# Initialize systems
 	if TypingEngine:
+		TypingEngine.current_text = practice_text
 		TypingEngine.start_typing_session()
 	if StatsManager:
 		StatsManager.start_session()
@@ -195,6 +201,8 @@ func _handle_character_input(new_text: String) -> void:
 	var is_correct: bool = typed_char == expected_char
 
 	if TypingEngine:
+		# Sync TypingEngine position with our position
+		TypingEngine.current_position = current_position
 		TypingEngine.process_keystroke(typed_char)
 
 	typed_characters = new_text
@@ -208,6 +216,11 @@ func _handle_backspace(new_text: String) -> void:
 	if typed_characters.length() > 0 and current_position > 0:
 		typed_characters = new_text
 		current_position = typed_characters.length()
+
+		# Sync TypingEngine position when backspacing
+		if TypingEngine:
+			TypingEngine.current_position = current_position
+
 		_update_display()
 
 func _on_gui_input(event: InputEvent) -> void:
