@@ -16,6 +16,7 @@ signal day_completed()
 @onready var progress_label: Label = %ProgressLabel
 @onready var restart_button: Button = %RestartButton
 @onready var message_overlay: Label = %MessageOverlay
+@onready var cursor: ColorRect = %Cursor
 
 # Typing state
 var practice_text: String = ""
@@ -105,6 +106,10 @@ func _start_new_stage() -> void:
 	# Update UI
 	day_stage_label.text = "Day %d - Stage %d" % [DAY_NUMBER, DayManager.current_stage]
 	progress_label.text = "Stage %d of %d" % [DayManager.current_stage, DayManager.stages_per_day]
+
+	# Position cursor at the beginning
+	if cursor:
+		cursor.visible = true
 
 	progress_bar.value = 0.0
 	wpm_label.text = "WPM: 0.0"
@@ -206,6 +211,8 @@ func _on_gui_input(event: InputEvent) -> void:
 func _update_display() -> void:
 	if not text_display:
 		return
+
+	_update_cursor_position()
 
 	# Get the corrupted display text (what the user sees)
 	var display_sentence = DayManager.get_stage_display_sentence()
@@ -409,6 +416,82 @@ func _type_message_eerily(message: String) -> void:
 			await get_tree().create_timer(0.3).timeout
 
 	is_typing_message = false
+
+func _update_cursor_position() -> void:
+	if not cursor or not text_display:
+		return
+
+	# Get the current typing position
+	var current_position = typed_characters.length()
+
+	# Get the display text without BBCode for accurate positioning
+	var display_sentence = DayManager.get_stage_display_sentence()
+
+	if current_position > display_sentence.length():
+		current_position = display_sentence.length()
+
+	# Get font metrics
+	var font = text_display.get_theme_default_font()
+	var font_size = text_display.get_theme_font_size("normal_font_size")
+	var line_height = font.get_height(font_size)
+
+	# Get the available width for text wrapping
+	var text_width = text_display.size.x
+
+	# Calculate cursor position with word wrapping
+	var cursor_pos = _calculate_cursor_position_with_wrapping(display_sentence, current_position, font, font_size, text_width, line_height)
+
+	# Set cursor size to horizontal dash (10px wide, 2px tall for monospace font)
+	cursor.size = Vector2(10, 2)
+
+	# Add margin offset to match text display position (30px margin from container)
+	var target_x = 30.0 + cursor_pos.x
+	# Position cursor below the text (add line height to move it below the baseline)
+	var target_y = 30.0 + cursor_pos.y + line_height
+
+	# Smoothly move cursor to new position
+	var tween = create_tween()
+	tween.tween_property(cursor, "position", Vector2(target_x, target_y), 0.1)
+
+func _calculate_cursor_position_with_wrapping(text: String, char_index: int, font: Font, font_size: int, max_width: float, line_height: float) -> Vector2:
+	var current_line = 0
+	var current_x = 0.0
+	var words = text.split(" ")
+	var chars_processed = 0
+
+	for word_idx in range(words.size()):
+		var word = words[word_idx]
+		var word_width = font.get_string_size(word, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
+		var space_width = font.get_string_size(" ", HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
+
+		# Check if we need a new line for this word
+		if current_x + word_width > max_width and current_x > 0:
+			current_line += 1
+			current_x = 0.0
+
+		# Check if cursor is within this word
+		if chars_processed <= char_index and char_index <= chars_processed + word.length():
+			# Cursor is in this word
+			var chars_in_word = char_index - chars_processed
+			var partial_word = word.substr(0, chars_in_word)
+			var partial_width = font.get_string_size(partial_word, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
+			return Vector2(current_x + partial_width, current_line * line_height)
+
+		# Move past this word
+		current_x += word_width
+		chars_processed += word.length()
+
+		# Add space if not the last word
+		if word_idx < words.size() - 1:
+			# Check if cursor is on the space
+			if chars_processed == char_index:
+				return Vector2(current_x, current_line * line_height)
+
+			current_x += space_width
+			chars_processed += 1  # For the space
+
+	# Cursor is at the end
+	return Vector2(current_x, current_line * line_height)
 
 func _on_stage_completed(day: int, stage: int) -> void:
 	if day == DAY_NUMBER:
