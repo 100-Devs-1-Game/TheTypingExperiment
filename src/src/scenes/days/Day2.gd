@@ -24,6 +24,11 @@ var typed_characters: String = ""
 var current_position: int = 0
 var is_session_active: bool = false
 
+# Cursor animation
+var cursor_blink_speed: float = 0.5
+var cursor_blink_timer: Timer
+var cursor_bright_state: bool = true
+
 # Visual settings
 var typed_color: String = "#00ff00"
 var untyped_color: String = "#00aa00"
@@ -110,6 +115,7 @@ func _start_new_stage() -> void:
 	# Position cursor at the beginning
 	if cursor:
 		cursor.visible = true
+		_start_cursor_blinking()
 
 	progress_bar.value = 0.0
 	wpm_label.text = "WPM: 0.0"
@@ -441,9 +447,6 @@ func _update_cursor_position() -> void:
 	# Calculate cursor position with word wrapping
 	var cursor_pos = _calculate_cursor_position_with_wrapping(display_sentence, current_position, font, font_size, text_width, line_height)
 
-	# Set cursor size to horizontal dash (10px wide, 2px tall for monospace font)
-	cursor.size = Vector2(10, 2)
-
 	# Add margin offset to match text display position (30px margin from container)
 	var target_x = 30.0 + cursor_pos.x
 	# Position cursor below the text (add line height to move it below the baseline)
@@ -492,6 +495,33 @@ func _calculate_cursor_position_with_wrapping(text: String, char_index: int, fon
 
 	# Cursor is at the end
 	return Vector2(current_x, current_line * line_height)
+
+func _start_cursor_blinking() -> void:
+	if cursor_blink_timer:
+		cursor_blink_timer.queue_free()
+
+	cursor_blink_timer = Timer.new()
+	cursor_blink_timer.wait_time = cursor_blink_speed
+	cursor_blink_timer.autostart = true
+	cursor_blink_timer.timeout.connect(_on_cursor_blink)
+	add_child(cursor_blink_timer)
+
+	# Start with bright color
+	cursor_bright_state = true
+	cursor.color = Color(typed_color)
+
+func _stop_cursor_blinking() -> void:
+	if cursor_blink_timer:
+		cursor_blink_timer.queue_free()
+		cursor_blink_timer = null
+	cursor.color = Color(typed_color)  # Set to typed color when not blinking
+
+func _on_cursor_blink() -> void:
+	cursor_bright_state = !cursor_bright_state
+	if cursor_bright_state:
+		cursor.color = Color(typed_color)
+	else:
+		cursor.color = Color(untyped_color)
 
 func _on_stage_completed(day: int, stage: int) -> void:
 	if day == DAY_NUMBER:
