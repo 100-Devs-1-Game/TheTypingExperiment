@@ -154,29 +154,23 @@ func _on_continue_pressed() -> void:
 func _advance_to_next_day() -> void:
 	var next_day = current_day + 1
 
-	# Transition to next day scene
+	# Transition to next day scene (only Day 2 exists currently)
 	match next_day:
 		2:
 			get_tree().change_scene_to_file("res://src/scenes/days/Day2.tscn")
-		3:
-			get_tree().change_scene_to_file("res://src/scenes/days/Day3.tscn")
-		4:
-			get_tree().change_scene_to_file("res://src/scenes/days/Day4.tscn")
-		5:
-			get_tree().change_scene_to_file("res://src/scenes/days/Day5.tscn")
 		_:
+			# Days 3-5 scenes don't exist yet, handle completion
 			_handle_game_completion()
 
 func _handle_game_completion() -> void:
 	# Game complete - show final screen or return to menu
-	print("🎯 All days completed! Game finished.")
 
 	# Could transition to:
 	# - Credits scene
 	# - Main menu with "Game Complete" status
 	# - Ending cutscene
 	# For now, return to startup
-	get_tree().change_scene_to_file("res://src/scenes/startup/StartupScreen.tscn")
+	get_tree().change_scene_to_file("res://src/scenes/2d/startup/StartupScreen.tscn")
 
 func _input(event: InputEvent) -> void:
 	# Allow Enter/Space to continue when button is visible

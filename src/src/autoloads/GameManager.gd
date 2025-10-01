@@ -58,7 +58,8 @@ func return_to_menu() -> void:
 	current_state = GameState.MENU
 	is_session_active = false
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://src/scenes/MainMenu.tscn")
+	# Note: MainMenu.tscn doesn't exist, using startup screen instead
+	get_tree().change_scene_to_file("res://src/scenes/2d/startup/StartupScreen.tscn")
 
 func get_session_duration() -> float:
 	if not is_session_active:

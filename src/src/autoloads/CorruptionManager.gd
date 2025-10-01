@@ -63,12 +63,12 @@ var corruption_probability: float = 0.3  # 30% chance per word
 var current_corruption_set: String = "unicode_glitch"
 var corruption_intensity: float = 1.0
 
-# Word tracking for corruption consistency
+# Word tracking for corruption consistency (with memory management)
 var corrupted_words_cache: Dictionary = {}
+const MAX_CACHE_SIZE: int = 1000
 
 func _ready() -> void:
-	print("DDLC Corruption System loaded!")
-	run_corruption_test()
+	pass
 
 ## Corrupts entire words in a text string, maintaining word boundaries
 func apply_corruption_to_text(text: String) -> String:
@@ -114,8 +114,8 @@ func corrupt_entire_word(word: String) -> String:
 		var corrupted_char: String = corruption_map.get(character, character)
 		corrupted_result += corrupted_char
 
-	# Cache the result for consistency
-	corrupted_words_cache[cache_key] = corrupted_result
+	# Cache the result for consistency with memory management
+	_add_to_cache(cache_key, corrupted_result)
 
 	return corrupted_result
 
@@ -152,6 +152,23 @@ func set_corruption_enabled(enabled: bool) -> void:
 ## Clears the corruption cache (useful when changing settings)
 func clear_corruption_cache() -> void:
 	corrupted_words_cache.clear()
+
+## Manages cache size to prevent memory leaks
+func _add_to_cache(key: String, value: String) -> void:
+	if corrupted_words_cache.size() >= MAX_CACHE_SIZE:
+		# Remove oldest entries (simple FIFO approach)
+		var keys_to_remove: Array[String] = []
+		var count: int = 0
+		for cache_key in corrupted_words_cache:
+			keys_to_remove.append(cache_key)
+			count += 1
+			if count >= MAX_CACHE_SIZE / 4:  # Remove 25% of cache
+				break
+
+		for remove_key in keys_to_remove:
+			corrupted_words_cache.erase(remove_key)
+
+	corrupted_words_cache[key] = value
 
 ## Gets current corruption statistics
 func get_corruption_stats() -> Dictionary:
@@ -250,28 +267,3 @@ func configure_for_day(day_number: int) -> void:
 			set_corruption_enabled(true)
 			set_corruption_set("symbol_corruption")
 			set_corruption_probability(0.0)
-
-## Debug function to test corruption functionality
-func run_corruption_test() -> void:
-	print("🎮 DDLC-Style Corruption System Test")
-	print("====================================")
-
-	var test_words: Array[String] = ["hello", "world", "test", "corruption", "ddlc"]
-
-	for set_name in CORRUPTION_SETS.keys():
-		print("\n📝 Testing corruption set: %s" % set_name)
-		set_corruption_set(set_name)
-
-		for word in test_words:
-			var corrupted = corrupt_entire_word(word)
-			print("   '%s' -> '%s'" % [word, corrupted])
-
-	print("\n🎯 Testing day-specific corruption:")
-	var test_corruption_words = ["SOMETHING", "WRONG"]
-	var test_text = "the quick SOMETHING brown fox WRONG jumps"
-	var corrupted_text = apply_day_corruption(test_text, test_corruption_words, "caps")
-
-	print("Original:  %s" % test_text)
-	print("Corrupted: %s" % corrupted_text)
-
-	print("\n✅ Corruption system test completed!")

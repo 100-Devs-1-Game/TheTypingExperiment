@@ -251,7 +251,7 @@ var pending_messages: Array = []
 var message_queue_index: int = 0
 
 func _ready() -> void:
-	print("🗓️ DayManager initialized - Starting Day 1")
+	pass
 
 ## Starts a new day with opening messages
 func start_day(day_number: int) -> void:
@@ -259,7 +259,6 @@ func start_day(day_number: int) -> void:
 	current_stage = 1
 
 	if current_day > total_days:
-		print("⚠️ Invalid day number: %d" % day_number)
 		return
 
 	# Configure corruption for this day
@@ -273,11 +272,9 @@ func start_day(day_number: int) -> void:
 		queue_message(message, MessageType.OPENING)
 
 	day_started.emit(current_day)
-	print("📅 Day %d started" % current_day)
 
 ## Completes current stage and triggers appropriate messages
 func complete_stage() -> void:
-	print("✅ Stage %d completed on Day %d" % [current_stage, current_day])
 	stage_completed.emit(current_day, current_stage)
 
 	var day_info = day_data[current_day]
@@ -303,7 +300,6 @@ func complete_stage() -> void:
 
 ## Completes current day and shows end messages
 func complete_day() -> void:
-	print("🎯 Day %d completed!" % current_day)
 
 	var day_info = day_data[current_day]
 
@@ -317,8 +313,6 @@ func complete_day() -> void:
 func advance_to_next_day() -> void:
 	if current_day < total_days:
 		start_day(current_day + 1)
-	else:
-		print("🏁 All days completed!")
 
 ## Generates typing text for current stage using exact pre-written sentences
 func generate_stage_text() -> String:
@@ -327,7 +321,6 @@ func generate_stage_text() -> String:
 	# Get the exact sentence for this stage (current_stage is 1-indexed)
 	var stage_index = current_stage - 1
 	if stage_index < 0 or stage_index >= day_info.stage_sentences.size():
-		print("⚠️ Invalid stage index: %d for day %d" % [stage_index, current_day])
 		return "error loading stage text"
 
 	var stage_sentence = day_info.stage_sentences[stage_index]

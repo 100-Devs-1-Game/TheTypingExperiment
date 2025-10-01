@@ -6,12 +6,8 @@ extends Node
 signal letter_typed(letter: String, is_correct: bool, response_time: float)
 signal word_completed(word: String, wpm: float, accuracy: float)
 signal mistake_made(expected: String, typed: String)
-signal new_letter_unlocked(letter: String)
-signal mastery_achieved(letter: String)
 signal real_time_stats_updated(wpm: float, accuracy: float)
 
-var adaptive_algorithm: AdaptiveAlgorithm
-var per_key_analytics: PerKeyAnalytics
 
 # Dual text system for corruption support
 var current_text: String = ""  # Original text for validation
@@ -19,35 +15,20 @@ var display_text: String = ""  # Corrupted text for display
 var corruption_map: Array[bool] = []  # Tracks which words are corrupted
 var current_position: int = 0
 var last_keystroke_time: float = 0.0
-var keystroke_times: Array[float] = []
 
 # Real-time calculation variables
 var session_start_time: float = 0.0
 var total_keystrokes: int = 0
 var correct_keystrokes: int = 0
-var wpm_history: Array[float] = []
-var accuracy_history: Array[float] = []
 var calculation_interval: float = 1.0  # Update every second
 var last_calculation_time: float = 0.0
 
-# Smoothing parameters
-var wmp_smoothing_factor: float = 0.3
+# Current session metrics
 var smoothed_wpm: float = 0.0
-var current_accuracy: float = 100.0  # Direct calculation, no smoothing
+var current_accuracy: float = 100.0
 
 func _ready() -> void:
-	adaptive_algorithm = AdaptiveAlgorithm.new()
-	per_key_analytics = PerKeyAnalytics.new()
-	_setup_connections()
-
-func _setup_connections() -> void:
-	adaptive_algorithm.learning_data_updated.connect(_on_learning_data_updated)
-	adaptive_algorithm.new_letter_unlocked.connect(_on_new_letter_unlocked)
-	adaptive_algorithm.mastery_achieved.connect(_on_mastery_achieved)
-
-	per_key_analytics.key_performance_updated.connect(_on_key_performance_updated)
-	per_key_analytics.weakness_identified.connect(_on_weakness_identified)
-	per_key_analytics.improvement_detected.connect(_on_improvement_detected)
+	pass
 
 func _process(_delta: float) -> void:
 	var current_time: float = Time.get_unix_time_from_system()
@@ -128,33 +109,12 @@ func _calculate_real_time_metrics() -> void:
 	# Calculate current accuracy
 	var current_accuracy: float = (float(correct_keystrokes) / float(total_keystrokes)) * 100.0
 
-	# Apply smoothing only to WPM, not accuracy
-	if smoothed_wpm == 0.0:
-		smoothed_wpm = instant_wpm
-	else:
-		smoothed_wpm = (wmp_smoothing_factor * instant_wpm) + ((1.0 - wmp_smoothing_factor) * smoothed_wpm)
+	# Simple WPM calculation without complex smoothing
+	smoothed_wpm = instant_wpm
 
-	# Store history for trend analysis
-	wpm_history.append(smoothed_wpm)
-	accuracy_history.append(current_accuracy)
-
-	# Keep history size manageable
-	if wpm_history.size() > 300:  # 5 minutes of data at 1 second intervals
-		wpm_history.pop_front()
-	if accuracy_history.size() > 300:
-		accuracy_history.pop_front()
 
 	real_time_stats_updated.emit(smoothed_wpm, current_accuracy)
 
-func _on_learning_data_updated(letter: String, progress: float) -> void:
-	# React to learning progress updates
-	pass
-
-func _on_new_letter_unlocked(letter: String) -> void:
-	new_letter_unlocked.emit(letter)
-
-func _on_mastery_achieved(letter: String) -> void:
-	mastery_achieved.emit(letter)
 
 func process_keystroke(typed_char: String) -> bool:
 	if current_position >= current_text.length():
@@ -184,12 +144,6 @@ func process_keystroke(typed_char: String) -> bool:
 	# Update accuracy (only changes on keystrokes)
 	current_accuracy = (float(correct_keystrokes) / float(total_keystrokes)) * 100.0
 
-	# Record keystroke in adaptive algorithm
-	adaptive_algorithm.record_keystroke(expected_char, is_correct, response_time)
-
-	# Record detailed per-key analytics
-	var context: Dictionary = _build_keystroke_context(typed_char, expected_char, current_position)
-	per_key_analytics.record_keystroke(expected_char, is_correct, response_time, context)
 
 	letter_typed.emit(typed_char, is_correct, response_time)
 
@@ -214,8 +168,6 @@ func start_typing_session() -> void:
 	current_position = 0
 	smoothed_wpm = 0.0
 	current_accuracy = 100.0
-	wpm_history.clear()
-	accuracy_history.clear()
 
 	# Reset corruption state
 	corruption_map.clear()
@@ -257,11 +209,6 @@ func is_current_word_corrupted() -> bool:
 
 	return false
 
-func get_active_letters() -> Array[String]:
-	return adaptive_algorithm.active_letters
-
-func get_learning_progress() -> Dictionary:
-	return adaptive_algorithm.get_learning_progress()
 
 func get_real_time_wpm() -> float:
 	return smoothed_wpm
@@ -271,77 +218,11 @@ func get_real_time_accuracy() -> float:
 
 func export_session_data() -> Dictionary:
 	return {
-		"adaptive_data": adaptive_algorithm.export_learning_data(),
-		"wpm_history": wpm_history,
-		"accuracy_history": accuracy_history,
 		"session_duration": Time.get_unix_time_from_system() - session_start_time,
 		"total_keystrokes": total_keystrokes,
 		"correct_keystrokes": correct_keystrokes
 	}
 
-func _build_keystroke_context(typed_char: String, expected_char: String, position: int) -> Dictionary:
-	var context: Dictionary = {
-		"typed_key": typed_char,
-		"expected_key": expected_char,
-		"is_correct": typed_char.to_lower() == expected_char.to_lower(),
-		"text_position": position,
-		"response_time": 0.0
-	}
-
-	# Add preceding key context
-	if position > 0:
-		context.preceding_key = current_text[position - 1]
-
-	# Add following key context
-	if position + 1 < current_text.length():
-		context.following_key = current_text[position + 1]
-
-	# Add word position context
-	var word_start: int = _find_word_start(position)
-	var word_position: int = position - word_start
-	context.word_position = word_position
-
-	# Add timing context
-	if last_keystroke_time > 0:
-		var current_time: float = Time.get_unix_time_from_system()
-		context.response_time = current_time - last_keystroke_time
-
-	return context
-
-func _find_word_start(position: int) -> int:
-	var start: int = position
-	while start > 0 and current_text[start - 1] != " ":
-		start -= 1
-	return start
-
-func _on_key_performance_updated(key: String, metrics: Dictionary) -> void:
-	# React to key performance updates
-	pass
-
-func _on_weakness_identified(key: String, weakness_type: String, severity: float) -> void:
-	print("Weakness identified for key '%s': %s (severity: %.2f)" % [key, weakness_type, severity])
-
-func _on_improvement_detected(key: String, improvement_metric: String, change: float) -> void:
-	print("Improvement detected for key '%s': %s improved by %.2f" % [key, improvement_metric, change])
-
-func get_per_key_analytics() -> PerKeyAnalytics:
-	return per_key_analytics
-
-func get_key_detailed_analysis(key: String) -> Dictionary:
-	if per_key_analytics:
-		return per_key_analytics.get_key_detailed_analysis(key)
-	return {}
-
-func get_overall_key_statistics() -> Dictionary:
-	if per_key_analytics:
-		return per_key_analytics.get_overall_statistics()
-	return {}
-
-func export_key_performance_report(key: String) -> String:
-	if per_key_analytics:
-		return per_key_analytics.export_detailed_report(key)
-	return "Analytics not available"
 
 func import_session_data(data: Dictionary) -> void:
-	if data.has("adaptive_data"):
-		adaptive_algorithm.import_learning_data(data.adaptive_data)
+	pass

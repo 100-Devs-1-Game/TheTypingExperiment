@@ -47,8 +47,8 @@ func _process(delta: float) -> void:
 	# Update corruption animation time
 	corruption_animation_time += delta * corruption_animation_speed
 
-	# Update display continuously for smooth corruption animations
-	if is_session_active:
+	# Only update display when text changes or on animation intervals
+	if is_session_active and int(corruption_animation_time * 10) % 3 == 0:
 		_update_display()
 
 func _initialize_day() -> void:
@@ -197,6 +197,7 @@ func _handle_character_input(new_text: String) -> void:
 	typed_characters = new_text
 	current_position += 1
 
+	# Force immediate display update on typing
 	_update_display()
 	_check_completion()
 
@@ -409,11 +410,10 @@ func _type_message_eerily(message: String) -> void:
 
 func _on_stage_completed(day: int, stage: int) -> void:
 	if day == DAY_NUMBER:
-		print("Stage %d completed on Day %d" % [stage, day])
+		pass
 
 func _on_day_completed(day_number: int) -> void:
 	if day_number == DAY_NUMBER:
-		print("Day %d completed!" % day_number)
 		day_completed.emit()
 		# Transition to day end screen
 		await get_tree().create_timer(2.0).timeout
@@ -423,7 +423,7 @@ func _on_letter_typed(letter: String, is_correct: bool, response_time: float) ->
 	pass # Audio feedback could go here
 
 func _on_mistake_made(expected: String, typed: String) -> void:
-	print("Expected: '%s', Got: '%s'" % [expected, typed])
+	pass
 
 func _on_real_time_stats_updated(wpm: float, accuracy: float) -> void:
 	wpm_label.text = "WPM: %.1f" % wpm
