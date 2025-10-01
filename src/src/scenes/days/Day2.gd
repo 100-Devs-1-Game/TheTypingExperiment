@@ -68,13 +68,10 @@ func _setup_connections() -> void:
 
 	# Connect to DayManager
 	DayManager.message_ready.connect(_on_message_ready)
-	DayManager.stage_completed.connect(_on_stage_completed)
 	DayManager.day_completed.connect(_on_day_completed)
 
 	# Connect to TypingEngine
 	if TypingEngine:
-		TypingEngine.letter_typed.connect(_on_letter_typed)
-		TypingEngine.mistake_made.connect(_on_mistake_made)
 		TypingEngine.real_time_stats_updated.connect(_on_real_time_stats_updated)
 
 func _setup_ui_theme() -> void:
@@ -367,8 +364,6 @@ func _get_corruption_effects(char_position: int, is_typed_correctly: bool = fals
 
 	return effects
 
-
-
 func _check_completion() -> void:
 	if current_position >= practice_text.length():
 		_complete_stage()
@@ -543,12 +538,6 @@ func _start_cursor_blinking() -> void:
 	cursor_bright_state = true
 	cursor.color = Color(typed_color)
 
-func _stop_cursor_blinking() -> void:
-	if cursor_blink_timer:
-		cursor_blink_timer.queue_free()
-		cursor_blink_timer = null
-	cursor.color = Color(typed_color)  # Set to typed color when not blinking
-
 func _on_cursor_blink() -> void:
 	cursor_bright_state = !cursor_bright_state
 	if cursor_bright_state:
@@ -556,22 +545,12 @@ func _on_cursor_blink() -> void:
 	else:
 		cursor.color = Color(untyped_color)
 
-func _on_stage_completed(day: int, stage: int) -> void:
-	if day == DAY_NUMBER:
-		pass
-
 func _on_day_completed(day_number: int) -> void:
 	if day_number == DAY_NUMBER:
 		day_completed.emit()
 		# Transition to day end screen
 		await get_tree().create_timer(2.0).timeout
 		get_tree().change_scene_to_file("res://src/scenes/days/DayEndScreen.tscn")
-
-func _on_letter_typed(letter: String, is_correct: bool, response_time: float) -> void:
-	pass # Audio feedback could go here
-
-func _on_mistake_made(expected: String, typed: String) -> void:
-	pass
 
 func _on_real_time_stats_updated(wpm: float, accuracy: float) -> void:
 	wpm_label.text = "WPM: %.1f" % wpm
