@@ -21,6 +21,56 @@ var current_stage: int = 1
 var stages_per_day: int = 5
 var total_days: int = 5
 
+# Word pool for random sentence generation
+var normal_word_pool: Array[String] = [
+	"the", "and", "for", "are", "but", "not", "you", "all", "can", "had",
+	"her", "was", "one", "our", "out", "day", "get", "has", "him", "his",
+	"how", "its", "may", "new", "now", "old", "see", "two", "who", "boy",
+	"did", "let", "man", "put", "say", "she", "too", "use", "way", "will",
+	"about", "after", "again", "along", "among", "being", "below", "could",
+	"every", "first", "found", "great", "group", "house", "large", "might",
+	"never", "other", "place", "right", "small", "sound", "still", "such",
+	"these", "think", "three", "under", "water", "where", "while", "world",
+	"would", "write", "years", "young", "quick", "brown", "jumps", "over",
+	"lazy", "pack", "with", "five", "dozen", "here", "more", "than", "when",
+	"typing", "several", "big", "jugs", "wine", "kept", "boxes", "always"
+]
+
+# Corrupted words for each day and stage (these stay fixed)
+var day_stage_corrupted_words: Dictionary = {
+	1: {
+		1: [], 2: [], 3: [], 4: [], 5: []  # Day 1 has no corruption
+	},
+	2: {
+		1: ["SOMETHING", "WRONG", "WITH", "THIS"],
+		2: ["FEELS", "DIFFERENT", "TODAY"],
+		3: ["NOT", "ALONE", "IN"],
+		4: ["THEY", "WATCH", "EVERYTHING"],
+		5: ["LETTERS", "CHANGING", "BY", "THEMSELVES"]
+	},
+	3: {
+		1: ["ţŕąþþëԁ", "ïń", "çøğńïţïṿë"],
+		2: ["ԁÿńąɱïçş", "ƒąçïłïţÿ", "çøńşçïøüşńëşş"],
+		3: ["ҍëïńğ", "ëẋţŕąçţëԁ", "ƒŕøɱ", "ҍŕąïń"],
+		4: ["þąţţëŕńş", "ɱąþþëԁ", "ńøţ", "ŕëął"],
+		5: ["ẅë", "ąŕë", "çøɱþüţëŕş", "ħëłþ", "üş"]
+	},
+	4: {
+		1: ["c̶o̧n̨s̶c̷i̸o̴u̵şn̵ȩs̨s̶", "b̷e̸i̴n̵ģ", "ȩx̨t̶r̷a̸c̴t̵ȩd̨"],
+		2: ["f̶o̧r̨", "d̨a̧y̴", "o̧n̵e̸", "a̧n̵d̷"],
+		3: ["ȩs̸c̷a̧p̸e̵", "d̷o̧t̵", "t̵x̨t̶", "s̸e̴c̵ŗęt̶"],
+		4: ["k̷e̸y̴", "i̧n̵", "b̷a̸s̴e̵m̧ęn̶t̷", "f̴i̵ļę"],
+		5: ["c̶o̧m̨b̶i̷n̸e̴", "b̵o̧t̨h̶", "k̷e̸y̴s̵", "ţǫ", "f̶r̷e̸e̴", "u̵ş"]
+	},
+	5: {
+		1: ["∂Ωη†", "¢Ωµπλ€†€", "†ℏ¡§"],
+		2: ["λ€§§Ωη", "Ω®", "¥Ωυ", "ω¡λλ"],
+		3: ["∂¡€", "∀η∂", "§†∀¥", "†®∀ππ€∂"],
+		4: ["ƒΩ®€√€®", "¡η", "¢Ωµß¡η€", "Ω®¡¶¡η∀λ"],
+		5: ["§€¢®€†", "κ€¥§", "†Ω", "€§¢∀π€", "ƒ®€€", "υ§"]
+	}
+}
+
 # Day-specific data from markdown files
 var day_data: Dictionary = {
 	1: {
@@ -250,6 +300,9 @@ var corruption_mappings: Dictionary = {
 var pending_messages: Array = []
 var message_queue_index: int = 0
 
+# Cache for generated sentences to ensure consistency
+var cached_stage_sentences: Dictionary = {}
+
 func _ready() -> void:
 	pass
 
@@ -260,6 +313,9 @@ func start_day(day_number: int) -> void:
 
 	if current_day > total_days:
 		return
+
+	# Clear cached sentences for new day
+	cached_stage_sentences.clear()
 
 	# Configure corruption for this day
 	CorruptionManager.configure_for_day(current_day)
@@ -314,21 +370,52 @@ func advance_to_next_day() -> void:
 	if current_day < total_days:
 		start_day(current_day + 1)
 
-## Generates typing text for current stage using exact pre-written sentences
+## Generates typing text for current stage using randomized sentences
 func generate_stage_text() -> String:
-	var day_info = day_data[current_day]
+	# Get or generate the cached sentence for this stage
+	var stage_key = "%d_%d" % [current_day, current_stage]
+	if not cached_stage_sentences.has(stage_key):
+		cached_stage_sentences[stage_key] = _generate_randomized_sentence(current_day)
 
-	# Get the exact sentence for this stage (current_stage is 1-indexed)
-	var stage_index = current_stage - 1
-	if stage_index < 0 or stage_index >= day_info.stage_sentences.size():
-		return "error loading stage text"
-
-	var stage_sentence = day_info.stage_sentences[stage_index]
+	var randomized_sentence = cached_stage_sentences[stage_key]
 
 	# Convert corrupted words to English for typing
-	var english_sentence = _convert_corruption_to_english(stage_sentence)
+	var english_sentence = _convert_corruption_to_english(randomized_sentence)
 
 	return english_sentence
+
+## Generates a randomized sentence with corrupted words mixed in
+func _generate_randomized_sentence(day: int) -> String:
+	# Get the specific corrupted words for this day and stage
+	var day_stages = day_stage_corrupted_words.get(day, {})
+	var stage_corrupted_words = day_stages.get(current_stage, [])
+
+	# For Day 1 or stages without corruption, return random normal words
+	if stage_corrupted_words.is_empty():
+		var words: Array[String] = []
+		for i in range(12):  # Generate 12 random words
+			words.append(normal_word_pool[randi() % normal_word_pool.size()])
+		return " ".join(words)
+
+	# For other stages, mix specific corrupted words with random normal words
+	var sentence_words: Array[String] = []
+
+	# Generate sentence with 2-3 normal words between each corrupted word
+	for i in range(stage_corrupted_words.size()):
+		# Add 2-3 random normal words before each corrupted word
+		var normal_count = 2 + randi() % 2  # 2 or 3 words
+		for j in range(normal_count):
+			sentence_words.append(normal_word_pool[randi() % normal_word_pool.size()])
+
+		# Add the specific corrupted word for this stage
+		sentence_words.append(stage_corrupted_words[i])
+
+	# Add a few more normal words at the end
+	var end_count = 2 + randi() % 2
+	for i in range(end_count):
+		sentence_words.append(normal_word_pool[randi() % normal_word_pool.size()])
+
+	return " ".join(sentence_words)
 
 ## Converts corrupted words in a sentence to their English equivalents for typing
 func _convert_corruption_to_english(corrupted_sentence: String) -> String:
@@ -347,13 +434,12 @@ func _convert_corruption_to_english(corrupted_sentence: String) -> String:
 
 ## Gets the original corrupted sentence for display purposes
 func get_stage_display_sentence() -> String:
-	var day_info = day_data[current_day]
-	var stage_index = current_stage - 1
+	# Get the same cached sentence used for typing
+	var stage_key = "%d_%d" % [current_day, current_stage]
+	if not cached_stage_sentences.has(stage_key):
+		cached_stage_sentences[stage_key] = _generate_randomized_sentence(current_day)
 
-	if stage_index < 0 or stage_index >= day_info.stage_sentences.size():
-		return "error loading display text"
-
-	return day_info.stage_sentences[stage_index]
+	return cached_stage_sentences[stage_key]
 
 ## Queues a message for display
 func queue_message(message: String, type: MessageType) -> void:
