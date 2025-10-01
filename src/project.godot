@@ -11,9 +11,17 @@ config_version=5
 [application]
 
 config/name="The Typing Experiment"
-run/main_scene="res://src/scenes/2d/startup/StartupScreen.tscn"
+run/main_scene="uid://brf0taii070nf"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*res://src/autoloads/GameManager.gd"
+TypingEngine="*res://src/autoloads/TypingEngine.gd"
+StatsManager="*res://src/autoloads/StatsManager.gd"
+CorruptionManager="*res://src/autoloads/CorruptionManager.gd"
+DayManager="*res://src/autoloads/DayManager.gd"
 
 [display]
 
