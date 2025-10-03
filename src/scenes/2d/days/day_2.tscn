@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://csh5pxc1jghjv"]
+[gd_scene load_steps=4 format=3 uid="uid://b7bnqjnx72nyp"]
 
-[ext_resource type="Script" uid="uid://bc1wahtu2c1j4" path="res://src/scenes/2d/days/day_4.gd" id="1_gx62y"]
+[ext_resource type="Script" path="res://src/scenes/days/Day2Refactored.gd" id="1_ljcjv"]
 
 [sub_resource type="SystemFont" id="SystemFont_de5wr"]
 font_names = PackedStringArray("Courier New")
@@ -9,7 +9,7 @@ subpixel_positioning = 0
 [sub_resource type="Theme" id="Theme_bauee"]
 default_font = SubResource("SystemFont_de5wr")
 
-[node name="Day4" type="Control"]
+[node name="Day2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,7 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_bauee")
-script = ExtResource("1_gx62y")
+script = ExtResource("1_ljcjv")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -127,17 +127,23 @@ size_flags_vertical = 3
 [node name="ProgressContainer" type="HBoxContainer" parent="MainContainer"]
 layout_mode = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="MainContainer/ProgressContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-value = 1.0
-show_percentage = false
-
 [node name="ProgressLabel" type="Label" parent="MainContainer/ProgressContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Stage 1 of 5"
+
+[node name="Spacer" type="Control" parent="MainContainer/ProgressContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="MainContainer/ProgressContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 1.0
+show_percentage = false
 
 [node name="MessageOverlay" type="Label" parent="."]
 unique_name_in_owner = true

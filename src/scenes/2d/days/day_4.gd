@@ -2,6 +2,7 @@ extends BaseDay
 
 ## Day 4 - System Warning
 ## Heavy zalgo corruption with escape clues
+@onready var progress_bar_label: Label = %ProgressBarLabel
 
 func _ready() -> void:
 	# Set day-specific data before calling parent
@@ -20,6 +21,7 @@ func _setup_ui_theme() -> void:
 	day_stage_label.modulate = purple_tint
 	progress_label.modulate = warning_red
 	message_overlay.modulate = purple_tint
+	progress_bar_label.modulate = purple_tint
 
 ## Day 4 - Zalgo corruption typewriter effect with system stress
 func _show_stage_text_typewriter() -> void:

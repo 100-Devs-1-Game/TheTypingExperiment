@@ -17,11 +17,11 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*res://src/autoloads/game_manager.gd"
-TypingEngine="*res://src/autoloads/typing_engine.gd"
-StatsManager="*res://src/autoloads/stats_manager.gd"
-CorruptionManager="*res://src/autoloads/corruption_manager.gd"
-DayManager="*res://src/autoloads/day_manager.gd"
+GameManager="*res://autoloads/game_manager.gd"
+TypingEngine="*res://autoloads/typing_engine.gd"
+StatsManager="*res://autoloads/stats_manager.gd"
+CorruptionManager="*res://autoloads/corruption_manager.gd"
+DayManager="*res://autoloads/day_manager.gd"
 
 [display]
 

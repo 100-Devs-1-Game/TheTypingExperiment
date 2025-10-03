@@ -375,7 +375,7 @@ func _on_day_completed(day_number: int) -> void:
 		day_completed.emit()
 		# Transition to day end screen
 		await get_tree().create_timer(2.0).timeout
-		get_tree().change_scene_to_file("res://src/scenes/2d/days/day_end_screen.tscn")
+		get_tree().change_scene_to_file("res://scenes/2d/days/day_end_screen.tscn")
 
 func _on_real_time_stats_updated(wmp: float, accuracy: float) -> void:
 	wmp_label.text = "WPM: %.1f" % wmp

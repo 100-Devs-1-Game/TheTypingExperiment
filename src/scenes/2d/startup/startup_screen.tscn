@@ -69,7 +69,7 @@ func complete_startup():
 	await get_tree().create_timer(1.0).timeout
 
 	# Start Day 1 of the corruption story
-	get_tree().change_scene_to_file(\"res://src/scenes/days/Day1.tscn\")
+	get_tree().change_scene_to_file(\"res://scenes/days/day_2.tscn\")
 "
 
 [node name="StartupScreen" type="Control"]
