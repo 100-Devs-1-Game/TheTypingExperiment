@@ -246,14 +246,35 @@ func _apply_message_corruption(message: String) -> String:
 	# Apply unicode corruption to random characters for unsettling effect
 	var corrupted = ""
 	var corruption_chars = ["ţ", "ř", "ą", "ë", "ł", "ń", "đ", "ş", "ž", "ć", "ų", "ň", "ď", "ľ"]
+	var words = message.split(" ")
 
-	for i in range(message.length()):
-		var char = message[i]
-		# 15% chance to corrupt non-space characters
-		if char != " " and randf() < 0.15:
-			corrupted += corruption_chars[randi() % corruption_chars.size()]
+	for word_idx in range(words.size()):
+		var word = words[word_idx]
+		var corrupted_word = ""
+
+		# corrupt 1-2 characters per word max, and skip short/important words
+		if word.length() > 3 and randf() < 0.4:  # 40% chance to corrupt longer words
+			var chars_to_corrupt = min(2, word.length() / 3)  # Max 2 chars or 1/3 of word
+			var corruption_positions = []
+
+			# Pick random positions to corrupt (avoid first/last for readability)
+			for i in range(chars_to_corrupt):
+				var pos = randi_range(1, word.length() - 2)
+				if pos not in corruption_positions:
+					corruption_positions.append(pos)
+
+			# Apply corruption only to selected positions
+			for i in range(word.length()):
+				if i in corruption_positions:
+					corrupted_word += corruption_chars[randi() % corruption_chars.size()]
+				else:
+					corrupted_word += word[i]
 		else:
-			corrupted += char
+			corrupted_word = word
+
+		corrupted += corrupted_word
+		if word_idx < words.size() - 1:
+			corrupted += " "
 
 	return corrupted
 
