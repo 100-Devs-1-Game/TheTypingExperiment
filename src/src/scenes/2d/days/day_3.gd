@@ -135,20 +135,22 @@ func _show_message(message: String) -> void:
 	if not get_tree() or not message_overlay:
 		return
 
-	# Day 2 - Eerie low-fps fade effects
+	# Day 3 - Glitchy, unstable horror effects
 	message_overlay.visible = true
-	message_overlay.text = message  # Set text immediately
-	var red_tint = Color(1, 0.8, 0.8, 0)  # Preserve red tint but start invisible
-	message_overlay.modulate = red_tint
+	var corruption_tint = Color(1, 0.4, 0.1, 0)  # Deep orange corruption color
+	message_overlay.modulate = corruption_tint
 
-	# Eerie low-fps fade in effect
-	await _eerie_fade_in()
+	# Glitch the message text randomly before showing
+	var glitched_message = _apply_message_corruption(message)
 
-	# Auto-hide message after 4 seconds
-	await get_tree().create_timer(4.0).timeout
+	# Unstable fade-in with digital artifacts
+	await _corrupted_fade_in(glitched_message)
 
-	# Eerie low-fps fade out effect
-	await _eerie_fade_out()
+	# Hold message with subtle glitch pulses
+	await _hold_with_glitch_pulses(5.0)
+
+	# Chaotic fade out with text degradation
+	await _chaotic_fade_out()
 	message_overlay.visible = false
 
 
@@ -237,3 +239,128 @@ func _type_message_urgently(message: String) -> void:
 			await tree.create_timer(0.15).timeout
 
 	is_typing_message = false
+
+## Day 3 Horror Functions
+
+func _apply_message_corruption(message: String) -> String:
+	# Apply unicode corruption to random characters for unsettling effect
+	var corrupted = ""
+	var corruption_chars = ["ţ", "ř", "ą", "ë", "ł", "ń", "đ", "ş", "ž", "ć", "ų", "ň", "ď", "ľ"]
+
+	for i in range(message.length()):
+		var char = message[i]
+		# 15% chance to corrupt non-space characters
+		if char != " " and randf() < 0.15:
+			corrupted += corruption_chars[randi() % corruption_chars.size()]
+		else:
+			corrupted += char
+
+	return corrupted
+
+func _corrupted_fade_in(glitched_message: String) -> void:
+	var fade_steps = 12
+	var base_duration = 1.8
+	var step_duration = base_duration / fade_steps
+
+	for step in range(fade_steps + 1):
+		if not get_tree() or not message_overlay:
+			return
+
+		var alpha = float(step) / float(fade_steps)
+
+		# Digital artifact simulation - random alpha jumps
+		if randf() < 0.3:
+			alpha += randf_range(-0.2, 0.3)
+			alpha = clamp(alpha, 0.0, 1.0)
+
+		message_overlay.modulate.a = alpha
+
+		# Occasionally flicker the text corruption
+		if step % 3 == 0 and randf() < 0.4:
+			var reglitched = _apply_message_corruption(glitched_message)
+			message_overlay.text = reglitched
+		else:
+			message_overlay.text = glitched_message
+
+		if step < fade_steps:
+			# Variable timing for unstable feel
+			var actual_duration = step_duration + randf_range(-0.05, 0.1)
+			await get_tree().create_timer(actual_duration).timeout
+
+func _hold_with_glitch_pulses(duration: float) -> void:
+	var elapsed = 0.0
+	var pulse_interval = 0.8
+	var next_pulse = pulse_interval
+
+	while elapsed < duration:
+		if not get_tree() or not message_overlay:
+			return
+
+		var delta = 0.1
+		elapsed += delta
+
+		# Subtle corruption pulses
+		if elapsed >= next_pulse:
+			next_pulse += pulse_interval + randf_range(-0.3, 0.5)
+
+			# Intensity flicker
+			var original_alpha = message_overlay.modulate.a
+			message_overlay.modulate.a = original_alpha * randf_range(0.7, 1.3)
+
+			# Brief text distortion
+			var current_text = message_overlay.text
+			message_overlay.text = _apply_message_corruption(current_text)
+
+			await get_tree().create_timer(0.1).timeout
+
+			if message_overlay:
+				message_overlay.modulate.a = original_alpha
+				message_overlay.text = current_text
+
+		await get_tree().create_timer(delta).timeout
+
+func _chaotic_fade_out() -> void:
+	var fade_steps = 8
+	var fade_duration = 1.2
+	var step_duration = fade_duration / fade_steps
+
+	for step in range(fade_steps + 1):
+		if not get_tree() or not message_overlay:
+			return
+
+		var alpha = 1.0 - (float(step) / float(fade_steps))
+
+		# Chaotic alpha degradation
+		if step > 2:
+			alpha += randf_range(-0.4, 0.2)
+			alpha = clamp(alpha, 0.0, 1.0)
+
+		message_overlay.modulate.a = alpha
+
+		# Text degradation - more corruption as it fades
+		if step > 3:
+			var current_text = message_overlay.text
+			var corruption_level = float(step) / float(fade_steps)
+			var degraded_text = _degrade_text(current_text, corruption_level)
+			message_overlay.text = degraded_text
+
+		if step < fade_steps:
+			var actual_duration = step_duration + randf_range(-0.1, 0.15)
+			await get_tree().create_timer(actual_duration).timeout
+
+func _degrade_text(text: String, corruption_level: float) -> String:
+	var degraded = ""
+	var glitch_chars = ["█", "▓", "▒", "░", "▄", "▀", "■", "□", "▪", "▫"]
+
+	for i in range(text.length()):
+		var char = text[i]
+		# Increase corruption chance based on degradation level
+		if char != " " and randf() < (corruption_level * 0.6):
+			if randf() < 0.3:
+				degraded += glitch_chars[randi() % glitch_chars.size()]
+			else:
+				degraded += ""  # Character deletion
+		else:
+			degraded += char
+
+	return degraded
