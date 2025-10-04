@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8drbos167vf8"]
+
+[ext_resource type="Script" uid="uid://74jybdm1nojs" path="res://scenes/player/head.gd" id="1_g64o0"]
+[ext_resource type="Script" uid="uid://3c3wct0yfspy" path="res://scenes/player/camera.gd" id="2_u4hvf"]
+
+[node name="Head" type="Node3D" node_paths=PackedStringArray("ray_cast", "interaction_label")]
+script = ExtResource("1_g64o0")
+ray_cast = NodePath("Camera/RayCast3D")
+interaction_label = NodePath("InteractionLabel")
+
+[node name="Camera" type="Camera3D" parent="." groups=["player_camera"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)
+fov = 60.0
+script = ExtResource("2_u4hvf")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera"]
+visible = false
+spot_range = 30.0
+spot_angle = 65.0
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(2, 0, 0)
+collision_mask = 8
+
+[node name="InteractionLabel" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.5
+offset_top = -11.5
+offset_right = 39.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+text = "E: Interact"

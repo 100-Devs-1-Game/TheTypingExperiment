@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=3 uid="uid://dwome54bbq6ef"]
+
+[ext_resource type="Shader" uid="uid://barc84udpwptk" path="res://scenes/3d/assets_psx/posterize_canvas.gdshader" id="1_0wfyh"]
+[ext_resource type="Script" uid="uid://dcjky3peu8uji" path="res://scenes/3d/days/main.gd" id="1_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://3rh72dd5u6cg" path="res://scenes/3d/assets_psx/map/psx_room.gltf" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://scenes/3d/player/player.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://b7sfa3ybvyrb8" path="res://scenes/3d/assets_psx/map/roof.gltf" id="3_tbgi4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o5qli"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sugp2"]
+shader = ExtResource("1_0wfyh")
+shader_parameter/exposure = 1.0
+shader_parameter/contrast = 1.1
+shader_parameter/saturation = 0.9
+shader_parameter/enable_pixelate = false
+shader_parameter/pixel_factor = 1.1
+shader_parameter/enable_posterize = true
+shader_parameter/color_levels = 8.0
+shader_parameter/dither_strength = 0.3
+shader_parameter/chrom_aberration = 0.01
+shader_parameter/vignette_strength = 2.0
+shader_parameter/grain_strength = 0.2
+shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
+shader_parameter/tint_strength = 0.15
+shader_parameter/viewport_size_override = Vector2(0, 0)
+shader_parameter/overlay_enable = false
+shader_parameter/overlay_color = Color(0.858375, 0.943665, 0, 1)
+
+[sub_resource type="Environment" id="Environment_0wfyh"]
+background_mode = 1
+ambient_light_source = 1
+tonemap_mode = 2
+adjustment_brightness = 0.01
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("sub_viewport")]
+script = ExtResource("1_jyhfs")
+sub_viewport = NodePath("SubViewportContainer/SubViewport")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(640, 480)
+render_target_update_mode = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="SubViewportContainer/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_o5qli")
+
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport/PanelContainer"]
+material = SubResource("ShaderMaterial_sugp2")
+layout_mode = 2
+
+[node name="World" type="Node3D" parent="SubViewportContainer/SubViewport"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/World"]
+environment = SubResource("Environment_0wfyh")
+
+[node name="roof" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("3_tbgi4")]
+
+[node name="psx_room" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("1_o5qli")]
+
+[node name="Player" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("2_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.467516, 1.02215, 0.384875)
+
+[node name="Lighting" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.894371, 2.24122, 2.20756)
+light_color = Color(0.679622, 0.657677, 0.548465, 1)
+light_energy = 6.818

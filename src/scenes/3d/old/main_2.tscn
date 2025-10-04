@@ -1,0 +1,94 @@
+[gd_scene load_steps=8 format=3 uid="uid://bcsb3uhfhoxxg"]
+
+[ext_resource type="Script" uid="uid://dcjky3peu8uji" path="res://scenes/3d/days/main.gd" id="1_f241j"]
+[ext_resource type="Shader" uid="uid://barc84udpwptk" path="res://scenes/3d/assets_psx/posterize_canvas.gdshader" id="1_owpos"]
+[ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://scenes/3d/player/player.tscn" id="2_f241j"]
+[ext_resource type="PackedScene" uid="uid://3rh72dd5u6cg" path="res://scenes/3d/assets_psx/map/psx_room.gltf" id="3_43ty5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o5qli"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sugp2"]
+shader = ExtResource("1_owpos")
+shader_parameter/exposure = 1.0
+shader_parameter/contrast = 1.1
+shader_parameter/saturation = 0.9
+shader_parameter/enable_pixelate = false
+shader_parameter/pixel_factor = 1.1
+shader_parameter/enable_posterize = true
+shader_parameter/color_levels = 8.0
+shader_parameter/dither_strength = 0.3
+shader_parameter/chrom_aberration = 0.01
+shader_parameter/vignette_strength = 2.0
+shader_parameter/grain_strength = 0.2
+shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
+shader_parameter/tint_strength = 0.15
+shader_parameter/viewport_size_override = Vector2(0, 0)
+shader_parameter/overlay_enable = false
+shader_parameter/overlay_color = Color(0.858375, 0.943665, 0, 1)
+
+[sub_resource type="Environment" id="Environment_0wfyh"]
+background_mode = 1
+ambient_light_source = 1
+tonemap_mode = 2
+adjustment_brightness = 0.01
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("sub_viewport")]
+script = ExtResource("1_f241j")
+sub_viewport = NodePath("SubViewportContainer/SubViewport")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(640, 480)
+render_target_update_mode = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="SubViewportContainer/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_o5qli")
+
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport/PanelContainer"]
+material = SubResource("ShaderMaterial_sugp2")
+layout_mode = 2
+
+[node name="World" type="Node3D" parent="SubViewportContainer/SubViewport"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/World"]
+environment = SubResource("Environment_0wfyh")
+
+[node name="Player" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("2_f241j")]
+transform = Transform3D(-0.847224, 0, 0.531236, 0, 1, 0, -0.531236, 0, -0.847224, -0.467516, 1.02215, 0.384875)
+
+[node name="Lighting" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.757998, 2.24122, 2.20756)
+visible = false
+light_color = Color(0.679622, 0.657677, 0.548465, 1)
+light_energy = 6.818
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport/World/Lighting"]
+transform = Transform3D(-0.0458512, 0, -0.998948, 0, 1, 0, 0.998948, 0, -0.0458512, -3.59803, 1.45133, 3.51173)
+light_color = Color(0.111624, 0.593428, 0.364727, 1)
+light_energy = 15.507
+spot_range = 1.319
+spot_angle = 60.3334
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="SubViewportContainer/SubViewport/World/Lighting"]
+transform = Transform3D(0.0628318, -0.963719, 0.259418, 0.226856, 0.266919, 0.936638, -0.971899, 2.28617e-08, 0.235397, -2.95104, 1.87388, 3.62255)
+light_color = Color(0.111624, 0.593428, 0.364727, 1)
+light_energy = 2.367
+spot_range = 1.319
+spot_angle = 60.3334
+
+[node name="psx_room" parent="." instance=ExtResource("3_43ty5")]
