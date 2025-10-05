@@ -27,7 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://bv772i0i88a8" path="res://scenes/3d/assets_psx/map/door_2.png" id="25_k5qn3"]
 [ext_resource type="Texture2D" uid="uid://usc4q1s8jkfe" path="res://scenes/3d/assets_psx/map/floor_1.png" id="26_4kav3"]
 [ext_resource type="Texture2D" uid="uid://dvfmguabnl7ri" path="res://scenes/3d/assets_psx/map/concrete_1.jpg" id="27_npaos"]
-[ext_resource type="PackedScene" uid="uid://cqn71t2y76sjh" path="res://scenes/3d/old/startup_in_sub_viewport.tscn" id="28_45bht"]
+[ext_resource type="PackedScene" uid="uid://dw35byb5qogmh" path="res://scenes/2d/startup/startup_screen.tscn" id="28_5kplf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o5qli"]
 
@@ -1506,7 +1506,7 @@ data = PackedVector3Array(-2, 2, -0.0100003, 2, -2, -0.00999966, 2, 2, -0.010000
 [sub_resource type="PlaneMesh" id="PlaneMesh_cg8gi"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5kplf"]
-viewport_path = NodePath(".")
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uf4gf"]
 resource_local_to_scene = true
@@ -1978,6 +1978,8 @@ transform = Transform3D(-0.00349047, 0.199209, 0.0130714, 0, 0.0174312, -0.14942
 mesh = SubResource("PlaneMesh_cg8gi")
 surface_material_override/0 = SubResource("StandardMaterial3D_uf4gf")
 
-[node name="SubViewport" parent="." instance=ExtResource("28_45bht")]
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(640, 480)
 
-[editable path="SubViewport"]
+[node name="StartupScreen" parent="SubViewport" instance=ExtResource("28_5kplf")]

@@ -1,11 +1,12 @@
-[gd_scene load_steps=29 format=4 uid="uid://bscnpvrbsytxm"]
+[gd_scene load_steps=32 format=4 uid="uid://bscnpvrbsytxm"]
 
 [ext_resource type="Texture2D" uid="uid://eg826vlj6ndg" path="res://scenes/3d/assets_psx/map/pc_accessories_mp_1.png" id="1_yacx3"]
 [ext_resource type="Texture2D" uid="uid://csugt0g4jm7xk" path="res://scenes/3d/assets_psx/map/pc_monitor_mp_1.png" id="2_wtfnb"]
 [ext_resource type="Texture2D" uid="uid://cvlgmacj63gac" path="res://scenes/3d/assets_psx/map/crt_screen_mp_2.png" id="3_lon17"]
 [ext_resource type="Texture2D" uid="uid://b82yc1v1wtpp1" path="res://scenes/3d/assets_psx/map/screen_emission_mp_1.png" id="4_5tsrt"]
 [ext_resource type="Texture2D" uid="uid://bs0g50yqvfbvh" path="res://scenes/3d/assets_psx/map/mouse_pad_mp_1.png" id="5_1sxdn"]
-[ext_resource type="PackedScene" uid="uid://cqn71t2y76sjh" path="res://scenes/3d/old/startup_in_sub_viewport.tscn" id="6_d34un"]
+[ext_resource type="Shader" uid="uid://dbci57uc5sdri" path="res://scenes/3d/old/test/screen_curve.gdshader" id="6_dt66w"]
+[ext_resource type="PackedScene" uid="uid://dw35byb5qogmh" path="res://scenes/2d/startup/startup_screen.tscn" id="6_qvu2b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nkggp"]
 resource_name = "pc_accessories_mp_1.001"
@@ -245,12 +246,22 @@ data = PackedVector3Array(-0.12, -0.136472, 5.9654e-09, -0.12, 0.136472, -0.0040
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0c0eh"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_l5lan"]
-viewport_path = NodePath("SubViewportContainer/SubViewport")
+[sub_resource type="ViewportTexture" id="ViewportTexture_kxnp8"]
+viewport_path = NodePath("SubViewport2")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sg5kw"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_l5lan")
+albedo_texture = SubResource("ViewportTexture_kxnp8")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dt66w"]
+viewport_path = NodePath("SubViewport2/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_em5dp"]
+resource_local_to_scene = true
+shader = ExtResource("6_dt66w")
+shader_parameter/tex = SubResource("ViewportTexture_dt66w")
+shader_parameter/curve_amount = 0.3
+shader_parameter/screen_ratio = 0.75
 
 [node name="Node3D" type="Node3D"]
 
@@ -311,8 +322,17 @@ transform = Transform3D(-0.00349047, 0.199209, 0.0130714, 0, 0.0174312, -0.14942
 mesh = SubResource("PlaneMesh_0c0eh")
 surface_material_override/0 = SubResource("StandardMaterial3D_sg5kw")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="SubViewport2" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(640, 480)
 
-[node name="SubViewport" parent="SubViewportContainer" instance=ExtResource("6_d34un")]
+[node name="ColorRect" type="ColorRect" parent="SubViewport2"]
+material = SubResource("ShaderMaterial_em5dp")
+offset_right = 640.0
+offset_bottom = 480.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewport2"]
+handle_input_locally = false
+size = Vector2i(640, 480)
+
+[node name="StartupScreen" parent="SubViewport2/SubViewport" instance=ExtResource("6_qvu2b")]
