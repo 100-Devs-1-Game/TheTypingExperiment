@@ -139,7 +139,7 @@ resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("28_krker")
 shader_parameter/tex = SubResource("ViewportTexture_krker")
-shader_parameter/curve_amount = 0.3
+shader_parameter/curve_amount = 0.15
 shader_parameter/screen_ratio = 0.75
 
 [node name="Day1Env" type="Node3D" node_paths=PackedStringArray("sub_viewport")]

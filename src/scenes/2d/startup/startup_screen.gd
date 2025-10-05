@@ -19,6 +19,8 @@ var startup_messages = [
 var current_message_index = 0
 var startup_timer: Timer
 
+signal startup_complete
+
 func _ready():
 	setup_retro_theme()
 	start_startup_sequence()
@@ -64,3 +66,6 @@ func complete_startup():
 	progress_bar.value = 100
 
 	await get_tree().create_timer(1.0).timeout
+
+	# Emit signal instead of changing scenes
+	startup_complete.emit()
