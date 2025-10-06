@@ -13,11 +13,23 @@ var startup_triggered := false
 @onready var camera: Camera3D = $SubViewportContainer/SubViewport/World/Player/Head/Camera
 @onready var interaction_label: Label = $SubViewportContainer/SubViewport/World/Player/Head/InteractionLabel
 
-# Chair position for sitting
-var chair_position := Vector3(-2.6, 0, 3.5)
-var chair_rotation := Vector3(0, 90, 0)  # Face the monitor
-var standing_position := Vector3()
-var standing_rotation := Vector3()
+# Chair positioning for sitting
+var chair_position := Vector3(-2.75, 1.6, 3.55)
+var chair_rotation := Vector3(0, deg_to_rad(90), 0)  # Face monitor
+
+# Camera adjustments for sitting
+var seated_camera_offset := Vector3(0, -0.3, 0)  # Lower when sitting
+var seated_head_tilt := Vector3(deg_to_rad(-5), 0, 0)  # Slight down angle
+
+# Original state (saved once when first sitting)
+var original_player_position: Vector3
+var original_player_rotation: Vector3
+var original_head_rotation: Vector3
+var original_camera_position: Vector3
+var original_head_rot: Vector3
+
+# State tracking
+var is_state_saved := false
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -25,14 +37,11 @@ func _ready() -> void:
 	# Add to group so head can find us
 	add_to_group("main_environment")
 
-	# Store initial player position for standing up later
-	standing_position = player.global_position
-	standing_rotation = player.rotation
 
 func _input(event: InputEvent) -> void:
 	# Handle exit from PC
 	if event.is_action_pressed("ui_cancel") and player_state == PlayerState.SEATED_AT_PC:
-		stand_up_from_pc()
+		stand_up_from_computer()
 		return
 
 	# Normal menu handling when walking
@@ -51,8 +60,8 @@ func _input(event: InputEvent) -> void:
 # Called by the head script when player interacts with PC
 func interact_with_pc():
 	if player_state == PlayerState.WALKING:
-		sit_at_pc()
-		
+		sit_at_computer()
+
 func show_menu(_show:bool):
 	showing_menu = _show
 	if not showing_menu:
@@ -62,24 +71,61 @@ func show_menu(_show:bool):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		#%GameScreen.show()
 
-# Sitting mechanics
-func sit_at_pc():
+# Fade transition system
+func fade_transition(callback: Callable):
+	var fade = ColorRect.new()
+	fade.color = Color.BLACK
+	fade.modulate.a = 0
+	fade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	get_viewport().add_child(fade)
+
+	var tween = create_tween()
+	tween.tween_property(fade, "modulate:a", 1.0, 0.2)
+	tween.tween_callback(callback)
+	tween.tween_property(fade, "modulate:a", 0.0, 0.2)
+	tween.tween_callback(func(): fade.queue_free())
+
+# Save original state (only once per session)
+func save_original_state():
+	if not is_state_saved:
+		original_player_position = player.global_position
+		original_player_rotation = player.rotation
+		original_head_rotation = head.rotation
+		original_camera_position = camera.position
+		original_head_rot = head.rot
+		is_state_saved = true
+
+# Restore original state exactly
+func restore_original_state():
+	player.global_position = original_player_position
+	player.rotation = original_player_rotation
+	head.rotation = original_head_rotation
+	camera.position = original_camera_position
+	head.rot = original_head_rot
+	is_state_saved = false
+
+# New sitting system with fade transitions
+func sit_at_computer():
+	# Save state only if not already saved
+	save_original_state()
+
+	# Use fade transition for smooth sitting
+	fade_transition(func(): _execute_sit_at_computer())
+
+func _execute_sit_at_computer():
 	player_state = PlayerState.SEATED_AT_PC
 
 	# Disable player movement and head look
 	player.is_active = false
 	head.can_move_camera = false
 
-	# Store current position for standing up
-	standing_position = player.global_position
-	standing_rotation = player.rotation
-
 	# Teleport player to chair
 	player.global_position = chair_position
-	player.rotation_degrees = chair_rotation
+	player.rotation = chair_rotation
 
-	# Start smooth camera transition to monitor
-	animate_camera_to_monitor()
+	# Adjust camera for seated position
+	camera.position = Vector3(0, 0, 0) + seated_camera_offset
+	head.rotation = seated_head_tilt
 
 	# Show ESC hint when seated
 	interaction_label.text = "ESC: Stand Up"
@@ -90,15 +136,15 @@ func sit_at_pc():
 		startup_triggered = true
 		start_monitor_startup()
 
-func stand_up_from_pc():
+func stand_up_from_computer():
+	# Use fade transition for smooth standing
+	fade_transition(func(): _execute_stand_up_from_computer())
+
+func _execute_stand_up_from_computer():
 	player_state = PlayerState.WALKING
 
-	# Teleport player back to standing position
-	player.global_position = standing_position
-	player.rotation = standing_rotation
-
-	# Animate camera back to normal
-	animate_camera_to_normal()
+	# Restore all original states exactly
+	restore_original_state()
 
 	# Re-enable player movement and head look
 	player.is_active = true
@@ -106,26 +152,6 @@ func stand_up_from_pc():
 
 	# Hide the ESC prompt
 	interaction_label.visible = false
-
-# Camera transitions
-func animate_camera_to_monitor():
-	var tween = create_tween()
-	tween.set_parallel(true)
-
-	# Move camera closer and angle toward monitor
-	var target_position = camera.position + Vector3(0, 0.2, -0.5)
-	var target_rotation = camera.rotation_degrees + Vector3(-10, 0, 0)
-
-	tween.tween_property(camera, "position", target_position, 1.0)
-	tween.tween_property(camera, "rotation_degrees", target_rotation, 1.0)
-
-func animate_camera_to_normal():
-	var tween = create_tween()
-	tween.set_parallel(true)
-
-	# Reset camera to original position/rotation
-	tween.tween_property(camera, "position", Vector3(0, 0, 0), 1.0)
-	tween.tween_property(camera, "rotation_degrees", Vector3(0, 0, 0), 1.0)
 
 # Monitor startup control
 func start_monitor_startup():
@@ -136,7 +162,7 @@ func start_monitor_startup():
 
 func _on_startup_complete():
 	# Load Day 1 content in the monitor SubViewport instead of changing scenes
-	var day_1_scene = preload("res://scenes/2d/days/day_1.tscn")
+	var day_1_scene = preload("res://scenes/2d/days/day_2.tscn")
 	var day_1_instance = day_1_scene.instantiate()
 
 	# Remove startup screen and replace with Day 1

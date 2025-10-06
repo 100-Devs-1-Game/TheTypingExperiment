@@ -34,16 +34,12 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("interact") and ray_cast.is_colliding():
 		var object = ray_cast.get_collider()
-		print("Interacting with object: ", object.name if object else "null")
 		# Check if we're looking at the PC
 		if object and object.name == "PCInteraction":
-			print("PC detected, calling interact_with_pc")
 			# Find the main script and trigger PC interaction
 			var main_script = get_tree().get_first_node_in_group("main_environment")
 			if main_script and main_script.has_method("interact_with_pc"):
 				main_script.interact_with_pc()
-			else:
-				print("Main script not found or method missing")
 
 func _process(_delta):
 	# Only show interaction prompts when we can move the camera (not seated)

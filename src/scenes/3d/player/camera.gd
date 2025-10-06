@@ -7,4 +7,4 @@ func _input(event):
 			if light.visible:
 				light.visible = false
 			else:
-				light.visible = true
+				light.visible = false #TODO: disabled for now, set to true if necessary
