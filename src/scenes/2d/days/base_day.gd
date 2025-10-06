@@ -7,6 +7,7 @@ extends Control
 
 signal stage_completed()
 signal day_completed()
+signal day_end_screen_requested()
 
 # UI References (all days use these)
 @onready var text_display: RichTextLabel = %DisplayText
@@ -373,9 +374,9 @@ func _show_message(message: String) -> void:
 func _on_day_completed(day_number: int) -> void:
 	if day_number == DAY_NUMBER:
 		day_completed.emit()
-		# Transition to day end screen
+		# Request day end screen (let 3D environment handle it)
 		await get_tree().create_timer(2.0).timeout
-		get_tree().change_scene_to_file("res://scenes/2d/days/day_end_screen.tscn")
+		day_end_screen_requested.emit()
 
 func _on_real_time_stats_updated(wmp: float, accuracy: float) -> void:
 	wmp_label.text = "WPM: %.1f" % wmp

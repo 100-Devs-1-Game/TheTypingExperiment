@@ -196,3 +196,18 @@ func _on_startup_complete():
 		startup_screen.queue_free()
 
 	monitor_viewport.add_child(day_1_instance)
+
+	# Connect to day end screen signal
+	if day_1_instance.has_signal("day_end_screen_requested"):
+		day_1_instance.day_end_screen_requested.connect(_on_day_end_screen_requested)
+
+func _on_day_end_screen_requested():
+	# Load day end screen on monitor instead of changing entire scene
+	var day_end_scene = preload("res://scenes/2d/days/day_end_screen.tscn")
+	var day_end_instance = day_end_scene.instantiate()
+
+	# Remove current day content and replace with day end screen
+	for child in monitor_viewport.get_children():
+		child.queue_free()
+
+	monitor_viewport.add_child(day_end_instance)

@@ -157,7 +157,7 @@ func _advance_to_next_day() -> void:
 	# Transition to next day scene (only Day 2 exists currently)
 	match next_day:
 		2:
-			get_tree().change_scene_to_file("res://src/scenes/days/Day2.tscn")
+			get_tree().change_scene_to_file("res://scenes/2d/days/day_2.tscn")
 		_:
 			# Days 3-5 scenes don't exist yet, handle completion
 			_handle_game_completion()
