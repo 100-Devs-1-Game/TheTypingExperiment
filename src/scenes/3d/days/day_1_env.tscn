@@ -472,3 +472,4 @@ size = Vector2i(640, 480)
 [editable path="SubViewportContainer/SubViewport/World/GLB/Desk/table_large_2_42"]
 [editable path="SubViewportContainer/SubViewport/World/GLB/Desk/chair_mp_3_42"]
 [editable path="SubViewportContainer/SubViewport/World/GLB/Desk/pc_mp_12"]
+[editable path="SubViewportContainer/SubViewport/World/Custom/keyboard_with_separate_keys"]

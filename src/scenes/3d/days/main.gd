@@ -31,11 +31,17 @@ var original_head_rot: Vector3
 # State tracking
 var is_state_saved := false
 
+# Keyboard visualization
+var keyboard_visualizer: KeyboardVisualizer
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	# Add to group so head can find us
 	add_to_group("main_environment")
+
+	# Setup keyboard visualizer
+	_setup_keyboard_visualizer()
 
 
 func _input(event: InputEvent) -> void:
@@ -48,6 +54,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and player_state == PlayerState.WALKING:
 		show_menu(!showing_menu)
 		return
+
+	# Handle keyboard visualization when seated at PC
+	if player_state == PlayerState.SEATED_AT_PC and keyboard_visualizer:
+		keyboard_visualizer.handle_input_event(event)
 
 	# Forward input based on state
 	match player_state:
@@ -211,3 +221,22 @@ func _on_day_end_screen_requested():
 		child.queue_free()
 
 	monitor_viewport.add_child(day_end_instance)
+
+# Setup keyboard visualization system
+func _setup_keyboard_visualizer() -> void:
+	keyboard_visualizer = KeyboardVisualizer.new()
+	keyboard_visualizer.name = "KeyboardVisualizer"
+	add_child(keyboard_visualizer)
+
+	# Connect to keyboard events for debugging (optional)
+	if keyboard_visualizer.has_signal("key_pressed"):
+		keyboard_visualizer.key_pressed.connect(_on_keyboard_key_pressed)
+	if keyboard_visualizer.has_signal("key_released"):
+		keyboard_visualizer.key_released.connect(_on_keyboard_key_released)
+
+# Optional: Handle keyboard events for debugging or additional effects
+func _on_keyboard_key_pressed(key_name: String) -> void:
+	pass  # Could add sound effects or other feedback here
+
+func _on_keyboard_key_released(key_name: String) -> void:
+	pass  # Could add sound effects or other feedback here
