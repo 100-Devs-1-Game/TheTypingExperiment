@@ -127,14 +127,17 @@ func _execute_sit_at_computer():
 	camera.position = Vector3(0, 0, 0) + seated_camera_offset
 	head.rotation = seated_head_tilt
 
-	# Show ESC hint briefly when seated, then hide it
+	# Show ESC hint briefly when seated, then eerie fade out
 	interaction_label.text = "ESC: Stand Up"
 	interaction_label.visible = true
+	interaction_label.modulate.a = 1.0  # Ensure it starts fully visible
 
-	# Hide the hint after 3 seconds so it doesn't interfere with typing
+	# Wait 3 seconds then do eerie fade out
 	await get_tree().create_timer(3.0).timeout
-	if player_state == PlayerState.SEATED_AT_PC:  # Only hide if still seated
-		interaction_label.visible = false
+	if player_state == PlayerState.SEATED_AT_PC:  # Only fade if still seated
+		await _eerie_fade_out_esc()
+		if player_state == PlayerState.SEATED_AT_PC:  # Check again after fade
+			interaction_label.visible = false
 
 	# Trigger startup screen if not already done
 	if not startup_triggered:
@@ -155,8 +158,25 @@ func _execute_stand_up_from_computer():
 	player.is_active = true
 	head.can_move_camera = true
 
-	# Hide the ESC prompt
+	# Hide the ESC prompt and reset alpha
 	interaction_label.visible = false
+	interaction_label.modulate.a = 1.0  # Reset for next time
+
+# Eerie low-fps fade out effect for ESC message (same as Day 2)
+func _eerie_fade_out_esc() -> void:
+	var fade_steps = 6  # Choppy fade out
+	var fade_duration = 1.0  # Fast fade out
+	var step_duration = fade_duration / fade_steps
+
+	for step in range(fade_steps + 1):
+		if not get_tree() or not interaction_label:
+			return
+
+		var alpha = 1.0 - (float(step) / float(fade_steps))
+		interaction_label.modulate.a = alpha
+
+		if step < fade_steps:  # Don't wait after the last step
+			await get_tree().create_timer(step_duration).timeout
 
 # Monitor startup control
 func start_monitor_startup():
