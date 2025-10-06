@@ -8,11 +8,18 @@ var corruption_animation_time: float = 0.0
 var corruption_animation_speed: float = 1.3  # Speed of pulsing effects
 var corruption_intensity_base: float = 0.3   # Base intensity that grows over time
 
+# Horror effects system
+var horror_effects: HorrorEffectsManager
+
 func _ready() -> void:
 	# Set day-specific data before calling parent
 	DAY_NUMBER = 2
 	corruption_color = "#ff0000"  # Red for corrupted text
 	cursor_blink_speed = 0.5
+
+	# Setup horror effects manager for Day 2
+	_setup_horror_effects()
+
 	super._ready()
 
 func _process(delta: float) -> void:
@@ -233,50 +240,18 @@ func _show_message(message: String) -> void:
 	if not get_tree() or not message_overlay:
 		return
 
-	# Day 2 - Eerie low-fps fade effects
-	message_overlay.visible = true
-	message_overlay.text = message  # Set text immediately
-	var red_tint = Color(1, 0.8, 0.8, 0)  # Preserve red tint but start invisible
-	message_overlay.modulate = red_tint
+	# Day 2 - Use standardized horror effects
+	if horror_effects:
+		await horror_effects.show_day2_style_message(message_overlay, message)
+	else:
+		# Fallback to basic display if horror effects not available
+		message_overlay.text = message
+		message_overlay.visible = true
+		await get_tree().create_timer(4.0).timeout
+		message_overlay.visible = false
 
-	# Eerie low-fps fade in effect
-	await _eerie_fade_in()
-
-	# Auto-hide message after 4 seconds
-	await get_tree().create_timer(4.0).timeout
-
-	# Eerie low-fps fade out effect
-	await _eerie_fade_out()
-	message_overlay.visible = false
-
-## Eerie low-fps fade in effect
-func _eerie_fade_in() -> void:
-	var fade_steps = 8  # Low number of steps for choppy, eerie effect
-	var fade_duration = 1.2  # Faster fade in time
-	var step_duration = fade_duration / fade_steps
-
-	for step in range(fade_steps + 1):
-		if not get_tree() or not message_overlay:
-			return
-
-		var alpha = float(step) / float(fade_steps)
-		message_overlay.modulate.a = alpha
-
-		if step < fade_steps:  # Don't wait after the last step
-			await get_tree().create_timer(step_duration).timeout
-
-## Eerie low-fps fade out effect
-func _eerie_fade_out() -> void:
-	var fade_steps = 6  # Even choppier fade out
-	var fade_duration = 1.0  # Much faster fade out
-	var step_duration = fade_duration / fade_steps
-
-	for step in range(fade_steps + 1):
-		if not get_tree() or not message_overlay:
-			return
-
-		var alpha = 1.0 - (float(step) / float(fade_steps))
-		message_overlay.modulate.a = alpha
-
-		if step < fade_steps:  # Don't wait after the last step
-			await get_tree().create_timer(step_duration).timeout
+# Setup horror effects manager for Day 2
+func _setup_horror_effects() -> void:
+	horror_effects = HorrorEffectsManager.new()
+	horror_effects.name = "Day2HorrorEffects"
+	add_child(horror_effects)

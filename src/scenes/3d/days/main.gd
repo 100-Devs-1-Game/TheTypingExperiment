@@ -34,13 +34,18 @@ var is_state_saved := false
 # Keyboard visualization
 var keyboard_visualizer: KeyboardVisualizer
 
+# Modular systems
+var fade_manager: FadeTransitionManager
+var horror_effects: HorrorEffectsManager
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	# Add to group so head can find us
 	add_to_group("main_environment")
 
-	# Setup keyboard visualizer
+	# Setup modular systems
+	_setup_modular_systems()
 	_setup_keyboard_visualizer()
 
 
@@ -81,19 +86,13 @@ func show_menu(_show:bool):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		#%GameScreen.show()
 
-# Fade transition system
+# Fade transition system (now using modular FadeTransitionManager)
 func fade_transition(callback: Callable):
-	var fade = ColorRect.new()
-	fade.color = Color.BLACK
-	fade.modulate.a = 0
-	fade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	get_viewport().add_child(fade)
-
-	var tween = create_tween()
-	tween.tween_property(fade, "modulate:a", 1.0, 0.2)
-	tween.tween_callback(callback)
-	tween.tween_property(fade, "modulate:a", 0.0, 0.2)
-	tween.tween_callback(func(): fade.queue_free())
+	if fade_manager:
+		await fade_manager.fade_to_black(callback)
+	else:
+		# Fallback if fade manager not available
+		callback.call()
 
 # Save original state (only once per session)
 func save_original_state():
@@ -172,21 +171,14 @@ func _execute_stand_up_from_computer():
 	interaction_label.visible = false
 	interaction_label.modulate.a = 1.0  # Reset for next time
 
-# Eerie low-fps fade out effect for ESC message (same as Day 2)
+# Eerie low-fps fade out effect for ESC message (now using HorrorEffectsManager)
 func _eerie_fade_out_esc() -> void:
-	var fade_steps = 6  # Choppy fade out
-	var fade_duration = 1.0  # Fast fade out
-	var step_duration = fade_duration / fade_steps
-
-	for step in range(fade_steps + 1):
-		if not get_tree() or not interaction_label:
-			return
-
-		var alpha = 1.0 - (float(step) / float(fade_steps))
-		interaction_label.modulate.a = alpha
-
-		if step < fade_steps:  # Don't wait after the last step
-			await get_tree().create_timer(step_duration).timeout
+	if horror_effects and interaction_label:
+		await horror_effects.fade_out_esc_prompt(interaction_label)
+	else:
+		# Fallback for missing horror effects manager
+		if interaction_label:
+			interaction_label.visible = false
 
 # Monitor startup control
 func start_monitor_startup():
@@ -221,6 +213,18 @@ func _on_day_end_screen_requested():
 		child.queue_free()
 
 	monitor_viewport.add_child(day_end_instance)
+
+# Setup modular systems
+func _setup_modular_systems() -> void:
+	# Setup fade transition manager
+	fade_manager = FadeTransitionManager.new()
+	fade_manager.name = "FadeTransitionManager"
+	add_child(fade_manager)
+
+	# Setup horror effects manager
+	horror_effects = HorrorEffectsManager.new()
+	horror_effects.name = "HorrorEffectsManager"
+	add_child(horror_effects)
 
 # Setup keyboard visualization system
 func _setup_keyboard_visualizer() -> void:
