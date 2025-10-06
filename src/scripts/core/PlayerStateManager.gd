@@ -61,8 +61,7 @@ func initialize(
 	camera = camera_ref
 	interaction_label = interaction_label_ref
 
-	# Save original state immediately upon initialization
-	_save_original_state()
+	# Don't save state immediately - wait until first interaction like original code
 
 ## Set external managers for enhanced effects
 func set_external_managers(fade_mgr: FadeTransitionManager = null, horror_mgr: HorrorEffectsManager = null) -> void:
@@ -99,6 +98,9 @@ func stand_up_from_computer(use_fade_transition: bool = true) -> void:
 
 ## Execute the sitting transition
 func _execute_sit_at_computer() -> void:
+	# Save original state only if not already saved (like original implementation)
+	_save_original_state()
+
 	var old_state = current_state
 	current_state = PlayerState.SEATED_AT_PC
 
@@ -130,7 +132,7 @@ func _execute_stand_up_from_computer() -> void:
 	var old_state = current_state
 	current_state = PlayerState.WALKING
 
-	# Restore all original states
+	# Restore all original states exactly (like original implementation)
 	_restore_original_state()
 
 	# Re-enable player movement and head look
@@ -190,6 +192,9 @@ func _restore_original_state() -> void:
 		head.rot = original_head_rot
 	if camera:
 		camera.position = original_camera_position
+
+	# Reset state saved flag like original implementation
+	is_state_saved = false
 
 ## Custom interaction state for extensibility
 func set_custom_interaction_state(
