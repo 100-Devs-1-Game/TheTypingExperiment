@@ -34,14 +34,32 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("interact") and ray_cast.is_colliding():
 		var object = ray_cast.get_collider()
+		print("Interacting with object: ", object.name if object else "null")
+		# Check if we're looking at the PC
+		if object and object.name == "PCInteraction":
+			print("PC detected, calling interact_with_pc")
+			# Find the main script and trigger PC interaction
+			var main_script = get_tree().get_first_node_in_group("main_environment")
+			if main_script and main_script.has_method("interact_with_pc"):
+				main_script.interact_with_pc()
+			else:
+				print("Main script not found or method missing")
 
 func _process(_delta):
-	if ray_cast.is_colliding():
-		if not interaction_label.visible and can_move_camera:
-			interaction_label.visible = true
-	else:
-		if  interaction_label.visible:
-			interaction_label.visible = false
+	# Only show interaction prompts when we can move the camera (not seated)
+	if can_move_camera:
+		if ray_cast.is_colliding():
+			var object = ray_cast.get_collider()
+			if object and object.name == "PCInteraction":
+				interaction_label.text = "E: Use Computer"
+			else:
+				interaction_label.text = "E: Interact"
+
+			if not interaction_label.visible:
+				interaction_label.visible = true
+		else:
+			if interaction_label.visible:
+				interaction_label.visible = false
 			
 # Called every physics tick. 'delta' is constant
 func _physics_process(delta: float) -> void:

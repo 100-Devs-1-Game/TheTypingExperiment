@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b8drbos167vf8"]
 
-[ext_resource type="Script" uid="uid://74jybdm1nojs" path="res://scenes/player/head.gd" id="1_g64o0"]
-[ext_resource type="Script" uid="uid://3c3wct0yfspy" path="res://scenes/player/camera.gd" id="2_u4hvf"]
+[ext_resource type="Script" uid="uid://74jybdm1nojs" path="res://scenes/3d/player/head.gd" id="1_g64o0"]
+[ext_resource type="Script" uid="uid://3c3wct0yfspy" path="res://scenes/3d/player/camera.gd" id="2_u4hvf"]
 
 [node name="Head" type="Node3D" node_paths=PackedStringArray("ray_cast", "interaction_label")]
 script = ExtResource("1_g64o0")

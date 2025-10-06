@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://bud07mn4d7mwr"]
+[gd_scene load_steps=61 format=3 uid="uid://bud07mn4d7mwr"]
 
 [ext_resource type="Shader" uid="uid://barc84udpwptk" path="res://scenes/3d/assets_psx/posterize_canvas.gdshader" id="1_8khuf"]
 [ext_resource type="Script" uid="uid://dcjky3peu8uji" path="res://scenes/3d/days/main.gd" id="1_tbtjm"]
@@ -141,6 +141,9 @@ shader = ExtResource("28_krker")
 shader_parameter/tex = SubResource("ViewportTexture_krker")
 shader_parameter/curve_amount = 0.15
 shader_parameter/screen_ratio = 0.75
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pcinteraction"]
+size = Vector3(2.1, 2, 1.7)
 
 [node name="Day1Env" type="Node3D" node_paths=PackedStringArray("sub_viewport")]
 script = ExtResource("1_tbtjm")
@@ -401,7 +404,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 
 shape = SubResource("ConcavePolygonShape3D_8khuf")
 
 [node name="chair_mp_3_42" parent="SubViewportContainer/SubViewport/World/GLB/Desk" instance=ExtResource("17_0p4eh")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.6, 0, 3.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.6, 0, 3.5)
 
 [node name="chair_mp_3_4" parent="SubViewportContainer/SubViewport/World/GLB/Desk/chair_mp_3_42" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0.0999999, 0, 0)
@@ -432,6 +435,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, -0.4, 4.5)
 transform = Transform3D(-0.00349047, 0.199209, 0.0139429, 0, 0.0174312, -0.159391, -0.19997, -0.00347719, -0.000243373, -3.333, 1.28941, 3.59922)
 mesh = SubResource("PlaneMesh_krker")
 surface_material_override/0 = SubResource("ShaderMaterial_monitor")
+
+[node name="PCInteraction" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 1, 3.5)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/PCInteraction"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0500002, 0, 0)
+shape = SubResource("BoxShape3D_pcinteraction")
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer/SubViewport/World"]
 handle_input_locally = false
