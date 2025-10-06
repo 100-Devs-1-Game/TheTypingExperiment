@@ -127,9 +127,14 @@ func _execute_sit_at_computer():
 	camera.position = Vector3(0, 0, 0) + seated_camera_offset
 	head.rotation = seated_head_tilt
 
-	# Show ESC hint when seated
+	# Show ESC hint briefly when seated, then hide it
 	interaction_label.text = "ESC: Stand Up"
 	interaction_label.visible = true
+
+	# Hide the hint after 3 seconds so it doesn't interfere with typing
+	await get_tree().create_timer(3.0).timeout
+	if player_state == PlayerState.SEATED_AT_PC:  # Only hide if still seated
+		interaction_label.visible = false
 
 	# Trigger startup screen if not already done
 	if not startup_triggered:
