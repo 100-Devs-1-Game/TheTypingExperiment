@@ -187,7 +187,7 @@ func start_monitor_startup():
 
 func _on_startup_complete():
 	# Load Day 1 content in the monitor SubViewport instead of changing scenes
-	var day_1_scene = preload("res://scenes/2d/days/day_2.tscn")
+	var day_1_scene = preload("res://scenes/2d/days/day_1.tscn")
 	var day_1_instance = day_1_scene.instantiate()
 
 	# Remove startup screen and replace with Day 1

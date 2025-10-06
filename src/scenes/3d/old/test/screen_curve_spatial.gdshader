@@ -1,6 +1,6 @@
 shader_type spatial;
-render_mode depth_draw_opaque, diffuse_burley, specular_schlick_ggx;
-
+render_mode unshaded,depth_draw_opaque, diffuse_burley, specular_schlick_ggx;
+ 
 uniform sampler2D tex: source_color, filter_linear;
 uniform float curve_amount : hint_range(0.0, 1.0) = 0.3;
 uniform float screen_ratio : hint_range(0.5, 1.0) = 0.75;
