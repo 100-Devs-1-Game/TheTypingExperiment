@@ -1,9 +1,6 @@
 extends Node3D
 
-enum PlayerState { WALKING, SEATED_AT_PC }
-
 var showing_menu := false
-var player_state := PlayerState.WALKING
 var startup_triggered := false
 
 @export var sub_viewport: SubViewport
@@ -13,30 +10,11 @@ var startup_triggered := false
 @onready var camera: Camera3D = $SubViewportContainer/SubViewport/World/Player/Head/Camera
 @onready var interaction_label: Label = $SubViewportContainer/SubViewport/World/Player/Head/InteractionLabel
 
-# Chair positioning for sitting
-var chair_position := Vector3(-2.75, 1.6, 3.55)
-var chair_rotation := Vector3(0, deg_to_rad(90), 0)  # Face monitor
-
-# Camera adjustments for sitting
-var seated_camera_offset := Vector3(0, -0.3, 0)  # Lower when sitting
-var seated_head_tilt := Vector3(deg_to_rad(-5), 0, 0)  # Slight down angle
-
-# Original state (saved once when first sitting)
-var original_player_position: Vector3
-var original_player_rotation: Vector3
-var original_head_rotation: Vector3
-var original_camera_position: Vector3
-var original_head_rot: Vector3
-
-# State tracking
-var is_state_saved := false
-
-# Keyboard visualization
-var keyboard_visualizer: KeyboardVisualizer
-
 # Modular systems
 var fade_manager: FadeTransitionManager
 var horror_effects: HorrorEffectsManager
+var player_state_manager: PlayerStateManager
+var keyboard_visualizer: KeyboardVisualizer
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -50,32 +28,37 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	# Handle exit from PC
-	if event.is_action_pressed("ui_cancel") and player_state == PlayerState.SEATED_AT_PC:
-		stand_up_from_computer()
-		return
+	# Let player state manager handle state transitions first
+	if player_state_manager and player_state_manager.handle_input_event(event):
+		return  # Input was handled by state manager
 
 	# Normal menu handling when walking
-	if event.is_action_pressed("ui_cancel") and player_state == PlayerState.WALKING:
+	if event.is_action_pressed("ui_cancel") and player_state_manager and player_state_manager.is_walking():
 		show_menu(!showing_menu)
 		return
 
 	# Handle keyboard visualization when seated at PC
-	if player_state == PlayerState.SEATED_AT_PC and keyboard_visualizer:
+	if player_state_manager and player_state_manager.is_seated() and keyboard_visualizer:
 		keyboard_visualizer.handle_input_event(event)
 
 	# Forward input based on state
-	match player_state:
-		PlayerState.WALKING:
-			sub_viewport.push_input(event)
-		PlayerState.SEATED_AT_PC:
-			# Only forward typing input to monitor when seated
-			monitor_viewport.push_input(event)
+	if player_state_manager:
+		match player_state_manager.get_current_state():
+			PlayerStateManager.PlayerState.WALKING:
+				sub_viewport.push_input(event)
+			PlayerStateManager.PlayerState.SEATED_AT_PC:
+				# Only forward typing input to monitor when seated
+				monitor_viewport.push_input(event)
 
 # Called by the head script when player interacts with PC
 func interact_with_pc():
-	if player_state == PlayerState.WALKING:
-		sit_at_computer()
+	if player_state_manager and player_state_manager.can_interact():
+		player_state_manager.sit_at_computer()
+
+		# Trigger startup screen if not already done
+		if not startup_triggered:
+			startup_triggered = true
+			start_monitor_startup()
 
 func show_menu(_show:bool):
 	showing_menu = _show
@@ -86,99 +69,13 @@ func show_menu(_show:bool):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		#%GameScreen.show()
 
-# Fade transition system (now using modular FadeTransitionManager)
+# Legacy fade transition function (maintained for compatibility)
 func fade_transition(callback: Callable):
 	if fade_manager:
 		await fade_manager.fade_to_black(callback)
 	else:
 		# Fallback if fade manager not available
 		callback.call()
-
-# Save original state (only once per session)
-func save_original_state():
-	if not is_state_saved:
-		original_player_position = player.global_position
-		original_player_rotation = player.rotation
-		original_head_rotation = head.rotation
-		original_camera_position = camera.position
-		original_head_rot = head.rot
-		is_state_saved = true
-
-# Restore original state exactly
-func restore_original_state():
-	player.global_position = original_player_position
-	player.rotation = original_player_rotation
-	head.rotation = original_head_rotation
-	camera.position = original_camera_position
-	head.rot = original_head_rot
-	is_state_saved = false
-
-# New sitting system with fade transitions
-func sit_at_computer():
-	# Save state only if not already saved
-	save_original_state()
-
-	# Use fade transition for smooth sitting
-	fade_transition(func(): _execute_sit_at_computer())
-
-func _execute_sit_at_computer():
-	player_state = PlayerState.SEATED_AT_PC
-
-	# Disable player movement and head look
-	player.is_active = false
-	head.can_move_camera = false
-
-	# Teleport player to chair
-	player.global_position = chair_position
-	player.rotation = chair_rotation
-
-	# Adjust camera for seated position
-	camera.position = Vector3(0, 0, 0) + seated_camera_offset
-	head.rotation = seated_head_tilt
-
-	# Show ESC hint briefly when seated, then eerie fade out
-	interaction_label.text = "ESC: Stand Up"
-	interaction_label.visible = true
-	interaction_label.modulate.a = 1.0  # Ensure it starts fully visible
-
-	# Wait 3 seconds then do eerie fade out
-	await get_tree().create_timer(3.0).timeout
-	if player_state == PlayerState.SEATED_AT_PC:  # Only fade if still seated
-		await _eerie_fade_out_esc()
-		if player_state == PlayerState.SEATED_AT_PC:  # Check again after fade
-			interaction_label.visible = false
-
-	# Trigger startup screen if not already done
-	if not startup_triggered:
-		startup_triggered = true
-		start_monitor_startup()
-
-func stand_up_from_computer():
-	# Use fade transition for smooth standing
-	fade_transition(func(): _execute_stand_up_from_computer())
-
-func _execute_stand_up_from_computer():
-	player_state = PlayerState.WALKING
-
-	# Restore all original states exactly
-	restore_original_state()
-
-	# Re-enable player movement and head look
-	player.is_active = true
-	head.can_move_camera = true
-
-	# Hide the ESC prompt and reset alpha
-	interaction_label.visible = false
-	interaction_label.modulate.a = 1.0  # Reset for next time
-
-# Eerie low-fps fade out effect for ESC message (now using HorrorEffectsManager)
-func _eerie_fade_out_esc() -> void:
-	if horror_effects and interaction_label:
-		await horror_effects.fade_out_esc_prompt(interaction_label)
-	else:
-		# Fallback for missing horror effects manager
-		if interaction_label:
-			interaction_label.visible = false
 
 # Monitor startup control
 func start_monitor_startup():
@@ -189,7 +86,7 @@ func start_monitor_startup():
 
 func _on_startup_complete():
 	# Load Day 1 content in the monitor SubViewport instead of changing scenes
-	var day_1_scene = preload("res://scenes/2d/days/day_1.tscn")
+	var day_1_scene = preload("res://scenes/2d/days/day_2.tscn")
 	var day_1_instance = day_1_scene.instantiate()
 
 	# Remove startup screen and replace with Day 1
@@ -225,6 +122,23 @@ func _setup_modular_systems() -> void:
 	horror_effects = HorrorEffectsManager.new()
 	horror_effects.name = "HorrorEffectsManager"
 	add_child(horror_effects)
+
+	# Setup player state manager
+	player_state_manager = PlayerStateManager.new()
+	player_state_manager.name = "PlayerStateManager"
+	add_child(player_state_manager)
+
+	# Initialize player state manager with references
+	player_state_manager.initialize(player, head, camera, interaction_label)
+	player_state_manager.set_external_managers(fade_manager, horror_effects)
+
+	# Configure chair settings
+	player_state_manager.set_chair_configuration(
+		Vector3(-2.75, 1.6, 3.55),     # chair_position
+		Vector3(0, deg_to_rad(90), 0), # chair_rotation (face monitor)
+		Vector3(0, -0.3, 0),           # seated_camera_offset
+		Vector3(deg_to_rad(-5), 0, 0)  # seated_head_tilt
+	)
 
 # Setup keyboard visualization system
 func _setup_keyboard_visualizer() -> void:

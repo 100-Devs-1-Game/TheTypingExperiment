@@ -34,9 +34,8 @@ var error_color: String = "#ff4444"
 var corruption_color: String = "#ff0000"  # Overridden in child classes
 var cursor_blink_speed: float = 0.5       # Overridden in child classes
 
-# Cursor animation (identical across all days)
-var cursor_blink_timer: Timer
-var cursor_bright_state: bool = true
+# Cursor animation (now using modular TextCursorCalculator)
+var cursor_blinker: TextCursorCalculator.CursorBlinker
 
 # Message handling
 var is_typing_message: bool = false
@@ -236,95 +235,33 @@ func _update_cursor_position() -> void:
 	if not cursor or not text_display:
 		return
 
-	# Get the current typing position
+	# Get the display text for cursor positioning
+	var display_sentence = DayManager.get_stage_display_sentence()
 	var current_position = typed_characters.length()
 
-	# Get the display text without BBCode for accurate positioning
-	var display_sentence = DayManager.get_stage_display_sentence()
+	# Use modular TextCursorCalculator for positioning
+	var target_position = TextCursorCalculator.calculate_typing_cursor_position(
+		display_sentence,
+		current_position,
+		text_display,
+		30.0  # 30px margin
+	)
 
-	if current_position > display_sentence.length():
-		current_position = display_sentence.length()
-
-	# Get font metrics
-	var font = text_display.get_theme_default_font()
-	var font_size = text_display.get_theme_font_size("normal_font_size")
-	var line_height = font.get_height(font_size)
-
-	# Get the available width for text wrapping
-	var text_width = text_display.size.x
-
-	# Calculate cursor position with word wrapping
-	var cursor_pos = _calculate_cursor_position_with_wrapping(display_sentence, current_position, font, font_size, text_width, line_height)
-
-	# Add margin offset to match text display position (30px margin from container)
-	var target_x = 30.0 + cursor_pos.x
-	# Position cursor below the text (add line height to move it below the baseline)
-	var target_y = 30.0 + cursor_pos.y + line_height
-
-	# Smoothly move cursor to new position
-	var tween = create_tween()
-	tween.tween_property(cursor, "position", Vector2(target_x, target_y), 0.1)
-
-func _calculate_cursor_position_with_wrapping(text: String, char_index: int, font: Font, font_size: int, max_width: float, line_height: float) -> Vector2:
-	var current_line = 0
-	var current_x = 0.0
-	var words = text.split(" ")
-	var chars_processed = 0
-
-	for word_idx in range(words.size()):
-		var word = words[word_idx]
-		var word_width = font.get_string_size(word, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
-		var space_width = font.get_string_size(" ", HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
-
-		# Check if we need a new line for this word
-		if current_x + word_width > max_width and current_x > 0:
-			current_line += 1
-			current_x = 0.0
-
-		# Check if cursor is within this word
-		if chars_processed <= char_index and char_index <= chars_processed + word.length():
-			# Cursor is in this word
-			var chars_in_word = char_index - chars_processed
-			var partial_word = word.substr(0, chars_in_word)
-			var partial_width = font.get_string_size(partial_word, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
-			return Vector2(current_x + partial_width, current_line * line_height)
-
-		# Move past this word
-		current_x += word_width
-		chars_processed += word.length()
-
-		# Add space if not the last word
-		if word_idx < words.size() - 1:
-			# Check if cursor is on the space
-			if chars_processed == char_index:
-				return Vector2(current_x, current_line * line_height)
-
-			current_x += space_width
-			chars_processed += 1  # For the space
-
-	# Cursor is at the end
-	return Vector2(current_x, current_line * line_height)
+	# Animate cursor to new position
+	TextCursorCalculator.animate_cursor_to_position(cursor, target_position, 0.1)
 
 func _start_cursor_blinking() -> void:
-	if cursor_blink_timer:
-		cursor_blink_timer.queue_free()
+	if cursor_blinker:
+		cursor_blinker.stop_blinking()
 
-	cursor_blink_timer = Timer.new()
-	cursor_blink_timer.wait_time = cursor_blink_speed
-	cursor_blink_timer.autostart = true
-	cursor_blink_timer.timeout.connect(_on_cursor_blink)
-	add_child(cursor_blink_timer)
-
-	# Start with bright color
-	cursor_bright_state = true
-	cursor.color = Color(typed_color)
-
-func _on_cursor_blink() -> void:
-	cursor_bright_state = !cursor_bright_state
-	if cursor_bright_state:
-		cursor.color = Color(typed_color)
-	else:
-		cursor.color = Color(untyped_color)
+	# Use modular cursor blinker
+	if cursor:
+		cursor_blinker = TextCursorCalculator.CursorBlinker.new(
+			cursor,
+			Color(typed_color),    # Bright color
+			Color(untyped_color),  # Dim color
+			cursor_blink_speed
+		)
 
 func _check_completion() -> void:
 	if current_position >= practice_text.length():
