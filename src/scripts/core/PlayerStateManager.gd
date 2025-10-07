@@ -29,8 +29,8 @@ var is_state_saved: bool = false
 @export var seated_head_tilt: Vector3 = Vector3(deg_to_rad(-5), 0, 0)
 
 # Configurable keypad interaction settings
-@export var keypad_camera_position: Vector3 = Vector3(0, 0, 0)  # Fixed camera position when using keypad
-@export var keypad_head_rotation: Vector3 = Vector3(0, 0, 0)  # Fixed head rotation when using keypad
+@export var keypad_player_position: Vector3 = Vector3(-0.7, 0.68, -0.5)  # Fixed player position when using keypad
+@export var keypad_player_rotation: Vector3 = Vector3(0, 0, 0)  # Fixed player rotation when using keypad
 
 # ESC prompt settings
 @export var show_esc_prompt: bool = true
@@ -258,26 +258,31 @@ func stop_using_keypad(use_fade_transition: bool = true) -> void:
 
 ## Execute camera transition to fixed keypad position
 func _execute_keypad_camera_transition() -> void:
-	if not camera or not head:
+	if not player:
 		return
 
-	# Instantly snap to fixed keypad viewing position
-	camera.position = keypad_camera_position
-	head.rotation = keypad_head_rotation
+	# Teleport player to fixed keypad viewing position
+	player.global_position = keypad_player_position
+	player.rotation = keypad_player_rotation
 
-	# Reset head.rot to match the new rotation (for proper camera control restoration)
-	if head.has_method("set") and head.get("rot") != null:
-		head.rot = keypad_head_rotation
+	# Reset head rotation to neutral
+	if head:
+		head.rotation = Vector3.ZERO
+		head.rot = Vector3.ZERO
 
 ## Execute camera restore from keypad
 func _execute_keypad_camera_restore() -> void:
-	if not camera or not head or not is_state_saved:
+	if not player or not is_state_saved:
 		return
 
-	# Instantly restore to original position
-	camera.position = original_camera_position
-	head.rotation = original_head_rotation
-	head.rot = original_head_rot
+	# Restore player to original position
+	player.global_position = original_player_position
+	player.rotation = original_player_rotation
+
+	# Restore head rotation
+	if head:
+		head.rotation = original_head_rotation
+		head.rot = original_head_rot
 
 ## Custom interaction state for extensibility
 func set_custom_interaction_state(
