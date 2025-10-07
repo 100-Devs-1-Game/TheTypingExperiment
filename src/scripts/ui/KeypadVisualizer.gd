@@ -14,7 +14,7 @@ signal key_released(key_name: String)
 
 # Internal state
 var keypad_keys: Dictionary = {}  # Maps input codes to MeshInstance3D nodes
-var original_positions: Dictionary = {}  # Stores original Y positions
+var original_positions: Dictionary = {}  # Stores original Z positions
 var pressed_keys: Dictionary = {}  # Tracks currently pressed keys
 var active_tweens: Dictionary = {}  # Tracks active animations
 
@@ -65,7 +65,7 @@ func _search_for_keypad_meshes(node: Node) -> void:
 		var key_identifier = _extract_key_from_mesh_name(node.name)
 		if key_identifier != "":
 			keypad_keys[key_identifier] = node
-			original_positions[key_identifier] = node.position.y
+			original_positions[key_identifier] = node.position.z
 
 	# Recursively search children
 	for child in node.get_children():
@@ -120,8 +120,8 @@ func _animate_key_press(key_identifier: String) -> void:
 		return
 
 	var key_mesh = keypad_keys[key_identifier]
-	var original_y = original_positions[key_identifier]
-	var target_y = original_y - press_depth
+	var original_z = original_positions[key_identifier]
+	var target_z = original_z - press_depth  # Move inward (negative Z)
 
 	# Mark key as pressed
 	pressed_keys[key_identifier] = true
@@ -132,7 +132,7 @@ func _animate_key_press(key_identifier: String) -> void:
 
 	# Create press animation
 	var tween = create_tween()
-	tween.tween_property(key_mesh, "position:y", target_y, press_duration)
+	tween.tween_property(key_mesh, "position:z", target_z, press_duration)
 	tween.tween_callback(func(): _on_press_animation_complete(key_identifier))
 
 	active_tweens[key_identifier] = tween
@@ -144,7 +144,7 @@ func _animate_key_release(key_identifier: String) -> void:
 		return
 
 	var key_mesh = keypad_keys[key_identifier]
-	var original_y = original_positions[key_identifier]
+	var original_z = original_positions[key_identifier]
 
 	# Mark key as released
 	pressed_keys.erase(key_identifier)
@@ -155,7 +155,7 @@ func _animate_key_release(key_identifier: String) -> void:
 
 	# Create release animation
 	var tween = create_tween()
-	tween.tween_property(key_mesh, "position:y", original_y, release_duration)
+	tween.tween_property(key_mesh, "position:z", original_z, release_duration)
 	tween.tween_callback(func(): _on_release_animation_complete(key_identifier))
 
 	active_tweens[key_identifier] = tween
