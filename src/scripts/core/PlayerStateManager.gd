@@ -80,6 +80,10 @@ func sit_at_computer(use_fade_transition: bool = true) -> void:
 	if current_state != PlayerState.WALKING:
 		return
 
+	# Hide interaction label immediately
+	if interaction_label:
+		interaction_label.visible = false
+
 	sitting_started.emit()
 
 	if use_fade_transition and fade_manager:
@@ -128,9 +132,10 @@ func _execute_sit_at_computer() -> void:
 	if head:
 		head.rotation = seated_head_tilt
 
-	# Handle ESC prompt with horror effects if available
-	if show_esc_prompt and interaction_label:
-		_show_esc_prompt()
+	# Show ESC prompt in top-left corner
+	if show_esc_prompt and esc_prompt_label:
+		esc_prompt_label.text = "ESC: Stand Up"
+		esc_prompt_label.visible = true
 
 	state_changed.emit(old_state, current_state)
 
@@ -149,32 +154,10 @@ func _execute_stand_up_from_computer() -> void:
 		head.can_move_camera = true
 
 	# Hide ESC prompt
-	if interaction_label:
-		interaction_label.visible = false
-		interaction_label.modulate.a = 1.0  # Reset for next time
+	if esc_prompt_label:
+		esc_prompt_label.visible = false
 
 	state_changed.emit(old_state, current_state)
-
-## Show ESC prompt with optional horror effects
-func _show_esc_prompt() -> void:
-	if not interaction_label:
-		return
-
-	interaction_label.text = esc_prompt_text
-	interaction_label.visible = true
-	interaction_label.modulate.a = 1.0
-
-	# Wait then apply eerie fade out if horror effects available
-	if esc_prompt_delay > 0:
-		await get_tree().create_timer(esc_prompt_delay).timeout
-
-		# Only proceed if still seated
-		if current_state == PlayerState.SEATED_AT_PC:
-			if horror_effects:
-				await horror_effects.fade_out_esc_prompt(interaction_label)
-			else:
-				# Fallback simple fade
-				interaction_label.visible = false
 
 ## Save original state (only once per session)
 func _save_original_state() -> void:

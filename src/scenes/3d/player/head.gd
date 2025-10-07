@@ -49,7 +49,7 @@ func _input(event: InputEvent) -> void:
 				main_script.interact_with_keypad()
 
 func _process(_delta):
-	# Only show interaction prompts when we can move the camera (not seated)
+	# Only show interaction prompts when we can move the camera (not seated/using keypad)
 	if can_move_camera:
 		if ray_cast.is_colliding():
 			var object = ray_cast.get_collider()
@@ -65,6 +65,10 @@ func _process(_delta):
 		else:
 			if interaction_label.visible:
 				interaction_label.visible = false
+	else:
+		# Hide interaction label when camera movement is disabled (seated/interacting)
+		if interaction_label.visible:
+			interaction_label.visible = false
 			
 # Called every physics tick. 'delta' is constant
 func _physics_process(delta: float) -> void:
