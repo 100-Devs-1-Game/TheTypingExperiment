@@ -18,7 +18,7 @@ var original_positions: Dictionary = {}  # Stores original Y positions
 var pressed_keys: Dictionary = {}  # Tracks currently pressed keys
 var active_tweens: Dictionary = {}  # Tracks active animations
 
-# Key mapping from Godot numpad input codes to keypad mesh naming patterns
+# Key mapping from Godot input codes to keypad mesh naming patterns
 var key_mappings: Dictionary = {
 	# Numpad numbers
 	KEY_KP_0: "0",
@@ -31,6 +31,18 @@ var key_mappings: Dictionary = {
 	KEY_KP_7: "7",
 	KEY_KP_8: "8",
 	KEY_KP_9: "9",
+
+	# Regular number keys (top row)
+	KEY_0: "0",
+	KEY_1: "1",
+	KEY_2: "2",
+	KEY_3: "3",
+	KEY_4: "4",
+	KEY_5: "5",
+	KEY_6: "6",
+	KEY_7: "7",
+	KEY_8: "8",
+	KEY_9: "9",
 }
 
 func _ready() -> void:
@@ -75,27 +87,32 @@ func _extract_key_from_mesh_name(mesh_name: String) -> String:
 	return ""
 
 ## Handle input events and trigger key animations
-func handle_input_event(event: InputEvent) -> void:
+## Returns true if the event was handled (consumed), false otherwise
+func handle_input_event(event: InputEvent) -> bool:
 	if not event is InputEventKey:
-		return
+		return false
 
 	var key_event = event as InputEventKey
 	var key_code = key_event.keycode
 
-	# Get the key identifier from our mapping
+	# Only handle keys that are in our mapping
 	if not key_mappings.has(key_code):
-		return
+		return false  # Let other handlers process this key
 
 	var key_identifier = key_mappings[key_code]
 
 	# Check if we have this key in our discovered meshes
 	if not keypad_keys.has(key_identifier):
-		return
+		return false
 
 	if key_event.pressed and not pressed_keys.has(key_identifier):
 		_animate_key_press(key_identifier)
+		return true  # Event consumed
 	elif not key_event.pressed and pressed_keys.has(key_identifier):
 		_animate_key_release(key_identifier)
+		return true  # Event consumed
+
+	return false
 
 ## Animate a key being pressed down
 func _animate_key_press(key_identifier: String) -> void:
