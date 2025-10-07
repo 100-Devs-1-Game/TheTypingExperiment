@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://6dy2ju4e5a26"]
+[gd_scene load_steps=61 format=3 uid="uid://6dy2ju4e5a26"]
 
 [ext_resource type="Script" uid="uid://dcjky3peu8uji" path="res://scenes/3d/days/main.gd" id="1_2nhe5"]
 [ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://scenes/3d/player/player.tscn" id="2_gthbd"]
@@ -143,7 +143,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(1920, 1080)
+size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
 [node name="PanelContainer" type="PanelContainer" parent="SubViewportContainer/SubViewport"]
@@ -446,6 +446,28 @@ size = Vector2i(640, 480)
 
 [node name="keypad_separate_keys" parent="." instance=ExtResource("29_gthbd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6999998, 1.3, -0.9000002)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="EscPromptLabel" type="Label" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 50.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 12
+text = "ESC: Stop Using Keypad"
 
 [editable path="SubViewportContainer/SubViewport/World/GLB/Walls/floor_ceiling_12"]
 [editable path="SubViewportContainer/SubViewport/World/GLB/Walls/wall_1_half2"]

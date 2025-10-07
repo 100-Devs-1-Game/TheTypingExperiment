@@ -9,6 +9,7 @@ var startup_triggered := false
 @onready var head: Node3D = $SubViewportContainer/SubViewport/World/Player/Head
 @onready var camera: Camera3D = $SubViewportContainer/SubViewport/World/Player/Head/Camera
 @onready var interaction_label: Label = $SubViewportContainer/SubViewport/World/Player/Head/InteractionLabel
+@onready var esc_prompt_label: Label = $UI/EscPromptLabel
 
 # Modular systems
 var fade_manager: FadeTransitionManager
@@ -140,7 +141,7 @@ func _setup_modular_systems() -> void:
 	add_child(player_state_manager)
 
 	# Initialize player state manager with references
-	player_state_manager.initialize(player, head, camera, interaction_label)
+	player_state_manager.initialize(player, head, camera, interaction_label, esc_prompt_label)
 	player_state_manager.set_external_managers(fade_manager, horror_effects)
 
 	# Configure chair settings

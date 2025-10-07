@@ -17,6 +17,7 @@ var player: MovementController
 var head: Node3D  # Head controller (changed from PlayerHead to avoid class name conflicts)
 var camera: Camera3D
 var interaction_label: Label
+var esc_prompt_label: Label  # Separate label for ESC prompt (top-left corner)
 
 # Current state
 var current_state: PlayerState = PlayerState.WALKING
@@ -57,13 +58,15 @@ func initialize(
 	player_ref: MovementController,
 	head_ref: Node3D,
 	camera_ref: Camera3D,
-	interaction_label_ref: Label = null
+	interaction_label_ref: Label = null,
+	esc_prompt_label_ref: Label = null
 ) -> void:
 
 	player = player_ref
 	head = head_ref
 	camera = camera_ref
 	interaction_label = interaction_label_ref
+	esc_prompt_label = esc_prompt_label_ref
 
 	# Don't save state immediately - wait until first interaction like original code
 
@@ -208,6 +211,10 @@ func use_keypad(use_fade_transition: bool = true) -> void:
 	# Save original state before any changes
 	_save_original_state()
 
+	# Hide interaction label immediately
+	if interaction_label:
+		interaction_label.visible = false
+
 	var old_state = current_state
 	current_state = PlayerState.INTERACTING_WITH_KEYPAD
 
@@ -223,11 +230,9 @@ func use_keypad(use_fade_transition: bool = true) -> void:
 	else:
 		_execute_keypad_camera_transition()
 
-	# Show ESC prompt
-	if show_esc_prompt and interaction_label:
-		interaction_label.text = "ESC: Stop Using Keypad"
-		interaction_label.visible = true
-		interaction_label.modulate.a = 1.0
+	# Show ESC prompt in top-left corner
+	if show_esc_prompt and esc_prompt_label:
+		esc_prompt_label.visible = true
 
 	state_changed.emit(old_state, current_state)
 
@@ -250,9 +255,9 @@ func stop_using_keypad(use_fade_transition: bool = true) -> void:
 	if head:
 		head.can_move_camera = true
 
-	# Hide interaction label
-	if interaction_label:
-		interaction_label.visible = false
+	# Hide ESC prompt
+	if esc_prompt_label:
+		esc_prompt_label.visible = false
 
 	state_changed.emit(old_state, current_state)
 
