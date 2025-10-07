@@ -28,6 +28,10 @@ var is_state_saved: bool = false
 @export var seated_camera_offset: Vector3 = Vector3(0, -0.3, 0)
 @export var seated_head_tilt: Vector3 = Vector3(deg_to_rad(-5), 0, 0)
 
+# Configurable keypad interaction settings
+@export var keypad_camera_position: Vector3 = Vector3(0, 0, 0)  # Fixed camera position when using keypad
+@export var keypad_head_rotation: Vector3 = Vector3(0, 0, 0)  # Fixed head rotation when using keypad
+
 # ESC prompt settings
 @export var show_esc_prompt: bool = true
 @export var esc_prompt_text: String = "ESC: Stand Up"
@@ -196,19 +200,28 @@ func _restore_original_state() -> void:
 	# Reset state saved flag like original implementation
 	is_state_saved = false
 
-## Keypad interaction functions - freeze player in place without teleporting
-func use_keypad() -> void:
+## Keypad interaction functions - freeze player in place with camera zoom
+func use_keypad(use_fade_transition: bool = true) -> void:
 	if current_state != PlayerState.WALKING:
 		return
+
+	# Save original state before any changes
+	_save_original_state()
 
 	var old_state = current_state
 	current_state = PlayerState.INTERACTING_WITH_KEYPAD
 
-	# Disable movement but keep camera control
+	# Disable movement and camera control
 	if player:
 		player.is_active = false
 	if head:
-		head.can_move_camera = true  # Allow looking around while using keypad
+		head.can_move_camera = false
+
+	# Transition camera to fixed keypad position with fade
+	if use_fade_transition and fade_manager:
+		await fade_manager.fade_to_black(_execute_keypad_camera_transition)
+	else:
+		_execute_keypad_camera_transition()
 
 	# Show ESC prompt
 	if show_esc_prompt and interaction_label:
@@ -218,12 +231,18 @@ func use_keypad() -> void:
 
 	state_changed.emit(old_state, current_state)
 
-func stop_using_keypad() -> void:
+func stop_using_keypad(use_fade_transition: bool = true) -> void:
 	if current_state != PlayerState.INTERACTING_WITH_KEYPAD:
 		return
 
 	var old_state = current_state
 	current_state = PlayerState.WALKING
+
+	# Restore camera to original position with fade
+	if use_fade_transition and fade_manager:
+		await fade_manager.fade_to_black(_execute_keypad_camera_restore)
+	else:
+		_execute_keypad_camera_restore()
 
 	# Re-enable movement
 	if player:
@@ -236,6 +255,29 @@ func stop_using_keypad() -> void:
 		interaction_label.visible = false
 
 	state_changed.emit(old_state, current_state)
+
+## Execute camera transition to fixed keypad position
+func _execute_keypad_camera_transition() -> void:
+	if not camera or not head:
+		return
+
+	# Instantly snap to fixed keypad viewing position
+	camera.position = keypad_camera_position
+	head.rotation = keypad_head_rotation
+
+	# Reset head.rot to match the new rotation (for proper camera control restoration)
+	if head.has_method("set") and head.get("rot") != null:
+		head.rot = keypad_head_rotation
+
+## Execute camera restore from keypad
+func _execute_keypad_camera_restore() -> void:
+	if not camera or not head or not is_state_saved:
+		return
+
+	# Instantly restore to original position
+	camera.position = original_camera_position
+	head.rotation = original_head_rotation
+	head.rot = original_head_rot
 
 ## Custom interaction state for extensibility
 func set_custom_interaction_state(
