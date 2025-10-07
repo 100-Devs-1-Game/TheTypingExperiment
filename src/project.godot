@@ -12,7 +12,7 @@ config_version=5
 
 config/name="The Typing Experiment"
 run/main_scene="uid://bud07mn4d7mwr"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -317,3 +317,5 @@ toggle_build_mode={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
