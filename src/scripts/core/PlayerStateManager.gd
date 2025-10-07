@@ -10,11 +10,11 @@ signal sitting_completed()
 signal standing_started()
 signal standing_completed()
 
-enum PlayerState { WALKING, SEATED_AT_PC, CUSTOM_INTERACTION }
+enum PlayerState { WALKING, SEATED_AT_PC, INTERACTING_WITH_KEYPAD, CUSTOM_INTERACTION }
 
 # Core references (set during initialization)
 var player: MovementController
-var head: Head
+var head: Node3D  # Head controller (changed from PlayerHead to avoid class name conflicts)
 var camera: Camera3D
 var interaction_label: Label
 
@@ -51,7 +51,7 @@ func _ready() -> void:
 ## Initialize the player state manager with required references
 func initialize(
 	player_ref: MovementController,
-	head_ref: Head,
+	head_ref: Node3D,
 	camera_ref: Camera3D,
 	interaction_label_ref: Label = null
 ) -> void:
@@ -196,6 +196,47 @@ func _restore_original_state() -> void:
 	# Reset state saved flag like original implementation
 	is_state_saved = false
 
+## Keypad interaction functions - freeze player in place without teleporting
+func use_keypad() -> void:
+	if current_state != PlayerState.WALKING:
+		return
+
+	var old_state = current_state
+	current_state = PlayerState.INTERACTING_WITH_KEYPAD
+
+	# Disable movement but keep camera control
+	if player:
+		player.is_active = false
+	if head:
+		head.can_move_camera = true  # Allow looking around while using keypad
+
+	# Show ESC prompt
+	if show_esc_prompt and interaction_label:
+		interaction_label.text = "ESC: Stop Using Keypad"
+		interaction_label.visible = true
+		interaction_label.modulate.a = 1.0
+
+	state_changed.emit(old_state, current_state)
+
+func stop_using_keypad() -> void:
+	if current_state != PlayerState.INTERACTING_WITH_KEYPAD:
+		return
+
+	var old_state = current_state
+	current_state = PlayerState.WALKING
+
+	# Re-enable movement
+	if player:
+		player.is_active = true
+	if head:
+		head.can_move_camera = true
+
+	# Hide interaction label
+	if interaction_label:
+		interaction_label.visible = false
+
+	state_changed.emit(old_state, current_state)
+
 ## Custom interaction state for extensibility
 func set_custom_interaction_state(
 	disable_movement: bool = true,
@@ -267,6 +308,9 @@ func is_seated() -> bool:
 func is_in_custom_interaction() -> bool:
 	return current_state == PlayerState.CUSTOM_INTERACTION
 
+func is_using_keypad() -> bool:
+	return current_state == PlayerState.INTERACTING_WITH_KEYPAD
+
 func can_interact() -> bool:
 	return current_state == PlayerState.WALKING
 
@@ -276,6 +320,9 @@ func handle_input_event(event: InputEvent) -> bool:
 		match current_state:
 			PlayerState.SEATED_AT_PC:
 				stand_up_from_computer()
+				return true  # Input handled
+			PlayerState.INTERACTING_WITH_KEYPAD:
+				stop_using_keypad()
 				return true  # Input handled
 			PlayerState.CUSTOM_INTERACTION:
 				return_to_walking()

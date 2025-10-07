@@ -9,7 +9,7 @@ class_name MovementController
 @export_range(0.0, 1.0, 0.05) var air_control := 0.3
 @export var jump_height := 10
 
-@export var head : Head
+@export var head : Node3D  # Head controller
 
 var direction := Vector3()
 var input_axis := Vector2()

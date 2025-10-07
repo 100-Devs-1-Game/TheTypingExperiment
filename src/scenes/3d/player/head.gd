@@ -1,5 +1,6 @@
 extends Node3D
-class_name Head
+# Note: class_name removed to avoid global script class conflicts
+# This script is referenced by scene node path instead
 
 
 @export_node_path("Camera3D") var cam_path := NodePath("Camera")
@@ -40,6 +41,12 @@ func _input(event: InputEvent) -> void:
 			var main_script = get_tree().get_first_node_in_group("main_environment")
 			if main_script and main_script.has_method("interact_with_pc"):
 				main_script.interact_with_pc()
+		# Check if we're looking at the Keypad
+		elif object and object.name == "KeypadInteraction":
+			# Find the main script and trigger keypad interaction
+			var main_script = get_tree().get_first_node_in_group("main_environment")
+			if main_script and main_script.has_method("interact_with_keypad"):
+				main_script.interact_with_keypad()
 
 func _process(_delta):
 	# Only show interaction prompts when we can move the camera (not seated)
@@ -48,6 +55,8 @@ func _process(_delta):
 			var object = ray_cast.get_collider()
 			if object and object.name == "PCInteraction":
 				interaction_label.text = "E: Use Computer"
+			elif object and object.name == "KeypadInteraction":
+				interaction_label.text = "E: Use Keypad"
 			else:
 				interaction_label.text = "E: Interact"
 

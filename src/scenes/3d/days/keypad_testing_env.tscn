@@ -113,6 +113,9 @@ data = PackedVector3Array(0.1148, 0.2553, 0, 0.1148, 0.2754, -0.0225, 0.1148, 0.
 [sub_resource type="BoxShape3D" id="BoxShape3D_pcinteraction"]
 size = Vector3(2.1, 2, 1.7)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_keypadinteraction"]
+size = Vector3(0.5, 0.5, 0.3)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_krker"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_krker"]
@@ -422,6 +425,14 @@ collision_mask = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0500002, 0, 0)
 shape = SubResource("BoxShape3D_pcinteraction")
 
+[node name="KeypadInteraction" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 1.3, -0.9)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/KeypadInteraction"]
+shape = SubResource("BoxShape3D_keypadinteraction")
+
 [node name="MonitorScreen" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World"]
 transform = Transform3D(-0.00349047, 0.199209, 0.0139429, 0, 0.0174312, -0.159391, -0.19997, -0.00347719, -0.000243373, -3.333, 1.28941, 3.59922)
 mesh = SubResource("PlaneMesh_krker")
@@ -434,7 +445,7 @@ size = Vector2i(640, 480)
 [node name="StartupScreen" parent="SubViewportContainer/SubViewport/World/SubViewport" instance=ExtResource("28_1s30o")]
 
 [node name="keypad_separate_keys" parent="." instance=ExtResource("29_gthbd")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.3, 1.3, 3.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6999998, 1.3, -0.9000002)
 
 [editable path="SubViewportContainer/SubViewport/World/GLB/Walls/floor_ceiling_12"]
 [editable path="SubViewportContainer/SubViewport/World/GLB/Walls/wall_1_half2"]

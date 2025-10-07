@@ -6,7 +6,7 @@ var startup_triggered := false
 @export var sub_viewport: SubViewport
 @onready var monitor_viewport: SubViewport = $SubViewportContainer/SubViewport/World/SubViewport
 @onready var player: MovementController = $SubViewportContainer/SubViewport/World/Player
-@onready var head: Head = $SubViewportContainer/SubViewport/World/Player/Head
+@onready var head: Node3D = $SubViewportContainer/SubViewport/World/Player/Head
 @onready var camera: Camera3D = $SubViewportContainer/SubViewport/World/Player/Head/Camera
 @onready var interaction_label: Label = $SubViewportContainer/SubViewport/World/Player/Head/InteractionLabel
 
@@ -39,12 +39,13 @@ func _input(event: InputEvent) -> void:
 		show_menu(!showing_menu)
 		return
 
-	# Handle keyboard and keypad visualization when seated at PC
-	if player_state_manager and player_state_manager.is_seated():
-		if keyboard_visualizer:
-			keyboard_visualizer.handle_input_event(event)
-		if keypad_visualizer:
-			keypad_visualizer.handle_input_event(event)
+	# Handle keyboard visualization when seated at PC
+	if player_state_manager and player_state_manager.is_seated() and keyboard_visualizer:
+		keyboard_visualizer.handle_input_event(event)
+
+	# Handle keypad visualization when using keypad
+	if player_state_manager and player_state_manager.is_using_keypad() and keypad_visualizer:
+		keypad_visualizer.handle_input_event(event)
 
 	# Forward input based on state
 	if player_state_manager:
@@ -64,6 +65,11 @@ func interact_with_pc():
 		if not startup_triggered:
 			startup_triggered = true
 			start_monitor_startup()
+
+# Called by the head script when player interacts with keypad
+func interact_with_keypad():
+	if player_state_manager and player_state_manager.can_interact():
+		player_state_manager.use_keypad()
 
 func show_menu(_show:bool):
 	showing_menu = _show
