@@ -15,6 +15,7 @@ var fade_manager: FadeTransitionManager
 var horror_effects: HorrorEffectsManager
 var player_state_manager: PlayerStateManager
 var keyboard_visualizer: KeyboardVisualizer
+var keypad_visualizer: KeypadVisualizer
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -25,6 +26,7 @@ func _ready() -> void:
 	# Setup modular systems
 	_setup_modular_systems()
 	_setup_keyboard_visualizer()
+	_setup_keypad_visualizer()
 
 
 func _input(event: InputEvent) -> void:
@@ -37,9 +39,12 @@ func _input(event: InputEvent) -> void:
 		show_menu(!showing_menu)
 		return
 
-	# Handle keyboard visualization when seated at PC
-	if player_state_manager and player_state_manager.is_seated() and keyboard_visualizer:
-		keyboard_visualizer.handle_input_event(event)
+	# Handle keyboard and keypad visualization when seated at PC
+	if player_state_manager and player_state_manager.is_seated():
+		if keyboard_visualizer:
+			keyboard_visualizer.handle_input_event(event)
+		if keypad_visualizer:
+			keypad_visualizer.handle_input_event(event)
 
 	# Forward input based on state
 	if player_state_manager:
@@ -157,4 +162,23 @@ func _on_keyboard_key_pressed(key_name: String) -> void:
 	pass  # Could add sound effects or other feedback here
 
 func _on_keyboard_key_released(key_name: String) -> void:
+	pass  # Could add sound effects or other feedback here
+
+# Setup keypad visualization system
+func _setup_keypad_visualizer() -> void:
+	keypad_visualizer = KeypadVisualizer.new()
+	keypad_visualizer.name = "KeypadVisualizer"
+	add_child(keypad_visualizer)
+
+	# Connect to keypad events for debugging (optional)
+	if keypad_visualizer.has_signal("key_pressed"):
+		keypad_visualizer.key_pressed.connect(_on_keypad_key_pressed)
+	if keypad_visualizer.has_signal("key_released"):
+		keypad_visualizer.key_released.connect(_on_keypad_key_released)
+
+# Optional: Handle keypad events for debugging or additional effects
+func _on_keypad_key_pressed(key_name: String) -> void:
+	pass  # Could add sound effects or other feedback here
+
+func _on_keypad_key_released(key_name: String) -> void:
 	pass  # Could add sound effects or other feedback here
