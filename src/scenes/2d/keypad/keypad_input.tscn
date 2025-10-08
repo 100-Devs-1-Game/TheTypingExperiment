@@ -1,10 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bwh5x8yqm2k3h"]
 
-[ext_resource type="Script" path="res://scenes/2d/keypad/keypad_input.gd" id="1_keypad"]
-
-[sub_resource type="SystemFont" id="SystemFont_keypad"]
-font_names = PackedStringArray("Courier New")
-subpixel_positioning = 0
+[ext_resource type="Script" uid="uid://dna2b8jsfxqqc" path="res://scenes/2d/keypad/keypad_input.gd" id="1_keypad"]
+[ext_resource type="FontFile" uid="uid://dxdixmpmgcb2q" path="res://assets/external/fonts-DSEG/DSEG14Classic-Regular.ttf" id="2_fbd43"]
 
 [node name="KeypadInput" type="Control"]
 layout_mode = 3
@@ -35,18 +32,6 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 
-[node name="PromptLabel" type="Label" parent="CenterContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_keypad")
-theme_override_font_sizes/font_size = 16
-text = "ENTER CODE:"
-horizontal_alignment = 1
-
-[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-
 [node name="InputContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
@@ -54,12 +39,6 @@ alignment = 1
 [node name="InputDisplay" type="Label" parent="CenterContainer/VBoxContainer/InputContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_keypad")
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("2_fbd43")
+theme_override_font_sizes/font_size = 16
 text = "________"
-
-[node name="Cursor" type="ColorRect" parent="CenterContainer/VBoxContainer/InputContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(3, 28)
-layout_mode = 2
-color = Color(0, 1, 0, 1)

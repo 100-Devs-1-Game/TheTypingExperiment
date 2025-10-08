@@ -5,31 +5,18 @@ extends Control
 signal code_entered(code: String)
 signal code_changed(current_code: String)
 
-@onready var prompt_label: Label = %PromptLabel
 @onready var input_display: Label = %InputDisplay
-@onready var cursor_rect: ColorRect = %Cursor
 
 const MAX_DIGITS = 8
 const GREEN_COLOR = Color(0, 1, 0)
 
 var current_code: String = ""
-var cursor_blink_timer: float = 0.0
-var cursor_visible: bool = true
 
 func _ready() -> void:
 	# Apply green color to labels
-	prompt_label.modulate = GREEN_COLOR
 	input_display.modulate = GREEN_COLOR
 
 	_update_display()
-
-func _process(delta: float) -> void:
-	# Blink cursor
-	cursor_blink_timer += delta
-	if cursor_blink_timer >= 0.5:
-		cursor_blink_timer = 0.0
-		cursor_visible = not cursor_visible
-		cursor_rect.visible = cursor_visible
 
 func _input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed:
