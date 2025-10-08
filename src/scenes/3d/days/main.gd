@@ -4,7 +4,8 @@ var showing_menu := false
 var startup_triggered := false
 
 @export var sub_viewport: SubViewport
-@onready var monitor_viewport: SubViewport = $SubViewportContainer/SubViewport/World/SubViewport
+@onready var monitor_viewport: SubViewport = $SubViewportContainer/SubViewport/World/MonitorSubViewport
+@onready var keypad_viewport: SubViewport = $SubViewportContainer/SubViewport/World/KeypadSubViewport
 @onready var player: MovementController = $SubViewportContainer/SubViewport/World/Player
 @onready var head: Node3D = $SubViewportContainer/SubViewport/World/Player/Head
 @onready var camera: Camera3D = $SubViewportContainer/SubViewport/World/Player/Head/Camera
@@ -56,6 +57,9 @@ func _input(event: InputEvent) -> void:
 			PlayerStateManager.PlayerState.SEATED_AT_PC:
 				# Only forward typing input to monitor when seated
 				monitor_viewport.push_input(event)
+			PlayerStateManager.PlayerState.INTERACTING_WITH_KEYPAD:
+				# Forward numeric input to keypad viewport
+				keypad_viewport.push_input(event)
 
 # Called by the head script when player interacts with PC
 func interact_with_pc():
