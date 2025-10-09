@@ -1,13 +1,13 @@
 extends Control
 
-## Keypad input screen for 8-digit code entry
+## Keypad input screen for 4-digit code entry
 
 signal code_entered(code: String)
 signal code_changed(current_code: String)
 
 @onready var input_display: Label = %InputDisplay
 
-const MAX_DIGITS = 8
+const MAX_DIGITS = 4
 const GREEN_COLOR = Color(0, 1, 0)
 
 var current_code: String = ""
@@ -52,7 +52,7 @@ func _input(event: InputEvent) -> void:
 		_update_display()
 		code_changed.emit(current_code)
 
-		# Auto-submit when 8 digits entered
+		# Auto-submit when 4 digits entered
 		if current_code.length() == MAX_DIGITS:
 			_submit_code()
 

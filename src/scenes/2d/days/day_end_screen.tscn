@@ -65,6 +65,11 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="KeypadContainer" type="Control" parent="MainContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
 [node name="ContinueButton" type="Button" parent="MainContainer"]
 unique_name_in_owner = true
 layout_mode = 2
