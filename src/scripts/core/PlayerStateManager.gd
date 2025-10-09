@@ -187,12 +187,18 @@ func _restore_original_state() -> void:
 	is_state_saved = false
 
 ## Keypad interaction functions - freeze player in place with camera zoom
-func use_keypad(use_fade_transition: bool = true) -> void:
+func use_keypad(keypad_node: Node3D = null, use_fade_transition: bool = true) -> void:
 	if current_state != PlayerState.WALKING:
 		return
 
 	# Save original state before any changes
 	_save_original_state()
+
+	# Calculate keypad position from marker or use default
+	if keypad_node:
+		var interaction_marker = keypad_node.get_node("InteractionMarker")
+		keypad_player_position = interaction_marker.global_position
+		keypad_player_rotation = interaction_marker.global_rotation
 
 	# Hide interaction label immediately
 	if interaction_label:

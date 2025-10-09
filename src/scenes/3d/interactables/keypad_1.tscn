@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://cyrn8yu151fwi"]
+
+[ext_resource type="PackedScene" uid="uid://bwh5x8yqm2k3h" path="res://scenes/2d/keypad/keypad_input.tscn" id="1_6cdl5"]
+[ext_resource type="PackedScene" uid="uid://c8xm2e2c3pdto" path="res://scenes/3d/assets_psx/custom/keypad/keypad_separate_keys.gltf" id="2_1i7pp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p4wxy"]
+size = Vector3(0.5, 0.5, 0.3)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g7t1n"]
+size = Vector2(0.12, 0.09)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_blsrk"]
+viewport_path = NodePath("SubViewportContainer/SubViewport/World/Keypad_4/KeypadSubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lcykh"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_blsrk")
+
+[node name="Keypad_1" type="Node3D"]
+
+[node name="KeypadInteraction" type="StaticBody3D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KeypadInteraction"]
+shape = SubResource("BoxShape3D_p4wxy")
+
+[node name="KeypadScreen" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -0.395, 0, 1, -1.7265998e-08, 0, 0.10500014, 0.011452436)
+mesh = SubResource("PlaneMesh_g7t1n")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_lcykh")
+
+[node name="KeypadSubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(125, 32)
+
+[node name="KeypadInput" parent="KeypadSubViewport" instance=ExtResource("1_6cdl5")]
+
+[node name="keypad_separate_keys" parent="." instance=ExtResource("2_1i7pp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7881393e-07, 0, -2.3841858e-07)
+
+[node name="InteractionMarker" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.61999995, 0.39999998)

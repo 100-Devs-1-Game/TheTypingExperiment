@@ -46,7 +46,9 @@ func _input(event: InputEvent) -> void:
 			# Find the main script and trigger keypad interaction
 			var main_script = get_tree().get_first_node_in_group("main_environment")
 			if main_script and main_script.has_method("interact_with_keypad"):
-				main_script.interact_with_keypad()
+				# Pass the parent keypad node (the collider's parent)
+				var keypad_node = object.get_parent()
+				main_script.interact_with_keypad(keypad_node)
 
 func _process(_delta):
 	# Only show interaction prompts when we can move the camera (not seated/using keypad)

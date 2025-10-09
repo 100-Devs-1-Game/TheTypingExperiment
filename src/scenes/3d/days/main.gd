@@ -5,7 +5,7 @@ var startup_triggered := false
 
 @export var sub_viewport: SubViewport
 @onready var monitor_viewport: SubViewport = $SubViewportContainer/SubViewport/World/Stage_1/SubViewport
-@onready var keypad_viewport: SubViewport = $SubViewportContainer/SubViewport/World/Keypad_4/KeypadSubViewport
+@onready var keypad_viewport: SubViewport = $SubViewportContainer/SubViewport/World/Keypad_1/KeypadSubViewport
 @onready var player: MovementController = $SubViewportContainer/SubViewport/World/Player
 @onready var head: Node3D = $SubViewportContainer/SubViewport/World/Player/Head
 @onready var camera: Camera3D = $SubViewportContainer/SubViewport/World/Player/Head/Camera
@@ -72,9 +72,9 @@ func interact_with_pc():
 			start_monitor_startup()
 
 # Called by the head script when player interacts with keypad
-func interact_with_keypad():
+func interact_with_keypad(keypad_node: Node3D = null):
 	if player_state_manager and player_state_manager.can_interact():
-		player_state_manager.use_keypad()
+		player_state_manager.use_keypad(keypad_node)
 
 func show_menu(_show:bool):
 	showing_menu = _show
