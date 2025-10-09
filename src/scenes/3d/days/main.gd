@@ -5,7 +5,7 @@ var startup_triggered := false
 
 @export var sub_viewport: SubViewport
 @onready var monitor_viewport: SubViewport = $SubViewportContainer/SubViewport/World/Stage_1/SubViewport
-@onready var keypad_viewport: SubViewport = $SubViewportContainer/SubViewport/World/Keypad_1/KeypadSubViewport
+@onready var keypad_viewport: SubViewport = $SubViewportContainer/SubViewport/World/Keypad_4/KeypadSubViewport
 @onready var player: MovementController = $SubViewportContainer/SubViewport/World/Player
 @onready var head: Node3D = $SubViewportContainer/SubViewport/World/Player/Head
 @onready var camera: Camera3D = $SubViewportContainer/SubViewport/World/Player/Head/Camera

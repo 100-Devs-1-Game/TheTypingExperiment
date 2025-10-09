@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ck8wmpg82pntn"]
 
-[ext_resource type="Script" uid="uid://xxxrapfjlel7" path="res://src/scenes/2d/days/day_end_screen.gd" id="1_4hnxl"]
+[ext_resource type="Script" uid="uid://xxxrapfjlel7" path="res://scenes/2d/days/day_end_screen.gd" id="1_4hnxl"]
 
 [sub_resource type="SystemFont" id="SystemFont_de5wr"]
 font_names = PackedStringArray("Courier New")
@@ -69,8 +69,3 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="ContinueButton" type="Button" parent="MainContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Continue"

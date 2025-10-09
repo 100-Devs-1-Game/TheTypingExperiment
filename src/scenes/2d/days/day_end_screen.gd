@@ -5,7 +5,6 @@ extends Control
 
 @onready var title_label: Label = %TitleLabel
 @onready var message_container: VBoxContainer = %MessageContainer
-@onready var continue_button: Button = %ContinueButton
 @onready var background: ColorRect = %Background
 @onready var keypad_container: Control = %KeypadContainer
 
@@ -25,7 +24,7 @@ func _ready() -> void:
 	_animate_messages()
 
 func _setup_connections() -> void:
-	continue_button.pressed.connect(_on_continue_pressed)
+	pass  # No button connections needed anymore
 
 func _generate_code() -> void:
 	# Generate a random 4-digit code for days 2-5
@@ -48,8 +47,7 @@ func _setup_day_end_screen() -> void:
 	# Create message labels
 	_create_message_labels(day_info.get("day_end_messages", []))
 
-	# Hide continue button and keypad initially
-	continue_button.visible = false
+	# Hide keypad initially
 	if keypad_container:
 		keypad_container.visible = false
 
@@ -59,28 +57,22 @@ func _apply_day_theme() -> void:
 			# Clean corporate look
 			title_label.modulate = Color(0, 1, 0)
 			background.color = Color(0, 0, 0, 1)
-			continue_button.modulate = Color(0, 1, 0)
 		2:
 			# Slight corruption hints
 			title_label.modulate = Color(1, 0.8, 0.8)
 			background.color = Color(0.05, 0, 0, 1)
-			continue_button.modulate = Color(1, 0.8, 0.8)
 		3:
 			# Orange corruption
 			title_label.modulate = Color(1, 0.7, 0.3)
 			background.color = Color(0.1, 0.05, 0, 1)
-			continue_button.modulate = Color(1, 0.7, 0.3)
 		4:
 			# Purple warnings
 			title_label.modulate = Color(1, 0.4, 1)
 			background.color = Color(0.1, 0, 0.1, 1)
-			continue_button.modulate = Color(1, 0.4, 1)
 		5:
 			# Critical red
 			title_label.modulate = Color(1, 0.2, 0.2)
 			background.color = Color(0.2, 0, 0, 1)
-			continue_button.modulate = Color(1, 0.2, 0.2)
-			continue_button.text = "ESCAPE" if current_day == 5 else "Continue"
 
 func _create_message_labels(messages: Array) -> void:
 	# Clear existing message labels
@@ -144,7 +136,7 @@ func _add_corruption_effect(label: Label) -> void:
 
 func _show_continue_button() -> void:
 	if current_day == 1:
-		# Day 1: Show elevator message with continue button
+		# Day 1: Show elevator message and auto-advance
 		_show_day_1_message()
 	else:
 		# Days 2-5: Show keypad with code
@@ -163,17 +155,6 @@ func _show_day_1_message() -> void:
 	# Animate the message appearing
 	var message_tween = create_tween()
 	message_tween.tween_property(elevator_label, "modulate:a", 1.0, 1.0)
-	message_tween.tween_interval(1.0)
-	message_tween.tween_callback(_show_day_1_continue_button)
-
-func _show_day_1_continue_button() -> void:
-	continue_button.visible = true
-	continue_button.text = "Enter Elevator"
-
-	# Animate button appearance
-	continue_button.modulate.a = 0.0
-	var button_tween = create_tween()
-	button_tween.tween_property(continue_button, "modulate:a", 1.0, 0.5)
 
 func _show_keypad_interface() -> void:
 	if not keypad_container:
@@ -222,11 +203,17 @@ func _show_keypad() -> void:
 
 func _on_keypad_code_entered(entered_code: String) -> void:
 	if entered_code == required_code:
-		# Correct code - advance to next day
-		_advance_to_next_day()
+		# Correct code - just stay on this screen
+		_show_code_success()
 	else:
 		# Wrong code - show error feedback
 		_show_code_error()
+
+func _show_code_success() -> void:
+	# Flash the keypad green briefly to indicate success
+	var success_tween = create_tween()
+	success_tween.tween_property(keypad_container, "modulate", Color(0, 1, 0, 1), 0.2)
+	success_tween.tween_property(keypad_container, "modulate", Color(1, 1, 1, 1), 0.2)
 
 func _show_code_error() -> void:
 	# Flash the keypad red briefly
@@ -242,20 +229,6 @@ func _show_code_error() -> void:
 		if keypad.has_method("clear_code"):
 			keypad.clear_code()
 
-func _start_button_pulse() -> void:
-	var pulse_tween = create_tween()
-	pulse_tween.set_loops()
-	pulse_tween.tween_property(continue_button, "modulate:a", 0.6, 0.5)
-	pulse_tween.tween_property(continue_button, "modulate:a", 1.0, 0.5)
-
-func _on_continue_pressed() -> void:
-	# Determine next action based on current day
-	if current_day >= 5:
-		# End of game - could show credits or return to main menu
-		_handle_game_completion()
-	else:
-		# Advance to next day
-		_advance_to_next_day()
 
 func _advance_to_next_day() -> void:
 	var next_day = current_day + 1
@@ -277,9 +250,3 @@ func _handle_game_completion() -> void:
 	# - Ending cutscene
 	# For now, return to startup
 	get_tree().change_scene_to_file("res://src/scenes/2d/startup/StartupScreen.tscn")
-
-func _input(event: InputEvent) -> void:
-	# Allow Enter/Space to continue when button is visible
-	if event is InputEventKey and event.pressed and continue_button.visible:
-		if event.keycode == KEY_ENTER or event.keycode == KEY_SPACE:
-			_on_continue_pressed()
