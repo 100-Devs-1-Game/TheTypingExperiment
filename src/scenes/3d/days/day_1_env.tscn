@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=4 uid="uid://bud07mn4d7mwr"]
+[gd_scene load_steps=141 format=4 uid="uid://bud07mn4d7mwr"]
 
 [ext_resource type="Script" uid="uid://dcjky3peu8uji" path="res://scenes/3d/days/main.gd" id="1_tbtjm"]
 [ext_resource type="Shader" uid="uid://barc84udpwptk" path="res://scenes/3d/assets_psx/posterize_canvas.gdshader" id="2_5gvna"]
@@ -54,6 +54,13 @@
 [ext_resource type="PackedScene" uid="uid://iotb2nckemya" path="res://scenes/3d/assets_psx/GLB/Modular Structures/elevator_doorway_3.glb" id="51_i0y1e"]
 [ext_resource type="PackedScene" uid="uid://bwh5x8yqm2k3h" path="res://scenes/2d/keypad/keypad_input.tscn" id="52_rohpg"]
 [ext_resource type="PackedScene" uid="uid://c8xm2e2c3pdto" path="res://scenes/3d/assets_psx/custom/keypad/keypad_separate_keys.gltf" id="53_5gvna"]
+[ext_resource type="PackedScene" uid="uid://bc7gljv60hnt6" path="res://scenes/3d/assets_psx/GLB/Modular Structures/wall_1_tunnel_hole_1.glb" id="53_7xhva"]
+[ext_resource type="PackedScene" uid="uid://d267t46q2nljq" path="res://scenes/3d/assets_psx/GLB/Modular Structures/tunnel_1.glb" id="54_rd8gm"]
+[ext_resource type="PackedScene" uid="uid://67rbu235mvog" path="res://scenes/3d/assets_psx/GLB/Large Props/toilet_mp_1_1.glb" id="55_jfovm"]
+[ext_resource type="PackedScene" uid="uid://bd2gep1e4ojyw" path="res://scenes/3d/assets_psx/GLB/Large Props/pipe_1_corner.glb" id="58_w85uq"]
+[ext_resource type="PackedScene" uid="uid://3343sn8p0cs" path="res://scenes/3d/assets_psx/GLB/Large Props/pipe_1.glb" id="59_l5w8t"]
+[ext_resource type="PackedScene" uid="uid://cg17wfnogu46h" path="res://scenes/3d/assets_psx/GLB/Modular Structures/bars_metal_1.glb" id="60_l5w8t"]
+[ext_resource type="PackedScene" uid="uid://b80ymjatyubo5" path="res://scenes/3d/assets_psx/GLB/Lighting/lamp_1_on.glb" id="61_blsrk"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_faidy"]
 
@@ -169,16 +176,16 @@ size = Vector3(0.6, 0.5, 0.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_5gvna"]
 size = Vector3(0.6, 0.90000004, 0.5)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_krker"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_e2smb"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_krker"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_q3shm"]
 viewport_path = NodePath("SubViewportContainer/SubViewport/World/Stage_1/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_monitor"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f3vld"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("28_krker")
-shader_parameter/tex = SubResource("ViewportTexture_krker")
+shader_parameter/tex = SubResource("ViewportTexture_q3shm")
 shader_parameter/curve_amount = 0.05
 shader_parameter/screen_ratio = 0.75
 
@@ -419,31 +426,77 @@ data = PackedVector3Array(0, 0.2065, -0.506, -0.168, 0.2065, -0.562, 0, 0.2065, 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vckpu"]
 data = PackedVector3Array(0.1148, 0.2553, 0, 0.1148, 0.2754, -0.0225, 0.1148, 0.2754, -0.5508, -0.1148, -0.2754, 0, 0.1148, -0.2754, -0.5508, -0.1148, -0.2754, -0.5508, -0.1148, -0.2754, 0, 0.1148, -0.2754, 0, 0.1148, -0.2754, -0.5508, -0.0955, 0.2754, -0.1869, 0.0955, 0.2664, -0.1869, 0.0955, 0.2754, -0.1869, -0.0955, 0.2754, -0.1869, -0.0955, 0.2664, -0.1869, 0.0955, 0.2664, -0.1869, -0.1148, -0.2754, 0, 0.1148, 0.2553, 0, 0.1148, -0.2754, 0, -0.1148, -0.2754, 0, -0.1148, 0.2553, 0, 0.1148, 0.2553, 0, 0.1148, -0.2754, -0.5508, -0.1148, 0.2754, -0.5508, -0.1148, -0.2754, -0.5508, 0.1148, -0.2754, -0.5508, 0.1148, 0.2754, -0.5508, -0.1148, 0.2754, -0.5508, 0.1148, 0.2553, 0, -0.1148, 0.2754, -0.0225, 0.1148, 0.2754, -0.0225, 0.1148, 0.2553, 0, -0.1148, 0.2553, 0, -0.1148, 0.2754, -0.0225, -0.1148, 0.2553, 0, -0.1148, 0.2754, -0.5508, -0.1148, 0.2754, -0.0225, -0.0955, 0.2754, -0.1869, -0.1148, 0.2754, -0.5508, -0.0955, 0.2754, -0.2592, -0.0955, 0.2754, -0.1869, -0.1148, 0.2754, -0.0225, -0.1148, 0.2754, -0.5508, -0.0955, 0.2754, -0.2592, 0.1148, 0.2754, -0.5508, 0.0955, 0.2754, -0.2592, -0.0955, 0.2754, -0.2592, -0.1148, 0.2754, -0.5508, 0.1148, 0.2754, -0.5508, 0.0955, 0.2754, -0.2592, 0.1148, 0.2754, -0.0225, 0.0955, 0.2754, -0.1869, 0.0955, 0.2754, -0.2592, 0.1148, 0.2754, -0.5508, 0.1148, 0.2754, -0.0225, 0.0955, 0.2754, -0.1869, -0.1148, 0.2754, -0.0225, -0.0955, 0.2754, -0.1869, 0.0955, 0.2754, -0.1869, 0.1148, 0.2754, -0.0225, -0.1148, 0.2754, -0.0225, 0.0955, 0.2664, -0.1869, -0.0955, 0.2664, -0.2592, 0.0955, 0.2664, -0.2592, 0.0955, 0.2664, -0.1869, -0.0955, 0.2664, -0.1869, -0.0955, 0.2664, -0.2592, 0.0955, 0.2754, -0.2592, -0.0955, 0.2664, -0.2592, -0.0955, 0.2754, -0.2592, 0.0955, 0.2754, -0.2592, 0.0955, 0.2664, -0.2592, -0.0955, 0.2664, -0.2592, 0.0955, 0.2754, -0.1869, 0.0955, 0.2664, -0.2592, 0.0955, 0.2754, -0.2592, 0.0955, 0.2754, -0.1869, 0.0955, 0.2664, -0.1869, 0.0955, 0.2664, -0.2592, -0.0955, 0.2754, -0.2592, -0.0955, 0.2664, -0.1869, -0.0955, 0.2754, -0.1869, -0.0955, 0.2754, -0.2592, -0.0955, 0.2664, -0.2592, -0.0955, 0.2664, -0.1869, -0.1148, -0.2754, 0, -0.1148, 0.2754, -0.5508, -0.1148, 0.2553, 0, -0.1148, -0.2754, 0, -0.1148, -0.2754, -0.5508, -0.1148, 0.2754, -0.5508, 0.1148, -0.2754, 0, 0.1148, 0.2754, -0.5508, 0.1148, -0.2754, -0.5508, 0.1148, -0.2754, 0, 0.1148, 0.2553, 0, 0.1148, 0.2754, -0.5508)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_s60g4"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_uqdhs"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_0y0r0"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ado21"]
 viewport_path = NodePath("SubViewportContainer/SubViewport/World/Stage_2/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mlvne"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pfx0d"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("28_krker")
-shader_parameter/tex = SubResource("ViewportTexture_0y0r0")
+shader_parameter/tex = SubResource("ViewportTexture_ado21")
+shader_parameter/curve_amount = 0.05
+shader_parameter/screen_ratio = 0.75
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yinpb"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_b0bia"]
+viewport_path = NodePath("SubViewportContainer/SubViewport/World/Stage_3/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_myog3"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("28_krker")
+shader_parameter/tex = SubResource("ViewportTexture_b0bia")
+shader_parameter/curve_amount = 0.05
+shader_parameter/screen_ratio = 0.75
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dwsfa"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_he0s4"]
+viewport_path = NodePath("SubViewportContainer/SubViewport/World/Stage_4/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vckpu"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("28_krker")
+shader_parameter/tex = SubResource("ViewportTexture_he0s4")
 shader_parameter/curve_amount = 0.05
 shader_parameter/screen_ratio = 0.75
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i0y1e"]
 size = Vector3(0.5, 0.5, 0.2)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_7xhva"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_s60g4"]
 size = Vector2(0.12, 0.09)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_kcujr"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_0y0r0"]
 viewport_path = NodePath("SubViewportContainer/SubViewport/World/Keypad_1/KeypadSubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rd8gm"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mlvne"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_kcujr")
+albedo_texture = SubResource("ViewportTexture_0y0r0")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jfovm"]
+size = Vector2(0.12, 0.09)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_w85uq"]
+viewport_path = NodePath("SubViewportContainer/SubViewport/World/Keypad_2/KeypadSubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l5w8t"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_w85uq")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_blsrk"]
+size = Vector2(0.12, 0.09)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_e2smb"]
+viewport_path = NodePath("SubViewportContainer/SubViewport/World/Keypad_3/KeypadSubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q3shm"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_e2smb")
 
 [node name="Day1Env" type="Node3D" node_paths=PackedStringArray("sub_viewport")]
 script = ExtResource("1_tbtjm")
@@ -954,9 +1007,9 @@ shape = SubResource("BoxShape3D_5gvna")
 
 [node name="MonitorScreen" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_1"]
 transform = Transform3D(-0.00349047, 0.199209, 0.0139429, 0, 0.0174312, -0.159391, -0.19997, -0.00347719, -0.000243373, -3.333, 1.28941, 3.59922)
-mesh = SubResource("PlaneMesh_krker")
+mesh = SubResource("PlaneMesh_e2smb")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("ShaderMaterial_monitor")
+surface_material_override/0 = SubResource("ShaderMaterial_f3vld")
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer/SubViewport/World/Stage_1"]
 handle_input_locally = false
@@ -1290,9 +1343,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, -0.4, 4.5)
 
 [node name="MonitorScreen" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_2"]
 transform = Transform3D(-0.00349047, 0.199209, 0.0139429, 0, 0.0174312, -0.159391, -0.19997, -0.00347719, -0.000243373, -3.333, 1.28941, 3.59922)
-mesh = SubResource("PlaneMesh_s60g4")
+mesh = SubResource("PlaneMesh_uqdhs")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("ShaderMaterial_mlvne")
+surface_material_override/0 = SubResource("ShaderMaterial_pfx0d")
 
 [node name="PCInteraction" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 1, 3.5)
@@ -1325,10 +1378,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3.0000005, 2)
 visible = false
 
 [node name="ceiling_fan_mp_1_1_light_on2" parent="SubViewportContainer/SubViewport/World/Stage_3/Lighting/Models" instance=ExtResource("4_kj1kj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3.0000005, 2)
+transform = Transform3D(-1, -8.742278e-08, -8.742278e-08, 8.742278e-08, -1, 3.8213714e-15, -8.742278e-08, -3.821371e-15, 1, -0.99437094, 0.041219592, 2.0000002)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Lighting"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.994371, 2.34122, 2.00756)
+transform = Transform3D(-1, -8.742278e-08, -8.742278e-08, 8.742278e-08, -1, 2.992326e-15, -8.742278e-08, -3.821371e-15, 1, -0.9999995, 0.70000017, 2.00756)
 light_color = Color(0.679622, 0.657677, 0.548465, 1)
 light_energy = 6.818
 
@@ -1343,7 +1396,7 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 0, 2)
 shape = SubResource("ConcavePolygonShape3D_67gp5")
 
 [node name="floor_ceiling_13" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("19_67gp5")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 3, 2)
+transform = Transform3D(1.55, 0, 0, 0, 1.55, 0, 0, 0, 1.55, -1, 3, 2)
 
 [node name="wall_1_half2" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("5_pp6gi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
@@ -1557,7 +1610,7 @@ transform = Transform3D(-0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, -0.
 [node name="Desk" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_3"]
 
 [node name="pc_monitor_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk" instance=ExtResource("15_p1hi1")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.5, 0.98, 3.6)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.5, 0.98, 3.6)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk/pc_monitor_mp_12/pc_monitor_mp_1/pc_monitor_mp_1_screen" index="0"]
 
@@ -1743,18 +1796,18 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/PCInteraction"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10000038, 0.25, 0.099999905)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4000003, 0.7500001, 1.0000033)
 shape = SubResource("BoxShape3D_rohpg")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/PCInteraction"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8000002, -0.45000005, 0.099999905)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4, 1.4500004, 0.100001335)
 shape = SubResource("BoxShape3D_5gvna")
 
 [node name="MonitorScreen" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_3"]
-transform = Transform3D(-0.00349047, 0.199209, 0.0139429, 0, 0.0174312, -0.159391, -0.19997, -0.00347719, -0.000243373, -3.333, 1.28941, 3.59922)
-mesh = SubResource("PlaneMesh_krker")
+transform = Transform3D(0.19997, 0.0034772193, 0.00024336413, 1.145523e-08, -0.017431172, 0.159391, 0.0034904967, -0.19920903, -0.013942876, 0.0038900375, 1.7099999, 4.336111)
+mesh = SubResource("PlaneMesh_yinpb")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("ShaderMaterial_monitor")
+surface_material_override/0 = SubResource("ShaderMaterial_myog3")
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer/SubViewport/World/Stage_3"]
 handle_input_locally = false
@@ -1790,6 +1843,238 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.950003, 0.0769997, -1.047)
 mesh = SubResource("ArrayMesh_ado21")
 skeleton = NodePath("")
 
+[node name="Stage_4" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0, 0)
+
+[node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4"]
+
+[node name="wall_1_tunnel_hole_12" parent="SubViewportContainer/SubViewport/World/Stage_4" instance=ExtResource("53_7xhva")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8.5, -3.5, -5)
+
+[node name="tunnel_12" parent="SubViewportContainer/SubViewport/World/Stage_4" instance=ExtResource("54_rd8gm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 11.5, -3.5, -5)
+
+[node name="GLB" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4"]
+transform = Transform3D(0, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 0, 15.470001, -3.5, -5)
+
+[node name="Lighting" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.994371, 2.34122, 2.00756)
+light_color = Color(0.679622, 0.657677, 0.548465, 1)
+light_energy = 6.818
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.605631, 1.4902601, 1.0075607)
+light_color = Color(0.679622, 0.657677, 0.548465, 1)
+light_energy = 4.723
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Lighting"]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0.0056290627, 2.29026, -1.2924404)
+light_color = Color(0.679622, 0.657677, 0.548465, 1)
+light_energy = 3.0
+
+[node name="Models" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Lighting"]
+
+[node name="ceiling_fan_mp_1_1_light_off2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Lighting/Models" instance=ExtResource("3_0o5wo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 2)
+visible = false
+
+[node name="ceiling_fan_mp_1_1_light_on2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Lighting/Models" instance=ExtResource("4_kj1kj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 2)
+
+[node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB"]
+
+[node name="floor_ceiling_13" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("19_67gp5")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 3, 2)
+visible = false
+
+[node name="vent_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("8_j6d3m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.6, -0.9)
+
+[node name="doorway_1_plain2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("47_nevyq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="door_mp_6" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/doorway_1_plain2/doorway_1_plain" index="0"]
+visible = false
+
+[node name="wall_1_plain5" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("48_e78pq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 5)
+
+[node name="wall_1_plain6" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("48_e78pq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="wall_1_plain7" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("48_e78pq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 5)
+
+[node name="wall_1_plain9" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("48_e78pq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -1)
+
+[node name="wall_1_plain8" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("48_e78pq")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, 5)
+
+[node name="floor_ceiling_33" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("49_rohpg")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 0, 2)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/floor_ceiling_33/floor_ceiling_3" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/floor_ceiling_33/floor_ceiling_3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_rd8gm")
+
+[node name="floor_ceiling_34" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("49_rohpg")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 3, 2)
+
+[node name="window_1_single2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("50_5gvna")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, 1)
+
+[node name="Doors" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, -3)
+
+[node name="elevator_22" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors" instance=ExtResource("44_w85uq")]
+transform = Transform3D(-1, 0, 8.742279e-08, 0, 1, 0, -8.742279e-08, 0, -1, -4, 0, 0)
+
+[node name="elevator_doorway_32" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors" instance=ExtResource("51_i0y1e")]
+transform = Transform3D(-1, 0, 8.742279e-08, 0, 1, 0, -8.742279e-08, 0, -1, -4, 0, 0)
+
+[node name="Props" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB"]
+
+[node name="vending_machine_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("10_p1hi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6, 0, -0.5)
+
+[node name="vending_machine_1" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/vending_machine_12" index="0"]
+transform = Transform3D(1, 1.0658141e-14, 0, 0, 0, -1, -1.0658141e-14, 1, 0, 0, 0, -0.10000008)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/vending_machine_12/vending_machine_1" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/vending_machine_12/vending_machine_1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_q3shm")
+
+[node name="cardboard_box_2_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("11_3tbit")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 0, 4.6)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_2_12/cardboard_box_2_1" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_2_12/cardboard_box_2_1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_f3vld")
+
+[node name="cardboard_box_2_13" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("11_3tbit")]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.1, 0, 3.6)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_2_13/cardboard_box_2_1" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_2_13/cardboard_box_2_1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_uqdhs")
+
+[node name="cardboard_box_2_14" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("11_3tbit")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0.4, 0, 4.4)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_2_14/cardboard_box_2_1" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_2_14/cardboard_box_2_1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ado21")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_2_14/cardboard_box_2_1" index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_2_14/cardboard_box_2_1/StaticBody3D2"]
+shape = SubResource("ConcavePolygonShape3D_pfx0d")
+
+[node name="cardboard_box_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("12_0p4eh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.8, 4.2)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_12/cardboard_box_1" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_12/cardboard_box_1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_yinpb")
+
+[node name="mouse_pad_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("13_j6d3m")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.145, 0.98, 3.185)
+
+[node name="pc_mouse_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("14_pmrjd")]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -3.12, 1, 3.165)
+
+[node name="window_metal_bars_single2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("2_oxuu8")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, 1)
+
+[node name="light_switch_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("16_p1hi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 1.4, -0.9)
+
+[node name="clock_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("17_ixxjw")]
+transform = Transform3D(7.15295e-08, 1.04216e-14, 1, 0, 1, -3.55271e-15, -1, -1.19209e-07, 1.90739e-07, -3.91, 2.2, 2.5)
+
+[node name="vent_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("24_8khuf")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.6, 1, 4.935)
+
+[node name="electrical_outlet_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("22_67gp5")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.3, 0.6, 4.925)
+
+[node name="electrical_outlet_13" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("22_67gp5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.92, 0.6, 3.925)
+
+[node name="Desk" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB"]
+
+[node name="pc_monitor_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk" instance=ExtResource("15_p1hi1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.5, 0.98, 3.6)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk/pc_monitor_mp_12/pc_monitor_mp_1/pc_monitor_mp_1_screen" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk/pc_monitor_mp_12/pc_monitor_mp_1/pc_monitor_mp_1_screen/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_b0bia")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk/pc_monitor_mp_12/pc_monitor_mp_1" index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk/pc_monitor_mp_12/pc_monitor_mp_1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_myog3")
+
+[node name="table_large_2_42" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk" instance=ExtResource("16_3tbit")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 0, 3.5)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk/table_large_2_42/table_large_2_4" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk/table_large_2_42/table_large_2_4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_dwsfa")
+
+[node name="toilet_mp_1_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk" instance=ExtResource("55_jfovm")]
+transform = Transform3D(-4.3711385e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -4.3711385e-08, -2.5999997, 0.29999995, 3.5299997)
+
+[node name="pc_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk" instance=ExtResource("18_ixxjw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 0.98, 2.9)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk/pc_mp_12/pc_mp_1" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk/pc_mp_12/pc_mp_1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_vckpu")
+
+[node name="Custom" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4"]
+transform = Transform3D(0, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 0, 14.570002, -2.1, -4.3)
+
+[node name="keyboard_with_separate_keys" parent="SubViewportContainer/SubViewport/World/Stage_4/Custom" instance=ExtResource("24_ixxjw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, -0.4, 4.5)
+
+[node name="MonitorScreen" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_4"]
+transform = Transform3D(-0.19997004, -0.0034771904, -0.00024337303, 0, 0.0174312, -0.159391, 0.0034904703, -0.19920903, -0.013942902, 19.069221, -2.21059, -1.6669996)
+mesh = SubResource("PlaneMesh_dwsfa")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_vckpu")
+
+[node name="PCInteraction" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4"]
+transform = Transform3D(0, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 0, 18.970001, -2.5, -1.5999994)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/PCInteraction"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10000038, 0.25, 0.099999905)
+shape = SubResource("BoxShape3D_rohpg")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/PCInteraction"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8000002, -0.45000005, 0.099999905)
+shape = SubResource("BoxShape3D_5gvna")
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer/SubViewport/World/Stage_4"]
+handle_input_locally = false
+size = Vector2i(640, 480)
+
+[node name="StartupScreen" parent="SubViewportContainer/SubViewport/World/Stage_4/SubViewport" instance=ExtResource("29_krker")]
+
 [node name="Keypad_1" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.93, -2.2, -2.23)
 
@@ -1803,9 +2088,9 @@ shape = SubResource("BoxShape3D_i0y1e")
 
 [node name="KeypadScreen" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Keypad_1"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -0.395, 0, 1, -1.7265998e-08, 0, 0.10500014, 0.011452436)
-mesh = SubResource("PlaneMesh_7xhva")
+mesh = SubResource("PlaneMesh_s60g4")
 skeleton = NodePath("../../Stage_2")
-surface_material_override/0 = SubResource("StandardMaterial3D_rd8gm")
+surface_material_override/0 = SubResource("StandardMaterial3D_mlvne")
 
 [node name="KeypadSubViewport" type="SubViewport" parent="SubViewportContainer/SubViewport/World/Keypad_1"]
 handle_input_locally = false
@@ -1829,9 +2114,9 @@ shape = SubResource("BoxShape3D_i0y1e")
 
 [node name="KeypadScreen" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Keypad_2"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -0.395, 0, 1, -1.7265998e-08, 0, 0.10500014, 0.011452436)
-mesh = SubResource("PlaneMesh_7xhva")
+mesh = SubResource("PlaneMesh_jfovm")
 skeleton = NodePath("../../Stage_2")
-surface_material_override/0 = SubResource("StandardMaterial3D_rd8gm")
+surface_material_override/0 = SubResource("StandardMaterial3D_l5w8t")
 
 [node name="KeypadSubViewport" type="SubViewport" parent="SubViewportContainer/SubViewport/World/Keypad_2"]
 handle_input_locally = false
@@ -1840,6 +2125,32 @@ size = Vector2i(125, 32)
 [node name="KeypadInput" parent="SubViewportContainer/SubViewport/World/Keypad_2/KeypadSubViewport" instance=ExtResource("52_rohpg")]
 
 [node name="keypad_separate_keys" parent="SubViewportContainer/SubViewport/World/Keypad_2" instance=ExtResource("53_5gvna")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7881393e-07, 0, -2.3841858e-07)
+
+[node name="Keypad_3" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.230001, -2.2, -6.93)
+
+[node name="KeypadInteraction" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Keypad_3"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Keypad_3/KeypadInteraction"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05000007)
+shape = SubResource("BoxShape3D_i0y1e")
+
+[node name="KeypadScreen" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Keypad_3"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -0.395, 0, 1, -1.7265998e-08, 0, 0.10500014, 0.011452436)
+mesh = SubResource("PlaneMesh_blsrk")
+skeleton = NodePath("../../Stage_2")
+surface_material_override/0 = SubResource("StandardMaterial3D_q3shm")
+
+[node name="KeypadSubViewport" type="SubViewport" parent="SubViewportContainer/SubViewport/World/Keypad_3"]
+handle_input_locally = false
+size = Vector2i(125, 32)
+
+[node name="KeypadInput" parent="SubViewportContainer/SubViewport/World/Keypad_3/KeypadSubViewport" instance=ExtResource("52_rohpg")]
+
+[node name="keypad_separate_keys" parent="SubViewportContainer/SubViewport/World/Keypad_3" instance=ExtResource("53_5gvna")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7881393e-07, 0, -2.3841858e-07)
 
 [node name="UI" type="Control" parent="."]
@@ -1863,6 +2174,18 @@ theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_font_sizes/font_size = 12
 text = "ESC: Stop Using Keypad"
+
+[node name="pipe_1_corner2" parent="." instance=ExtResource("58_w85uq")]
+transform = Transform3D(0.5, 0, 0, 0, -2.1855694e-08, 0.5, 0, -0.5, -2.1855694e-08, 18.699999, -3.3, -2.97)
+
+[node name="pipe_12" parent="." instance=ExtResource("59_l5w8t")]
+transform = Transform3D(-2.1855694e-08, 0.5, 0, -0.5, -2.1855694e-08, 0, 0, 0, 0.5, 18.849998, -3.3, -3.1200001)
+
+[node name="bars_metal_12" parent="." instance=ExtResource("60_l5w8t")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14, -3.6000001, -4.9)
+
+[node name="lamp_1_on2" parent="." instance=ExtResource("61_blsrk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14.099998, -1.1999999, -5)
 
 [editable path="SubViewportContainer/SubViewport/World/Stage_1/Walls/floor_ceiling_12"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_1/Walls/floor_ceiling_14"]
@@ -1946,3 +2269,15 @@ text = "ESC: Stop Using Keypad"
 [editable path="SubViewportContainer/SubViewport/World/Stage_3/Desk3/pc_mp_12"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_3/Custom/keyboard_with_separate_keys"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_3/GLB2/vending_machine_12"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/doorway_1_plain2"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/floor_ceiling_33"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/vending_machine_12"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_2_12"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_2_13"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_2_14"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_12"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk/pc_monitor_mp_12"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk/table_large_2_42"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk/toilet_mp_1_12"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk/pc_mp_12"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_4/Custom/keyboard_with_separate_keys"]
