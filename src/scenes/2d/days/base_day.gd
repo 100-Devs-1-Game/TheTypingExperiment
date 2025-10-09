@@ -135,15 +135,18 @@ func _start_new_stage() -> void:
 # VIRTUAL FUNCTION - Override in child classes for day-specific typewriter effects
 func _show_stage_text_typewriter() -> void:
 	var display_sentence = DayManager.get_stage_display_sentence()
-	var typing_speed = 0.05  # Default typing speed
+	var typing_speed = 0.04  # Slightly faster, more urgent
 	text_display.text = ""
 
 	for i in range(display_sentence.length()):
-		text_display.text += display_sentence[i]
+		var character = display_sentence[i]
+	
+		text_display.text += "[color=%s]%s[/color]" % [untyped_color, character]
+
 		await get_tree().create_timer(typing_speed).timeout
 
-	# Brief pause before allowing typing
-	await get_tree().create_timer(0.5).timeout
+	# Pause before allowing typing
+	await get_tree().create_timer(0.8).timeout
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:

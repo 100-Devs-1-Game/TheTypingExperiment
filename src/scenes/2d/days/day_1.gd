@@ -19,18 +19,5 @@ func _setup_ui_theme() -> void:
 	progress_label.modulate = green_color
 	message_overlay.modulate = green_color
 
-## Day 1 - Normal typewriter effect (no corruption)
-func _show_stage_text_typewriter() -> void:
-	var display_sentence = DayManager.get_stage_display_sentence()
-	var typing_speed = 0.05  # Normal typing speed for Day 1
-	text_display.text = ""
-
-	for i in range(display_sentence.length()):
-		text_display.text += display_sentence[i]
-		await get_tree().create_timer(typing_speed).timeout
-
-	# Brief pause before allowing typing
-	await get_tree().create_timer(0.5).timeout
-
 # Day 1 uses the default _update_display() from base class (simple green/red display)
 # Day 1 uses the default _show_message() from base class (simple message display)

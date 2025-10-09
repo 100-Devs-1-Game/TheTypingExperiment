@@ -2,12 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bas8aegoedbjd" path="res://scenes/2d/days/day_2.gd" id="1_ljcjv"]
 
-[sub_resource type="SystemFont" id="SystemFont_de5wr"]
+[sub_resource type="SystemFont" id="SystemFont_ljcjv"]
 font_names = PackedStringArray("Courier New")
-subpixel_positioning = 0
 
 [sub_resource type="Theme" id="Theme_bauee"]
-default_font = SubResource("SystemFont_de5wr")
+default_font = SubResource("SystemFont_ljcjv")
 
 [node name="Day2" type="Control"]
 layout_mode = 3
