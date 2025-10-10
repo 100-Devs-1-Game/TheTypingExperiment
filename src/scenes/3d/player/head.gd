@@ -57,13 +57,16 @@ func _process(_delta):
 			var object = ray_cast.get_collider()
 			if object and object.name == "PCInteraction":
 				interaction_label.text = "E: Use Computer"
+				if not interaction_label.visible:
+					interaction_label.visible = true
 			elif object and object.name == "KeypadInteraction":
 				interaction_label.text = "E: Use Keypad"
+				if not interaction_label.visible:
+					interaction_label.visible = true
 			else:
-				interaction_label.text = "E: Interact"
-
-			if not interaction_label.visible:
-				interaction_label.visible = true
+				# Not an interactable object, hide label
+				if interaction_label.visible:
+					interaction_label.visible = false
 		else:
 			if interaction_label.visible:
 				interaction_label.visible = false

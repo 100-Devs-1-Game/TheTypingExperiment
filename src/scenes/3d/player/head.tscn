@@ -21,7 +21,7 @@ spot_angle = 65.0
 [node name="RayCast3D" type="RayCast3D" parent="Camera"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 target_position = Vector3(2, 0, 0)
-collision_mask = 8
+collision_mask = 9
 
 [node name="InteractionLabel" type="Label" parent="."]
 anchors_preset = 8
