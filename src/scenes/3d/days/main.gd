@@ -25,6 +25,9 @@ var current_pc: PCController = null  # Currently active PC
 var keypad_controllers: Array = []  # Array of KeypadController instances
 var current_keypad: KeypadController = null  # Currently active keypad
 
+# Elevator management
+var elevator_controllers: Array = []  # Array of ElevatorController instances
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -41,6 +44,9 @@ func _ready() -> void:
 
 	# Discover all keypad instances
 	_discover_keypads()
+
+	# Discover all elevator instances
+	_discover_elevators()
 
 	# Generate access codes for testing (codes shown at day end screen)
 	_generate_stage_codes()
@@ -133,6 +139,52 @@ func interact_with_keypad(keypad_node: Node3D = null):
 
 	player_state_manager.use_keypad(keypad_node)
 
+# Called by the head script when player interacts with elevator
+func interact_with_elevator(elevator_node: Node3D = null):
+	if not player_state_manager or not player_state_manager.can_interact():
+		return
+
+	# Find the elevator controller for this node
+	var target_elevator: ElevatorController = null
+	if elevator_node:
+		for elevator in elevator_controllers:
+			if elevator == elevator_node or elevator.is_ancestor_of(elevator_node) or elevator_node.is_ancestor_of(elevator):
+				target_elevator = elevator
+				break
+
+	if not target_elevator:
+		push_error("[Main] No elevator controller found for node")
+		return
+
+	# Check if elevator can be used
+	if not target_elevator.can_use_elevator():
+		print("[Main] Elevator '%s' is not yet unlocked or doors are closed" % target_elevator.elevator_name)
+		return
+
+	print("[Main] Using elevator: %s" % target_elevator.elevator_name)
+
+	# Use elevator (this will emit signal)
+	target_elevator.use_elevator()
+
+	# Teleport player with fade transition
+	var teleport_position = target_elevator.get_teleport_position()
+	var teleport_rotation = target_elevator.get_teleport_rotation()
+
+	# Use fade transition for smooth teleport
+	if fade_manager:
+		await fade_manager.fade_to_black(func():
+			_execute_elevator_teleport(teleport_position, teleport_rotation)
+		)
+	else:
+		_execute_elevator_teleport(teleport_position, teleport_rotation)
+
+## Execute the elevator teleport
+func _execute_elevator_teleport(position: Vector3, rotation: Vector3) -> void:
+	if player:
+		player.global_position = position
+		player.rotation = rotation
+		print("[Main] Player teleported to: %s" % position)
+
 func show_menu(_show:bool):
 	showing_menu = _show
 	if not showing_menu:
@@ -196,6 +248,20 @@ func _discover_keypads() -> void:
 			print("[Main] Discovered Keypad for Stage %d" % keypad.unlocks_stage)
 
 	print("[Main] Total Keypads discovered: %d" % keypad_controllers.size())
+
+## Discovers all elevator instances in the scene
+func _discover_elevators() -> void:
+	elevator_controllers.clear()
+
+	# Find all nodes in the "elevator_station" group
+	var elevators = get_tree().get_nodes_in_group("elevator_station")
+
+	for elevator in elevators:
+		if elevator is ElevatorController:
+			elevator_controllers.append(elevator)
+			print("[Main] Discovered Elevator: %s (unlocks after stage %d)" % [elevator.elevator_name, elevator.unlocks_after_stage])
+
+	print("[Main] Total Elevators discovered: %d" % elevator_controllers.size())
 
 ## Generate access codes for all stages at scene startup (for testing)
 func _generate_stage_codes() -> void:

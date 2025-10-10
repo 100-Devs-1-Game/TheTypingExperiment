@@ -51,6 +51,15 @@ func _input(event: InputEvent) -> void:
 				var keypad_node = object.get_parent()
 				main_script.interact_with_keypad(keypad_node)
 				get_viewport().set_input_as_handled()
+		# Check if we're looking at an Elevator
+		elif object and object.name == "ElevatorInteraction":
+			# Find the main script and trigger elevator interaction
+			var main_script = get_tree().get_first_node_in_group("main_environment")
+			if main_script and main_script.has_method("interact_with_elevator"):
+				# Pass the parent elevator node (the collider's parent)
+				var elevator_node = object.get_parent()
+				main_script.interact_with_elevator(elevator_node)
+				get_viewport().set_input_as_handled()
 
 func _process(_delta):
 	# Only show interaction prompts when we can move the camera (not seated/using keypad)
@@ -63,6 +72,10 @@ func _process(_delta):
 					interaction_label.visible = true
 			elif object and object.name == "KeypadInteraction":
 				interaction_label.text = "E: Use Keypad"
+				if not interaction_label.visible:
+					interaction_label.visible = true
+			elif object and object.name == "ElevatorInteraction":
+				interaction_label.text = "E: Use Elevator"
 				if not interaction_label.visible:
 					interaction_label.visible = true
 			else:
