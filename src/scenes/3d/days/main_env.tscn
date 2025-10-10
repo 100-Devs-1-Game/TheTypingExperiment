@@ -1369,19 +1369,19 @@ shape = SubResource("ConcavePolygonShape3D_xwonn")
 [node name="Doors" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, -3)
 
-[node name="door_3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors"]
-transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0.5, 0, -0.03000009)
+[node name="door_keypad_1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.5, 0, -0.03000009)
 mesh = SubResource("ArrayMesh_jfovm")
 skeleton = NodePath("")
 
-[node name="door_handle_1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/door_3"]
+[node name="door_handle_1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/door_keypad_1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.950003, 0.0769997, -1.047)
 mesh = SubResource("ArrayMesh_l5w8t")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/door_3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/door_keypad_1"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/door_3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/door_keypad_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_rbbsp")
 
 [node name="door_2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors"]
@@ -2032,12 +2032,12 @@ shape = SubResource("ConcavePolygonShape3D_e2smb")
 [node name="Doors" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_3/GLB2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, -3)
 
-[node name="door_3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_3/GLB2/Doors"]
-transform = Transform3D(7.54979e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -1, -7.54979e-08, 0, -7.9750023, 3.0000005, -4.465)
+[node name="door_keypad_2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_3/GLB2/Doors"]
+transform = Transform3D(7.54979e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -1, -7.54979e-08, -3.300118e-15, -7.9750023, 3.0000005, -4.465)
 mesh = SubResource("ArrayMesh_f3vld")
 skeleton = NodePath("")
 
-[node name="door_handle_1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_3/GLB2/Doors/door_3"]
+[node name="door_handle_1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_3/GLB2/Doors/door_keypad_2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.950003, 0.0769997, -1.047)
 mesh = SubResource("ArrayMesh_ado21")
 skeleton = NodePath("")
@@ -2177,7 +2177,7 @@ shape = SubResource("ConcavePolygonShape3D_m8t8b")
 [node name="Doors" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, -3)
 
-[node name="elevator_22" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors" instance=ExtResource("44_w85uq")]
+[node name="elevator_keypad_3" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors" instance=ExtResource("44_w85uq")]
 transform = Transform3D(-1, 0, 8.742279e-08, 0, 1, 0, -8.742279e-08, 0, -1, -4, 0, 0)
 
 [node name="elevator_doorway_32" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors" instance=ExtResource("51_i0y1e")]
@@ -2484,6 +2484,7 @@ text = "ESC: Stop Using Keypad"
 [editable path="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/floor_ceiling_33"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/floor_ceiling_34"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/window_1_single2"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors/elevator_keypad_3"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors/elevator_doorway_32"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/vending_machine_12"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_2_12"]

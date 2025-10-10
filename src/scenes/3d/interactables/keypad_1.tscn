@@ -6,13 +6,13 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_p4wxy"]
 size = Vector3(0.5, 0.5, 0.3)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_g7t1n"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_6cdl5"]
 size = Vector2(0.12, 0.09)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_blsrk"]
 viewport_path = NodePath("SubViewportContainer/SubViewport/World/Keypad_4/KeypadSubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lcykh"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1i7pp"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_blsrk")
 
@@ -27,9 +27,9 @@ shape = SubResource("BoxShape3D_p4wxy")
 
 [node name="KeypadScreen" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -0.395, 0, 1, -1.7265998e-08, 0, 0.10500014, 0.011452436)
-mesh = SubResource("PlaneMesh_g7t1n")
+mesh = SubResource("PlaneMesh_6cdl5")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_lcykh")
+surface_material_override/0 = SubResource("StandardMaterial3D_1i7pp")
 
 [node name="KeypadSubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
