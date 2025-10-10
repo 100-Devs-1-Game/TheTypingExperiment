@@ -116,6 +116,10 @@ func interact_with_keypad(keypad_node: Node3D = null):
 			if keypad == keypad_node or keypad.is_ancestor_of(keypad_node) or keypad_node.is_ancestor_of(keypad):
 				current_keypad = keypad
 				print("[Main] Interacting with Keypad for Stage %d" % keypad.unlocks_stage)
+
+				# Set this keypad as active in the visualizer
+				if keypad_visualizer:
+					keypad_visualizer.set_active_keypad(keypad)
 				break
 
 	player_state_manager.use_keypad(keypad_node)
@@ -205,6 +209,9 @@ func _setup_modular_systems() -> void:
 	player_state_manager.initialize(player, head, camera, interaction_label, esc_prompt_label)
 	player_state_manager.set_external_managers(fade_manager, horror_effects)
 
+	# Connect to state changes to manage keypad visualizer
+	player_state_manager.state_changed.connect(_on_player_state_changed)
+
 	# Note: Chair configuration is now handled dynamically by PC instances via InteractionMarker
 	# Each PC's InteractionMarker defines its own seated position
 
@@ -245,3 +252,9 @@ func _on_keypad_key_pressed(key_name: String) -> void:
 
 func _on_keypad_key_released(key_name: String) -> void:
 	pass  # Could add sound effects or other feedback here
+
+# Handle player state changes to manage keypad visualizer
+func _on_player_state_changed(old_state: PlayerStateManager.PlayerState, new_state: PlayerStateManager.PlayerState) -> void:
+	# Clear keypad visualizer when leaving keypad interaction state
+	if old_state == PlayerStateManager.PlayerState.INTERACTING_WITH_KEYPAD and keypad_visualizer:
+		keypad_visualizer.clear_active_keypad()

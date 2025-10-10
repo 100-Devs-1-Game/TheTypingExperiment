@@ -46,17 +46,34 @@ var key_mappings: Dictionary = {
 }
 
 func _ready() -> void:
-	_discover_keypad_keys()
+	# Don't auto-discover - wait for active keypad to be set
+	pass
 
-## Automatically discovers all keypad key meshes in the scene
-func _discover_keypad_keys() -> void:
+## Set the active keypad and discover its keys
+func set_active_keypad(keypad_node: Node3D) -> void:
+	if not keypad_node:
+		clear_active_keypad()
+		return
+
+	_discover_keypad_keys(keypad_node)
+	print("[KeypadVisualizer] Active keypad set, discovered %d keys" % keypad_keys.size())
+
+## Clear the active keypad and release all keys
+func clear_active_keypad() -> void:
+	release_all_keys()
+	keypad_keys.clear()
+	original_positions.clear()
+	print("[KeypadVisualizer] Active keypad cleared")
+
+## Discovers keypad key meshes from a specific keypad node
+func _discover_keypad_keys(keypad_root: Node) -> void:
 	keypad_keys.clear()
 	original_positions.clear()
 
-	# Search for keypad meshes in the entire scene tree
-	_search_for_keypad_meshes(get_tree().current_scene)
+	# Search for keypad meshes only within this keypad's subtree
+	_search_for_keypad_meshes(keypad_root)
 
-	print("KeypadVisualizer: Discovered %d keypad keys" % keypad_keys.size())
+	print("[KeypadVisualizer] Discovered %d keypad keys from %s" % [keypad_keys.size(), keypad_root.name])
 
 ## Recursively search for keypad mesh nodes
 func _search_for_keypad_meshes(node: Node) -> void:
