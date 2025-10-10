@@ -74,3 +74,20 @@ func _submit_code() -> void:
 func clear_code() -> void:
 	current_code = ""
 	_update_display()
+
+## Show error feedback for incorrect code
+func show_error() -> void:
+	# Flash red and show ERROR message
+	var tween = create_tween()
+	tween.tween_property(input_display, "modulate", Color(1, 0, 0), 0.1)
+	tween.tween_callback(func(): input_display.text = "ERR!")
+	tween.tween_interval(0.6)
+	tween.tween_property(input_display, "modulate", GREEN_COLOR, 0.2)
+	tween.tween_callback(clear_code)
+
+## Show success feedback for correct code
+func show_success() -> void:
+	# Flash brighter green and show OK message
+	var tween = create_tween()
+	tween.tween_property(input_display, "modulate", Color(0, 2, 0), 0.1)
+	tween.tween_callback(func(): input_display.text = "OK!")

@@ -40,10 +40,18 @@ func _on_code_entered(entered_code: String) -> void:
 	code_validated.emit(is_valid)
 
 	if is_valid:
+		# Show success feedback
+		if keypad_input and keypad_input.has_method("show_success"):
+			keypad_input.show_success()
+
 		_open_door()
 		DoorManager.unlock_stage(unlocks_stage)
 	else:
-		_show_error_feedback()
+		# Show error feedback and allow retry
+		if keypad_input and keypad_input.has_method("show_error"):
+			keypad_input.show_error()
+
+		print("[KeypadController] Incorrect code - player can retry")
 
 ## Opens the door based on door type
 func _open_door() -> void:
@@ -94,24 +102,3 @@ func _open_elevator_doors() -> void:
 	tween.parallel().tween_property(door_b, "position:x", 0.7, door_animation_duration)
 
 	print("[KeypadController] Opening elevator doors")
-
-## Shows visual feedback for incorrect code
-func _show_error_feedback() -> void:
-	# Flash the keypad screen red
-	var keypad_screen = get_node_or_null("KeypadScreen")
-	if not keypad_screen:
-		return
-
-	# Create red flash effect
-	var tween = create_tween()
-	tween.tween_property(keypad_screen, "modulate", Color(1, 0, 0, 1), 0.1)
-	tween.tween_property(keypad_screen, "modulate", Color(1, 1, 1, 1), 0.1)
-	tween.tween_property(keypad_screen, "modulate", Color(1, 0, 0, 1), 0.1)
-	tween.tween_property(keypad_screen, "modulate", Color(1, 1, 1, 1), 0.1)
-
-	# Clear the input
-	if keypad_input and keypad_input.has_method("clear_code"):
-		await tween.finished
-		keypad_input.clear_code()
-
-	print("[KeypadController] Incorrect code - showing error feedback")
