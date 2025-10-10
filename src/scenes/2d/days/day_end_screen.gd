@@ -22,19 +22,21 @@ func _setup_connections() -> void:
 	pass  # No button connections needed anymore
 
 func _generate_code() -> void:
-	# Generate a random 4-digit code for days 2-5
+	# Retrieve the code for the next stage from DoorManager
+	# Codes are generated at scene startup in main.gd
 	if current_day > 1:
-		randomize()
-		required_code = ""
-		for i in range(4):
-			required_code += str(randi() % 10)
-
-		# Send code to DoorManager for next stage
-		# Day 1 code unlocks Stage 2, Day 2 code unlocks Stage 3, etc.
 		var next_stage = current_day + 1
-		DoorManager.set_code_for_stage(next_stage, required_code)
+		required_code = DoorManager.get_code_for_stage(next_stage)
 
-		print("Day %d code: %s (unlocks Stage %d)" % [current_day, required_code, next_stage])
+		# Fallback: Generate if no code exists (shouldn't happen)
+		if required_code == "":
+			randomize()
+			for i in range(4):
+				required_code += str(randi() % 10)
+			DoorManager.set_code_for_stage(next_stage, required_code)
+			push_warning("[DayEndScreen] No code found for Stage %d, generated: %s" % [next_stage, required_code])
+
+		print("[DayEndScreen] Day %d code: %s (unlocks Stage %d)" % [current_day, required_code, next_stage])
 
 func _setup_day_end_screen() -> void:
 	var day_info = DayManager.get_current_day_info()

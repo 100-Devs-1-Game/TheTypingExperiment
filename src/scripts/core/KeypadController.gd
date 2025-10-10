@@ -98,7 +98,7 @@ func _open_elevator_doors() -> void:
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(door_a, "position:x", -0.7, door_animation_duration)
-	tween.parallel().tween_property(door_b, "position:x", 0.7, door_animation_duration)
+	tween.tween_property(door_a, "position:x", 0.7, door_animation_duration)
+	tween.parallel().tween_property(door_b, "position:x", -0.7, door_animation_duration)
 
 	print("[KeypadController] Opening elevator doors")

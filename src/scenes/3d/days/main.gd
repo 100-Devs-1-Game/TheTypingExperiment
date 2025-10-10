@@ -42,6 +42,9 @@ func _ready() -> void:
 	# Discover all keypad instances
 	_discover_keypads()
 
+	# Generate access codes for testing (codes shown at day end screen)
+	_generate_stage_codes()
+
 
 func _input(event: InputEvent) -> void:
 	# Let player state manager handle state transitions first
@@ -192,6 +195,20 @@ func _discover_keypads() -> void:
 
 	print("[Main] Total Keypads discovered: %d" % keypad_controllers.size())
 
+## Generate access codes for all stages at scene startup (for testing)
+func _generate_stage_codes() -> void:
+	# Generate codes for Stages 2-5
+	# Stage 1 doesn't need a code (elevator is already open)
+	for stage in range(2, 6):
+		# Generate 4-digit random code
+		randomize()
+		var code = ""
+		for i in range(4):
+			code += str(randi() % 10)
+
+		# Set code in DoorManager
+		DoorManager.set_code_for_stage(stage, code)
+		
 # Setup modular systems
 func _setup_modular_systems() -> void:
 	# Setup fade transition manager
