@@ -282,6 +282,9 @@ func stop_using_keypad(use_fade_transition: bool = true) -> void:
 	if esc_prompt_label:
 		esc_prompt_label.visible = false
 
+	# Reset state saved flag so next interaction can save properly
+	is_state_saved = false
+
 	state_changed.emit(old_state, current_state)
 
 ## Execute camera transition to fixed keypad position
