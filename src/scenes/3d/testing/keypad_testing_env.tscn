@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://bpkqadepsc6b4" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/pc_mp_1.glb" id="24_hsann"]
 [ext_resource type="PackedScene" uid="uid://bxmioxxh5xh17" path="res://scenes/3d/assets_psx/GLB/Small Props/keypad_2.glb" id="25_s5pha"]
 [ext_resource type="PackedScene" uid="uid://beowl66eowjlp" path="res://scenes/3d/assets_psx/custom/keyboard_with_separate_keys.gltf" id="26_vvlci"]
-[ext_resource type="Shader" uid="uid://cs2f87lkk6g72" path="res://scenes/3d/old/test/screen_curve_spatial.gdshader" id="27_50rqa"]
+[ext_resource type="Shader" uid="uid://cs2f87lkk6g72" path="res://scenes/3d/assets_psx/screen_curve_spatial.gdshader" id="27_50rqa"]
 [ext_resource type="PackedScene" uid="uid://dw35byb5qogmh" path="res://scenes/2d/startup/startup_screen.tscn" id="28_1s30o"]
 [ext_resource type="PackedScene" uid="uid://c8xm2e2c3pdto" path="res://scenes/3d/assets_psx/custom/keypad/keypad_separate_keys.gltf" id="29_gthbd"]
 [ext_resource type="PackedScene" uid="uid://bwh5x8yqm2k3h" path="res://scenes/2d/keypad/keypad_input.tscn" id="30_keypad"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=33 format=4 uid="uid://b1rk85iimai61"]
 
-[ext_resource type="Shader" uid="uid://cs2f87lkk6g72" path="res://scenes/3d/old/test/screen_curve_spatial.gdshader" id="1_bkhay"]
+[ext_resource type="Shader" uid="uid://cs2f87lkk6g72" path="res://scenes/3d/assets_psx/screen_curve_spatial.gdshader" id="1_bkhay"]
 [ext_resource type="PackedScene" uid="uid://dw35byb5qogmh" path="res://scenes/2d/startup/startup_screen.tscn" id="2_yge7n"]
 [ext_resource type="Texture2D" uid="uid://codb2jw0oyowu" path="res://scenes/3d/assets_psx/custom/keypad/keypad_2.png" id="3_w2mwo"]
 [ext_resource type="Texture2D" uid="uid://dxt2c3htfugi1" path="res://scenes/3d/assets_psx/custom/keypad/keypad_2_emission.png" id="4_1rpki"]

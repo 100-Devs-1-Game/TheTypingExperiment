@@ -27,7 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://bpkqadepsc6b4" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/pc_mp_1.glb" id="25_tavu6"]
 [ext_resource type="PackedScene" uid="uid://bxmioxxh5xh17" path="res://scenes/3d/assets_psx/GLB/Small Props/keypad_2.glb" id="26_hjlqc"]
 [ext_resource type="PackedScene" uid="uid://beowl66eowjlp" path="res://scenes/3d/assets_psx/custom/keyboard_with_separate_keys.gltf" id="27_eqdlg"]
-[ext_resource type="Shader" uid="uid://cs2f87lkk6g72" path="res://scenes/3d/old/test/screen_curve_spatial.gdshader" id="28_rw4gw"]
+[ext_resource type="Shader" uid="uid://cs2f87lkk6g72" path="res://scenes/3d/assets_psx/screen_curve_spatial.gdshader" id="28_rw4gw"]
 [ext_resource type="PackedScene" uid="uid://dw35byb5qogmh" path="res://scenes/2d/startup/startup_screen.tscn" id="29_pefja"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_faidy"]
