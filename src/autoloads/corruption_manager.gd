@@ -127,14 +127,14 @@ func corrupt_character(character: String) -> String:
 ## Returns all available corruption set names
 func get_available_corruption_sets() -> Array[String]:
 	var sets: Array[String] = []
-	for set_name in CORRUPTION_SETS.keys():
-		sets.append(set_name)
+	for corruption_set_name in CORRUPTION_SETS.keys():
+		sets.append(corruption_set_name)
 	return sets
 
 ## Sets the active corruption character set
-func set_corruption_set(set_name: String) -> void:
-	if set_name in CORRUPTION_SETS:
-		current_corruption_set = set_name
+func set_corruption_set(corruption_set_name: String) -> void:
+	if corruption_set_name in CORRUPTION_SETS:
+		current_corruption_set = corruption_set_name
 		corrupted_words_cache.clear()  # Clear cache when changing sets
 
 ## Sets corruption probability (0.0 to 1.0)
@@ -159,10 +159,11 @@ func _add_to_cache(key: String, value: String) -> void:
 		# Remove oldest entries (simple FIFO approach)
 		var keys_to_remove: Array[String] = []
 		var count: int = 0
+		var remove_limit: int = MAX_CACHE_SIZE / 4  # Remove 25% of cache
 		for cache_key in corrupted_words_cache:
 			keys_to_remove.append(cache_key)
 			count += 1
-			if count >= MAX_CACHE_SIZE / 4:  # Remove 25% of cache
+			if count >= remove_limit:
 				break
 
 		for remove_key in keys_to_remove:
@@ -182,12 +183,12 @@ func get_corruption_stats() -> Dictionary:
 	}
 
 ## Preview what a text would look like corrupted (for settings UI)
-func preview_corruption(text: String, set_name: String = "") -> String:
+func preview_corruption(text: String, corruption_set_name: String = "") -> String:
 	var original_set: String = current_corruption_set
 	var original_enabled: bool = corruption_enabled
 
-	if not set_name.is_empty():
-		current_corruption_set = set_name
+	if not corruption_set_name.is_empty():
+		current_corruption_set = corruption_set_name
 	corruption_enabled = true
 
 	var preview_result: String = apply_corruption_to_text(text)

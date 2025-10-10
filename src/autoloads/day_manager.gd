@@ -348,12 +348,12 @@ func complete_stage() -> void:
 	match current_stage:
 		1, 3, 5: # Encouragement messages after stages 1, 3, 5
 			if day_info.encouragement_messages.size() > 0:
-				var msg_index = (current_stage - 1) / 2 # 0, 1, 2
+				var msg_index: int = (current_stage - 1) / 2 # 0, 1, 2
 				if msg_index < day_info.encouragement_messages.size():
 					queue_message(day_info.encouragement_messages[msg_index], MessageType.ENCOURAGEMENT)
 		2, 4: # Progress messages after stages 2, 4
 			if day_info.progress_messages.size() > 0:
-				var msg_index = (current_stage - 2) / 2 # 0, 1
+				var msg_index: int = (current_stage - 2) / 2 # 0, 1
 				if msg_index < day_info.progress_messages.size():
 					queue_message(day_info.progress_messages[msg_index], MessageType.PROGRESS)
 
@@ -452,9 +452,9 @@ func get_stage_display_sentence() -> String:
 
 ## Queues a message for display
 func queue_message(message: String, type: MessageType) -> void:
-	var type_string = MessageType.keys()[type].to_lower()
-	pending_messages.append({"text": message, "type": type_string})
-	message_ready.emit(message, type_string)
+	var message_type_string = MessageType.keys()[type].to_lower()
+	pending_messages.append({"text": message, "type": message_type_string})
+	message_ready.emit(message, message_type_string)
 
 ## Gets next pending message
 func get_next_message() -> Dictionary:

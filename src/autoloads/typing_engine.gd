@@ -127,10 +127,7 @@ func process_keystroke(typed_char: String) -> bool:
 		session_start_time = current_time
 		last_calculation_time = current_time
 
-	# Calculate response time
-	var response_time: float = 0.0
-	if last_keystroke_time > 0:
-		response_time = current_time - last_keystroke_time
+	# Update last keystroke time for timing tracking
 	last_keystroke_time = current_time
 
 	# Update counters
