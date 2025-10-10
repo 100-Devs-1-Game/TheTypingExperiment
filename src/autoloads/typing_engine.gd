@@ -1,11 +1,8 @@
 extends Node
 
-## Core typing logic engine with advanced adaptive learning
-## Handles keystroke validation, intelligent word generation, and difficulty progression
+## Core typing logic engine
+## Handles keystroke validation, WPM/accuracy calculation, and corruption support
 
-signal letter_typed(letter: String, is_correct: bool, response_time: float)
-signal word_completed(word: String, wpm: float, accuracy: float)
-signal mistake_made(expected: String, typed: String)
 signal real_time_stats_updated(wpm: float, accuracy: float)
 
 
@@ -26,9 +23,6 @@ var last_calculation_time: float = 0.0
 # Current session metrics
 var smoothed_wpm: float = 0.0
 var current_accuracy: float = 100.0
-
-func _ready() -> void:
-	pass
 
 func _process(_delta: float) -> void:
 	var current_time: float = Time.get_unix_time_from_system()
@@ -106,12 +100,11 @@ func _calculate_real_time_metrics() -> void:
 	var chars_per_minute: float = (float(correct_keystrokes) / time_elapsed) * 60.0
 	var instant_wpm: float = chars_per_minute / 5.0  # Standard: 5 characters = 1 word
 
-	# Calculate current accuracy
-	var current_accuracy: float = (float(correct_keystrokes) / float(total_keystrokes)) * 100.0
+	# Update class accuracy variable
+	current_accuracy = (float(correct_keystrokes) / float(total_keystrokes)) * 100.0
 
 	# Simple WPM calculation without complex smoothing
 	smoothed_wpm = instant_wpm
-
 
 	real_time_stats_updated.emit(smoothed_wpm, current_accuracy)
 
@@ -149,20 +142,7 @@ func process_keystroke(typed_char: String) -> bool:
 	# Update accuracy (only changes on keystrokes)
 	current_accuracy = (float(correct_keystrokes) / float(total_keystrokes)) * 100.0
 
-
-	letter_typed.emit(typed_char, is_correct, response_time)
-
-	if not is_correct:
-		mistake_made.emit(expected_char, typed_char)
-
-	# Check if word is completed
-	if is_correct and (current_position >= current_text.length() or current_text[current_position] == " "):
-		_on_word_completed()
-
 	return is_correct
-
-func _on_word_completed() -> void:
-	word_completed.emit("", smoothed_wpm, current_accuracy)
 
 func start_typing_session() -> void:
 	session_start_time = 0.0  # Will be set on first keystroke
@@ -227,7 +207,3 @@ func export_session_data() -> Dictionary:
 		"total_keystrokes": total_keystrokes,
 		"correct_keystrokes": correct_keystrokes
 	}
-
-
-func import_session_data(data: Dictionary) -> void:
-	pass
