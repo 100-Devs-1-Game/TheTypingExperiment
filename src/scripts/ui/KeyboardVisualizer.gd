@@ -56,17 +56,35 @@ var key_mappings: Dictionary = {
 }
 
 func _ready() -> void:
-	_discover_keyboard_keys()
+	# Don't auto-discover - wait for active PC to be set
+	pass
 
-## Automatically discovers all keyboard key meshes in the scene
-func _discover_keyboard_keys() -> void:
+## Set the active PC and discover its keyboard keys
+func set_active_pc(pc_node: Node3D) -> void:
+	if not pc_node:
+		clear_active_pc()
+		return
+
+	# The keyboard is a child of the PC node (keyboard_with_separate_keys)
+	_discover_keyboard_keys(pc_node)
+	print("[KeyboardVisualizer] Active PC set, discovered %d keys" % keyboard_keys.size())
+
+## Clear the active PC and release all keys
+func clear_active_pc() -> void:
+	release_all_keys()
+	keyboard_keys.clear()
+	original_positions.clear()
+	print("[KeyboardVisualizer] Active PC cleared")
+
+## Discovers keyboard key meshes from a specific PC node
+func _discover_keyboard_keys(pc_root: Node) -> void:
 	keyboard_keys.clear()
 	original_positions.clear()
 
-	# Search for keyboard meshes in the entire scene tree
-	_search_for_keyboard_meshes(get_tree().current_scene)
+	# Search for keyboard meshes only within this PC's subtree
+	_search_for_keyboard_meshes(pc_root)
 
-	print("KeyboardVisualizer: Discovered %d keyboard keys" % keyboard_keys.size())
+	print("[KeyboardVisualizer] Discovered %d keyboard keys from %s" % [keyboard_keys.size(), pc_root.name])
 
 ## Recursively search for keyboard mesh nodes
 func _search_for_keyboard_meshes(node: Node) -> void:

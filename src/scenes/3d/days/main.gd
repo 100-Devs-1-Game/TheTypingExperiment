@@ -92,6 +92,10 @@ func interact_with_pc():
 
 	current_pc = nearest_pc
 
+	# Set this PC as active in the keyboard visualizer
+	if keyboard_visualizer:
+		keyboard_visualizer.set_active_pc(nearest_pc)
+
 	# Get seated position from PC's InteractionMarker
 	var seated_transform = nearest_pc.get_seated_transform()
 
@@ -253,8 +257,14 @@ func _on_keypad_key_pressed(key_name: String) -> void:
 func _on_keypad_key_released(key_name: String) -> void:
 	pass  # Could add sound effects or other feedback here
 
-# Handle player state changes to manage keypad visualizer
+# Handle player state changes to manage visualizers
 func _on_player_state_changed(old_state: PlayerStateManager.PlayerState, new_state: PlayerStateManager.PlayerState) -> void:
-	# Clear keypad visualizer when leaving keypad interaction state
-	if old_state == PlayerStateManager.PlayerState.INTERACTING_WITH_KEYPAD and keypad_visualizer:
+	print("[Main] State changed: %d -> %d" % [old_state, new_state])
+
+	# Clear keypad visualizer when LEAVING keypad interaction state
+	if old_state == PlayerStateManager.PlayerState.INTERACTING_WITH_KEYPAD and new_state != PlayerStateManager.PlayerState.INTERACTING_WITH_KEYPAD and keypad_visualizer:
 		keypad_visualizer.clear_active_keypad()
+
+	# Clear keyboard visualizer when LEAVING PC (standing up)
+	if old_state == PlayerStateManager.PlayerState.SEATED_AT_PC and new_state != PlayerStateManager.PlayerState.SEATED_AT_PC and keyboard_visualizer:
+		keyboard_visualizer.clear_active_pc()

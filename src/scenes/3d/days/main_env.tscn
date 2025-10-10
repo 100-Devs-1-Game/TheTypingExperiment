@@ -525,7 +525,7 @@ layout_mode = 2
 environment = SubResource("Environment_faidy")
 
 [node name="Player" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("2_tbtjm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7924838, -2.07785, -4.3251247)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19248486, 0.5221499, 0.3748753)
 
 [node name="Lighting" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 
@@ -2003,9 +2003,6 @@ unlocks_stage = 5
 door_type = 1
 door_a_node_path = NodePath("../Stage_4/GLB/Doors/elevator_keypad_3/elevator_2/elevator_door_3_a")
 door_b_node_path = NodePath("../Stage_4/GLB/Doors/elevator_keypad_3/elevator_2/elevator_door_3_b")
-
-[node name="Keypad_4" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("60_oijd2")]
-transform = Transform3D(-0.25881904, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.25881904, 4.7, -2.2, -2)
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
