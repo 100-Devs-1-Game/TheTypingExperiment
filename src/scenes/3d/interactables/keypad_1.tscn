@@ -9,12 +9,12 @@ size = Vector3(0.5, 0.5, 0.3)
 [sub_resource type="PlaneMesh" id="PlaneMesh_6cdl5"]
 size = Vector2(0.12, 0.09)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_blsrk"]
-viewport_path = NodePath("SubViewportContainer/SubViewport/World/Keypad_4/KeypadSubViewport")
+[sub_resource type="ViewportTexture" id="ViewportTexture_6cdl5"]
+viewport_path = NodePath("KeypadSubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1i7pp"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_blsrk")
+albedo_texture = SubResource("ViewportTexture_6cdl5")
 
 [node name="Keypad_1" type="Node3D"]
 

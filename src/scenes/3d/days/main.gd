@@ -4,7 +4,6 @@ var showing_menu := false
 var startup_triggered := false
 
 @export var sub_viewport: SubViewport
-@onready var keypad_viewport: SubViewport = $SubViewportContainer/SubViewport/World/Keypad_1/KeypadSubViewport
 @onready var player: MovementController = $SubViewportContainer/SubViewport/World/Player
 @onready var head: Node3D = $SubViewportContainer/SubViewport/World/Player/Head
 @onready var camera: Camera3D = $SubViewportContainer/SubViewport/World/Player/Head/Camera
@@ -22,6 +21,10 @@ var keypad_visualizer: KeypadVisualizer
 var pc_controllers: Array = []  # Array of PCController instances
 var current_pc: PCController = null  # Currently active PC
 
+# Keypad management
+var keypad_controllers: Array = []  # Array of KeypadController instances
+var current_keypad: KeypadController = null  # Currently active keypad
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -35,6 +38,9 @@ func _ready() -> void:
 
 	# Discover all PC instances
 	_discover_pcs()
+
+	# Discover all keypad instances
+	_discover_keypads()
 
 
 func _input(event: InputEvent) -> void:
@@ -67,8 +73,11 @@ func _input(event: InputEvent) -> void:
 					if pc_viewport:
 						pc_viewport.push_input(event)
 			PlayerStateManager.PlayerState.INTERACTING_WITH_KEYPAD:
-				# Forward numeric input to keypad viewport
-				keypad_viewport.push_input(event)
+				# Forward numeric input to current keypad's viewport
+				if current_keypad:
+					var keypad_viewport = current_keypad.get_node_or_null("KeypadSubViewport")
+					if keypad_viewport:
+						keypad_viewport.push_input(event)
 
 # Called by the head script when player interacts with PC
 func interact_with_pc():
@@ -98,8 +107,18 @@ func interact_with_pc():
 
 # Called by the head script when player interacts with keypad
 func interact_with_keypad(keypad_node: Node3D = null):
-	if player_state_manager and player_state_manager.can_interact():
-		player_state_manager.use_keypad(keypad_node)
+	if not player_state_manager or not player_state_manager.can_interact():
+		return
+
+	# Find the keypad controller for this node
+	if keypad_node:
+		for keypad in keypad_controllers:
+			if keypad == keypad_node or keypad.is_ancestor_of(keypad_node) or keypad_node.is_ancestor_of(keypad):
+				current_keypad = keypad
+				print("[Main] Interacting with Keypad for Stage %d" % keypad.unlocks_stage)
+				break
+
+	player_state_manager.use_keypad(keypad_node)
 
 func show_menu(_show:bool):
 	showing_menu = _show
@@ -150,6 +169,20 @@ func _get_nearest_pc() -> PCController:
 			nearest_pc = pc
 
 	return nearest_pc
+
+## Discovers all keypad instances in the scene
+func _discover_keypads() -> void:
+	keypad_controllers.clear()
+
+	# Find all nodes in the "keypad_station" group
+	var keypads = get_tree().get_nodes_in_group("keypad_station")
+
+	for keypad in keypads:
+		if keypad is KeypadController:
+			keypad_controllers.append(keypad)
+			print("[Main] Discovered Keypad for Stage %d" % keypad.unlocks_stage)
+
+	print("[Main] Total Keypads discovered: %d" % keypad_controllers.size())
 
 # Setup modular systems
 func _setup_modular_systems() -> void:
