@@ -204,12 +204,18 @@ func _show_keypad_instruction() -> void:
 func _advance_to_next_day() -> void:
 	var next_day = current_day + 1
 
-	# Transition to next day scene (only Day 2 exists currently)
+	# Transition to next day scene
 	match next_day:
 		2:
 			get_tree().change_scene_to_file("res://scenes/2d/days/day_2.tscn")
+		3:
+			get_tree().change_scene_to_file("res://scenes/2d/days/day_3.tscn")
+		4:
+			get_tree().change_scene_to_file("res://scenes/2d/days/day_4.tscn")
+		5:
+			get_tree().change_scene_to_file("res://scenes/2d/days/day_5.tscn")
 		_:
-			# Days 3-5 scenes don't exist yet, handle completion
+			# Day 5 complete - show game completion
 			_handle_game_completion()
 
 func _handle_game_completion() -> void:

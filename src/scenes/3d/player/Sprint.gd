@@ -15,14 +15,5 @@ extends Node
 
 # Called every physics tick. 'delta' is constant
 func _physics_process(delta: float) -> void:
-	if can_sprint():
-		controller.speed = sprint_speed
-		cam.set_fov(lerp(cam.fov, normal_fov * fov_multiplier, delta * 8))
-	else:
 		controller.speed = normal_speed
 		cam.set_fov(lerp(cam.fov, normal_fov, delta * 8))
-
-
-func can_sprint() -> bool:
-	return (controller.is_on_floor() and Input.is_action_pressed(&"sprint") 
-			and controller.input_axis.x >= 0.5)

@@ -53,6 +53,32 @@ func _ready() -> void:
 func _initialize_day() -> void:
 	DayManager.start_day(DAY_NUMBER)
 	_start_new_stage()
+#TODO: Fix by removing cursor blinker maybe
+#func _exit_tree() -> void:
+	## Disconnect all signals to prevent memory leaks
+	#if restart_button and restart_button.pressed.is_connected(_restart_stage):
+		#restart_button.pressed.disconnect(_restart_stage)
+#
+	#if invisible_input:
+		#if invisible_input.text_changed.is_connected(_on_text_changed):
+			#invisible_input.text_changed.disconnect(_on_text_changed)
+		#if invisible_input.gui_input.is_connected(_on_gui_input):
+			#invisible_input.gui_input.disconnect(_on_gui_input)
+#
+	## Disconnect DayManager signals
+	#if DayManager:
+		#if DayManager.message_ready.is_connected(_on_message_ready):
+			#DayManager.message_ready.disconnect(_on_message_ready)
+		#if DayManager.day_completed.is_connected(_on_day_completed):
+			#DayManager.day_completed.disconnect(_on_day_completed)
+#
+	## Disconnect TypingEngine signals
+	#if TypingEngine and TypingEngine.real_time_stats_updated.is_connected(_on_real_time_stats_updated):
+		#TypingEngine.real_time_stats_updated.disconnect(_on_real_time_stats_updated)
+#
+	## Clean up cursor blinker
+	#if cursor_blinker:
+		#cursor_blinker.stop()
 
 func _setup_connections() -> void:
 	restart_button.pressed.connect(_restart_stage)
@@ -129,8 +155,8 @@ func _start_new_stage() -> void:
 	if TypingEngine:
 		TypingEngine.current_text = practice_text
 		TypingEngine.start_typing_session()
-	if StatsManager:
-		StatsManager.start_session()
+		# Note: TypingEngine.start_typing_session() already handles all stats tracking
+		# StatsManager was redundant and has been removed
 
 # VIRTUAL FUNCTION - Override in child classes for day-specific typewriter effects
 func _show_stage_text_typewriter() -> void:
@@ -269,6 +295,20 @@ func _start_cursor_blinking() -> void:
 func _check_completion() -> void:
 	if current_position >= practice_text.length():
 		_complete_stage()
+
+## Helper function to determine if character at position is part of a corruption word
+## Used by day-specific classes to determine coloring and effects
+func _is_character_in_corruption_word(char_pos: int, sentence: String) -> bool:
+	var words = sentence.split(" ")
+	var current_pos = 0
+
+	for word in words:
+		if char_pos >= current_pos and char_pos < current_pos + word.length():
+			# Character is within this word - check if it's corrupted
+			return DayManager.corruption_mappings.has(word)
+		current_pos += word.length() + 1  # +1 for space
+
+	return false
 
 func _complete_stage() -> void:
 	is_session_active = false

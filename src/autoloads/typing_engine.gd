@@ -117,6 +117,11 @@ func _calculate_real_time_metrics() -> void:
 
 
 func process_keystroke(typed_char: String) -> bool:
+	# Validate current_text exists
+	if current_text.is_empty():
+		push_error("[TypingEngine] current_text is empty - cannot process keystroke")
+		return false
+
 	if current_position >= current_text.length():
 		return false
 

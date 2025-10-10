@@ -94,16 +94,7 @@ func _update_display() -> void:
 
 	text_display.text = display_text
 
-func _is_character_in_corruption_word(char_pos: int, sentence: String) -> bool:
-	var words = sentence.split(" ")
-	var current_pos = 0
-
-	for word in words:
-		if char_pos >= current_pos and char_pos < current_pos + word.length():
-			return DayManager.corruption_mappings.has(word)
-		current_pos += word.length() + 1
-
-	return false
+# Note: _is_character_in_corruption_word() is now in BaseDay
 
 func _show_message(message: String) -> void:
 	# Day 4 - System warning style messages with glitch effects

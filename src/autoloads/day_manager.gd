@@ -317,15 +317,24 @@ func start_day(day_number: int) -> void:
 	# Clear cached sentences for new day
 	cached_stage_sentences.clear()
 
+	# Validate day number
+	if not day_data.has(current_day):
+		push_error("[DayManager] Invalid day number: %d" % current_day)
+		return
+
 	# Configure corruption for this day
-	CorruptionManager.configure_for_day(current_day)
+	if CorruptionManager:
+		CorruptionManager.configure_for_day(current_day)
+	else:
+		push_error("[DayManager] CorruptionManager not available")
 
 	# Get day info for messages
 	var day_info = day_data[current_day]
 
 	# Show opening messages
-	for message in day_info.opening_messages:
-		queue_message(message, MessageType.OPENING)
+	if day_info.has("opening_messages"):
+		for message in day_info.opening_messages:
+			queue_message(message, MessageType.OPENING)
 
 	day_started.emit(current_day)
 

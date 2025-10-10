@@ -117,18 +117,8 @@ func _update_progress_display() -> void:
 	# Update label with stage info and text progress bar
 	progress_label.text = "Stage %d of %d" % [DayManager.current_stage, DayManager.stages_per_day]
 	progress_bar_label.text = progress_text
-	
-func _is_character_in_corruption_word(char_pos: int, sentence: String) -> bool:
-	var words = sentence.split(" ")
-	var current_pos = 0
 
-	for word in words:
-		if char_pos >= current_pos and char_pos < current_pos + word.length():
-			return DayManager.corruption_mappings.has(word)
-		current_pos += word.length() + 1
-
-	return false
-
+# Note: _is_character_in_corruption_word() is now in BaseDay
 
 func _show_message(message: String) -> void:
 	# Check if we're still in a valid scene

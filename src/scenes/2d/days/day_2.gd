@@ -133,24 +133,8 @@ func _update_display() -> void:
 
 	text_display.text = display_text
 
-## Helper function to determine if character at position is part of a corruption word
-func _is_character_in_corruption_word(char_pos: int, sentence: String) -> bool:
-	var words = sentence.split(" ")
-	var current_pos = 0
-
-	for word in words:
-		if char_pos >= current_pos and char_pos < current_pos + word.length():
-			# Character is within this word
-			return _is_corruption_word(word)
-		current_pos += word.length() + 1  # +1 for space
-
-	return false
-
-func _is_corruption_word(word: String) -> bool:
-	# Check if word is in the corruption mappings (meaning it's a corrupted word)
-	return DayManager.corruption_mappings.has(word)
-
 ## Day 2 - Per-character randomized corruption animation effects system
+## Note: _is_character_in_corruption_word() is now in BaseDay
 func _get_corruption_effects(char_position: int, is_typed_correctly: bool = false) -> Dictionary:
 	var effects = {"color": corruption_color, "character": ""}
 
