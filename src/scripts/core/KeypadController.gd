@@ -98,7 +98,7 @@ func _open_elevator_doors() -> void:
 ## Shows visual feedback for incorrect code
 func _show_error_feedback() -> void:
 	# Flash the keypad screen red
-	var keypad_screen = get_node_or_null("KeypadSubViewport")
+	var keypad_screen = get_node_or_null("KeypadScreen")
 	if not keypad_screen:
 		return
 

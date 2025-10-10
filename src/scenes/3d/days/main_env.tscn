@@ -1098,7 +1098,6 @@ visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/doorway_1_plain2/doorway_1_plain/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_oqsf5")
-disabled = true
 
 [node name="doorway_1_plain3" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("47_nevyq")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, -3)
@@ -2007,10 +2006,8 @@ day_number = 4
 [node name="Keypad_1" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("60_oijd2")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.93, -2.2, -2.2299998)
 script = ExtResource("62_kpctrl")
-unlocks_stage = 2
-door_type = 0
-door_node_path = NodePath("../../Stage_2/GLB/Doors/door_keypad_1")
-target_rotation_y = 90.0
+unlocks_stage = 3
+door_node_path = NodePath("../Stage_2/GLB/Doors/door_keypad_1")
 
 [node name="KeypadScreen" parent="SubViewportContainer/SubViewport/World/Keypad_1" index="1"]
 mesh = SubResource("PlaneMesh_72u8k")
@@ -2019,9 +2016,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_c2xj2")
 [node name="Keypad_2" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("60_oijd2")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.030001, -2.2, -4.13)
 script = ExtResource("62_kpctrl")
-unlocks_stage = 3
-door_type = 0
-door_node_path = NodePath("../../Stage_3/GLB2/Doors/door_keypad_2")
+unlocks_stage = 4
+door_node_path = NodePath("../Stage_3/GLB2/Doors/door_keypad_2")
 target_rotation_y = 0.0
 
 [node name="KeypadScreen" parent="SubViewportContainer/SubViewport/World/Keypad_2" index="1"]
@@ -2031,10 +2027,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_oijd2")
 [node name="Keypad_3" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("60_oijd2")]
 transform = Transform3D(1.0000001, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1.0000001, 17.229996, -2.2, -6.9300003)
 script = ExtResource("62_kpctrl")
-unlocks_stage = 4
+unlocks_stage = 5
 door_type = 1
-door_a_node_path = NodePath("../../Stage_4/GLB/Doors/elevator_keypad_3/elevator_2/elevator_door_3_a")
-door_b_node_path = NodePath("../../Stage_4/GLB/Doors/elevator_keypad_3/elevator_2/elevator_door_3_b")
+door_a_node_path = NodePath("../Stage_4/GLB/Doors/elevator_keypad_3/elevator_2/elevator_door_3_a")
+door_b_node_path = NodePath("../Stage_4/GLB/Doors/elevator_keypad_3/elevator_2/elevator_door_3_b")
 
 [node name="KeypadScreen" parent="SubViewportContainer/SubViewport/World/Keypad_3" index="1"]
 mesh = SubResource("PlaneMesh_c2xj2")
