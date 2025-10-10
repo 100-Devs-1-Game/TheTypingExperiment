@@ -97,7 +97,6 @@ func sit_at_computer(use_fade_transition: bool = true) -> void:
 func sit_at_computer_dynamic(
 	seat_position: Vector3,
 	seat_rotation: Vector3,
-	viewport_reference: SubViewport = null,
 	use_fade_transition: bool = true
 ) -> void:
 	if current_state != PlayerState.WALKING:

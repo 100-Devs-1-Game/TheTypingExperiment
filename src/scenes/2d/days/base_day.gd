@@ -205,8 +205,6 @@ func _handle_character_input(new_text: String) -> void:
 		return
 
 	var typed_char: String = new_text[new_text.length() - 1]
-	var expected_char: String = practice_text[current_position]
-	var is_correct: bool = typed_char == expected_char
 
 	if TypingEngine:
 		# Sync TypingEngine position with our position

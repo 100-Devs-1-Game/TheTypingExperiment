@@ -251,10 +251,10 @@ func _setup_keyboard_visualizer() -> void:
 		keyboard_visualizer.key_released.connect(_on_keyboard_key_released)
 
 # Optional: Handle keyboard events for debugging or additional effects
-func _on_keyboard_key_pressed(key_name: String) -> void:
+func _on_keyboard_key_pressed(_key_name: String) -> void:
 	pass  # Could add sound effects or other feedback here
 
-func _on_keyboard_key_released(key_name: String) -> void:
+func _on_keyboard_key_released(_key_name: String) -> void:
 	pass  # Could add sound effects or other feedback here
 
 # Setup keypad visualization system
@@ -270,10 +270,10 @@ func _setup_keypad_visualizer() -> void:
 		keypad_visualizer.key_released.connect(_on_keypad_key_released)
 
 # Optional: Handle keypad events for debugging or additional effects
-func _on_keypad_key_pressed(key_name: String) -> void:
+func _on_keypad_key_pressed(_key_name: String) -> void:
 	pass  # Could add sound effects or other feedback here
 
-func _on_keypad_key_released(key_name: String) -> void:
+func _on_keypad_key_released(_key_name: String) -> void:
 	pass  # Could add sound effects or other feedback here
 
 # Handle player state changes to manage visualizers
