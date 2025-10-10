@@ -1,8 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://lqyku5wn2wo0"]
 
-[ext_resource type="Script" uid="uid://dieote154maap" path="res://scenes/player/movement_controller.gd" id="1_gvge5"]
+[ext_resource type="Script" uid="uid://dieote154maap" path="res://scenes/3d/player/movement_controller.gd" id="1_gvge5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fn1rj"]
+radius = 0.4
 
 [node name="MovementController" type="CharacterBody3D"]
 collision_layer = 2

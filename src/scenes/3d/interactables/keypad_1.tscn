@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c8xm2e2c3pdto" path="res://scenes/3d/assets_psx/custom/keypad/keypad_separate_keys.gltf" id="2_1i7pp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p4wxy"]
-size = Vector3(0.5, 0.5, 0.3)
+size = Vector3(0.5, 0.5, 0.15)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_6cdl5"]
 size = Vector2(0.12, 0.09)
@@ -23,6 +23,7 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KeypadInteraction"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.10000001)
 shape = SubResource("BoxShape3D_p4wxy")
 
 [node name="KeypadScreen" type="MeshInstance3D" parent="."]
