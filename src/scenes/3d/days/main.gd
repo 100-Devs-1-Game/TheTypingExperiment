@@ -65,10 +65,12 @@ func _input(event: InputEvent) -> void:
 		keypad_visualizer.handle_input_event(event)
 
 	# Forward input based on state
+	# Note: SubViewport automatically receives inputs, so we don't push_input for WALKING state
+	# We only manually push_input for nested viewports (PC monitor, keypad screen)
 	if player_state_manager:
 		match player_state_manager.get_current_state():
 			PlayerStateManager.PlayerState.WALKING:
-				sub_viewport.push_input(event)
+				pass  # SubViewport handles input automatically
 			PlayerStateManager.PlayerState.SEATED_AT_PC:
 				# Forward typing input to current PC's monitor viewport
 				if current_pc:
