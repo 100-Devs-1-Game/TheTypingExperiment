@@ -75,7 +75,7 @@ func set_external_managers(fade_mgr: FadeTransitionManager = null, horror_mgr: H
 	fade_manager = fade_mgr
 	horror_effects = horror_mgr
 
-## Main function to transition to seated state
+## Main function to transition to seated state (uses configured chair position)
 func sit_at_computer(use_fade_transition: bool = true) -> void:
 	if current_state != PlayerState.WALKING:
 		return
@@ -90,6 +90,40 @@ func sit_at_computer(use_fade_transition: bool = true) -> void:
 		await fade_manager.fade_to_black(_execute_sit_at_computer)
 	else:
 		_execute_sit_at_computer()
+
+	sitting_completed.emit()
+
+## Dynamic seated state - uses provided transform instead of configured position
+func sit_at_computer_dynamic(
+	seat_position: Vector3,
+	seat_rotation: Vector3,
+	viewport_reference: SubViewport = null,
+	use_fade_transition: bool = true
+) -> void:
+	if current_state != PlayerState.WALKING:
+		return
+
+	# Temporarily override chair configuration with dynamic values
+	var original_chair_pos = chair_position
+	var original_chair_rot = chair_rotation
+
+	chair_position = seat_position
+	chair_rotation = seat_rotation
+
+	# Hide interaction label immediately
+	if interaction_label:
+		interaction_label.visible = false
+
+	sitting_started.emit()
+
+	if use_fade_transition and fade_manager:
+		await fade_manager.fade_to_black(_execute_sit_at_computer)
+	else:
+		_execute_sit_at_computer()
+
+	# Restore original configuration (so set_chair_configuration still works)
+	chair_position = original_chair_pos
+	chair_rotation = original_chair_rot
 
 	sitting_completed.emit()
 

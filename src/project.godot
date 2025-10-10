@@ -22,6 +22,7 @@ TypingEngine="*res://autoloads/typing_engine.gd"
 StatsManager="*res://autoloads/stats_manager.gd"
 CorruptionManager="*res://autoloads/corruption_manager.gd"
 DayManager="*res://autoloads/day_manager.gd"
+DoorManager="*res://autoloads/door_manager.gd"
 
 [display]
 

@@ -4,7 +4,6 @@ var showing_menu := false
 var startup_triggered := false
 
 @export var sub_viewport: SubViewport
-@onready var monitor_viewport: SubViewport = $SubViewportContainer/SubViewport/World/Stage_1/SubViewport
 @onready var keypad_viewport: SubViewport = $SubViewportContainer/SubViewport/World/Keypad_1/KeypadSubViewport
 @onready var player: MovementController = $SubViewportContainer/SubViewport/World/Player
 @onready var head: Node3D = $SubViewportContainer/SubViewport/World/Player/Head
@@ -19,6 +18,10 @@ var player_state_manager: PlayerStateManager
 var keyboard_visualizer: KeyboardVisualizer
 var keypad_visualizer: KeypadVisualizer
 
+# PC management
+var pc_controllers: Array = []  # Array of PCController instances
+var current_pc: PCController = null  # Currently active PC
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -29,6 +32,9 @@ func _ready() -> void:
 	_setup_modular_systems()
 	_setup_keyboard_visualizer()
 	_setup_keypad_visualizer()
+
+	# Discover all PC instances
+	_discover_pcs()
 
 
 func _input(event: InputEvent) -> void:
@@ -55,21 +61,40 @@ func _input(event: InputEvent) -> void:
 			PlayerStateManager.PlayerState.WALKING:
 				sub_viewport.push_input(event)
 			PlayerStateManager.PlayerState.SEATED_AT_PC:
-				# Only forward typing input to monitor when seated
-				monitor_viewport.push_input(event)
+				# Forward typing input to current PC's monitor viewport
+				if current_pc:
+					var pc_viewport = current_pc.get_monitor_viewport()
+					if pc_viewport:
+						pc_viewport.push_input(event)
 			PlayerStateManager.PlayerState.INTERACTING_WITH_KEYPAD:
 				# Forward numeric input to keypad viewport
 				keypad_viewport.push_input(event)
 
 # Called by the head script when player interacts with PC
 func interact_with_pc():
-	if player_state_manager and player_state_manager.can_interact():
-		player_state_manager.sit_at_computer()
+	if not player_state_manager or not player_state_manager.can_interact():
+		return
 
-		# Trigger startup screen if not already done
-		if not startup_triggered:
-			startup_triggered = true
-			start_monitor_startup()
+	# Find the nearest PC to interact with
+	var nearest_pc = _get_nearest_pc()
+	if not nearest_pc:
+		push_error("[Main] No PC found to interact with")
+		return
+
+	current_pc = nearest_pc
+
+	# Get seated position from PC's InteractionMarker
+	var seated_transform = nearest_pc.get_seated_transform()
+
+	# Sit at computer using dynamic position
+	player_state_manager.sit_at_computer_dynamic(
+		seated_transform.origin,
+		seated_transform.basis.get_euler()
+	)
+
+	# Turn on the monitor and load content
+	if not nearest_pc.is_monitor_on:
+		nearest_pc.turn_on_monitor()
 
 # Called by the head script when player interacts with keypad
 func interact_with_keypad(keypad_node: Node3D = null):
@@ -93,39 +118,38 @@ func fade_transition(callback: Callable):
 		# Fallback if fade manager not available
 		callback.call()
 
-# Monitor startup control
-func start_monitor_startup():
-	# Connect to startup screen completion signal
-	var startup_screen = monitor_viewport.get_node("StartupScreen")
-	if startup_screen:
-		startup_screen.startup_complete.connect(_on_startup_complete)
+## Discovers all PC instances in the scene
+func _discover_pcs() -> void:
+	pc_controllers.clear()
 
-func _on_startup_complete():
-	# Load Day 1 content in the monitor SubViewport instead of changing scenes
-	var day_1_scene = preload("res://scenes/2d/days/day_1.tscn")
-	var day_1_instance = day_1_scene.instantiate()
+	# Find all nodes in the "pc_station" group
+	var pcs = get_tree().get_nodes_in_group("pc_station")
 
-	# Remove startup screen and replace with Day 1
-	var startup_screen = monitor_viewport.get_node("StartupScreen")
-	if startup_screen:
-		startup_screen.queue_free()
+	for pc in pcs:
+		if pc is PCController:
+			pc_controllers.append(pc)
+			print("[Main] Discovered PC for Day %d" % pc.day_number)
 
-	monitor_viewport.add_child(day_1_instance)
+	print("[Main] Total PCs discovered: %d" % pc_controllers.size())
 
-	# Connect to day end screen signal
-	if day_1_instance.has_signal("day_end_screen_requested"):
-		day_1_instance.day_end_screen_requested.connect(_on_day_end_screen_requested)
+## Finds the nearest PC to the player
+func _get_nearest_pc() -> PCController:
+	if pc_controllers.is_empty():
+		return null
 
-func _on_day_end_screen_requested():
-	# Load day end screen on monitor instead of changing entire scene
-	var day_end_scene = preload("res://scenes/2d/days/day_end_screen.tscn")
-	var day_end_instance = day_end_scene.instantiate()
+	# For now, just find any PC that's close to the player
+	# You could enhance this with distance checking
+	var player_pos = player.global_position
+	var nearest_pc: PCController = null
+	var nearest_distance = INF
 
-	# Remove current day content and replace with day end screen
-	for child in monitor_viewport.get_children():
-		child.queue_free()
+	for pc in pc_controllers:
+		var distance = player_pos.distance_to(pc.global_position)
+		if distance < nearest_distance:
+			nearest_distance = distance
+			nearest_pc = pc
 
-	monitor_viewport.add_child(day_end_instance)
+	return nearest_pc
 
 # Setup modular systems
 func _setup_modular_systems() -> void:
@@ -148,13 +172,8 @@ func _setup_modular_systems() -> void:
 	player_state_manager.initialize(player, head, camera, interaction_label, esc_prompt_label)
 	player_state_manager.set_external_managers(fade_manager, horror_effects)
 
-	# Configure chair settings
-	player_state_manager.set_chair_configuration(
-		Vector3(-2.75, 1.6, 3.55),     # chair_position
-		Vector3(0, deg_to_rad(90), 0), # chair_rotation (face monitor)
-		Vector3(0, -0.3, 0),           # seated_camera_offset
-		Vector3(deg_to_rad(-5), 0, 0)  # seated_head_tilt
-	)
+	# Note: Chair configuration is now handled dynamically by PC instances via InteractionMarker
+	# Each PC's InteractionMarker defines its own seated position
 
 # Setup keyboard visualization system
 func _setup_keyboard_visualizer() -> void:

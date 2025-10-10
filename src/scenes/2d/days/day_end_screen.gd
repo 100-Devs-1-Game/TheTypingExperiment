@@ -33,7 +33,13 @@ func _generate_code() -> void:
 		required_code = ""
 		for i in range(4):
 			required_code += str(randi() % 10)
-		print("Day %d code: %s" % [current_day, required_code])  # Debug output
+
+		# Send code to DoorManager for next stage
+		# Day 1 code unlocks Stage 2, Day 2 code unlocks Stage 3, etc.
+		var next_stage = current_day + 1
+		DoorManager.set_code_for_stage(next_stage, required_code)
+
+		print("Day %d code: %s (unlocks Stage %d)" % [current_day, required_code, next_stage])
 
 func _setup_day_end_screen() -> void:
 	var day_info = DayManager.get_current_day_info()
