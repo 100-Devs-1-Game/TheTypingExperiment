@@ -11,6 +11,7 @@ signal doors_closed()
 @export var elevator_name: String = "elevator_1"
 @export var unlocks_after_stage: int = 1  # Which stage completion unlocks this elevator
 @export var teleport_offset: Vector3 = Vector3.ZERO  # Optional offset from teleport marker
+@export var doors_start_open: bool = false  # If true, doors start open on scene start
 
 # References to elevator components
 @onready var teleport_marker: Marker3D = $TeleportMarker
@@ -60,9 +61,12 @@ func _find_door_nodes() -> void:
 
 ## Check if elevator should be unlocked based on current game progress
 func _check_initial_unlock_state() -> void:
-	# TESTING: Open doors immediately on scene start
-	unlock_elevator()
-	return
+	# If doors should start open, open them without unlocking the elevator
+	if doors_start_open:
+		is_unlocked = true  # Mark as unlocked so it can be used
+		doors_are_open = false  # Reset flag so open_doors() will work
+		open_doors()
+		return
 
 	if not DayManager:
 		return
