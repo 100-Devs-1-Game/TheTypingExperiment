@@ -1239,8 +1239,13 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/door_2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_8nkm2")
 
-[node name="elevator_22" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors" instance=ExtResource("44_w85uq")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0, -2)
+[node name="InteractableElevator_2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors" instance=ExtResource("43_72u8k")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.799999, 0.099999905, -2)
+elevator_name = "elevator_2"
+unlocks_after_stage = 3
+
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/InteractableElevator_2/ElevatorInteraction" index="0"]
+disabled = true
 
 [node name="elevator_doorway_32" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors" instance=ExtResource("51_i0y1e")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0, -2.0000002)
@@ -2105,6 +2110,8 @@ occluder = SubResource("BoxOccluder3D_uo20v")
 [editable path="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/floor_ceiling_32"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/floor_ceiling_33"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/window_1_single2"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/InteractableElevator_2"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/InteractableElevator_2/elevator_22"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/elevator_doorway_32"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props/wardrobe_mp_1_42"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props/vending_machine_12"]

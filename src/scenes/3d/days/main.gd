@@ -9,6 +9,7 @@ var startup_triggered := false
 @onready var camera: Camera3D = $SubViewportContainer/SubViewport/World/Player/Head/Camera
 @onready var interaction_label: Label = $SubViewportContainer/SubViewport/World/Player/Head/InteractionLabel
 @onready var esc_prompt_label: Label = $UI/EscPromptLabel
+@onready var color_rect: ColorRect = $SubViewportContainer/SubViewport/PanelContainer/ColorRect
 
 # Modular systems
 var fade_manager: FadeTransitionManager
@@ -33,6 +34,10 @@ func _ready() -> void:
 
 	# Add to group so head can find us
 	add_to_group("main_environment")
+
+	# Hide ColorRect initially (will be shown when elevator_1 is used)
+	if color_rect:
+		color_rect.visible = false
 
 	# Setup modular systems
 	_setup_modular_systems()
@@ -165,6 +170,11 @@ func interact_with_elevator(elevator_node: Node3D = null):
 
 	# Use elevator (this will emit signal)
 	target_elevator.use_elevator()
+
+	# Show ColorRect when elevator_1 is used
+	if target_elevator.elevator_name == "elevator_1" and color_rect:
+		color_rect.visible = true
+		print("[Main] ColorRect enabled for elevator_1")
 
 	# Teleport player with fade transition
 	var teleport_position = target_elevator.get_teleport_position()
