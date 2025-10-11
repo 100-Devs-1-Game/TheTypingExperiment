@@ -8,10 +8,19 @@ signal elevator_used(elevator_name: String)
 signal doors_opened()
 signal doors_closed()
 
+enum DoorState {
+	CLOSED,
+	OPEN
+}
+
 @export var elevator_name: String = "elevator_1"
 @export var unlocks_after_stage: int = 1  # Which stage completion unlocks this elevator
 @export var teleport_offset: Vector3 = Vector3.ZERO  # Optional offset from teleport marker
-@export var doors_start_open: bool = false  # If true, doors start open on scene start
+@export var door_state: DoorState = DoorState.CLOSED:
+	set(value):
+		door_state = value
+		if is_node_ready() and door_a and door_b:
+			_apply_door_state()
 
 # References to elevator components
 @onready var teleport_marker: Marker3D = $TeleportMarker
@@ -59,28 +68,35 @@ func _find_door_nodes() -> void:
 	if not door_a or not door_b:
 		push_warning("[ElevatorController] Could not find both elevator doors")
 
+## Apply the current door_state (opens or closes doors based on the state)
+func _apply_door_state() -> void:
+	if door_state == DoorState.OPEN:
+		if not doors_are_open:
+			is_unlocked = true  # Mark as unlocked so it can be used
+			open_doors()
+	elif door_state == DoorState.CLOSED:
+		if doors_are_open:
+			close_doors()
+
 ## Check if elevator should be unlocked based on current game progress
 func _check_initial_unlock_state() -> void:
-	# If doors should start open, open them without unlocking the elevator
-	if doors_start_open:
-		is_unlocked = true  # Mark as unlocked so it can be used
-		doors_are_open = false  # Reset flag so open_doors() will work
-		open_doors()
-		return
+	# Apply initial door state first
+	_apply_door_state()
 
-	if not DayManager:
-		return
+	# If doors are closed, check if they should be unlocked based on progress
+	if door_state == DoorState.CLOSED:
+		if not DayManager:
+			return
 
-	# Unlock if we've completed the required stage
-	# For elevator_1: unlocks after stage 1 (which means current_stage >= 2)
-	var current_day = DayManager.current_day
-	var current_stage = DayManager.current_stage
+		# Unlock if we've completed the required stage
+		var current_day = DayManager.current_day
+		var current_stage = DayManager.current_stage
 
-	# Calculate total stages completed
-	var total_stages_completed = (current_day - 1) * DayManager.stages_per_day + (current_stage - 1)
+		# Calculate total stages completed
+		var total_stages_completed = (current_day - 1) * DayManager.stages_per_day + (current_stage - 1)
 
-	if total_stages_completed >= unlocks_after_stage:
-		unlock_elevator()
+		if total_stages_completed >= unlocks_after_stage:
+			unlock_elevator()
 
 ## Called when any stage is completed
 func _on_stage_completed(day: int, stage: int) -> void:
