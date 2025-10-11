@@ -1,4 +1,4 @@
-[gd_scene load_steps=148 format=4 uid="uid://bud07mn4d7mwr"]
+[gd_scene load_steps=149 format=4 uid="uid://bud07mn4d7mwr"]
 
 [ext_resource type="Script" uid="uid://dcjky3peu8uji" path="res://scenes/3d/days/main.gd" id="1_tbtjm"]
 [ext_resource type="Shader" uid="uid://barc84udpwptk" path="res://scenes/3d/assets_psx/posterize_canvas.gdshader" id="2_5gvna"]
@@ -41,6 +41,7 @@
 [ext_resource type="PackedScene" uid="uid://pack1nwuufn3" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/cigs_packet_1.glb" id="30_7xhva"]
 [ext_resource type="PackedScene" uid="uid://didydws1xrcov" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/flashlight_1.glb" id="31_rd8gm"]
 [ext_resource type="Texture2D" uid="uid://bjwcyycx2cecq" path="res://scenes/3d/assets_psx/GLB/Modular Structures/doorway_2_door_1.png" id="42_xy65r"]
+[ext_resource type="PackedScene" uid="uid://b3aq2r4yqaldr" path="res://scenes/3d/interactables/elevator_1.tscn" id="43_72u8k"]
 [ext_resource type="Texture2D" uid="uid://ct4vy5hhe0xjl" path="res://scenes/3d/assets_psx/GLB/Modular Structures/doorway_2_door_handle_1.png" id="43_jfovm"]
 [ext_resource type="PackedScene" uid="uid://dm11hka3n1v1y" path="res://scenes/3d/assets_psx/GLB/Modular Structures/elevator_2.glb" id="44_w85uq"]
 [ext_resource type="PackedScene" uid="uid://dy68pl5d2m1a0" path="res://scenes/3d/assets_psx/GLB/Modular Structures/elevator_doorway_1.glb" id="45_l5w8t"]
@@ -537,7 +538,7 @@ layout_mode = 2
 environment = SubResource("Environment_faidy")
 
 [node name="Player" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("2_tbtjm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3075161, -2.2778502, -3.7251248)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3075161, 0.72214985, -3.7251248)
 
 [node name="Lighting" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 
@@ -1010,14 +1011,8 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors/door_2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_w37v3")
 
-[node name="elevator_22" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors" instance=ExtResource("44_w85uq")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0, -2)
-
-[node name="elevator_door_3_a" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors/elevator_22/elevator_2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0.7, 0, 0)
-
-[node name="elevator_door_3_b" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors/elevator_22/elevator_2" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -0.7, 0, 0)
+[node name="InteractableElevator_1" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors" instance=ExtResource("43_72u8k")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.799999, 0, -1.9999999)
 
 [node name="elevator_doorway_12" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors" instance=ExtResource("45_l5w8t")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0, -2.0000002)
@@ -2060,6 +2055,7 @@ text = "ESC: Stop Using Keypad"
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, -1.5)
+visible = false
 occluder = SubResource("BoxOccluder3D_uo20v")
 
 [editable path="SubViewportContainer/SubViewport/World/Stage_1/Walls/floor_ceiling_12"]
@@ -2094,7 +2090,6 @@ occluder = SubResource("BoxOccluder3D_uo20v")
 [editable path="SubViewportContainer/SubViewport/World/Stage_1/Desk3/pc_mp_12"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_1/Custom/keyboard_with_separate_keys"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_1/GLB2/vending_machine_12"]
-[editable path="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors/elevator_22"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors/elevator_doorway_12"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/doorway_1_plain2"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/doorway_1_plain3"]

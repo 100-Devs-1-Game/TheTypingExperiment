@@ -67,6 +67,10 @@ func _find_door_nodes() -> void:
 
 ## Check if elevator should be unlocked based on current game progress
 func _check_initial_unlock_state() -> void:
+	# TESTING: Open doors immediately on scene start
+	unlock_elevator()
+	return
+
 	if not DayManager:
 		return
 

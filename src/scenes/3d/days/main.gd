@@ -256,10 +256,14 @@ func _discover_elevators() -> void:
 	# Find all nodes in the "elevator_station" group
 	var elevators = get_tree().get_nodes_in_group("elevator_station")
 
+	print("[Main] Found %d nodes in elevator_station group" % elevators.size())
 	for elevator in elevators:
+		print("[Main] Checking elevator node: %s (type: %s)" % [elevator.name, elevator.get_class()])
 		if elevator is ElevatorController:
 			elevator_controllers.append(elevator)
 			print("[Main] Discovered Elevator: %s (unlocks after stage %d)" % [elevator.elevator_name, elevator.unlocks_after_stage])
+		else:
+			print("[Main] Node is not ElevatorController")
 
 	print("[Main] Total Elevators discovered: %d" % elevator_controllers.size())
 
