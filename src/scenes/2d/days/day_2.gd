@@ -143,9 +143,11 @@ func _get_corruption_effects(char_position: int, is_typed_correctly: bool = fals
 	var current_intensity: float = corruption_intensity_base + (stage_progress * 0.4)  # Max intensity 0.7
 
 	# Create unique seed for this character position for consistent randomization
+	# Use floor division to make seed change only at specific time intervals (every ~0.3 seconds)
+	var time_step: int = int(corruption_animation_time / 0.3)  # Changes every 0.3 seconds
 	var char_seed: int = (char_position * 17 + 23) % 1000  # Unique seed per character
 	var seeded_random = RandomNumberGenerator.new()
-	seeded_random.seed = char_seed + int(corruption_animation_time * 10) % 100  # Change seed over time
+	seeded_random.seed = char_seed + time_step  # Seed changes only with time_step, not every frame
 
 	# Character-specific timing offset
 	var char_time_offset: float = float(char_position) * 0.3  # Each char offset by 0.3 seconds
