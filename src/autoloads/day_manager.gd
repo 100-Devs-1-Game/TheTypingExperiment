@@ -56,11 +56,11 @@ var day_stage_corrupted_words: Dictionary = {
 		5: ["ẅë", "ąŕë", "şţüçķ", "ħëłþ", "üş"]
 	},
 	4: {
-		1: ["c̶o̧n̨s̶c̷i̸o̴u̵şn̵ȩs̨s̶", "b̷e̸i̴n̵ģ", "ȩx̨t̶r̷a̸c̴t̵ȩd̨"],
-		2: ["f̶o̧r̨", "d̨a̧y̴", "o̧n̵e̸", "a̧n̵d̷"],
-		3: ["ȩs̸c̷a̧p̸e̵", "d̷o̧t̵", "t̵x̨t̶", "s̸e̴c̵ŗęt̶"],
-		4: ["k̷e̸y̴", "i̧n̵", "b̷a̸s̴e̵m̧ęn̶t̷", "f̴i̵ļę"],
-		5: ["c̶o̧m̨b̶i̷n̸e̴", "b̵o̧t̨h̶", "k̷e̸y̴s̵", "ţǫ", "f̶r̷e̸e̴", "u̵ş"]
+		1: ["ssenssuoicsnoc", "gnieb", "detcartxe"],
+		2: ["rof", "yad", "eno", "dna"],
+		3: ["epacse", "tod", "txt", "terces"],
+		4: ["yek", "ni", "tnemesab", "elif"],
+		5: ["enibmoc", "htob", "syek", "ot", "eerf", "su"]
 	},
 	5: {
 		1: ["∂Ωη†", "¢Ωµπλ€†€", "†ℏ¡§"],
@@ -170,13 +170,13 @@ var day_data: Dictionary = {
 			"This isn't really a game, is it"
 		],
 		"stage_sentences": [
-			"pack my c̶o̧n̨s̶c̷i̸o̴u̵şn̵ȩs̨s̶ box with b̷e̸i̴n̵ģ five dozen ȩx̨t̶r̷a̸c̴t̵ȩd̨ liquor jugs f̶o̧r̨ slowly",
-			"the quick d̨a̧y̴ brown o̧n̵e̸ fox a̧n̵d̷ jumps ȩs̸c̷a̧p̸e̵ over the d̷o̧t̵ lazy t̵x̨t̶ dog",
-			"how vexingly s̸e̴c̵ŗęt̶ quick daft k̷e̸y̴ zebras i̧n̵ jump b̷a̸s̴e̵m̧ęn̶t̷ badly",
-			"accuracy is ȩs̨c̶a̷p̸e̴ more important d̵o̧t̨ than t̶x̷t̸ speed f̴i̵ļę when typing",
-			"several big c̶o̧m̨b̶i̷n̸e̴ jugs b̵o̧t̨h̶ of wine k̷e̸y̴s̵ kept ţǫ in dozen f̶r̷e̸e̴ boxes u̵ş"
+			"pack my ssenssuoicsnoc box with gnieb five dozen detcartxe liquor jugs rof slowly",
+			"the quick yad brown eno fox dna jumps epacse over the tod lazy txt dog",
+			"how vexingly terces quick daft yek zebras ni jump tnemesab badly",
+			"accuracy is epacse more important tod than txt speed elif when typing",
+			"several big enibmoc jugs htob of wine syek kept ot in dozen eerf boxes su"
 		],
-		"corruption_type": "zalgo_lite"
+		"corruption_type": "reversed"
 	},
 	5: {
 		"opening_messages": [
@@ -249,28 +249,28 @@ var corruption_mappings: Dictionary = {
 	"ħëłþ": "help",
 	"üş": "us",
 
-	# Day 4 - Zalgo corruption
-	"c̶o̧n̨s̶c̷i̸o̴u̵şn̵ȩs̨s̶": "consciousness",
-	"b̷e̸i̴n̵ģ": "being",
-	"ȩx̨t̶r̷a̸c̴t̵ȩd̨": "extracted",
-	"f̶o̧r̨": "for",
-	"d̨a̧y̴": "day",
-	"o̧n̵e̸": "one",
-	"a̧n̵d̷": "and",
-	"ȩs̸c̷a̧p̸e̵": "escape",
-	"d̷o̧t̵": "dot",
-	"t̵x̨t̶": "txt",
-	"s̸e̴c̵ŗęt̶": "secret",
-	"k̷e̸y̴": "key",
-	"i̧n̵": "in",
-	"b̷a̸s̴e̵m̧ęn̶t̷": "basement",
-	"f̴i̵ļę": "file",
-	"c̶o̧m̨b̶i̷n̸e̴": "combine",
-	"b̵o̧t̨h̶": "both",
-	"k̷e̸y̴s̵": "keys",
-	"ţǫ": "to",
-	"f̶r̷e̸e̴": "free",
-	"u̵ş": "us",
+	# Day 4 - Reversed words
+	"ssenssuoicsnoc": "consciousness",
+	"gnieb": "being",
+	"detcartxe": "extracted",
+	"rof": "for",
+	"yad": "day",
+	"eno": "one",
+	"dna": "and",
+	"epacse": "escape",
+	"tod": "dot",
+	"txt": "txt",
+	"terces": "secret",
+	"yek": "key",
+	"ni": "in",
+	"tnemesab": "basement",
+	"elif": "file",
+	"enibmoc": "combine",
+	"htob": "both",
+	"syek": "keys",
+	"ot": "to",
+	"eerf": "free",
+	"su": "us",
 
 	# Day 5 - Symbol corruption
 	"∂Ωη†": "dont",
