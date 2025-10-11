@@ -179,11 +179,11 @@ func interact_with_elevator(elevator_node: Node3D = null):
 		_execute_elevator_teleport(teleport_position, teleport_rotation)
 
 ## Execute the elevator teleport
-func _execute_elevator_teleport(position: Vector3, rotation: Vector3) -> void:
+func _execute_elevator_teleport(teleport_position: Vector3, teleport_rotation: Vector3) -> void:
 	if player:
-		player.global_position = position
-		player.rotation = rotation
-		print("[Main] Player teleported to: %s" % position)
+		player.global_position = teleport_position
+		player.rotation = teleport_rotation
+		print("[Main] Player teleported to: %s" % teleport_position)
 
 func show_menu(_show:bool):
 	showing_menu = _show

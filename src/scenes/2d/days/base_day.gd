@@ -207,15 +207,12 @@ func _handle_character_input(new_text: String) -> void:
 	var typed_char: String = new_text[new_text.length() - 1]
 
 	if TypingEngine:
-		# Sync TypingEngine position with our position before processing
+		# Sync TypingEngine position with our position
 		TypingEngine.current_position = current_position
-		var is_correct = TypingEngine.process_keystroke(typed_char)
-
-		# Sync back - TypingEngine handles position increment
-		if is_correct:
-			current_position = TypingEngine.current_position
+		TypingEngine.process_keystroke(typed_char)
 
 	typed_characters = new_text
+	current_position += 1
 
 	# Force immediate display update on typing
 	_update_display()
