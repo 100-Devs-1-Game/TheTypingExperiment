@@ -21,13 +21,8 @@ signal doors_closed()
 var doors_are_open: bool = false
 var is_unlocked: bool = false
 
-# Door animation settings
-@export var door_open_distance: float = 1.2  # How far doors slide open
+# Door animation settings (matching KeypadController)
 @export var door_animation_duration: float = 1.0  # Seconds to open/close
-
-# Original door positions (saved for closing)
-var door_a_original_position: Vector3
-var door_b_original_position: Vector3
 
 func _ready() -> void:
 	# Add to group so main can find us
@@ -55,11 +50,9 @@ func _find_door_nodes() -> void:
 		if "elevator_door" in child.name.to_lower():
 			if not door_a:
 				door_a = child
-				door_a_original_position = door_a.position
 				print("[ElevatorController] Found door_a: %s" % door_a.name)
 			elif not door_b:
 				door_b = child
-				door_b_original_position = door_b.position
 				print("[ElevatorController] Found door_b: %s" % door_b.name)
 
 	if not door_a or not door_b:
@@ -105,7 +98,7 @@ func unlock_elevator() -> void:
 	# Open doors automatically when unlocked
 	open_doors()
 
-## Opens the elevator doors
+## Opens the elevator doors (matching KeypadController method)
 func open_doors() -> void:
 	if doors_are_open or not door_a or not door_b:
 		return
@@ -113,17 +106,12 @@ func open_doors() -> void:
 	doors_are_open = true
 	print("[ElevatorController] Opening elevator doors")
 
-	# Animate doors sliding open (door_a slides left, door_b slides right)
+	# Animate doors to fixed positions (same as KeypadController)
 	var tween = create_tween()
-	tween.set_parallel(true)
-
-	# Slide door_a to the left
-	var door_a_target = door_a_original_position + Vector3(-door_open_distance, 0, 0)
-	tween.tween_property(door_a, "position", door_a_target, door_animation_duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-
-	# Slide door_b to the right
-	var door_b_target = door_b_original_position + Vector3(door_open_distance, 0, 0)
-	tween.tween_property(door_b, "position", door_b_target, door_animation_duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(door_a, "position:x", 0.7, door_animation_duration)
+	tween.parallel().tween_property(door_b, "position:x", -0.7, door_animation_duration)
 
 	await tween.finished
 	doors_opened.emit()
@@ -136,12 +124,12 @@ func close_doors() -> void:
 	doors_are_open = false
 	print("[ElevatorController] Closing elevator doors")
 
-	# Animate doors sliding closed
+	# Animate doors back to closed position
 	var tween = create_tween()
-	tween.set_parallel(true)
-
-	tween.tween_property(door_a, "position", door_a_original_position, door_animation_duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
-	tween.tween_property(door_b, "position", door_b_original_position, door_animation_duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(door_a, "position:x", 0.0, door_animation_duration)
+	tween.parallel().tween_property(door_b, "position:x", 0.0, door_animation_duration)
 
 	await tween.finished
 	doors_closed.emit()
