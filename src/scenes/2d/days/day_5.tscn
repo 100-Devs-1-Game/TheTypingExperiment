@@ -1,0 +1,177 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2hdlryfkahhr"]
+
+[ext_resource type="Script" uid="uid://565p7rjj0n2u" path="res://scenes/2d/days/day_5.gd" id="1_eruwl"]
+
+[sub_resource type="SystemFont" id="SystemFont_de5wr"]
+font_names = PackedStringArray("Courier New")
+subpixel_positioning = 0
+
+[sub_resource type="Theme" id="Theme_bauee"]
+default_font = SubResource("SystemFont_de5wr")
+
+[node name="Day5" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_bauee")
+script = ExtResource("1_eruwl")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CRTBorder" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HeaderContainer" type="HBoxContainer" parent="MainContainer"]
+layout_mode = 2
+
+[node name="AccuracyLabel" type="Label" parent="MainContainer/HeaderContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Accuracy: 100%"
+
+[node name="DayStageLabel" type="Label" parent="MainContainer/HeaderContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Day 2 - Stage 1"
+horizontal_alignment = 1
+
+[node name="WPMLabel" type="Label" parent="MainContainer/HeaderContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "WPM: 0"
+
+[node name="HeaderButtons" type="HBoxContainer" parent="MainContainer/HeaderContainer"]
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="MainContainer/HeaderContainer/HeaderButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Restart"
+
+[node name="Spacer1" type="Control" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TypingArea" type="Panel" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MainContainer/TypingArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DisplayText" type="RichTextLabel" parent="MainContainer/TypingArea/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "Type the text that appears here..."
+fit_content = true
+
+[node name="Cursor" type="ColorRect" parent="MainContainer/TypingArea"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 30.0
+offset_top = 48.0
+offset_right = 40.0
+offset_bottom = 50.0
+color = Color(0, 1, 0, 1)
+
+[node name="InvisibleInput" type="LineEdit" parent="MainContainer/TypingArea"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = -1000.0
+offset_top = -1000.0
+offset_right = -900.0
+offset_bottom = -980.0
+
+[node name="Spacer2" type="Control" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ProgressContainer" type="HBoxContainer" parent="MainContainer"]
+layout_mode = 2
+
+[node name="ProgressLabel" type="Label" parent="MainContainer/ProgressContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Stage 1 of 5"
+
+[node name="ProgressBar" type="ProgressBar" parent="MainContainer/ProgressContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 1.0
+show_percentage = false
+
+[node name="Spacer" type="Control" parent="MainContainer/ProgressContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ProgressBarLabel" type="Label" parent="MainContainer/ProgressContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "░░░░░░░░░░"
+
+[node name="MessageOverlay" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.15
+anchor_right = 0.8
+anchor_bottom = 0.25
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="MessageBackground" type="ColorRect" parent="MessageOverlay"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8)
