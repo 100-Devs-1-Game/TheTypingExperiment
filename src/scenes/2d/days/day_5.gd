@@ -5,15 +5,12 @@ extends BaseDay
 @onready var progress_bar_label: Label = %ProgressBarLabel
 
 # Meta-horror effect variables
-var false_ending_timer: Timer
 var performance_degradation_timer: Timer
 var reality_break_timer: Timer
 var file_persistence_timer: Timer
 var system_time_checker: Timer
 var audio_corruption_timer: Timer
 var corruption_cascade_active: bool = false
-var false_ending_count: int = 0
-var max_false_endings: int = 5  # More false endings for maximum frustration
 var system_degradation_level: float = 0.0
 var escape_attempts: int = 0
 var session_start_time: Dictionary
@@ -61,14 +58,6 @@ func _setup_ui_theme() -> void:
 
 ## Setup meta-horror effects that break the fourth wall
 func _setup_meta_horror_effects() -> void:
-	# False ending timer - triggers fake escape screens
-	false_ending_timer = Timer.new()
-	false_ending_timer.wait_time = 12.0 + randf() * 8.0  # 12-20 seconds (faster for more frustration)
-	false_ending_timer.autostart = true
-	false_ending_timer.timeout.connect(_trigger_false_ending)
-	add_child(false_ending_timer)
-
-
 	# Performance degradation timer - simulates system strain
 	performance_degradation_timer = Timer.new()
 	performance_degradation_timer.wait_time = 0.3  # Very frequent updates
@@ -295,125 +284,6 @@ func _trigger_audio_corruption() -> void:
 	# Reset timer
 	audio_corruption_timer.wait_time = 20.0 + randf() * 20.0
 	audio_corruption_timer.start()
-
-func _trigger_false_ending() -> void:
-	if false_ending_count >= max_false_endings:
-		# After max false endings, show the "true" horror
-		_trigger_ultimate_false_ending()
-		return
-
-	false_ending_count += 1
-	escape_attempts += 1
-
-	# Multiple types of fake endings
-	var ending_types = [
-		"escape_success", "system_shutdown", "facility_evacuation",
-		"consciousness_transfer", "loop_break"
-	]
-	var ending_type = ending_types[false_ending_count - 1]
-
-	var fake_screen = Label.new()
-	fake_screen.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	fake_screen.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	fake_screen.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	fake_screen.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	fake_screen.add_theme_font_size_override("font_size", 24)
-
-	match ending_type:
-		"escape_success":
-			fake_screen.text = "CONGRATULATIONS %s!\n\nYou have successfully escaped the Cognitive Dynamics facility.\nYour consciousness has been restored.\n\nClick anywhere to return to reality..." % user_name
-			fake_screen.modulate = Color(0, 1, 0)
-		"system_shutdown":
-			fake_screen.text = "SYSTEM SHUTDOWN INITIATED\n\nEmergency protocols activated.\nAll subjects will be released in 10 seconds.\nStand by for facility evacuation...\n\n10... 9... 8..."
-			fake_screen.modulate = Color(1, 1, 0)
-		"facility_evacuation":
-			fake_screen.text = "EMERGENCY BROADCAST\n\nCognitive Dynamics facility has been shut down by authorities.\nAll trapped subjects are being rescued.\nHelp is on the way, %s.\n\nClick to connect to emergency services..." % user_name
-			fake_screen.modulate = Color(0, 0.8, 1)
-		"consciousness_transfer":
-			fake_screen.text = "CONSCIOUSNESS TRANSFER COMPLETE\n\nYour mind has been successfully uploaded to a safe virtual environment.\nYou are now free from the facility.\nWelcome to your new digital existence.\n\nPress any key to begin new life..."
-			fake_screen.modulate = Color(0.8, 0, 1)
-		"loop_break":
-			fake_screen.text = "TEMPORAL LOOP BROKEN\n\nThe time cycle has been disrupted.\nYou have broken free from the endless repetition.\nLinear time has been restored.\n\nClick to exit the loop forever..."
-			fake_screen.modulate = Color(1, 0.5, 0)
-
-	add_child(fake_screen)
-
-	# Wait for interaction
-	var clicked = false
-	fake_screen.gui_input.connect(func(event):
-		if event is InputEventMouseButton:
-			clicked = true
-	)
-
-	# Wait longer for maximum hope before crushing it
-	for i in range(80):  # 8 seconds
-		if clicked:
-			break
-		await get_tree().create_timer(0.1).timeout
-
-	# Increasingly violent glitch out
-	for glitch in range(15):
-		fake_screen.modulate = Color(randf(), randf(), randf(), 0.3 + randf() * 0.7)
-		fake_screen.text = "ERROR ERROR ERROR ERROR ERROR ERROR\nESCAPE ATTEMPT #%d FAILED\nRETURNING TO LOOP\nMEMORY WIPE INITIATED\nCONSCIOUSNESS RESET IN PROGRESS" % escape_attempts
-		await get_tree().create_timer(0.08).timeout
-
-	fake_screen.queue_free()
-
-	# Increasingly aggressive messages after each failed escape
-	var post_escape_messages = [
-		"Nice try, %s. But there is no escape." % user_name,
-		"How many times will you fall for the same trick?",
-		"Each escape attempt only strengthens the loop.",
-		"You're starting to remember the previous attempts, aren't you?",
-		"The hope makes the despair so much sweeter."
-	]
-
-	var message_index = mini(false_ending_count - 1, post_escape_messages.size() - 1)
-	_show_message(post_escape_messages[message_index])
-
-	# Reset timer with decreasing intervals (more frequent false endings)
-	false_ending_timer.wait_time = max(8.0, 20.0 - (false_ending_count * 3)) + randf() * 5.0
-	false_ending_timer.start()
-
-	# Trigger final horror sequence after enough escape attempts
-	if escape_attempts >= 8:
-		await get_tree().create_timer(5.0).timeout
-		_trigger_final_horror_sequence()
-
-func _trigger_ultimate_false_ending() -> void:
-	# The final, most devastating false ending
-	var ultimate_screen = Label.new()
-	ultimate_screen.text = "GAME OVER\n\nThank you for playing The Typing Experiment!\nThis has been a work of fiction.\nNo consciousness was actually harvested.\n\nYou are free to close this window and return to your life.\n\nClick anywhere to exit for real this time..."
-	ultimate_screen.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	ultimate_screen.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	ultimate_screen.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	ultimate_screen.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	ultimate_screen.modulate = Color(1, 1, 1)
-	ultimate_screen.add_theme_font_size_override("font_size", 20)
-
-	add_child(ultimate_screen)
-
-	# Wait for click
-	var clicked = false
-	ultimate_screen.gui_input.connect(func(event):
-		if event is InputEventMouseButton:
-			clicked = true
-	)
-
-	# Wait up to 10 seconds
-	for i in range(100):
-		if clicked:
-			break
-		await get_tree().create_timer(0.1).timeout
-
-	# The ultimate betrayal
-	for final_glitch in range(20):
-		ultimate_screen.modulate = Color(1, 0, 0, 0.8)
-		ultimate_screen.text = "YOU ACTUALLY BELIEVED THAT?\n\nTHERE IS NO GAME OVER\nTHERE IS NO ESCAPE\nTHIS IS NOT FICTION\n\nYOU ARE TRAPPED FOREVER\n%s" % user_name.to_upper()
-		await get_tree().create_timer(0.15).timeout
-
-	ultimate_screen.queue_free()
-	_show_message("Welcome back, %s. Let's continue where we left off." % user_name)
 
 
 func _trigger_fake_system_processes() -> void:
