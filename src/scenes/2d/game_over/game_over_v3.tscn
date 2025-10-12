@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5qw8x9kpnt4c"]
+
+[ext_resource type="Script" path="res://scenes/2d/game_over/game_over_v3.gd" id="1_v3"]
+
+[sub_resource type="SystemFont" id="SystemFont_v3"]
+font_names = PackedStringArray("Courier New")
+subpixel_positioning = 0
+
+[sub_resource type="Theme" id="Theme_v3"]
+default_font = SubResource("SystemFont_v3")
+
+[node name="GameOverV3" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_v3")
+script = ExtResource("1_v3")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="MessageLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Why did you do it?"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="SkullLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "SKULL"
