@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2hdlryfkahhr"]
+[gd_scene load_steps=4 format=3 uid="uid://dwxcn8y7yfp5k"]
 
-[ext_resource type="Script" uid="uid://565p7rjj0n2u" path="res://scenes/2d/days/day_5.gd" id="1_eruwl"]
+[ext_resource type="Script" path="res://scenes/2d/days/day_5.gd" id="1_day5script"]
 
-[sub_resource type="SystemFont" id="SystemFont_de5wr"]
+[sub_resource type="SystemFont" id="SystemFont_day5"]
 font_names = PackedStringArray("Courier New")
 subpixel_positioning = 0
 
-[sub_resource type="Theme" id="Theme_bauee"]
-default_font = SubResource("SystemFont_de5wr")
+[sub_resource type="Theme" id="Theme_day5"]
+default_font = SubResource("SystemFont_day5")
 
 [node name="Day5" type="Control"]
 layout_mode = 3
@@ -16,8 +16,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_bauee")
-script = ExtResource("1_eruwl")
+theme = SubResource("Theme_day5")
+script = ExtResource("1_day5script")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -60,7 +60,7 @@ text = "Accuracy: 100%"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Day 2 - Stage 1"
+text = "Day 5 - Stage 1"
 horizontal_alignment = 1
 
 [node name="WPMLabel" type="Label" parent="MainContainer/HeaderContainer"]

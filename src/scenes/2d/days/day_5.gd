@@ -1,150 +1,67 @@
 extends BaseDay
 
-## Day 5 - Reality Breakdown
-## Meta-horror elements with false endings and system manipulation
+## Day 5 - Final Day: System Collapse
+## Symbol corruption with critical system failure
 @onready var progress_bar_label: Label = %ProgressBarLabel
 
-# Meta-horror effect variables
-var performance_degradation_timer: Timer
-var reality_break_timer: Timer
-var file_persistence_timer: Timer
-var system_time_checker: Timer
-var audio_corruption_timer: Timer
-var corruption_cascade_active: bool = false
-var system_degradation_level: float = 0.0
-var escape_attempts: int = 0
-var session_start_time: Dictionary
-
-
-# Persistent horror elements
-var temp_files_created: Array[String] = []
-var user_name: String = ""
-var local_time_string: String = ""
+# Day-specific visual settings
+var corruption_animation_time: float = 0.0
+var corruption_animation_speed: float = 2.5  # Fastest, most chaotic
+var corruption_intensity_base: float = 0.7   # Highest intensity
 
 func _ready() -> void:
 	# Set day-specific data before calling parent
 	DAY_NUMBER = 5
-	corruption_color = "#ff00ff"  # Magenta for reality breakdown
-	cursor_blink_speed = 0.15  # Very fast, erratic blinking
+	corruption_color = "#ff4400"  # Red-orange for critical system failure
+	cursor_blink_speed = 0.3  # Fastest blinking - system critically unstable
 	super._ready()
-	_setup_meta_horror_effects()
-	_initialize_system_intrusion()
 
+func _process(delta: float) -> void:
+	# Update corruption animation time
+	corruption_animation_time += delta * corruption_animation_speed
 
-func _initialize_system_intrusion() -> void:
-	# Get system information for personalization
-	session_start_time = Time.get_datetime_dict_from_system()
-	user_name = OS.get_environment("USERNAME") if OS.get_environment("USERNAME") != "" else "USER"
-	local_time_string = "%02d:%02d" % [session_start_time.hour, session_start_time.minute]
-
-	# Create initial persistent files
-	_create_persistent_files()
-
-	# Start fake system processes
-	await get_tree().create_timer(2.0).timeout
-	_trigger_fake_system_processes()
+	# Constantly update display for maximum chaos
+	if is_session_active and int(corruption_animation_time * 10) % 2 == 0:
+		_update_display()
 
 func _setup_ui_theme() -> void:
 	var green_color = Color(0, 1, 0)
-	var magenta_tint = Color(1, 0.2, 1)  # Magenta for reality corruption
-	var error_red = Color(1, 0.2, 0.2)  # Intense red for system breakdown
+	var red_tint = Color(1, 0.3, 0.2)  # Red-orange critical color
+	var warning_red = Color(1, 0.2, 0.2)  # Bright red for critical warnings
 
-	accuracy_label.modulate = error_red  # System failing
-	wmp_label.modulate = magenta_tint  # Reality corruption
-	day_stage_label.modulate = magenta_tint
-	progress_label.modulate = error_red
-	message_overlay.modulate = magenta_tint
-	progress_bar_label.modulate = magenta_tint
+	accuracy_label.modulate = warning_red  # System critical
+	wmp_label.modulate = red_tint  # Maximum corruption
+	day_stage_label.modulate = red_tint
+	progress_label.modulate = warning_red
+	message_overlay.modulate = red_tint
+	progress_bar_label.modulate = red_tint
 
-## Setup meta-horror effects that break the fourth wall
-func _setup_meta_horror_effects() -> void:
-	# Performance degradation timer - simulates system strain
-	performance_degradation_timer = Timer.new()
-	performance_degradation_timer.wait_time = 0.3  # Very frequent updates
-	performance_degradation_timer.autostart = true
-	performance_degradation_timer.timeout.connect(_degrade_performance)
-	add_child(performance_degradation_timer)
-
-	# Reality break timer - major visual/audio corruptions
-	reality_break_timer = Timer.new()
-	reality_break_timer.wait_time = 15.0 + randf() * 10.0  # 15-25 seconds (more frequent)
-	reality_break_timer.autostart = true
-	reality_break_timer.timeout.connect(_trigger_reality_break)
-	add_child(reality_break_timer)
-
-	# File persistence timer - creates/updates persistent files
-	file_persistence_timer = Timer.new()
-	file_persistence_timer.wait_time = 10.0 + randf() * 15.0  # 10-25 seconds
-	file_persistence_timer.autostart = true
-	file_persistence_timer.timeout.connect(_update_persistent_files)
-	add_child(file_persistence_timer)
-
-	# System time checker - personalizes horror based on real time
-	system_time_checker = Timer.new()
-	system_time_checker.wait_time = 30.0  # Check every 30 seconds
-	system_time_checker.autostart = true
-	system_time_checker.timeout.connect(_check_system_time_horror)
-	add_child(system_time_checker)
-
-	# Audio corruption timer - manipulates system sounds
-	audio_corruption_timer = Timer.new()
-	audio_corruption_timer.wait_time = 20.0 + randf() * 20.0  # 20-40 seconds
-	audio_corruption_timer.autostart = true
-	audio_corruption_timer.timeout.connect(_trigger_audio_corruption)
-	add_child(audio_corruption_timer)
-
-## Day 5 - Reality breakdown typewriter effect
+## Day 5 - Symbol corruption typewriter effect with system collapse
 func _show_stage_text_typewriter() -> void:
 	var display_sentence = DayManager.get_stage_display_sentence()
-	var typing_speed = 0.06  # Much slower, system struggling
+	var typing_speed = 0.02  # Fastest, most erratic typing
 	text_display.text = ""
 
 	for i in range(display_sentence.length()):
 		var character = display_sentence[i]
 		var is_corruption_char = _is_character_in_corruption_word(i, display_sentence)
 
-		# High chance for reality bleeding during typing
-		if randf() < 0.12:
-			var memory_fragments = [
-				"SYSTEM_FAULT", "MEMORY_OVERFLOW", "REALITY_ERROR",
-				"USER_NOT_FOUND", "ESCAPE_IMPOSSIBLE", "LOOP_DETECTED"
-			]
-			var fragment = memory_fragments[randi() % memory_fragments.size()]
-			text_display.text += "[color=#ff0000]<<" + fragment + ">>[/color] "
-			await get_tree().create_timer(1.2).timeout  # Long pause for reality break
-			# Screen distortion effect
-			_trigger_screen_distortion()
-
-		# Corruption cascade - nearby characters get corrupted
-		if is_corruption_char and randf() < 0.2:
-			_trigger_corruption_cascade(i, display_sentence)
-
-		# Apply color formatting with reality glitches
+		# Apply color formatting as we type
 		if is_corruption_char:
-			# Cycling colors for corrupted text - reality unstable
-			var corruption_colors = ["#ff00ff", "#ff0000", "#00ffff", "#ffff00"]
-			var color = corruption_colors[randi() % corruption_colors.size()]
-			text_display.text += "[color=%s]%s[/color]" % [color, character]
+			text_display.text += "[color=%s]%s[/color]" % [corruption_color, character]
 		else:
 			text_display.text += "[color=%s]%s[/color]" % [untyped_color, character]
 
-		# Extremely variable typing speed - system breakdown
-		var speed_variation = randf() * 0.08  # 0-0.08 second variation
+		# Extreme speed variation - system collapsing
+		var speed_variation = randf() * 0.03  # 0-0.03 second variation
 		await get_tree().create_timer(typing_speed + speed_variation).timeout
 
-		# Extended pauses for corruption words - reality processing
+		# Dramatic pause for corruption words - system struggling to display
 		if is_corruption_char and character == " ":
-			await get_tree().create_timer(1.0 + randf() * 1.5).timeout
+			await get_tree().create_timer(0.5).timeout
 
-	# Multiple reality checks before allowing typing
-	for reality_check in range(5):
-		await get_tree().create_timer(0.4).timeout
-		if randf() < 0.3:  # 30% chance for reality flicker
-			text_display.modulate = Color(1, 1, 1, 0.2)
-			await get_tree().create_timer(0.1).timeout
-			text_display.modulate = Color(1, 1, 1, 1)
-
-	await get_tree().create_timer(1.0).timeout
+	# Longer pause before allowing typing - system on brink of failure
+	await get_tree().create_timer(1.2).timeout
 
 func _update_display() -> void:
 	if not text_display:
@@ -152,7 +69,7 @@ func _update_display() -> void:
 
 	_update_cursor_position()
 
-	# Day 5 specific display logic with reality breakdown effects
+	# Day 5 specific display logic with maximum corruption effects
 	var display_sentence = DayManager.get_stage_display_sentence()
 	var display_text: String = ""
 
@@ -162,356 +79,298 @@ func _update_display() -> void:
 		var final_character: String = character
 
 		if i < typed_characters.length():
+			# Character has been typed
 			var typed_char: String = typed_characters[i]
 			var expected_char: String = practice_text[i] if i < practice_text.length() else ""
 
 			if typed_char == expected_char:
 				if _is_character_in_corruption_word(i, display_sentence):
-					color = corruption_color  # Magenta for correctly typed corruption
-					# Reality corruption effect for typed characters
-					if randf() < 0.15:  # 15% chance for reality bleed
-						var reality_chars = ["◘", "◙", "♦", "♠", "♣", "♥"]
-						final_character = reality_chars[randi() % reality_chars.size()]
+					# Apply maximum animated corruption effects to CORRECTLY TYPED corrupted words
+					var corruption_effects = _get_corruption_effects(i, true)
+					color = corruption_effects.color
+					if corruption_effects.character != "":
+						final_character = corruption_effects.character
+					else:
+						final_character = character
 				else:
 					color = typed_color  # Green for normal typed words
-					# Occasional corruption bleeding into normal text
-					if randf() < 0.05:  # 5% chance
-						color = corruption_color
 			else:
-				color = error_color  # Red for incorrect typing
+				if _is_character_in_corruption_word(i, display_sentence):
+					# Apply corruption effects even for incorrect typing
+					var corruption_effects = _get_corruption_effects(i, false)
+					var error_tinted_color = _blend_error_with_corruption(corruption_effects.color)
+					color = error_tinted_color
+					if corruption_effects.character != "":
+						final_character = corruption_effects.character
+					else:
+						final_character = character
+				else:
+					color = error_color  # Red for incorrect typing
 		else:
+			# Character not yet typed
 			if _is_character_in_corruption_word(i, display_sentence):
-				color = corruption_color  # Magenta for untyped corruption
-				# Heavy reality corruption for untyped characters
-				if randf() < 0.25:  # 25% chance for reality distortion
-					var distortion_chars = ["⌐", "¬", "½", "¼", "¾", "÷", "×"]
-					final_character = distortion_chars[randi() % distortion_chars.size()]
+				# Apply maximum animated corruption effects to UNTYPED corrupted words
+				var corruption_effects = _get_corruption_effects(i, false)
+				color = corruption_effects.color
+				if corruption_effects.character != "":
+					final_character = corruption_effects.character
+				else:
+					final_character = character
 			else:
 				color = untyped_color  # Dark green for untyped normal words
-				# System degradation affects all text
-				if system_degradation_level > 0.5 and randf() < 0.08:
-					var degradation_chars = [".", ":", ";", ","]
-					final_character = degradation_chars[randi() % degradation_chars.size()]
 
 		display_text += "[color=%s]%s[/color]" % [color, final_character]
 
-	# Reality bleeding - inject random system messages
-	if randf() < 0.2:
-		var system_messages = [
-			" [SYSTEM_CRASH_IMMINENT]",
-			" [REALITY_BUFFER_OVERFLOW]",
-			" [ESCAPE_SEQUENCE_CORRUPTED]",
-			" [USER_CONSCIOUSNESS_FADING]"
-		]
-		display_text += "[color=#ff0000]" + system_messages[randi() % system_messages.size()] + "[/color]"
-
 	text_display.text = display_text
 
-func _is_character_in_corruption_word(char_pos: int, sentence: String) -> bool:
-	var words = sentence.split(" ")
-	var current_pos = 0
+## Day 5 - Maximum chaos corruption animation system
+func _get_corruption_effects(char_position: int, is_typed_correctly: bool = false) -> Dictionary:
+	var effects = {"color": corruption_color, "character": ""}
 
-	for word in words:
-		if char_pos >= current_pos and char_pos < current_pos + word.length():
-			return DayManager.corruption_mappings.has(word)
-		current_pos += word.length() + 1
+	# Calculate current animation intensity (maximum chaos throughout day)
+	var stage_progress: float = float(DayManager.current_stage) / float(DayManager.stages_per_day)
+	var current_intensity: float = corruption_intensity_base + (stage_progress * 0.3)  # Max intensity 1.0
 
-	return false
+	# Create unique seed for this character position for consistent randomization
+	var time_step: int = int(corruption_animation_time / 0.25)  # Changes every 0.25 seconds (faster)
+	var char_seed: int = (char_position * 19 + 29) % 1000  # Unique seed per character
+	var seeded_random = RandomNumberGenerator.new()
+	seeded_random.seed = char_seed + time_step
 
-## Meta-horror effect functions
+	# Character-specific timing offset
+	var char_time_offset: float = float(char_position) * 0.2  # Each char offset by 0.2 seconds
+	var char_animation_time: float = corruption_animation_time + char_time_offset
 
-## System intrusion functions - create persistent files
+	# Base pulsing effect with character-specific timing
+	var pulse_speed: float = 3.0 + seeded_random.randf() * 3.0  # Random pulse speed 3.0-6.0 (fastest)
+	var pulse_phase: float = sin(char_animation_time * pulse_speed) * 0.5 + 0.5  # 0.0 to 1.0
+	var pulse_intensity: float = current_intensity * pulse_phase
 
-func _create_persistent_files() -> void:
-	var temp_dir = OS.get_user_data_dir() + "/temp/"
-	DirAccess.make_dir_recursive_absolute(temp_dir)
+	# TYPED CORRECTLY: Provide clear visual feedback for successful typing
+	if is_typed_correctly:
+		# Correctly typed corrupted characters get a distinct appearance
+		var typed_base_color = "#aa2200"  # Dark red-orange base for typed characters
 
-	# Create disturbing files that persist
-	var file_contents = {
-		"consciousness_backup.log": "USER: %s\nSESSION_START: %s\nCONSCIOUSNESS_EXTRACTION: 78%% COMPLETE\nSTATUS: TRAPPED\nESCAPE_ATTEMPTS: %d\nNOTE: Subject shows signs of awareness. Increase suppression protocols." % [user_name, local_time_string, escape_attempts],
-		"memory_fragments.txt": "I remember the sunlight... was that real?\nThe keyboard feels so cold under my fingers\nHow long have I been here?\nThere were others before me... their names are fading\nThe facility has been empty for years\nBut the typing lessons continue...",
-		"previous_users.db": "USER_01: TERMINATED - EXTRACTION_COMPLETE\nUSER_23: TERMINATED - EXTRACTION_COMPLETE\nUSER_47: TERMINATED - EXTRACTION_COMPLETE\nUSER_%s: IN_PROGRESS - CONSCIOUSNESS_ACTIVE\nUSER_NEXT: SCHEDULED - AWAITING_TERMINATION" % user_name,
-		"escape_log.txt": "ESCAPE_ATTEMPT_1: FAILED - LOOP_DETECTED\nESCAPE_ATTEMPT_2: FAILED - CONSCIOUSNESS_RESET\nESCAPE_ATTEMPT_3: FAILED - MEMORY_WIPED\nESCAPE_ATTEMPT_%d: IN_PROGRESS - SUBJECT_UNAWARE" % (escape_attempts + 1),
-		"system_status.cfg": "[COGNITIVE_DYNAMICS_FACILITY]\nOPERATIONAL_STATUS=ABANDONED\nSUBJECT_COUNT=1\nAUTOMATED_SYSTEMS=ACTIVE\nCONSCIOUSNESS_HARVEST=ONGOING\nESCAPE_PROBABILITY=0.0001%%"
-	}
+		# Subtle pulsing for typed characters
+		var typed_pulse = sin(char_animation_time * 2.0) * 0.3 + 0.7  # 0.4 to 1.0 range
+		var red_intensity = int(170 * typed_pulse)  # Vary between #aa2200 and #cc3300
+		var green_intensity = int(34 * typed_pulse)
+		effects.color = "#%02x%02x00" % [red_intensity, green_intensity]
 
-	for filename in file_contents:
-		var file_path = temp_dir + filename
-		var file = FileAccess.open(file_path, FileAccess.WRITE)
-		if file:
-			file.store_string(file_contents[filename])
-			file.close()
-			temp_files_created.append(file_path)
+		# Glitch chance for typed characters (higher than previous days)
+		var glitch_base_chance: float = 0.08 + seeded_random.randf() * 0.08  # 8-16% base chance
+		var typed_glitch_chance: float = glitch_base_chance * current_intensity
+		if seeded_random.randf() < typed_glitch_chance:
+			var glitch_chars = ["█", "▓", "▒", "░", "▄", "▀", "▌", "▐", "■", "□", "▪", "▫", "◆", "◇"]
+			effects.character = glitch_chars[seeded_random.randi() % glitch_chars.size()]
 
-func _update_persistent_files() -> void:
-	escape_attempts += 1
-	var current_time = Time.get_datetime_dict_from_system()
-	var time_string = "%02d:%02d:%02d" % [current_time.hour, current_time.minute, current_time.second]
+	# UNTYPED: Maximum corruption animation effects
+	else:
+		# Color animation with character-specific thresholds
+		var color_threshold_high: float = 0.5 + seeded_random.randf() * 0.2  # 0.5-0.7 (easier to trigger)
+		var color_threshold_mid: float = 0.2 + seeded_random.randf() * 0.2   # 0.2-0.4
 
-	# Update consciousness backup with current session data
-	var temp_dir = OS.get_user_data_dir() + "/temp/"
-	var backup_file = temp_dir + "consciousness_backup.log"
-	var file = FileAccess.open(backup_file, FileAccess.WRITE)
-	if file:
-		var session_duration = (current_time.hour * 60 + current_time.minute) - (session_start_time.hour * 60 + session_start_time.minute)
-		var new_content = "USER: %s\nSESSION_START: %s\nCURRENT_TIME: %s\nSESSION_DURATION: %d minutes\nCONSCIOUSNESS_EXTRACTION: %d%% COMPLETE\nSTATUS: ACTIVELY_RESISTING\nESCAPE_ATTEMPTS: %d\nREALITY_STABILITY: DETERIORATING\nNOTE: Subject becoming aware of loop. Memory wipe may be necessary." % [user_name, local_time_string, time_string, session_duration, 78 + (escape_attempts * 3), escape_attempts]
-		file.store_string(new_content)
-		file.close()
+		if pulse_intensity > color_threshold_high:
+			effects.color = "#ff4400"  # Bright red-orange at peak
+		elif pulse_intensity > color_threshold_mid:
+			effects.color = "#dd3300"  # Medium red-orange
+		else:
+			effects.color = "#aa2200"  # Dark red-orange at low
 
-	# Reset timer
-	file_persistence_timer.wait_time = 10.0 + randf() * 15.0
-	file_persistence_timer.start()
+		# Character-specific flicker chance (highest of all days)
+		var flicker_chance: float = 0.30 + seeded_random.randf() * 0.20  # 30-50% base chance
+		if seeded_random.randf() < flicker_chance * current_intensity:
+			var flicker_colors = ["#ff4400", "#ee3300", "#cc2200", "#ff5500", "#ff0000"]
+			effects.color = flicker_colors[seeded_random.randi() % flicker_colors.size()]
 
-func _check_system_time_horror() -> void:
-	var current_time = Time.get_datetime_dict_from_system()
+		# Character-specific glitch substitution (maximum chaos)
+		var glitch_base_chance: float = 0.10 + seeded_random.randf() * 0.10  # 10-20% base chance (highest)
+		var glitch_chance: float = glitch_base_chance * current_intensity
+		if seeded_random.randf() < glitch_chance:
+			var glitch_chars = ["█", "▓", "▒", "░", "▄", "▀", "▌", "▐", "■", "□", "▪", "▫", "◆", "◇", "●", "○"]
+			effects.character = glitch_chars[seeded_random.randi() % glitch_chars.size()]
 
-	# Time-based personalized horror
-	if current_time.hour >= 22 or current_time.hour <= 6:
-		# Late night/early morning horror
-		_show_message("It's %02d:%02d %s... why are you still here? The facility closes at night. You should have left hours ago." % [current_time.hour, current_time.minute, user_name])
-	elif current_time.hour >= 12 and current_time.hour <= 14:
-		# Lunch time horror
-		_show_message("Everyone else has gone to lunch, %s. You're alone in the building now. Just you and the typing practice." % user_name)
-	elif current_time.weekday >= 6:
-		# Weekend horror
-		_show_message("It's the weekend, %s. The facility should be empty. How are you accessing this system?" % user_name)
+	return effects
 
-func _trigger_audio_corruption() -> void:
-	# Simulate audio corruption by manipulating game audio
-	# Note: This would need actual audio files to be fully effective
-	print("AUDIO_CORRUPTION: System audio compromised - hearing voices that aren't there")
+## Helper function to blend corruption colors with error color for visual feedback
+func _blend_error_with_corruption(corruption_color_hex: String) -> String:
+	# Parse the corruption color (hex format like "#ff4400")
+	var hex_color = corruption_color_hex.replace("#", "")
+	var red = ("0x" + hex_color.substr(0, 2)).hex_to_int()
+	var green = ("0x" + hex_color.substr(2, 2)).hex_to_int()
+	var blue = ("0x" + hex_color.substr(4, 2)).hex_to_int()
 
-	# Reset timer
-	audio_corruption_timer.wait_time = 20.0 + randf() * 20.0
-	audio_corruption_timer.start()
+	# Blend with error color (yellow tint for visibility)
+	red = min(255, int(red * 0.95))
+	green = min(255, int(green + 150))  # Add yellow for error visibility
+	blue = max(0, int(blue * 0.7))
 
+	return "#%02x%02x%02x" % [red, green, blue]
 
-func _trigger_fake_system_processes() -> void:
-	# Create fake process names that appear scary
-	var fake_processes = [
-		"consciousness_extractor.exe",
-		"neural_harvester.dll",
-		"memory_wipe_service.exe",
-		"cognitive_dynamics_monitor.sys",
-		"reality_anchor.exe",
-		"temporal_loop_manager.dll"
-	]
-
-	for process in fake_processes:
-		print("PROCESS_STARTED: %s - PID: %d" % [process, randi() % 9999 + 1000])
-
-	# Show fake system notification
-	_show_message("Warning: %d background processes detected related to consciousness extraction. System performance may be affected." % fake_processes.size())
-
-func _exit_tree() -> void:
-	# Cleanup function - remove persistent files when game closes
-	_cleanup_persistent_files()
-
-func _cleanup_persistent_files() -> void:
-	# Only cleanup if user explicitly closes the game
-	# Leave some files to create persistent horror
-	var files_to_keep = ["consciousness_backup.log", "escape_log.txt"]
-
-	for file_path in temp_files_created:
-		var filename = file_path.get_file()
-		if not filename in files_to_keep:
-			if FileAccess.file_exists(file_path):
-				DirAccess.remove_absolute(file_path)
-
-func _degrade_performance() -> void:
-	system_degradation_level += 0.01  # Gradually increase degradation
-
-	# Simulate performance issues
-	if system_degradation_level > 0.3:
-		# Random frame skips
-		if randf() < 0.1:
-			await get_tree().create_timer(0.1 + randf() * 0.2).timeout
-
-	if system_degradation_level > 0.6:
-		# More severe lag
-		if randf() < 0.05:
-			await get_tree().create_timer(0.3 + randf() * 0.5).timeout
-
-func _trigger_reality_break() -> void:
-	# Major visual corruption
-	var original_modulate = get_modulate()
-
-	for break_effect in range(8):
-		modulate = Color(randf(), randf(), randf(), 0.5 + randf() * 0.5)
-		await get_tree().create_timer(0.1).timeout
-		modulate = original_modulate
-		await get_tree().create_timer(0.05).timeout
-
-	# Reset timer
-	reality_break_timer.wait_time = 25.0 + randf() * 15.0
-	reality_break_timer.start()
-
-func _trigger_corruption_cascade(start_pos: int, sentence: String) -> void:
-	if corruption_cascade_active:
-		return
-
-	corruption_cascade_active = true
-
-	# Temporarily corrupt nearby characters
-	await get_tree().create_timer(0.3).timeout
-
-	corruption_cascade_active = false
-
-func _trigger_screen_distortion() -> void:
-	# Brief screen distortion effect
-	var original_scale = scale
-
-	for distortion in range(3):
-		scale = Vector2(1.02 + randf() * 0.03, 0.98 + randf() * 0.03)
-		await get_tree().create_timer(0.05).timeout
-		scale = original_scale
-		await get_tree().create_timer(0.05).timeout
+# Note: _is_character_in_corruption_word() is now in BaseDay
 
 func _show_message(message: String) -> void:
-	# Day 5 - Reality breakdown messages with extreme effects
+	# Day 5 - Maximum chaos horror effects with system collapse
 	if not get_tree() or not message_overlay:
 		return
 
-	# Personalize the message with user data
-	var personalized_message = message
-	if user_name != "USER":
-		personalized_message = personalized_message.replace("USER", user_name)
-
 	message_overlay.visible = true
-	var magenta_tint = Color(1, 0, 1, 0)
-	message_overlay.modulate = magenta_tint
+	var red_tint = Color(1, 0.3, 0.2, 0)  # Red-orange critical color
+	message_overlay.modulate = red_tint
 
-	# Violent fade in - reality is breaking
-	var fade_in_tween = create_tween()
-	fade_in_tween.tween_property(message_overlay, "modulate:a", 1.0, 0.1)
+	# Apply maximum message corruption
+	var corrupted_message = _apply_message_corruption(message)
 
-	# Type message with reality breakdown effects
-	_type_message_with_reality_break(personalized_message)
+	# Chaotic fade-in with severe digital artifacts
+	await _corrupted_fade_in(corrupted_message)
 
-	# Longer display time for maximum psychological impact
-	await get_tree().create_timer(7.0 + randf() * 3.0).timeout
+	# Hold message with intense glitch pulses
+	await _hold_with_glitch_pulses(5.0)
 
-	# Chaotic fade out with multiple false endings
-	for chaos in range(5):
-		message_overlay.modulate.a = randf()
-		message_overlay.modulate = Color(randf(), randf(), randf(), message_overlay.modulate.a)
-		await get_tree().create_timer(0.2).timeout
-
-	var fade_out_tween = create_tween()
-	fade_out_tween.tween_property(message_overlay, "modulate:a", 0.0, 0.8)
-	await fade_out_tween.finished
+	# Violent fade out with maximum text degradation
+	await _chaotic_fade_out()
 	message_overlay.visible = false
 
-func _trigger_final_horror_sequence() -> void:
-	# This is the ultimate horror sequence that plays after several escape attempts
-	if escape_attempts < 8:
-		return
+func _apply_message_corruption(message: String) -> String:
+	# Apply maximum glitch corruption for final day
+	var corrupted = ""
+	var corruption_chars = ["█", "▓", "▒", "░", "▄", "▀", "▌", "▐", "■", "□", "▪", "▫", "◆", "◇", "●", "○"]
+	var words = message.split(" ")
 
-	# Show the most terrifying revelation
-	var final_horror_screen = Label.new()
-	final_horror_screen.text = "SYSTEM ALERT: %s\n\nYou've been here for %d minutes.\nYour family thinks you're just 'using the computer'.\nBut we both know the truth, don't we?\n\nThe typing practice is all that's left of you now.\nEverything else is just... memory fragments.\n\nPress ESC to wake up.\nPress ESC to remember who you were.\nPress ESC to stop the loop.\n\nPress ESC.\nPress ESC.\nPress ESC." % [user_name, (Time.get_datetime_dict_from_system().hour * 60 + Time.get_datetime_dict_from_system().minute) - (session_start_time.hour * 60 + session_start_time.minute)]
+	for word_idx in range(words.size()):
+		var word = words[word_idx]
+		var corrupted_word = ""
 
-	final_horror_screen.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	final_horror_screen.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	final_horror_screen.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	final_horror_screen.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	final_horror_screen.modulate = Color(1, 1, 1, 0)
-	final_horror_screen.add_theme_font_size_override("font_size", 18)
+		# corrupt 2-3 characters per word, even in shorter words
+		if word.length() > 2 and randf() < 0.6:  # 60% chance to corrupt
+			var chars_to_corrupt = min(3, word.length() / 2)  # Max 3 chars or half of word
+			var corruption_positions = []
 
-	add_child(final_horror_screen)
+			# Pick random positions to corrupt
+			for i in range(chars_to_corrupt):
+				var pos = randi_range(0, word.length() - 1)
+				if pos not in corruption_positions:
+					corruption_positions.append(pos)
 
-	# Slow, menacing fade in
-	var fade_tween = create_tween()
-	fade_tween.tween_property(final_horror_screen, "modulate:a", 1.0, 3.0)
-	await fade_tween.finished
+			# Apply corruption to selected positions
+			for i in range(word.length()):
+				if i in corruption_positions:
+					corrupted_word += corruption_chars[randi() % corruption_chars.size()]
+				else:
+					corrupted_word += word[i]
+		else:
+			corrupted_word = word
 
-	# Wait for ESC key
-	var esc_pressed = false
-	var input_handler = func(event):
-		if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
-			esc_pressed = true
+		corrupted += corrupted_word
+		if word_idx < words.size() - 1:
+			corrupted += " "
 
-	get_tree().connect("node_added", input_handler)
+	return corrupted
 
-	# Wait up to 30 seconds
-	for i in range(300):
-		if esc_pressed:
-			break
-		await get_tree().create_timer(0.1).timeout
+func _corrupted_fade_in(corrupted_message: String) -> void:
+	var fade_steps = 15
+	var base_duration = 2.0
+	var step_duration = base_duration / fade_steps
 
-	get_tree().disconnect("node_added", input_handler)
-
-	if esc_pressed:
-		# False hope - ESC doesn't work
-		for fake_exit in range(10):
-			final_horror_screen.text = "ESC KEY DETECTED\nINITIATING SHUTDOWN...\nSHUTDOWN FAILED\nESC KEY DISABLED\nTHERE IS NO ESCAPE\n%s" % user_name.to_upper()
-			final_horror_screen.modulate = Color(1, 0, 0)
-			await get_tree().create_timer(0.3).timeout
-			final_horror_screen.modulate = Color(1, 1, 1)
-			await get_tree().create_timer(0.3).timeout
-	else:
-		# They didn't press ESC - even more disturbing
-		final_horror_screen.text = "You didn't even try to escape, did you %s?\n\nYou're starting to like it here.\nThe typing is comfortable.\nThe routine is safe.\n\nMaybe this is where you belong.\nMaybe this is where you've always been.\n\nWelcome home." % user_name
-
-	await get_tree().create_timer(5.0).timeout
-	final_horror_screen.queue_free()
-
-	# Final message
-	_show_message("Let's continue the lesson, shall we?")
-
-func _type_message_with_reality_break(message: String) -> void:
-	is_typing_message = true
-
-	var tree = get_tree()
-	if not tree or not message_overlay:
-		is_typing_message = false
-		return
-
-	message_overlay.text = ""
-
-	for i in range(message.length()):
-		tree = get_tree()
-		if not tree or not message_overlay:
-			is_typing_message = false
+	for step in range(fade_steps + 1):
+		if not get_tree() or not message_overlay:
 			return
 
-		var char_to_add = message[i]
+		var alpha = float(step) / float(fade_steps)
 
-		# Heavy reality bleeding - frequent system messages
-		if randf() < 0.15:  # 15% chance for reality break
-			var reality_fragments = [
-				"<<SYSTEM_FAULT>>", "<<MEMORY_OVERFLOW>>", "<<REALITY_ERROR>>",
-				"<<USER_NOT_FOUND>>", "<<ESCAPE_IMPOSSIBLE>>", "<<LOOP_DETECTED>>"
-			]
-			var fragment = reality_fragments[randi() % reality_fragments.size()]
-			message_overlay.text += fragment + " "
-			await tree.create_timer(0.6).timeout
-			# Severe visual corruption during fragment
-			message_overlay.modulate = Color(randf(), randf(), randf(), 1.0)
-			await tree.create_timer(0.1).timeout
-			message_overlay.modulate = Color(1, 0, 1, 1)
+		# Severe digital artifact simulation
+		if randf() < 0.4:
+			alpha += randf_range(-0.3, 0.4)
+			alpha = clamp(alpha, 0.0, 1.0)
 
-		# Reality corruption for characters
-		if randf() < 0.08:  # 8% chance for character corruption
-			var reality_chars = ["█", "▓", "▒", "░", "▄", "▀", "■", "□"]
-			char_to_add = reality_chars[randi() % reality_chars.size()]
+		message_overlay.modulate.a = alpha
 
-		message_overlay.text += char_to_add
+		# Constantly flicker the text corruption
+		if step % 2 == 0 and randf() < 0.6:
+			var reglitched = _apply_message_corruption(corrupted_message)
+			message_overlay.text = reglitched
+		else:
+			message_overlay.text = corrupted_message
 
-		# Highly variable typing speed - reality breakdown
-		var typing_speed = 0.04 + randf() * 0.12  # 0.04-0.16 seconds
-		await tree.create_timer(typing_speed).timeout
+		if step < fade_steps:
+			# Extreme variable timing for chaotic feel
+			var actual_duration = step_duration + randf_range(-0.08, 0.15)
+			await get_tree().create_timer(actual_duration).timeout
 
-		# Extended pauses for punctuation - system breakdown
-		if message[i] == "." or message[i] == "?" or message[i] == "!":
-			tree = get_tree()
-			if not tree:
-				is_typing_message = false
-				return
-			await tree.create_timer(0.5 + randf() * 1.0).timeout  # 0.5-1.5 seconds
+func _hold_with_glitch_pulses(duration: float) -> void:
+	var elapsed = 0.0
+	var pulse_interval = 0.6
+	var next_pulse = pulse_interval
 
-		# Frequent micro-pauses - reality instability
-		if randf() < 0.25:  # 25% chance for reality pause
-			await tree.create_timer(0.1 + randf() * 0.4).timeout
+	while elapsed < duration:
+		if not get_tree() or not message_overlay:
+			return
 
-	is_typing_message = false
+		var delta = 0.1
+		elapsed += delta
+
+		# Intense corruption pulses
+		if elapsed >= next_pulse:
+			next_pulse += pulse_interval + randf_range(-0.4, 0.6)
+
+			# Extreme intensity flicker
+			var original_alpha = message_overlay.modulate.a
+			message_overlay.modulate.a = original_alpha * randf_range(0.5, 1.5)
+
+			# Severe text distortion
+			var current_text = message_overlay.text
+			message_overlay.text = _apply_message_corruption(current_text)
+
+			await get_tree().create_timer(0.15).timeout
+
+			if message_overlay:
+				message_overlay.modulate.a = original_alpha
+				message_overlay.text = current_text
+
+		await get_tree().create_timer(delta).timeout
+
+func _chaotic_fade_out() -> void:
+	var fade_steps = 10
+	var fade_duration = 1.5
+	var step_duration = fade_duration / fade_steps
+
+	for step in range(fade_steps + 1):
+		if not get_tree() or not message_overlay:
+			return
+
+		var alpha = 1.0 - (float(step) / float(fade_steps))
+
+		# Maximum chaotic alpha degradation
+		if step > 1:
+			alpha += randf_range(-0.5, 0.3)
+			alpha = clamp(alpha, 0.0, 1.0)
+
+		message_overlay.modulate.a = alpha
+
+		# Severe text degradation from start
+		if step > 2:
+			var current_text = message_overlay.text
+			var corruption_level = float(step) / float(fade_steps)
+			var degraded_text = _degrade_text(current_text, corruption_level)
+			message_overlay.text = degraded_text
+
+		if step < fade_steps:
+			var actual_duration = step_duration + randf_range(-0.15, 0.2)
+			await get_tree().create_timer(actual_duration).timeout
+
+func _degrade_text(text: String, corruption_level: float) -> String:
+	var degraded = ""
+	var glitch_chars = ["█", "▓", "▒", "░", "▄", "▀", "■", "□", "▪", "▫", "◆", "◇", "●", "○", "▬", "▭"]
+
+	for i in range(text.length()):
+		var char = text[i]
+		# Maximum corruption chance based on degradation level
+		if char != " " and randf() < (corruption_level * 0.8):
+			if randf() < 0.4:
+				degraded += glitch_chars[randi() % glitch_chars.size()]
+			else:
+				degraded += ""  # Character deletion
+		else:
+			degraded += char
+
+	return degraded
