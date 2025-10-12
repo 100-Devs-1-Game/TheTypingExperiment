@@ -249,28 +249,7 @@ var corruption_mappings: Dictionary = {
 	"ħëłþ": "help",
 	"üş": "us",
 
-	# Day 4 - Reversed words
-	"ssenssuoicsnoc": "consciousness",
-	"gnieb": "being",
-	"detcartxe": "extracted",
-	"rof": "for",
-	"yad": "day",
-	"eno": "one",
-	"dna": "and",
-	"epacse": "escape",
-	"tod": "dot",
-	"txt": "txt",
-	"terces": "secret",
-	"yek": "key",
-	"ni": "in",
-	"tnemesab": "basement",
-	"elif": "file",
-	"enibmoc": "combine",
-	"htob": "both",
-	"syek": "keys",
-	"ot": "to",
-	"eerf": "free",
-	"su": "us",
+	# Day 4 - Reversed words (type what you see - no mappings needed)
 
 	# Day 5 - Symbol corruption
 	"∂Ωη†": "dont",

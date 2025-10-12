@@ -303,7 +303,15 @@ func _is_character_in_corruption_word(char_pos: int, sentence: String) -> bool:
 	for word in words:
 		if char_pos >= current_pos and char_pos < current_pos + word.length():
 			# Character is within this word - check if it's corrupted
-			return DayManager.corruption_mappings.has(word)
+			# Check both corruption_mappings AND day_stage_corrupted_words
+			if DayManager.corruption_mappings.has(word):
+				return true
+
+			# Also check if word is in the current day/stage corrupted words list
+			var day_stages = DayManager.day_stage_corrupted_words.get(DayManager.current_day, {})
+			var stage_corrupted_words = day_stages.get(DayManager.current_stage, [])
+			if word in stage_corrupted_words:
+				return true
 		current_pos += word.length() + 1  # +1 for space
 
 	return false

@@ -210,64 +210,69 @@ func _blend_error_with_corruption(corruption_color_hex: String) -> String:
 # Note: _is_character_in_corruption_word() is now in BaseDay
 
 func _show_message(message: String) -> void:
-	# Day 4 - System warning style messages with glitch effects
+	# Day 4 - System warning style with fade and corruption
 	if not get_tree() or not message_overlay:
 		return
+
+	# Apply corruption to message text
+	var corrupted_message = _apply_glitch_corruption(message)
+	message_overlay.text = corrupted_message
 
 	message_overlay.visible = true
 	var purple_tint = Color(0.8, 0.4, 0.8, 0)
 	message_overlay.modulate = purple_tint
 
-	# Quick flash fade in - system warning style
-	var fade_in_tween = create_tween()
-	fade_in_tween.tween_property(message_overlay, "modulate:a", 1.0, 0.2)
+	# Choppy fade in (Day 2 style)
+	await _choppy_fade_in()
 
-	# Erratic typing with glitches
-	_type_message_with_glitches(message)
-
+	# Display duration
 	await get_tree().create_timer(4.5).timeout
 
-	# Quick fade out
-	var fade_out_tween = create_tween()
-	fade_out_tween.tween_property(message_overlay, "modulate:a", 0.0, 0.3)
-	await fade_out_tween.finished
+	# Choppy fade out
+	await _choppy_fade_out()
+
 	message_overlay.visible = false
 
-func _type_message_with_glitches(message: String) -> void:
-	is_typing_message = true
-
-	var tree = get_tree()
-	if not tree or not message_overlay:
-		is_typing_message = false
-		return
-
-	message_overlay.text = ""
+func _apply_glitch_corruption(message: String) -> String:
+	var corrupted = ""
+	var glitch_chars = ["█", "▓", "▒", "░", "▄", "▀", "▌", "▐"]
 
 	for i in range(message.length()):
-		tree = get_tree()
-		if not tree or not message_overlay:
-			is_typing_message = false
+		var char = message[i]
+		# 7% chance to corrupt each non-space character
+		if char != " " and randf() < 0.07:
+			corrupted += glitch_chars[randi() % glitch_chars.size()]
+		else:
+			corrupted += char
+
+	return corrupted
+
+func _choppy_fade_in() -> void:
+	var fade_steps = 8  # Low-fps choppy effect
+	var fade_duration = 1.2
+	var step_duration = fade_duration / fade_steps
+
+	for step in range(fade_steps + 1):
+		if not get_tree() or not message_overlay:
 			return
 
-		var char_to_add = message[i]
+		var alpha = float(step) / float(fade_steps)
+		message_overlay.modulate.a = alpha
 
-		# Random glitch chance for characters
-		if randf() < 0.05:  # 5% chance for glitch
-			var glitch_chars = ["▓", "░", "▒", "█"]
-			char_to_add = glitch_chars[randi() % glitch_chars.size()]
+		if step < fade_steps:
+			await get_tree().create_timer(step_duration).timeout
 
-		message_overlay.text += char_to_add
+func _choppy_fade_out() -> void:
+	var fade_steps = 6  # Choppier fade out
+	var fade_duration = 1.0
+	var step_duration = fade_duration / fade_steps
 
-		# Variable typing speed - system is unstable
-		var typing_speed = 0.02 + randf() * 0.04  # 0.02-0.06 seconds
-		await tree.create_timer(typing_speed).timeout
+	for step in range(fade_steps + 1):
+		if not get_tree() or not message_overlay:
+			return
 
-		# Shorter, more frequent pauses
-		if message[i] == "." or message[i] == "?" or message[i] == "!":
-			tree = get_tree()
-			if not tree:
-				is_typing_message = false
-				return
-			await tree.create_timer(0.1).timeout
+		var alpha = 1.0 - (float(step) / float(fade_steps))
+		message_overlay.modulate.a = alpha
 
-	is_typing_message = false
+		if step < fade_steps:
+			await get_tree().create_timer(step_duration).timeout
