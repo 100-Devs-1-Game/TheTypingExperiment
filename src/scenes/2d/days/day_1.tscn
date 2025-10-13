@@ -71,11 +71,6 @@ text = "WPM: 0"
 [node name="HeaderButtons" type="HBoxContainer" parent="MainContainer/HeaderContainer"]
 layout_mode = 2
 
-[node name="RestartButton" type="Button" parent="MainContainer/HeaderContainer/HeaderButtons"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Restart"
-
 [node name="Spacer1" type="Control" parent="MainContainer"]
 layout_mode = 2
 size_flags_vertical = 3

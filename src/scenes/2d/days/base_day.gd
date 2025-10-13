@@ -18,7 +18,6 @@ signal day_end_screen_requested()
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var day_stage_label: Label = %DayStageLabel
 @onready var progress_label: Label = %ProgressLabel
-@onready var restart_button: Button = %RestartButton
 @onready var message_overlay: Label = %MessageOverlay
 
 # Typing state (identical across all days)
@@ -81,7 +80,6 @@ func _initialize_day() -> void:
 		#cursor_blinker.stop()
 
 func _setup_connections() -> void:
-	restart_button.pressed.connect(_restart_stage)
 	invisible_input.text_changed.connect(_on_text_changed)
 	invisible_input.gui_input.connect(_on_gui_input)
 
@@ -335,8 +333,6 @@ func _complete_stage() -> void:
 	if DayManager.current_stage <= DayManager.stages_per_day:
 		_start_new_stage()
 
-func _restart_stage() -> void:
-	_start_new_stage()
 
 func _on_message_ready(message: String, message_type: String) -> void:
 	# Wait for any previous message to finish typing before starting new one
