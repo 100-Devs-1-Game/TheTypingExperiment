@@ -169,31 +169,10 @@ func _show_keypad_instruction() -> void:
 
 
 func _advance_to_next_day() -> void:
-	var next_day = current_day + 1
-
-	# Transition to next day scene
-	match next_day:
-		2:
-			get_tree().change_scene_to_file("res://scenes/2d/days/day_2.tscn")
-		3:
-			get_tree().change_scene_to_file("res://scenes/2d/days/day_3.tscn")
-		4:
-			get_tree().change_scene_to_file("res://scenes/2d/days/day_4.tscn")
-		5:
-			get_tree().change_scene_to_file("res://scenes/2d/days/day_5.tscn")
-		_:
-			# Day 5 complete - show game completion
-			_handle_game_completion()
-
-func _handle_game_completion() -> void:
-	# Game complete - show final screen or return to menu
-
-	# Could transition to:
-	# - Credits scene
-	# - Main menu with "Game Complete" status
-	# - Ending cutscene
-	# For now, return to startup
-	get_tree().change_scene_to_file("res://src/scenes/2d/startup/StartupScreen.tscn")
+	# NOTE: Day advancement is handled by the 3D environment
+	# Player must physically move to the next PC station
+	# This screen just shows the completion and access code
+	pass
 
 func _restart_day() -> void:
 	print("[DayEndScreen] Restarting Day %d" % current_day)
@@ -201,15 +180,18 @@ func _restart_day() -> void:
 	# Reset stage performance for retry
 	StatsManager.reset_stage_performance()
 
-	# Restart the current day
-	match current_day:
-		1:
-			get_tree().change_scene_to_file("res://scenes/2d/days/day_1.tscn")
-		2:
-			get_tree().change_scene_to_file("res://scenes/2d/days/day_2.tscn")
-		3:
-			get_tree().change_scene_to_file("res://scenes/2d/days/day_3.tscn")
-		4:
-			get_tree().change_scene_to_file("res://scenes/2d/days/day_4.tscn")
-		5:
-			get_tree().change_scene_to_file("res://scenes/2d/days/day_5.tscn")
+	# Find the PCController by looking up the tree to SubViewport
+	var viewport = get_viewport()
+	if viewport is SubViewport:
+		var pc_controller = viewport.get_parent()
+		if pc_controller and pc_controller.has_method("_load_day_content"):
+			# Clear current screen
+			for child in viewport.get_children():
+				child.queue_free()
+
+			# Reload day content through PCController
+			pc_controller._load_day_content()
+		else:
+			push_error("[DayEndScreen] Could not find PCController to restart day")
+	else:
+		push_error("[DayEndScreen] Not running in SubViewport")

@@ -365,13 +365,21 @@ func _show_message(message: String) -> void:
 func _on_day_completed(day_number: int) -> void:
 	if day_number == DAY_NUMBER:
 		day_completed.emit()
-		# Request day end screen (let 3D environment handle it)
 		await get_tree().create_timer(2.0).timeout
-		day_end_screen_requested.emit()
+
+		# Day 5: Go to game over screen (full scene change)
+		if day_number == 5:
+			get_tree().change_scene_to_file("res://scenes/2d/game_over/game_over_screen.tscn")
+		else:
+			# Other days: Request day end screen (let 3D environment handle it)
+			day_end_screen_requested.emit()
 
 func _on_real_time_stats_updated(wmp: float, accuracy: float) -> void:
 	wmp_label.text = "WPM: %.1f" % wmp
 	accuracy_label.text = "Accuracy: %.1f%%" % accuracy
+
+	# Update StatsManager with current stats
+	StatsManager.update_stats(wmp, accuracy)
 
 	var progress: float = 0.0
 	if practice_text.length() > 0:
