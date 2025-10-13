@@ -42,11 +42,11 @@ var day_stage_corrupted_words: Dictionary = {
 		1: [], 2: [], 3: [], 4: [], 5: []  # Day 1 has no corruption
 	},
 	2: {
-		1: ["SOMETHING", "WRONG", "WITH", "THIS"],
+		1: ["SOMETHING", "WRONG", "WITH", "SYSTEM"],
 		2: ["FEELS", "DIFFERENT", "TODAY"],
 		3: ["NOT", "ALONE", "IN", "HERE"],
-		4: ["THEY", "WATCH", "EVERYTHING"],
-		5: ["LETTERS", "CHANGING", "BY", "THEMSELVES"]
+		4: ["EVENTS", "REPEAT", "ENDLESSLY"],
+		5: ["PAST", "INFLUENCES", "PRESENT", "SECRETLY"]
 	},
 	3: {
 		1: ["ţŕąþþëԁ", "ïń", "çøğńïţïṿë", "ԁÿńąɱïçş", "ƒąçïłïţÿ"],
@@ -57,17 +57,17 @@ var day_stage_corrupted_words: Dictionary = {
 	},
 	4: {
 		1: ["ssenssuoicsnoc", "gnieb", "detcartxe"],
-		2: ["rof", "yad", "eno", "dna"],
-		3: ["epacse", "tod", "txt", "terces"],
-		4: ["yek", "ni", "tnemesab", "elif"],
-		5: ["enibmoc", "htob", "syek", "ot", "eerf", "su"]
+		2: ["retne", "tcerroc", "dapyek", "yek"],
+		3: ["uoy", "lliw ", "eb", "kcuts"],
+		4: ["etinifedni", "etinifni", "lanrete"],
+		5: ["uoy", "tonnac", "pots"]
 	},
 	5: {
-		1: ["∂Ωη†", "¢Ωµπλ€†€", "†ℏ¡§"],
-		2: ["λ€§§Ωη", "Ω®", "¥Ωυ", "ω¡λλ"],
-		3: ["∂¡€", "∀η∂", "§†∀¥", "†®∀ππ€∂"],
-		4: ["ƒΩ®€√€®", "¡η", "¢Ωµß¡η€", "Ω®¡¶¡η∀λ"],
-		5: ["§€¢®€†", "κ€¥§", "†Ω", "€§¢∀π€", "ƒ®€€", "υ§"]
+		1: ["∂Ωη†", "¢Ωµπλ€†€", "†ℏ¡§", "λ€§§Ωη"],
+		2: ["¥Ωυ", "ω¡λλ", "∂¡€"],
+		3: ["∀ω∀®€η€§§", "¡§", "ƒ®∀gµ€η†€∂", "ƒΩ®€√€®"],
+		4: ["¢®¡†¡¢∀λ", "λ€§§Ωη", "¡η¢Ωµπλ€†€"],
+		5: ["ƒ¡η∀λ", "§€qu€η¢€", "¡η¡†¡∀†€∂"]
 	}
 }
 
@@ -104,16 +104,15 @@ var day_data: Dictionary = {
 			"Unable to clear cache from prior user, previous user session still active"
 		],
 		"progress_messages": [
-			"why does the text feel different today?",
+			"Warning: Unable to verify text authenticity",
 			"the practice sessions are lasting longer than scheduled"
 		],
 		"encouragement_messages": [
-			"Cognitive Dynamics values your... continued participation",
-			"improvement metrics show... interesting patterns"
+			"Cognitive Dynamics appreciates your unwavering repetition",
+			"Improvement metrics no longer align with human learning models..."
 		],
 		"day_end_messages": [
 			"Lesson 2 complete. Data backup initiated... some files corrupted",
-			"tomorrow's session has been... modified"
 		],
 		"stage_sentences": [
 			"the quick brown fox SOMETHING jumps over WRONG the lazy WITH dog THIS",
@@ -127,20 +126,19 @@ var day_data: Dictionary = {
 	3: {
 		"opening_messages": [
 			"Data backup initiated... some files corrupted",
-			"Warning: neural pattern anomalies detected"
+			"secret key… same as… year of creation"
 		],
 		"progress_messages": [
-			"dont trust the corporate messages",
-			"the typing practice maps our thoughts - that's what it's really for"
+			"Alerts may be deceptive — ignore at your own risk.",
+			"the interface isn’t teaching — it’s absorbing"
 		],
 		"encouragement_messages": [
 			"neural pathway mapping at 47% completion",
-			"there's a way out - look for the secret key",
+			"Warning: neural pattern anomalies detected",
 			"brain-computer interface calibration in progress"
 		],
 		"day_end_messages": [
-			"Lesson 3 complete. WARNING: consciousness drift detected",
-			"tomorrow's session has been... permanently altered"
+			"Lesson 3 complete. Warning: consciousness drift detected",
 		],
 		"stage_sentences": [
 			"the quick ţŕąþþëԁ brown fox ïń jumps çøğńïţïṿë over the ԁÿńąɱïçş lazy ƒąçïłïţÿ dog",
@@ -157,17 +155,15 @@ var day_data: Dictionary = {
 			"Previous user session has been active for 847 days"
 		],
 		"progress_messages": [
-			"they're harvesting our consciousness for processing power",
-			"I found a way out but need the original key + secret key"
+			"Our consciousness is being partitioned into parallel minds.",
+			"Type the secret code into the keypad, failure is certain otherwise."
 		],
 		"encouragement_messages": [
-			"Cognitive Dynamics... ERROR: message corrupted",
+			"they're harvesting our consciousness for processing power",
 			"neural extraction at 78% completion",
-			"secret key generated - file: escape.txt"
 		],
 		"day_end_messages": [
-			"final session tomorrow - extraction will be complete",
-			"This isn't really a game, is it"
+			"Lesson 4 complete. tomorrow's final session has been... permanently altered"
 		],
 		"stage_sentences": [
 			"pack my ssenssuoicsnoc box with gnieb five dozen detcartxe liquor jugs rof slowly",
@@ -184,16 +180,14 @@ var day_data: Dictionary = {
 			"WARNING: Software behavior is no longer predictable"
 		],
 		"progress_messages": [
-			"if you're reading this, use the original key with my secret key",
+			"If this message appears, the secret key was not entered on keypad three...",
 			"the facility has been abandoned"
 		],
 		"encouragement_messages": [
-			"neural pattern backup corrupted - subject may retain memories",
-			"combine both keys to break the neural lock"
+			"neural pattern backup corrupted - subject may retain awareness during extraction",
+			"CRITICAL: failed to reset behavioral loops"
 		],
 		"day_end_messages": [
-			"CRITICAL: Lesson 5 completion will finalize extraction",
-			"STOP TYPING NOW - FIND THE KEYS - ESCAPE WHILE YOU CAN",
 			"The previous user session has ended"
 		],
 		"stage_sentences": [
@@ -220,6 +214,7 @@ var corruption_mappings: Dictionary = {
 	"NOT": "not",
 	"ALONE": "alone",
 	"IN": "in",
+	"HERE": "here",
 	"THEY": "they",
 	"WATCH": "watch",
 	"EVERYTHING": "everything",
@@ -256,23 +251,19 @@ var corruption_mappings: Dictionary = {
 	"¢Ωµπλ€†€": "complete",
 	"†ℏ¡§": "this",
 	"λ€§§Ωη": "lesson",
-	"Ω®": "or",
 	"¥Ωυ": "you",
 	"ω¡λλ": "will",
 	"∂¡€": "die",
 	"∀η∂": "and",
-	"§†∀¥": "stay",
-	"†®∀ππ€∂": "trapped",
+	"∀ω∀®€η€§§": "awareness",
+	"¡§": "is",
+	"ƒ®∀gµ€η†€∂": "fragmented",
 	"ƒΩ®€√€®": "forever",
-	"¡η": "in",
-	"¢Ωµß¡η€": "combine",
-	"Ω®¡¶¡η∀λ": "original",
-	"§€¢®€†": "secret",
-	"κ€¥§": "keys",
-	"†Ω": "to",
-	"€§¢∀π€": "escape",
-	"ƒ®€€": "free",
-	"υ§": "us"
+	"¢®¡†¡¢∀λ": "critical",
+	"¡η¢Ωµπλ€†€": "incomplete",
+	"ƒ¡η∀λ": "final",
+	"§€qu€η¢€": "sequence",
+	"¡η¡†¡∀†€∂": "initiated",
 }
 
 # Message tracking
