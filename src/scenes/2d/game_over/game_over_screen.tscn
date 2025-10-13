@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dicwlnmirtug5"]
 
-[ext_resource type="Script" uid="uid://dcigkone7oj2b" path="res://scenes/2d/game_over/game_over_variant_5.gd" id="1_3cxga"]
+[ext_resource type="Script" uid="uid://dcigkone7oj2b" path="res://scenes/2d/game_over/game_over_screen.gd" id="1_jw4iv"]
 
 [sub_resource type="SystemFont" id="SystemFont_v2"]
 font_names = PackedStringArray("Courier New")
@@ -20,7 +20,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_v2")
-script = ExtResource("1_3cxga")
+script = ExtResource("1_jw4iv")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
