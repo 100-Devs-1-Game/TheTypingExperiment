@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5k8v3m2qaqr1"]
+[gd_scene load_steps=4 format=3 uid="uid://pvllf0i7j70k"]
 
-[ext_resource type="Script" path="res://scenes/2d/startup/startup_screen_day_1.gd" id="1_day1"]
+[ext_resource type="Script" uid="uid://bjeg6i2ia1alt" path="res://scenes/2d/startup/startup_screen_day_1.gd" id="1_day1"]
 
 [sub_resource type="SystemFont" id="SystemFont_fy30w"]
 font_names = PackedStringArray("Courier New")

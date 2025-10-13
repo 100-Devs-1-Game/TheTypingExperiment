@@ -64,6 +64,7 @@ size_flags_vertical = 3
 [node name="DayCompleteMessage" type="Label" parent="MainContainer/MessageContainer"]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(530, 0)
 layout_mode = 2
 text = "Day message placeholder"
 horizontal_alignment = 1
@@ -76,19 +77,19 @@ layout_mode = 2
 text = "Elevator message placeholder"
 horizontal_alignment = 1
 
-[node name="KeypadInstruction" type="Label" parent="MainContainer/MessageContainer"]
-unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-text = "Keypad instruction placeholder"
-horizontal_alignment = 1
-
 [node name="KeypadCode" type="Label" parent="MainContainer/MessageContainer"]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Code placeholder"
+horizontal_alignment = 1
+
+[node name="KeypadInstruction" type="Label" parent="MainContainer/MessageContainer"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+text = "Keypad instruction placeholder"
 horizontal_alignment = 1
 
 [node name="Spacer3" type="Control" parent="MainContainer"]

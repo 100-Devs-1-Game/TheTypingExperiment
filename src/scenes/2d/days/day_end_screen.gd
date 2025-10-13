@@ -123,22 +123,22 @@ func _show_day_1_message() -> void:
 	message_tween.tween_property(elevator_message, "modulate:a", 1.0, 1.0)
 
 func _show_keypad_interface() -> void:
-	# Set and animate keypad instruction first
-	keypad_instruction.text = "Find the keypad to proceed..."
-
-	var instruction_tween = create_tween()
-	instruction_tween.tween_property(keypad_instruction, "modulate:a", 1.0, 1.0)
-	instruction_tween.tween_interval(1.0)
-
-	# Then show code after delay
-	instruction_tween.tween_callback(_show_keypad_code)
-
-func _show_keypad_code() -> void:
-	# Set and animate keypad code
+	# Set and animate keypad code first
 	keypad_code.text = "ACCESS CODE: %s" % required_code
 
 	var code_tween = create_tween()
 	code_tween.tween_property(keypad_code, "modulate:a", 1.0, 1.0)
+	code_tween.tween_interval(1.0)
+
+	# Then show instruction after delay
+	code_tween.tween_callback(_show_keypad_instruction)
+
+func _show_keypad_instruction() -> void:
+	# Set and animate keypad instruction
+	keypad_instruction.text = "Find the keypad to proceed..."
+
+	var instruction_tween = create_tween()
+	instruction_tween.tween_property(keypad_instruction, "modulate:a", 1.0, 1.0)
 
 
 func _advance_to_next_day() -> void:
