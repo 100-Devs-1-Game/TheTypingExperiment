@@ -16,7 +16,7 @@ enum MessageType {
 }
 
 # Current progression state
-var current_day: int = 5
+var current_day: int = 1
 var current_stage: int = 1
 var stages_per_day: int = 5
 var total_days: int = 5
@@ -100,8 +100,8 @@ var day_data: Dictionary = {
 	},
 	2: {
 		"opening_messages": [
-			"Loading lesson 2... Error in user database detected... Continuing...",
-			"Unable to clear cache from prior user, previous user session still active"
+			"Loading lesson 2... Error in user database detected...",
+			"Unable to clear cache, previous user session still active"
 		],
 		"progress_messages": [
 			"Warning: Unable to verify text authenticity",
