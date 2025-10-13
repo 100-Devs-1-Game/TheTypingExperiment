@@ -16,7 +16,7 @@ enum MessageType {
 }
 
 # Current progression state
-var current_day: int = 1
+var current_day: int = 5
 var current_stage: int = 1
 var stages_per_day: int = 5
 var total_days: int = 5

@@ -161,6 +161,7 @@ func _show_keypad_interface() -> void:
 	code_label.text = "ACCESS CODE: %s" % required_code
 	code_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	code_label.modulate.a = 0.0
+	code_label.add_theme_font_size_override("font_size", 48)
 
 	# Apply day-specific color
 	match current_day:
