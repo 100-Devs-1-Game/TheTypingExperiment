@@ -1,4 +1,8 @@
+class_name BaseStartupScreen
 extends Control
+
+## Base class for all day-specific startup screens
+## Contains common startup sequence logic and UI references
 
 @onready var status_label: Label = $CenterContainer/VBoxContainer/StatusLabel
 @onready var progress_bar: ProgressBar = $CenterContainer/VBoxContainer/ProgressBar
@@ -7,6 +11,7 @@ extends Control
 @onready var message2: Label = $CenterContainer/VBoxContainer/Message2
 @onready var copyright_label: Label = $CenterContainer/VBoxContainer/Copyright
 
+# Base startup messages (can be overridden by child classes)
 var startup_messages = [
 	"Initializing keyboard drivers...",
 	"Loading word databases...",
@@ -21,11 +26,25 @@ var startup_timer: Timer
 
 signal startup_complete
 
+# Day-specific data (must be set by child classes)
+var DAY_NUMBER: int = 1
+
 func _ready():
-	setup_retro_theme()
+	_load_day_messages()
+	_setup_retro_theme()
+	_apply_day_specific_setup()
 	start_startup_sequence()
 
-func setup_retro_theme():
+## Loads messages from DayManager for this day
+func _load_day_messages() -> void:
+	if DayManager.day_data.has(DAY_NUMBER):
+		var day_info = DayManager.day_data[DAY_NUMBER]
+		if day_info.has("opening_messages") and day_info.opening_messages.size() >= 2:
+			message1.text = day_info.opening_messages[0]
+			message2.text = day_info.opening_messages[1]
+
+## VIRTUAL - Override in child classes for day-specific theme
+func _setup_retro_theme():
 	var green_color = Color(0, 1, 0)
 	var amber_color = Color(1, 0.8, 0)
 
@@ -34,8 +53,11 @@ func setup_retro_theme():
 	message2.modulate = amber_color
 	status_label.modulate = green_color
 	copyright_label.modulate = Color(0, 0.7, 0)
-
 	progress_bar.modulate = green_color
+
+## VIRTUAL - Override in child classes for day-specific setup
+func _apply_day_specific_setup() -> void:
+	pass
 
 func start_startup_sequence():
 	startup_timer = Timer.new()
@@ -47,7 +69,9 @@ func start_startup_sequence():
 
 func _update_startup_progress():
 	if current_message_index < startup_messages.size():
-		status_label.text = startup_messages[current_message_index]
+		# Get the message (may be corrupted by child class)
+		var message = _get_corrupted_message(startup_messages[current_message_index])
+		status_label.text = message
 		progress_bar.value = (float(current_message_index) / float(startup_messages.size())) * 100.0
 
 		current_message_index += 1
@@ -60,6 +84,10 @@ func _update_startup_progress():
 		startup_timer.start()
 	else:
 		complete_startup()
+
+## VIRTUAL - Override in child classes to apply message corruption
+func _get_corrupted_message(message: String) -> String:
+	return message
 
 func complete_startup():
 	status_label.text = "Ready."

@@ -2069,14 +2069,14 @@ light_energy = 6.818
 
 [node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Lighting"]
 transform = Transform3D(-0.0458512, 0, -0.998948, 0, 1, 0, 0.998948, 0, -0.0458512, -3.45189, 1.45133, 3.57663)
-light_color = Color(0.111624, 0.593428, 0.364727, 1)
+light_color = Color(0.8156863, 0.32941177, 0, 1)
 light_energy = 15.507
 spot_range = 1.319
 spot_angle = 60.3334
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Lighting"]
 transform = Transform3D(0.0628318, -0.963719, 0.259418, 0.226856, 0.266919, 0.936638, -0.971899, -2.68305e-08, 0.235397, -2.8049, 1.87388, 3.68745)
-light_color = Color(0.111624, 0.593428, 0.364727, 1)
+light_color = Color(0.81417626, 0.3289082, 3.85046e-07, 1)
 light_energy = 2.367
 spot_range = 1.319
 spot_angle = 60.3334

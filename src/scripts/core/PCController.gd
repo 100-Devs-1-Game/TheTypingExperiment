@@ -76,11 +76,14 @@ func _initialize_black_screen() -> void:
 	black_screen.set_anchors_preset(Control.PRESET_FULL_RECT)
 	monitor_viewport.add_child(black_screen)
 
-## Loads the startup screen
+## Loads the day-specific startup screen
 func _load_startup_screen() -> void:
-	var startup_scene = load("res://scenes/2d/startup/startup_screen.tscn")
+	# Load day-specific startup screen
+	var startup_scene_path = "res://scenes/2d/startup/startup_screen_day_%d.tscn" % day_number
+	var startup_scene = load(startup_scene_path)
+
 	if not startup_scene:
-		push_error("[PCController] Failed to load startup screen")
+		push_error("[PCController] Failed to load startup screen: %s" % startup_scene_path)
 		_load_day_content()  # Fallback to day content
 		return
 
@@ -92,6 +95,7 @@ func _load_startup_screen() -> void:
 		startup_instance.startup_complete.connect(_on_startup_complete)
 
 	startup_shown = true
+	print("[PCController] Loaded Day %d startup screen" % day_number)
 
 ## Called when startup screen completes
 func _on_startup_complete() -> void:

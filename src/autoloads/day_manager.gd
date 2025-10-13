@@ -310,10 +310,11 @@ func start_day(day_number: int) -> void:
 	# Get day info for messages
 	var day_info = day_data[current_day]
 
-	# Show opening messages
-	if day_info.has("opening_messages"):
-		for message in day_info.opening_messages:
-			queue_message(message, MessageType.OPENING)
+	# NOTE: Opening messages are now shown on the startup screen (handled by startup_screen_day_X.gd)
+	# They are no longer queued here during the day scene initialization
+	# if day_info.has("opening_messages"):
+	# 	for message in day_info.opening_messages:
+	# 		queue_message(message, MessageType.OPENING)
 
 	day_started.emit(current_day)
 
