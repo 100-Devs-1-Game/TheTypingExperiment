@@ -13,13 +13,27 @@ extends Control
 
 var current_day: int = 1
 var required_code: String = ""
+var performance_passed: bool = true
 
 func _ready() -> void:
 	current_day = DayManager.current_day
+	_check_performance()
 	_generate_code()
 	_setup_day_end_screen()
-	_setup_connections()
 	_animate_messages()
+
+func _input(event: InputEvent) -> void:
+	# Allow restart with Space key if performance check failed
+	if not performance_passed and event is InputEventKey:
+		if event.pressed and event.keycode == KEY_SPACE:
+			_restart_day()
+
+func _check_performance() -> void:
+	var summary = StatsManager.get_performance_summary()
+	performance_passed = summary.meets_requirements
+
+	if not performance_passed:
+		print("[DayEndScreen] Performance requirements not met. Avg WPM: %.1f, Avg Accuracy: %.1f%%" % [summary.average_wpm, summary.average_accuracy])
 
 func _setup_connections() -> void:
 	pass  # No button connections needed anymore
@@ -44,16 +58,25 @@ func _generate_code() -> void:
 func _setup_day_end_screen() -> void:
 	var day_info = DayManager.get_current_day_info()
 
-	# Set title
-	title_label.text = "Day %d Complete" % current_day
+	# Set title and message based on performance
+	if performance_passed:
+		title_label.text = "Day %d Complete" % current_day
+		var messages = day_info.get("day_end_messages", [])
+		if messages.size() > 0:
+			day_complete_message.text = messages[0]
+	else:
+		title_label.text = "Performance Insufficient"
+		var summary = StatsManager.get_performance_summary()
+		day_complete_message.text = "Average WPM: %.1f (Required: %.1f)\nAverage Accuracy: %.1f%% (Required: %.1f%%)\n\nYou must meet the minimum requirements to proceed.\n\nPress SPACE to restart Day %d" % [
+			summary.average_wpm,
+			StatsManager.MIN_WPM_REQUIRED,
+			summary.average_accuracy,
+			StatsManager.MIN_ACCURACY_REQUIRED,
+			current_day
+		]
 
 	# Set theme based on day
 	_apply_day_theme()
-
-	# Set day completion message
-	var messages = day_info.get("day_end_messages", [])
-	if messages.size() > 0:
-		day_complete_message.text = messages[0]
 
 func _apply_day_theme() -> void:
 	var text_color: Color
@@ -90,6 +113,10 @@ func _animate_messages() -> void:
 	# Animate day completion message appearing
 	var tween = create_tween()
 	tween.tween_property(day_complete_message, "modulate:a", 1.0, 1.0)
+
+	# If performance failed, stop here - no continue button needed
+	if not performance_passed:
+		return
 
 	# Add corruption effect for later days
 	if current_day >= 3:
@@ -167,3 +194,22 @@ func _handle_game_completion() -> void:
 	# - Ending cutscene
 	# For now, return to startup
 	get_tree().change_scene_to_file("res://src/scenes/2d/startup/StartupScreen.tscn")
+
+func _restart_day() -> void:
+	print("[DayEndScreen] Restarting Day %d" % current_day)
+
+	# Reset stage performance for retry
+	StatsManager.reset_stage_performance()
+
+	# Restart the current day
+	match current_day:
+		1:
+			get_tree().change_scene_to_file("res://scenes/2d/days/day_1.tscn")
+		2:
+			get_tree().change_scene_to_file("res://scenes/2d/days/day_2.tscn")
+		3:
+			get_tree().change_scene_to_file("res://scenes/2d/days/day_3.tscn")
+		4:
+			get_tree().change_scene_to_file("res://scenes/2d/days/day_4.tscn")
+		5:
+			get_tree().change_scene_to_file("res://scenes/2d/days/day_5.tscn")

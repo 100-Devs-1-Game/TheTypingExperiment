@@ -287,6 +287,10 @@ func start_day(day_number: int) -> void:
 	# Clear cached sentences for new day
 	cached_stage_sentences.clear()
 
+	# Reset stage performance tracking
+	if StatsManager:
+		StatsManager.reset_stage_performance()
+
 	# Validate day number
 	if not day_data.has(current_day):
 		push_error("[DayManager] Invalid day number: %d" % current_day)

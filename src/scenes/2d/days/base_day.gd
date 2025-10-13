@@ -320,6 +320,11 @@ func _complete_stage() -> void:
 	is_session_active = false
 	invisible_input.editable = false
 
+	# Record performance for this stage
+	var final_wpm = StatsManager.get_current_wpm()
+	var final_accuracy = StatsManager.get_current_accuracy()
+	StatsManager.record_stage_performance(final_wpm, final_accuracy)
+
 	# Complete stage in DayManager
 	DayManager.complete_stage()
 	stage_completed.emit()
