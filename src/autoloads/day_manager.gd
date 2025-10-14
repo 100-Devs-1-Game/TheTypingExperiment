@@ -46,7 +46,7 @@ var day_stage_corrupted_words: Dictionary = {
 		2: ["FEELS", "DIFFERENT", "TODAY"],
 		3: ["NOT", "ALONE", "IN", "HERE"],
 		4: ["EVENTS", "REPEAT", "ENDLESSLY"],
-		5: ["PAST", "INFLUENCES", "PRESENT", "SECRETLY"]
+		5: ["ENVIRONMENT", "MAKES", "NO", "SENSE"]
 	},
 	3: {
 		1: ["ţŕąþþëԁ", "ïń", "çøğńïţïṿë", "ԁÿńąɱïçş", "ƒąçïłïţÿ"],
@@ -58,7 +58,7 @@ var day_stage_corrupted_words: Dictionary = {
 	4: {
 		1: ["ssenssuoicsnoc", "gnieb", "detcartxe"],
 		2: ["retne", "tcerroc", "dapyek", "yek"],
-		3: ["uoy", "lliw ", "eb", "kcuts"],
+		3: ["uoy", "lliw", "eb", "kcuts"],
 		4: ["etinifedni", "etinifni", "lanrete"],
 		5: ["uoy", "tonnac", "pots"]
 	},
@@ -215,13 +215,13 @@ var corruption_mappings: Dictionary = {
 	"ALONE": "alone",
 	"IN": "in",
 	"HERE": "here",
-	"THEY": "they",
-	"WATCH": "watch",
-	"EVERYTHING": "everything",
-	"LETTERS": "letters",
-	"CHANGING": "changing",
-	"BY": "by",
-	"THEMSELVES": "themselves",
+	"EVENTS": "events",
+	"REPEAT": "repeat",
+	"ENDLESSLY": "endlessly",
+	"ENVIRONMENT": "environment",
+	"MAKES": "makes",
+	"NO": "no",
+	"SENSE": "sense",
 
 	# Day 3 - Unicode corruption
 	"ţŕąþþëԁ": "trapped",
@@ -321,7 +321,7 @@ func complete_stage() -> void:
 
 	# Show messages based on stage number
 	match current_stage:
-		1, 3, 5: # Encouragement messages after stages 1, 3, 5
+		1, 3: # Encouragement messages after stages 1, 3
 			if day_info.encouragement_messages.size() > 0:
 				var msg_index: int = (current_stage - 1) / 2 # 0, 1, 2
 				if msg_index < day_info.encouragement_messages.size():
@@ -338,15 +338,8 @@ func complete_stage() -> void:
 	if current_stage > stages_per_day:
 		complete_day()
 
-## Completes current day and shows end messages
+## Completes current day
 func complete_day() -> void:
-
-	var day_info = day_data[current_day]
-
-	# Show all day end messages
-	for message in day_info.day_end_messages:
-		queue_message(message, MessageType.DAY_END)
-
 	day_completed.emit(current_day)
 
 ## Advances to next day
