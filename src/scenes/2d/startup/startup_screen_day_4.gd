@@ -25,7 +25,6 @@ func _process(delta: float) -> void:
 func _setup_retro_theme():
 	var green_color = Color(0, 1, 0)
 	var purple_tint = Color(0.8, 0.4, 0.8)
-	var warning_red = Color(1, 0.6, 0.6)
 
 	company_logo.modulate = purple_tint
 	message1.modulate = green_color

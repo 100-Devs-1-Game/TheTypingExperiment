@@ -159,6 +159,7 @@ func _add_to_cache(key: String, value: String) -> void:
 		# Remove oldest entries (simple FIFO approach)
 		var keys_to_remove: Array[String] = []
 		var count: int = 0
+		@warning_ignore("integer_division")
 		var remove_limit: int = MAX_CACHE_SIZE / 4  # Remove 25% of cache
 		for cache_key in corrupted_words_cache:
 			keys_to_remove.append(cache_key)

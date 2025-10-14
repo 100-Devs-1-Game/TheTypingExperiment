@@ -37,7 +37,6 @@ func _process(delta: float) -> void:
 func _setup_retro_theme():
 	var red_tint = Color(1, 0.3, 0.2)
 	var warning_red = Color(1, 0.2, 0.2)
-	var orange = Color(1, 0.5, 0)
 
 	company_logo.modulate = red_tint
 	message1.modulate = warning_red
@@ -47,8 +46,7 @@ func _setup_retro_theme():
 	progress_bar.modulate = red_tint
 
 func _apply_day_specific_setup() -> void:
-	# Corrupt all text heavily
-	message1.text = _apply_heavy_symbol_corruption(message1.text)
+	# Corrupt text heavily
 	message2.text = _apply_heavy_symbol_corruption(message2.text)
 	copyright_label.text = _apply_heavy_symbol_corruption(copyright_label.text)
 
@@ -86,7 +84,6 @@ func _get_corrupted_message(message: String) -> String:
 
 ## Apply heavy symbol corruption to text
 func _apply_heavy_symbol_corruption(text: String) -> String:
-	var symbols = ["∂", "Ω", "η", "†", "¢", "µ", "π", "λ", "€", "ℏ", "¡", "§", "¥", "ω", "∀", "®", "¶", "κ", "ƒ", "√", "υ"]
 	var words = text.split(" ")
 	var corrupted_words: PackedStringArray = []
 
@@ -103,9 +100,9 @@ func _corrupt_word_symbols(word: String) -> String:
 	var symbols = ["∂", "Ω", "η", "†", "¢", "µ", "π", "λ", "€", "ℏ", "¡", "§", "¥", "ω", "∀", "®", "¶", "κ", "ƒ", "√", "υ"]
 	var corrupted = ""
 
-	# Corrupt 60-80% of characters
+	# Corrupt up to 30% of characters
 	for i in range(word.length()):
-		if randf() < 0.7:
+		if randf() < 0.3:
 			corrupted += symbols[randi() % symbols.size()]
 		else:
 			corrupted += word[i]

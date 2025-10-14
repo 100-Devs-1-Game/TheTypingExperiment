@@ -25,7 +25,6 @@ func _process(delta: float) -> void:
 		_update_display()
 
 func _setup_ui_theme() -> void:
-	var green_color = Color(0, 1, 0)
 	var red_tint = Color(1, 0.3, 0.2)  # Red-orange critical color
 	var warning_red = Color(1, 0.2, 0.2)  # Bright red for critical warnings
 
@@ -148,9 +147,6 @@ func _get_corruption_effects(char_position: int, is_typed_correctly: bool = fals
 
 	# TYPED CORRECTLY: Provide clear visual feedback for successful typing
 	if is_typed_correctly:
-		# Correctly typed corrupted characters get a distinct appearance
-		var typed_base_color = "#aa2200"  # Dark red-orange base for typed characters
-
 		# Subtle pulsing for typed characters
 		var typed_pulse = sin(char_animation_time * 2.0) * 0.3 + 0.7  # 0.4 to 1.0 range
 		var red_intensity = int(170 * typed_pulse)  # Vary between #aa2200 and #cc3300
@@ -243,6 +239,7 @@ func _apply_message_corruption(message: String) -> String:
 
 		# corrupt 2-3 characters per word, even in shorter words
 		if word.length() > 2 and randf() < 0.6:  # 60% chance to corrupt
+			@warning_ignore("integer_division")
 			var chars_to_corrupt = min(3, word.length() / 2)  # Max 3 chars or half of word
 			var corruption_positions = []
 
@@ -363,14 +360,14 @@ func _degrade_text(text: String, corruption_level: float) -> String:
 	var glitch_chars = ["█", "▓", "▒", "░", "▄", "▀", "■", "□", "▪", "▫", "◆", "◇", "●", "○", "▬", "▭"]
 
 	for i in range(text.length()):
-		var char = text[i]
+		var single_char = text[i]
 		# Maximum corruption chance based on degradation level
-		if char != " " and randf() < (corruption_level * 0.8):
+		if single_char != " " and randf() < (corruption_level * 0.8):
 			if randf() < 0.4:
 				degraded += glitch_chars[randi() % glitch_chars.size()]
 			else:
 				degraded += ""  # Character deletion
 		else:
-			degraded += char
+			degraded += single_char
 
 	return degraded

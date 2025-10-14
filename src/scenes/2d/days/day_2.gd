@@ -160,10 +160,6 @@ func _get_corruption_effects(char_position: int, is_typed_correctly: bool = fals
 
 	# TYPED CORRECTLY: Provide clear visual feedback for successful typing
 	if is_typed_correctly:
-		# Correctly typed corrupted characters get a distinct appearance
-		# Base color is darker/more muted to show "completion"
-		var typed_base_color = "#aa0000"  # Darker red base for typed characters
-
 		# Subtle pulsing for typed characters (less intense)
 		var typed_pulse = sin(char_animation_time * 1.5) * 0.3 + 0.7  # 0.4 to 1.0 range
 		var red_intensity = int(170 * typed_pulse)  # Vary between #aa0000 and #bb0000
@@ -206,9 +202,9 @@ func _get_corruption_effects(char_position: int, is_typed_correctly: bool = fals
 	return effects
 
 ## Helper function to blend corruption colors with error color for visual feedback
-func _blend_error_with_corruption(corruption_color: String) -> String:
+func _blend_error_with_corruption(corruption_effects_color: String) -> String:
 	# Parse the corruption color (hex format like "#ff0000")
-	var hex_color = corruption_color.replace("#", "")
+	var hex_color = corruption_effects_color.replace("#", "")
 	var red = ("0x" + hex_color.substr(0, 2)).hex_to_int()
 	var green = ("0x" + hex_color.substr(2, 2)).hex_to_int()
 	var blue = ("0x" + hex_color.substr(4, 2)).hex_to_int()
