@@ -1,4 +1,4 @@
-[gd_scene load_steps=166 format=4 uid="uid://bud07mn4d7mwr"]
+[gd_scene load_steps=167 format=4 uid="uid://bud07mn4d7mwr"]
 
 [ext_resource type="Script" uid="uid://dcjky3peu8uji" path="res://scenes/3d/days/main.gd" id="1_tbtjm"]
 [ext_resource type="Shader" uid="uid://barc84udpwptk" path="res://scenes/3d/assets_psx/posterize_canvas.gdshader" id="2_5gvna"]
@@ -61,6 +61,7 @@
 [ext_resource type="PackedScene" uid="uid://b80ymjatyubo5" path="res://scenes/3d/assets_psx/GLB/Lighting/lamp_1_on.glb" id="61_blsrk"]
 [ext_resource type="AudioStream" uid="uid://mct5fnjy2yjb" path="res://assets/external/custom_sfx/pink-noise.wav" id="61_oijd2"]
 [ext_resource type="Script" uid="uid://bm8h3wy68dhre" path="res://scripts/core/KeypadController.gd" id="62_kpctrl"]
+[ext_resource type="AudioStream" uid="uid://b57wbllrscndt" path="res://assets/external/custom_sfx/elevator/elevator-door-and-ding-6694.wav" id="63_c2xj2"]
 [ext_resource type="PackedScene" uid="uid://tx5ewpe433j8" path="res://scenes/3d/interactables/pc_1.tscn" id="63_pc1sc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_faidy"]
@@ -2305,14 +2306,18 @@ door_b_node_path = NodePath("../Stage_4/GLB/Doors/InteractableElevator_3/elevato
 
 [node name="Audio" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/World/Audio"]
+[node name="PinkNoise" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/World/Audio"]
 stream = ExtResource("61_oijd2")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/World/Audio"]
+[node name="VendingMachine" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/World/Audio"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.2, -4.5)
 stream = ExtResource("61_72u8k")
 autoplay = true
 max_distance = 10.0
+
+[node name="ElevatorDoor" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/World/Audio"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -6.7)
+stream = ExtResource("63_c2xj2")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

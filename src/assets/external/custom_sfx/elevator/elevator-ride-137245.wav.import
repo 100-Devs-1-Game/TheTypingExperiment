@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cqwtq0ctgeeaf"
-path="res://.godot/imported/elevator-ride-137245.wav-783affbe3f9c6438600b707d5b586863.sample"
+path="res://.godot/imported/elevator-ride-137245.wav-6da4865231eb4c9c3e8d1f1352eb67d9.sample"
 
 [deps]
 
-source_file="res://assets/external/custom_sfx/elevator-ride-137245.wav"
-dest_files=["res://.godot/imported/elevator-ride-137245.wav-783affbe3f9c6438600b707d5b586863.sample"]
+source_file="res://assets/external/custom_sfx/elevator/elevator-ride-137245.wav"
+dest_files=["res://.godot/imported/elevator-ride-137245.wav-6da4865231eb4c9c3e8d1f1352eb67d9.sample"]
 
 [params]
 

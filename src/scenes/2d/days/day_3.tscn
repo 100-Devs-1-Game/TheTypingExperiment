@@ -8,6 +8,7 @@ subpixel_positioning = 0
 
 [sub_resource type="Theme" id="Theme_bauee"]
 default_font = SubResource("SystemFont_de5wr")
+default_font_size = 20
 
 [node name="Day3" type="Control"]
 layout_mode = 3
@@ -71,12 +72,12 @@ text = "WPM: 0"
 [node name="HeaderButtons" type="HBoxContainer" parent="MainContainer/HeaderContainer"]
 layout_mode = 2
 
-
 [node name="Spacer1" type="Control" parent="MainContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="TypingArea" type="Panel" parent="MainContainer"]
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_vertical = 3
 

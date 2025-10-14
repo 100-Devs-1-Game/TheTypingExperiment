@@ -8,6 +8,7 @@ subpixel_positioning = 0
 
 [sub_resource type="Theme" id="Theme_day5"]
 default_font = SubResource("SystemFont_day5")
+default_font_size = 20
 
 [node name="Day5" type="Control"]
 layout_mode = 3

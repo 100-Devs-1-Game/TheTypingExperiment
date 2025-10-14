@@ -7,6 +7,7 @@ font_names = PackedStringArray("Courier New")
 
 [sub_resource type="Theme" id="Theme_bauee"]
 default_font = SubResource("SystemFont_ljcjv")
+default_font_size = 20
 
 [node name="Day2" type="Control"]
 layout_mode = 3

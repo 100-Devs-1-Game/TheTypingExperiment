@@ -17,6 +17,7 @@ var horror_effects: HorrorEffectsManager
 var player_state_manager: PlayerStateManager
 var keyboard_visualizer: KeyboardVisualizer
 var keypad_visualizer: KeypadVisualizer
+var keyboard_sound_player: KeyboardSoundPlayer
 
 # PC management
 var pc_controllers: Array = []  # Array of PCController instances
@@ -42,6 +43,7 @@ func _ready() -> void:
 	# Setup modular systems
 	_setup_modular_systems()
 	_setup_keyboard_visualizer()
+	_setup_keyboard_sound_player()
 	_setup_keypad_visualizer()
 
 	# Discover all PC instances
@@ -70,6 +72,9 @@ func _input(event: InputEvent) -> void:
 	# Handle keyboard visualization when seated at PC
 	if player_state_manager and player_state_manager.is_seated() and keyboard_visualizer:
 		keyboard_visualizer.handle_input_event(event)
+		# Play keyboard sounds alongside visualization
+		if keyboard_sound_player:
+			keyboard_sound_player.handle_input_event(event)
 
 	# Handle keypad visualization when using keypad
 	if player_state_manager and player_state_manager.is_using_keypad() and keypad_visualizer:
@@ -180,11 +185,11 @@ func interact_with_elevator(elevator_node: Node3D = null):
 	var teleport_position = target_elevator.get_teleport_position()
 	var teleport_rotation = target_elevator.get_teleport_rotation()
 
-	# Use fade transition for smooth teleport (hold at black for 1.5 seconds)
+	# Use fade transition for smooth teleport (hold at black for 3.5 seconds)
 	if fade_manager:
 		await fade_manager.transition(func():
 			_execute_elevator_teleport(teleport_position, teleport_rotation)
-		, FadeTransitionManager.FadeType.SMOOTH, Color.BLACK, -1.0, 1.5)  # Hold at black for 1.5 seconds
+		, FadeTransitionManager.FadeType.SMOOTH, Color.BLACK, -1.0, 3.5)  # Hold at black for 3.5 seconds
 	else:
 		_execute_elevator_teleport(teleport_position, teleport_rotation)
 
@@ -336,6 +341,12 @@ func _on_keyboard_key_pressed(_key_name: String) -> void:
 
 func _on_keyboard_key_released(_key_name: String) -> void:
 	pass  # Could add sound effects or other feedback here
+
+# Setup keyboard sound player system
+func _setup_keyboard_sound_player() -> void:
+	keyboard_sound_player = KeyboardSoundPlayer.new()
+	keyboard_sound_player.name = "KeyboardSoundPlayer"
+	add_child(keyboard_sound_player)
 
 # Setup keypad visualization system
 func _setup_keypad_visualizer() -> void:

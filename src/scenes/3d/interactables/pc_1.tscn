@@ -10,8 +10,8 @@
 [ext_resource type="Shader" uid="uid://cs2f87lkk6g72" path="res://scenes/3d/assets_psx/screen_curve_spatial.gdshader" id="7_cdp1c"]
 [ext_resource type="PackedScene" uid="uid://bvbcrkl0hnbda" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/mouse_pad_mp_1.glb" id="7_j8a3l"]
 [ext_resource type="PackedScene" uid="uid://brrijnnbt6cs7" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/pc_mouse_mp_1.glb" id="8_cime1"]
-[ext_resource type="AudioStream" uid="uid://dt114q00baiet" path="res://assets/external/custom_sfx/computer-sound-55942-startup.wav" id="11_bjn2w"]
-[ext_resource type="AudioStream" uid="uid://dykm55qf2kjh7" path="res://assets/external/custom_sfx/computer-sound-55942-working.wav" id="12_wa4fy"]
+[ext_resource type="AudioStream" uid="uid://dt114q00baiet" path="res://assets/external/custom_sfx/computer/computer-sound-55942-startup.wav" id="11_bjn2w"]
+[ext_resource type="AudioStream" uid="uid://dykm55qf2kjh7" path="res://assets/external/custom_sfx/computer/computer-sound-55942-working.wav" id="12_wa4fy"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_p30ey"]
 
@@ -79,7 +79,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8000002, -0.45000005, 0.099
 shape = SubResource("BoxShape3D_dr33r")
 
 [node name="keyboard_with_separate_keys" parent="." instance=ExtResource("6_v250p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23999971, 0.96, 0.18999994)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19999972, 0.96, 0.18999994)
 
 [node name="Models" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08, 1.01, -0.65999997)

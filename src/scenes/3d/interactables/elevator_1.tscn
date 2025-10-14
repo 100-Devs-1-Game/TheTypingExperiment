@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3aq2r4yqaldr"]
+[gd_scene load_steps=8 format=3 uid="uid://b3aq2r4yqaldr"]
 
 [ext_resource type="PackedScene" uid="uid://dm11hka3n1v1y" path="res://scenes/3d/assets_psx/GLB/Modular Structures/elevator_2.glb" id="1_rmtgk"]
 [ext_resource type="Script" uid="uid://ci1dhdi5e8g1q" path="res://scripts/core/ElevatorController.gd" id="2_elevator"]
+[ext_resource type="AudioStream" uid="uid://cqwtq0ctgeeaf" path="res://assets/external/custom_sfx/elevator/elevator-ride-137245.wav" id="3_insp7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p4wxy"]
 size = Vector3(0.5, 0.5, 0.15)
@@ -58,5 +59,8 @@ shape = SubResource("ConcavePolygonShape3D_rmtgk")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005629, 1.49026, -0.5924396)
 light_color = Color(0.679622, 0.657677, 0.548465, 1)
 light_energy = 4.723
+
+[node name="ElevatorSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_insp7")
 
 [editable path="elevator_22"]

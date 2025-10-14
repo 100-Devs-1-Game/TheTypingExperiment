@@ -21,11 +21,12 @@ enum DoorState {
 		door_state = value
 		if is_node_ready() and door_a and door_b:
 			_apply_door_state()
-
+			
 # References to elevator components
 @onready var teleport_marker: Marker3D = $TeleportMarker
 @onready var door_a: Node3D = null  # Will be found in _ready()
 @onready var door_b: Node3D = null  # Will be found in _ready()
+@onready var elevator_sound: AudioStreamPlayer = $ElevatorSound
 
 # Door state
 var doors_are_open: bool = false
@@ -175,5 +176,6 @@ func use_elevator() -> void:
 	if not can_use_elevator():
 		print("[ElevatorController] Elevator not yet unlocked or doors closed")
 		return
-
+		
+	elevator_sound.play()
 	elevator_used.emit(elevator_name)

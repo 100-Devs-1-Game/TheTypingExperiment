@@ -8,6 +8,7 @@ subpixel_positioning = 0
 
 [sub_resource type="Theme" id="Theme_bauee"]
 default_font = SubResource("SystemFont_de5wr")
+default_font_size = 20
 
 [node name="Day1" type="Control"]
 layout_mode = 3
