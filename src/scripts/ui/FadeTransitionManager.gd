@@ -33,7 +33,7 @@ func _ready() -> void:
 
 ## Main transition function - executes callback during peak fade
 func transition(callback: Callable, fade_type: FadeType = FadeType.SMOOTH,
-				fade_color: Color = Color.BLACK, custom_duration: float = -1.0) -> void:
+				fade_color: Color = Color.BLACK, custom_duration: float = -1.0, hold_duration: float = 0.0) -> void:
 
 	var duration = custom_duration if custom_duration > 0 else default_fade_duration
 	var type_name = FadeType.keys()[fade_type]
@@ -42,7 +42,7 @@ func transition(callback: Callable, fade_type: FadeType = FadeType.SMOOTH,
 
 	match fade_type:
 		FadeType.SMOOTH:
-			await _smooth_transition(callback, fade_color, duration)
+			await _smooth_transition(callback, fade_color, duration, hold_duration)
 		FadeType.EERIE_IN:
 			await _eerie_transition_in(callback, fade_color)
 		FadeType.EERIE_OUT:
@@ -53,12 +53,17 @@ func transition(callback: Callable, fade_type: FadeType = FadeType.SMOOTH,
 	fade_completed.emit(type_name)
 
 ## Smooth fade transition (original main.gd logic)
-func _smooth_transition(callback: Callable, fade_color: Color, duration: float) -> void:
+func _smooth_transition(callback: Callable, fade_color: Color, duration: float, hold_duration: float = 0.0) -> void:
 	var fade = _create_fade_overlay(fade_color)
 
 	var tween = create_tween()
 	tween.tween_property(fade, "modulate:a", 1.0, duration)
 	tween.tween_callback(callback)
+
+	# Hold at black if hold_duration is specified
+	if hold_duration > 0:
+		tween.tween_interval(hold_duration)
+
 	tween.tween_property(fade, "modulate:a", 0.0, duration)
 	tween.tween_callback(func(): _cleanup_fade_overlay(fade))
 

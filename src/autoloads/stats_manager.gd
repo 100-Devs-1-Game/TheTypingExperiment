@@ -29,11 +29,6 @@ func update_stats(wpm: float, accuracy: float) -> void:
 	current_session_accuracy = accuracy
 	stats_updated.emit(wpm, accuracy)
 
-func get_session_duration() -> float:
-	if session_start_time > 0:
-		return Time.get_unix_time_from_system() - session_start_time
-	return 0.0
-
 func get_current_wpm() -> float:
 	return current_session_wpm
 

@@ -180,11 +180,11 @@ func interact_with_elevator(elevator_node: Node3D = null):
 	var teleport_position = target_elevator.get_teleport_position()
 	var teleport_rotation = target_elevator.get_teleport_rotation()
 
-	# Use fade transition for smooth teleport
+	# Use fade transition for smooth teleport (hold at black for 1.5 seconds)
 	if fade_manager:
-		await fade_manager.fade_to_black(func():
+		await fade_manager.transition(func():
 			_execute_elevator_teleport(teleport_position, teleport_rotation)
-		)
+		, FadeTransitionManager.FadeType.SMOOTH, Color.BLACK, -1.0, 1.5)  # Hold at black for 1.5 seconds
 	else:
 		_execute_elevator_teleport(teleport_position, teleport_rotation)
 
