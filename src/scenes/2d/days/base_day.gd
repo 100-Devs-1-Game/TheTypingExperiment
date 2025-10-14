@@ -52,32 +52,6 @@ func _ready() -> void:
 func _initialize_day() -> void:
 	DayManager.start_day(DAY_NUMBER)
 	_start_new_stage()
-#TODO: Fix by removing cursor blinker maybe
-#func _exit_tree() -> void:
-	## Disconnect all signals to prevent memory leaks
-	#if restart_button and restart_button.pressed.is_connected(_restart_stage):
-		#restart_button.pressed.disconnect(_restart_stage)
-#
-	#if invisible_input:
-		#if invisible_input.text_changed.is_connected(_on_text_changed):
-			#invisible_input.text_changed.disconnect(_on_text_changed)
-		#if invisible_input.gui_input.is_connected(_on_gui_input):
-			#invisible_input.gui_input.disconnect(_on_gui_input)
-#
-	## Disconnect DayManager signals
-	#if DayManager:
-		#if DayManager.message_ready.is_connected(_on_message_ready):
-			#DayManager.message_ready.disconnect(_on_message_ready)
-		#if DayManager.day_completed.is_connected(_on_day_completed):
-			#DayManager.day_completed.disconnect(_on_day_completed)
-#
-	## Disconnect TypingEngine signals
-	#if TypingEngine and TypingEngine.real_time_stats_updated.is_connected(_on_real_time_stats_updated):
-		#TypingEngine.real_time_stats_updated.disconnect(_on_real_time_stats_updated)
-#
-	## Clean up cursor blinker
-	#if cursor_blinker:
-		#cursor_blinker.stop()
 
 func _setup_connections() -> void:
 	invisible_input.text_changed.connect(_on_text_changed)

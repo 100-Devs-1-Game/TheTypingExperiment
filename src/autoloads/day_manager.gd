@@ -302,15 +302,6 @@ func start_day(day_number: int) -> void:
 	else:
 		push_error("[DayManager] CorruptionManager not available")
 
-	# Get day info for messages
-	var day_info = day_data[current_day]
-
-	# NOTE: Opening messages are now shown on the startup screen (handled by startup_screen_day_X.gd)
-	# They are no longer queued here during the day scene initialization
-	# if day_info.has("opening_messages"):
-	# 	for message in day_info.opening_messages:
-	# 		queue_message(message, MessageType.OPENING)
-
 	day_started.emit(current_day)
 
 ## Completes current stage and triggers appropriate messages
@@ -323,11 +314,13 @@ func complete_stage() -> void:
 	match current_stage:
 		1, 3: # Encouragement messages after stages 1, 3
 			if day_info.encouragement_messages.size() > 0:
+				@warning_ignore("integer_division")
 				var msg_index: int = (current_stage - 1) / 2 # 0, 1, 2
 				if msg_index < day_info.encouragement_messages.size():
 					queue_message(day_info.encouragement_messages[msg_index], MessageType.ENCOURAGEMENT)
 		2, 4: # Progress messages after stages 2, 4
 			if day_info.progress_messages.size() > 0:
+				@warning_ignore("integer_division")
 				var msg_index: int = (current_stage - 2) / 2 # 0, 1
 				if msg_index < day_info.progress_messages.size():
 					queue_message(day_info.progress_messages[msg_index], MessageType.PROGRESS)

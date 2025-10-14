@@ -25,7 +25,6 @@ func _process(delta: float) -> void:
 		_update_display()
 
 func _setup_ui_theme() -> void:
-	var green_color = Color(0, 1, 0)
 	var purple_tint = Color(0.8, 0.4, 0.8)  # Purple corruption hints
 	var warning_red = Color(1, 0.6, 0.6)  # Warning red for system stress
 
@@ -34,7 +33,7 @@ func _setup_ui_theme() -> void:
 	day_stage_label.modulate = purple_tint
 	progress_label.modulate = warning_red
 	message_overlay.modulate = purple_tint
-	progress_bar_label.modulate = purple_tint
+	progress_bar_label.modulate = warning_red
 
 ## Day 4 - Reversed word corruption typewriter effect with system stress
 func _show_stage_text_typewriter() -> void:
@@ -62,6 +61,9 @@ func _show_stage_text_typewriter() -> void:
 
 	# Longer pause before allowing typing - system stress
 	await get_tree().create_timer(1.0).timeout
+
+	# Initialize custom progress display after typewriter effect
+	_update_progress_display()
 
 func _update_display() -> void:
 	if not text_display:
@@ -122,6 +124,9 @@ func _update_display() -> void:
 		display_text += "[color=%s]%s[/color]" % [color, final_character]
 
 	text_display.text = display_text
+
+	# Update custom progress display for Day 4
+	_update_progress_display()
 
 ## Day 4 - Per-character randomized corruption animation effects system
 func _get_corruption_effects(char_position: int, is_typed_correctly: bool = false) -> Dictionary:
@@ -191,6 +196,38 @@ func _get_corruption_effects(char_position: int, is_typed_correctly: bool = fals
 			effects.character = glitch_chars[seeded_random.randi() % glitch_chars.size()]
 
 	return effects
+
+
+## Day 4 - Override progress display to use text-based progress bar (REVERSED)
+func _update_progress_display() -> void:
+	if not progress_bar or not progress_label:
+		return
+
+	# Calculate typing progress within current stage
+	var progress: float = 0.0
+	if practice_text.length() > 0:
+		progress = float(current_position) / float(practice_text.length())
+
+	# Hide the original progress bar
+	progress_bar.visible = false
+
+	# Create text progress bar for current stage typing progress
+	var total_blocks = 10
+	var filled_blocks = int(progress * total_blocks)
+	var empty_blocks = total_blocks - filled_blocks
+
+	# REVERSED: Calculate filled and empty blocks (fills from right to left)
+	var progress_text = ""
+	# Add empty blocks (░)
+	for i in range(empty_blocks):
+		progress_text += "░"
+	# Add filled blocks (▓)
+	for i in range(filled_blocks):
+		progress_text += "▓"
+
+	# Update label with stage info and text progress bar
+	progress_label.text = "Stage %d of %d" % [DayManager.current_stage, DayManager.stages_per_day]
+	progress_bar_label.text = progress_text
 
 ## Helper function to blend corruption colors with error color for visual feedback
 func _blend_error_with_corruption(corruption_color_hex: String) -> String:
