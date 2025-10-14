@@ -128,7 +128,7 @@ func _load_day_content() -> void:
 ## Called when day requests end screen
 func _on_day_end_screen_requested() -> void:
 	# Load day end screen
-	var day_end_scene = load("uid://ck8wmpg82pntn")
+	var day_end_scene = load("res://scenes/2d/day_end/day_end_screen.tscn")
 	if not day_end_scene:
 		push_error("[PCController] Failed to load day end screen")
 		return

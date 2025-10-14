@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dwxcn8y7yfp5k"]
 
-[ext_resource type="Script" path="res://scenes/2d/days/day_5.gd" id="1_day5script"]
+[ext_resource type="Script" uid="uid://ddlpfjwkfcyf7" path="res://scenes/2d/days/day_5.gd" id="1_day5script"]
 
 [sub_resource type="SystemFont" id="SystemFont_day5"]
 font_names = PackedStringArray("Courier New")
@@ -71,7 +71,6 @@ text = "WPM: 0"
 [node name="HeaderButtons" type="HBoxContainer" parent="MainContainer/HeaderContainer"]
 layout_mode = 2
 
-
 [node name="Spacer1" type="Control" parent="MainContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -101,6 +100,7 @@ fit_content = true
 
 [node name="Cursor" type="ColorRect" parent="MainContainer/TypingArea"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 30.0
 offset_top = 48.0

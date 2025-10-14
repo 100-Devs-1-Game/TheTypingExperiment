@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "Read(//b/Data/Projects/My Games/TheTypingExperiment/**)",
+      "Read(//b/**)"
     ],
     "deny": [],
     "ask": []

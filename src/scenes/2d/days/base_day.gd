@@ -236,12 +236,12 @@ func _update_cursor_position() -> void:
 
 	# Get the display text for cursor positioning
 	var display_sentence = DayManager.get_stage_display_sentence()
-	var current_position = typed_characters.length()
+	var current_cursor_position = typed_characters.length()
 
 	# Use modular TextCursorCalculator for positioning
 	var target_position = TextCursorCalculator.calculate_typing_cursor_position(
 		display_sentence,
-		current_position,
+		current_cursor_position,
 		text_display,
 		30.0  # 30px margin
 	)
@@ -308,7 +308,7 @@ func _complete_stage() -> void:
 		_start_new_stage()
 
 
-func _on_message_ready(message: String, message_type: String) -> void:
+func _on_message_ready(message: String, _message_type: String) -> void:
 	# Wait for any previous message to finish typing before starting new one
 	while is_typing_message:
 		# Check if tree is still valid during scene transitions

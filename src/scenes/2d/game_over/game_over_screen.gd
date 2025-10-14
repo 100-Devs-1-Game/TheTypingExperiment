@@ -1,8 +1,6 @@
 extends Control
 
-## Game Over Variant 5: "Stalking Presence"
 ## Both skulls visible, slowly closing in on player (scaling up)
-
 @onready var skull_label: Label = %SkullLabel
 @onready var skull_label_2: Label = %SkullLabel2
 
