@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://tx5ewpe433j8"]
+[gd_scene load_steps=23 format=3 uid="uid://tx5ewpe433j8"]
 
 [ext_resource type="Script" uid="uid://wnrp0u4c407v" path="res://scripts/core/PCController.gd" id="1_pcctrl"]
 [ext_resource type="PackedScene" uid="uid://dw35byb5qogmh" path="res://scenes/2d/startup/startup_screen.tscn" id="2_j8a3l"]
@@ -10,6 +10,8 @@
 [ext_resource type="Shader" uid="uid://cs2f87lkk6g72" path="res://scenes/3d/assets_psx/screen_curve_spatial.gdshader" id="7_cdp1c"]
 [ext_resource type="PackedScene" uid="uid://bvbcrkl0hnbda" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/mouse_pad_mp_1.glb" id="7_j8a3l"]
 [ext_resource type="PackedScene" uid="uid://brrijnnbt6cs7" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/pc_mouse_mp_1.glb" id="8_cime1"]
+[ext_resource type="AudioStream" uid="uid://dt114q00baiet" path="res://assets/external/custom_sfx/computer-sound-55942-startup.wav" id="11_bjn2w"]
+[ext_resource type="AudioStream" uid="uid://dykm55qf2kjh7" path="res://assets/external/custom_sfx/computer-sound-55942-working.wav" id="12_wa4fy"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_p30ey"]
 
@@ -79,54 +81,71 @@ shape = SubResource("BoxShape3D_dr33r")
 [node name="keyboard_with_separate_keys" parent="." instance=ExtResource("6_v250p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23999971, 0.96, 0.18999994)
 
-[node name="pc_monitor_mp_12" parent="." instance=ExtResource("3_gsl7m")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.099999905, 0.98, 0.19999981)
+[node name="Models" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08, 1.01, -0.65999997)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="pc_monitor_mp_12/pc_monitor_mp_1/pc_monitor_mp_1_screen" index="0"]
+[node name="pc_monitor_mp_12" parent="Models" instance=ExtResource("3_gsl7m")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.019999906, -0.029999971, 0.8599998)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="pc_monitor_mp_12/pc_monitor_mp_1/pc_monitor_mp_1_screen/StaticBody3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Models/pc_monitor_mp_12/pc_monitor_mp_1/pc_monitor_mp_1_screen" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Models/pc_monitor_mp_12/pc_monitor_mp_1/pc_monitor_mp_1_screen/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_bjn2w")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="pc_monitor_mp_12/pc_monitor_mp_1" index="1"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Models/pc_monitor_mp_12/pc_monitor_mp_1" index="1"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="pc_monitor_mp_12/pc_monitor_mp_1/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Models/pc_monitor_mp_12/pc_monitor_mp_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_wa4fy")
 
-[node name="table_large_2_42" parent="." instance=ExtResource("4_v250p")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0.099999905)
+[node name="table_large_2_42" parent="Models" instance=ExtResource("4_v250p")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.08, -1.01, 0.7599999)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="table_large_2_42/table_large_2_4" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Models/table_large_2_42/table_large_2_4" index="0"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="table_large_2_42/table_large_2_4/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Models/table_large_2_42/table_large_2_4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ebfdm")
 
-[node name="chair_mp_3_42" parent="." instance=ExtResource("5_j8a3l")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.8000002, 0, 0.099999905)
+[node name="chair_mp_3_42" parent="Models" instance=ExtResource("5_j8a3l")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.8800002, -1.01, 0.7599999)
 
-[node name="chair_mp_3_4" parent="chair_mp_3_42" index="0"]
+[node name="chair_mp_3_4" parent="Models/chair_mp_3_42" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0.0999999, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="chair_mp_3_42/chair_mp_3_4" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Models/chair_mp_3_42/chair_mp_3_4" index="0"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="chair_mp_3_42/chair_mp_3_4/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Models/chair_mp_3_42/chair_mp_3_4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_g7dpa")
 
-[node name="pc_mp_12" parent="." instance=ExtResource("6_cime1")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.98, -0.5)
+[node name="pc_mp_12" parent="Models" instance=ExtResource("6_cime1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.08, -0.029999971, 0.15999997)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="pc_mp_12/pc_mp_1" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Models/pc_mp_12/pc_mp_1" index="0"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="pc_mp_12/pc_mp_1/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Models/pc_mp_12/pc_mp_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_hqw3l")
 
-[node name="mouse_pad_mp_12" parent="." instance=ExtResource("7_j8a3l")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.20499986, 0.98, -0.23500003)
+[node name="mouse_pad_mp_12" parent="Models" instance=ExtResource("7_j8a3l")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.28499985, -0.029999971, 0.42499995)
 
-[node name="pc_mouse_mp_12" parent="." instance=ExtResource("8_cime1")]
-transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 0.22999996, 1, -0.25500003)
+[node name="pc_mouse_mp_12" parent="Models" instance=ExtResource("8_cime1")]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 0.30999994, -0.00999999, 0.40499994)
+
+[node name="StartupSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08, 1.01, -0.65999997)
+stream = ExtResource("11_bjn2w")
+volume_db = -25.0
+max_distance = 8.0
+
+[node name="WorkingSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08, 1.01, -0.65999997)
+stream = ExtResource("12_wa4fy")
+volume_db = -25.0
+max_distance = 8.0
+
+[connection signal="finished" from="StartupSound" to="." method="_on_startup_sound_finished"]
 
 [editable path="keyboard_with_separate_keys"]
-[editable path="pc_monitor_mp_12"]
-[editable path="table_large_2_42"]
-[editable path="chair_mp_3_42"]
-[editable path="pc_mp_12"]
+[editable path="Models/pc_monitor_mp_12"]
+[editable path="Models/table_large_2_42"]
+[editable path="Models/chair_mp_3_42"]
+[editable path="Models/pc_mp_12"]

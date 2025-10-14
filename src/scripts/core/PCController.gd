@@ -17,6 +17,8 @@ signal day_content_loaded(day_number: int)
 
 @onready var interaction_marker: Marker3D = $InteractionMarker
 @onready var monitor_viewport: SubViewport = $SubViewport
+@onready var startup_sound: AudioStreamPlayer3D = $StartupSound
+@onready var working_sound: AudioStreamPlayer3D = $WorkingSound
 
 var is_monitor_on: bool = false
 var startup_shown: bool = false
@@ -78,6 +80,8 @@ func _initialize_black_screen() -> void:
 
 ## Loads the day-specific startup screen
 func _load_startup_screen() -> void:
+	startup_sound.play()
+	
 	# Load day-specific startup screen
 	var startup_scene_path = "res://scenes/2d/startup/startup_screen_day_%d.tscn" % day_number
 	var startup_scene = load(startup_scene_path)
@@ -142,3 +146,7 @@ func _on_day_end_screen_requested() -> void:
 	monitor_viewport.add_child(day_end_instance)
 
 	print("[PCController] Day %d end screen loaded" % day_number)
+
+
+func _on_startup_sound_finished() -> void:
+	working_sound.play()

@@ -7,7 +7,6 @@ signal stats_updated(wpm: float, accuracy: float)
 
 var current_session_wpm: float = 0.0
 var current_session_accuracy: float = 100.0
-var session_start_time: float = 0.0
 
 # Performance tracking per stage
 var stage_performance: Array[Dictionary] = []  # [{wpm: float, accuracy: float}, ...]
@@ -18,11 +17,6 @@ const MIN_ACCURACY_REQUIRED: float = 60.0
 
 func _ready() -> void:
 	pass
-
-func start_session() -> void:
-	session_start_time = Time.get_unix_time_from_system()
-	current_session_wpm = 0.0
-	current_session_accuracy = 100.0
 
 func update_stats(wpm: float, accuracy: float) -> void:
 	current_session_wpm = wpm
