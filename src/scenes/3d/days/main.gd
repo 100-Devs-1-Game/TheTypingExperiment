@@ -10,6 +10,7 @@ var startup_triggered := false
 @onready var interaction_label: Label = $SubViewportContainer/SubViewport/World/Player/Head/InteractionLabel
 @onready var esc_prompt_label: Label = $UI/EscPromptLabel
 @onready var color_rect: ColorRect = $SubViewportContainer/SubViewport/PanelContainer/ColorRect
+@onready var elevator_door_audio: AudioStreamPlayer3D = $SubViewportContainer/SubViewport/World/Audio/ElevatorDoor
 
 # Modular systems
 var fade_manager: FadeTransitionManager
@@ -57,6 +58,10 @@ func _ready() -> void:
 
 	# Generate access codes for testing (codes shown at day end screen)
 	_generate_stage_codes()
+
+	# Connect to DayManager for elevator door sound
+	if DayManager:
+		DayManager.stage_completed.connect(_on_day_manager_stage_completed)
 
 
 func _input(event: InputEvent) -> void:
@@ -366,6 +371,13 @@ func _on_keypad_key_pressed(_key_name: String) -> void:
 
 func _on_keypad_key_released(_key_name: String) -> void:
 	pass  # Could add sound effects or other feedback here
+
+# Called when any stage is completed
+func _on_day_manager_stage_completed(day: int, stage: int) -> void:
+	# Play elevator door sound when Day 1 is fully completed (all 5 stages)
+	if day == 1 and stage == DayManager.stages_per_day and elevator_door_audio:
+		print("[Main] Day 1 completed - playing elevator door sound")
+		elevator_door_audio.play()
 
 # Handle player state changes to manage visualizers
 func _on_player_state_changed(old_state: PlayerStateManager.PlayerState, new_state: PlayerStateManager.PlayerState) -> void:
