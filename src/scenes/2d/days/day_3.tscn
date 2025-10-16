@@ -77,7 +77,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="TypingArea" type="Panel" parent="MainContainer"]
-custom_minimum_size = Vector2(0, 300)
+custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 size_flags_vertical = 3
 

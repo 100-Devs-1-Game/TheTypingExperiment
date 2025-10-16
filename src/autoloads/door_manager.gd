@@ -32,9 +32,9 @@ func validate_code(stage_number: int, entered_code: String) -> bool:
 	var is_valid = entered_code == required_code
 
 	if is_valid:
-		print("[DoorManager] ✓ Valid code entered for Stage %d" % stage_number)
+		print("[DoorManager] Valid code entered for Stage %d" % stage_number)
 	else:
-		print("[DoorManager] ✗ Invalid code entered for Stage %d (Expected: %s, Got: %s)" % [stage_number, required_code, entered_code])
+		print("[DoorManager] Invalid code entered for Stage %d (Expected: %s, Got: %s)" % [stage_number, required_code, entered_code])
 
 	return is_valid
 

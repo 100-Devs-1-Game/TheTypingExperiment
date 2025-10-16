@@ -19,6 +19,7 @@ var player_state_manager: PlayerStateManager
 var keyboard_visualizer: KeyboardVisualizer
 var keypad_visualizer: KeypadVisualizer
 var keyboard_sound_player: KeyboardSoundPlayer
+var keypad_sound_player: KeypadSoundPlayer
 
 # PC management
 var pc_controllers: Array = []  # Array of PCController instances
@@ -46,6 +47,7 @@ func _ready() -> void:
 	_setup_keyboard_visualizer()
 	_setup_keyboard_sound_player()
 	_setup_keypad_visualizer()
+	_setup_keypad_sound_player()
 
 	# Discover all PC instances
 	_discover_pcs()
@@ -84,6 +86,9 @@ func _input(event: InputEvent) -> void:
 	# Handle keypad visualization when using keypad
 	if player_state_manager and player_state_manager.is_using_keypad() and keypad_visualizer:
 		keypad_visualizer.handle_input_event(event)
+		# Play keypad sounds alongside visualization
+		if keypad_sound_player:
+			keypad_sound_player.handle_input_event(event)
 
 	# Forward input based on state
 	# Note: SubViewport automatically receives inputs, so we don't push_input for WALKING state
@@ -265,6 +270,10 @@ func _discover_keypads() -> void:
 	for keypad in keypads:
 		if keypad is KeypadController:
 			keypad_controllers.append(keypad)
+			# Inject sound player reference into the keypad input
+			if keypad_sound_player and keypad.keypad_input:
+				keypad.keypad_input.sound_player = keypad_sound_player
+				print("[Main] Injected KeypadSoundPlayer into Keypad for Stage %d" % keypad.unlocks_stage)
 			print("[Main] Discovered Keypad for Stage %d" % keypad.unlocks_stage)
 
 	print("[Main] Total Keypads discovered: %d" % keypad_controllers.size())
@@ -364,6 +373,12 @@ func _setup_keypad_visualizer() -> void:
 		keypad_visualizer.key_pressed.connect(_on_keypad_key_pressed)
 	if keypad_visualizer.has_signal("key_released"):
 		keypad_visualizer.key_released.connect(_on_keypad_key_released)
+
+# Setup keypad sound player system
+func _setup_keypad_sound_player() -> void:
+	keypad_sound_player = KeypadSoundPlayer.new()
+	keypad_sound_player.name = "KeypadSoundPlayer"
+	add_child(keypad_sound_player)
 
 # Optional: Handle keypad events for debugging or additional effects
 func _on_keypad_key_pressed(_key_name: String) -> void:
