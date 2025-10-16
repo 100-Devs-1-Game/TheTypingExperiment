@@ -99,6 +99,7 @@ layout_mode = 2
 bbcode_enabled = true
 text = "Type the text that appears here..."
 fit_content = true
+autowrap_mode = 1
 
 [node name="Cursor" type="ColorRect" parent="MainContainer/TypingArea"]
 unique_name_in_owner = true
@@ -118,6 +119,7 @@ offset_right = -900.0
 offset_bottom = -980.0
 
 [node name="Spacer2" type="Control" parent="MainContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 

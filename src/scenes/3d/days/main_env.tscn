@@ -589,7 +589,7 @@ layout_mode = 2
 environment = SubResource("Environment_faidy")
 
 [node name="Player" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("2_tbtjm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10751772, 1.0221497, -3.7251248)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3924828, -2.1778505, -3.7251248)
 
 [node name="Lighting" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 

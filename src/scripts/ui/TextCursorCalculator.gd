@@ -81,6 +81,12 @@ static func calculate_typing_cursor_position(
 	# Get available width for text wrapping
 	var text_width = text_display.size.x
 
+	# Debug logging
+	print("[TextCursorCalculator] RichTextLabel size: %s" % text_display.size)
+	print("[TextCursorCalculator] Text width for wrapping: %.2f px" % text_width)
+	print("[TextCursorCalculator] Font size: %d" % font_size)
+	print("[TextCursorCalculator] Cursor position: %d / %d" % [cursor_position, display_text.length()])
+
 	# Clamp cursor position to text length
 	var clamped_position = min(cursor_position, display_text.length())
 
