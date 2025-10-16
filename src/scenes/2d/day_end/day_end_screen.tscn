@@ -68,7 +68,7 @@ custom_minimum_size = Vector2(530, 0)
 layout_mode = 2
 text = "Day message placeholder"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 3
 
 [node name="ElevatorMessage" type="Label" parent="MainContainer/MessageContainer"]
 unique_name_in_owner = true
