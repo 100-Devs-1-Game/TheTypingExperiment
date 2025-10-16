@@ -99,7 +99,6 @@ layout_mode = 2
 bbcode_enabled = true
 text = "Type the text that appears here..."
 fit_content = true
-autowrap_mode = 1
 
 [node name="Cursor" type="ColorRect" parent="MainContainer/TypingArea"]
 unique_name_in_owner = true

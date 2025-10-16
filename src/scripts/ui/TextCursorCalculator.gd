@@ -5,6 +5,8 @@ extends RefCounted
 ## Handles complex positioning math for text displays with proper line breaks
 
 ## Calculate cursor position with word wrapping for any text and font configuration
+## Matches Godot's AUTOWRAP_WORD_SMART behavior (BREAK_WORD_BOUND + BREAK_ADAPTIVE + BREAK_MANDATORY)
+## Properly handles Unicode grapheme clusters (combining characters)
 static func calculate_cursor_position_with_wrapping(
 	text: String,
 	char_index: int,
@@ -18,7 +20,7 @@ static func calculate_cursor_position_with_wrapping(
 
 	var current_line = 0
 	var current_x = 0.0
-	var words = text.split(" ")
+	var words = text.split(" ", false)  # Don't keep empty strings
 	var chars_processed = 0
 
 	for word_idx in range(words.size()):
@@ -26,25 +28,63 @@ static func calculate_cursor_position_with_wrapping(
 		var word_width = font.get_string_size(word, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
 		var space_width = font.get_string_size(" ", HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
 
-		# Check if we need a new line for this word
+		# BREAK_WORD_BOUND: Try to place word on new line if it doesn't fit
 		if current_x + word_width > max_width and current_x > 0:
 			current_line += 1
 			current_x = 0.0
 
-		# Check if cursor is within this word
-		if chars_processed <= char_index and char_index <= chars_processed + word.length():
-			# Cursor is in this word
-			var chars_in_word = char_index - chars_processed
-			var partial_word = word.substr(0, chars_in_word)
-			var partial_width = font.get_string_size(partial_word, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
-			return Vector2(
-				margin_x + current_x + partial_width,
-				margin_y + (current_line * line_height)
-			)
+		# BREAK_ADAPTIVE: If word is too long even for a new line, break it using substring sizes
+		if word_width > max_width:
+			# Word needs adaptive wrapping - break at character boundaries using substring measurements
+			# Track which part of the word we're on (for handling line wraps within the word)
+			var line_start_in_word = 0
 
-		# Move past this word
-		current_x += word_width
-		chars_processed += word.length()
+			for char_pos in range(word.length()):
+				# Get width of current character segment from start of current line
+				var substr_on_line = word.substr(line_start_in_word, char_pos - line_start_in_word + 1)
+				var width_on_line = font.get_string_size(substr_on_line, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
+
+				# Check if adding this character would exceed the line width
+				if current_x + width_on_line > max_width and char_pos > line_start_in_word:
+					# Need to wrap before this character
+					current_line += 1
+					current_x = 0.0
+					line_start_in_word = char_pos
+
+					# Recalculate width for single character on new line
+					substr_on_line = word.substr(line_start_in_word, 1)
+					width_on_line = font.get_string_size(substr_on_line, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
+
+				# Check if cursor is at this position
+				if chars_processed == char_index:
+					var chars_on_this_line = char_pos - line_start_in_word
+					var partial_on_line = word.substr(line_start_in_word, chars_on_this_line)
+					var partial_width = font.get_string_size(partial_on_line, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
+					return Vector2(
+						margin_x + current_x + partial_width,
+						margin_y + (current_line * line_height)
+					)
+
+				chars_processed += 1
+
+			# After processing all characters in the long word, update current_x
+			var final_substr = word.substr(line_start_in_word)
+			current_x += font.get_string_size(final_substr, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
+		else:
+			# Word fits on current line, check if cursor is within this word
+			if chars_processed <= char_index and char_index <= chars_processed + word.length():
+				# Cursor is in this word
+				var chars_in_word = char_index - chars_processed
+				var partial_word = word.substr(0, chars_in_word)
+				var partial_width = font.get_string_size(partial_word, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
+				return Vector2(
+					margin_x + current_x + partial_width,
+					margin_y + (current_line * line_height)
+				)
+
+			# Move past this word
+			current_x += word_width
+			chars_processed += word.length()
 
 		# Add space if not the last word
 		if word_idx < words.size() - 1:
@@ -55,7 +95,13 @@ static func calculate_cursor_position_with_wrapping(
 					margin_y + (current_line * line_height)
 				)
 
-			current_x += space_width
+			# Check if space needs wrapping
+			if current_x + space_width > max_width:
+				current_line += 1
+				current_x = 0.0
+			else:
+				current_x += space_width
+
 			chars_processed += 1  # For the space
 
 	# Cursor is at the end
@@ -80,12 +126,6 @@ static func calculate_typing_cursor_position(
 
 	# Get available width for text wrapping
 	var text_width = text_display.size.x
-
-	# Debug logging
-	print("[TextCursorCalculator] RichTextLabel size: %s" % text_display.size)
-	print("[TextCursorCalculator] Text width for wrapping: %.2f px" % text_width)
-	print("[TextCursorCalculator] Font size: %d" % font_size)
-	print("[TextCursorCalculator] Cursor position: %d / %d" % [cursor_position, display_text.length()])
 
 	# Clamp cursor position to text length
 	var clamped_position = min(cursor_position, display_text.length())
@@ -121,6 +161,8 @@ static func animate_cursor_to_position(
 	return tween
 
 ## Get line count for given text with word wrapping
+## Matches Godot's AUTOWRAP_WORD_SMART behavior
+## Properly handles Unicode grapheme clusters
 static func get_line_count_with_wrapping(
 	text: String,
 	font: Font,
@@ -129,19 +171,45 @@ static func get_line_count_with_wrapping(
 ) -> int:
 
 	var line_count = 1  # Start with at least one line
-	var words = text.split(" ")
+	var words = text.split(" ", false)
 	var current_x = 0.0
 
-	for word in words:
+	for word_idx in range(words.size()):
+		var word = words[word_idx]
 		var word_width = font.get_string_size(word, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
 		var space_width = font.get_string_size(" ", HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
 
-		# Check if we need a new line for this word
+		# BREAK_WORD_BOUND: Try to place word on new line if it doesn't fit
 		if current_x + word_width > max_width and current_x > 0:
 			line_count += 1
-			current_x = word_width + space_width
+			current_x = 0.0
+
+		# BREAK_ADAPTIVE: If word is too long, break it using substring measurements
+		if word_width > max_width:
+			var line_start_in_word = 0
+
+			for char_pos in range(word.length()):
+				var substr_on_line = word.substr(line_start_in_word, char_pos - line_start_in_word + 1)
+				var width_on_line = font.get_string_size(substr_on_line, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
+
+				if current_x + width_on_line > max_width and char_pos > line_start_in_word:
+					line_count += 1
+					current_x = 0.0
+					line_start_in_word = char_pos
+
+			# Update current_x after processing the long word
+			var final_substr = word.substr(line_start_in_word)
+			current_x += font.get_string_size(final_substr, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
 		else:
-			current_x += word_width + space_width
+			current_x += word_width
+
+		# Add space width if not last word
+		if word_idx < words.size() - 1:
+			if current_x + space_width > max_width:
+				line_count += 1
+				current_x = 0.0
+			else:
+				current_x += space_width
 
 	return line_count
 

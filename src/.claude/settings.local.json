@@ -3,7 +3,10 @@
     "allow": [
       "Bash(sed:*)",
       "Read(//b/Data/Projects/My Games/TheTypingExperiment/**)",
-      "Read(//b/**)"
+      "Read(//b/**)",
+      "WebSearch",
+      "WebFetch(domain:docs.godotengine.org)",
+      "WebFetch(domain:github.com)"
     ],
     "deny": [],
     "ask": []
