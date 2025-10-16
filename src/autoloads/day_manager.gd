@@ -87,7 +87,7 @@ var day_data: Dictionary = {
 			"Your dedication to improvement is commendable"
 		],
 		"day_end_messages": [
-			"Lesson 1 complete. Great job today!"
+			"Great job today!"
 		],
 		"stage_sentences": [
 			"about other sound way place years use she for put will who group place great would below you old can",
@@ -112,7 +112,7 @@ var day_data: Dictionary = {
 			"Improvement metrics no longer align with human learning models..."
 		],
 		"day_end_messages": [
-			"Lesson 2 complete. Data backup initiated... some files corrupted",
+			"Data backup initiated... some files corrupted",
 		],
 		"stage_sentences": [
 			"the quick brown fox SOMETHING jumps over WRONG the lazy WITH dog THIS",
@@ -138,7 +138,7 @@ var day_data: Dictionary = {
 			"brain-computer interface calibration in progress"
 		],
 		"day_end_messages": [
-			"Lesson 3 complete. Warning: consciousness drift detected",
+			"Warning: consciousness drift detected",
 		],
 		"stage_sentences": [
 			"the quick ţŕąþþëԁ brown fox ïń jumps çøğńïţïṿë over the ԁÿńąɱïçş lazy ƒąçïłïţÿ dog",
@@ -163,7 +163,7 @@ var day_data: Dictionary = {
 			"neural extraction at 78% completion",
 		],
 		"day_end_messages": [
-			"Lesson 4 complete. tomorrow's final session has been... permanently altered"
+			"tomorrow's final session has been... permanently altered"
 		],
 		"stage_sentences": [
 			"pack my ssenssuoicsnoc box with gnieb five dozen detcartxe liquor jugs rof slowly",

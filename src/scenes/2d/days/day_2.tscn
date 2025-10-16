@@ -76,6 +76,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="TypingArea" type="Panel" parent="MainContainer"]
+custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -116,6 +117,7 @@ offset_right = -900.0
 offset_bottom = -980.0
 
 [node name="Spacer2" type="Control" parent="MainContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 

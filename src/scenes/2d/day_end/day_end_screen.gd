@@ -60,7 +60,7 @@ func _setup_day_end_screen() -> void:
 
 	# Set title and message based on performance
 	if performance_passed:
-		title_label.text = "Day %d Complete" % current_day
+		title_label.text = "Day %d Lesson Complete" % current_day
 		var messages = day_info.get("day_end_messages", [])
 		if messages.size() > 0:
 			day_complete_message.text = messages[0]
