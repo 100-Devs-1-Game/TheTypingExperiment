@@ -98,6 +98,7 @@ layout_mode = 2
 bbcode_enabled = true
 text = "Type the text that appears here..."
 fit_content = true
+autowrap_mode = 2
 
 [node name="InvisibleInput" type="LineEdit" parent="MainContainer/TypingArea"]
 unique_name_in_owner = true

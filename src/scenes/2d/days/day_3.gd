@@ -74,6 +74,7 @@ func _update_display() -> void:
 		var character: String = display_sentence[i]
 		var color: String = untyped_color
 		var final_character: String = character
+		var is_cursor_position: bool = (i == current_position)
 
 		if i < typed_characters.length():
 			# Character has been typed
@@ -116,7 +117,11 @@ func _update_display() -> void:
 			else:
 				color = untyped_color  # Dark green for untyped normal words
 
-		display_text += "[color=%s]%s[/color]" % [color, final_character]
+		# Add cursor styling (underline) to current character
+		if is_cursor_position:
+			display_text += "[u][color=%s]%s[/color][/u]" % [color, final_character]
+		else:
+			display_text += "[color=%s]%s[/color]" % [color, final_character]
 
 	text_display.text = display_text
 

@@ -197,6 +197,7 @@ func _update_display() -> void:
 	for i in range(practice_text.length()):
 		var character: String = practice_text[i]
 		var color: String = untyped_color
+		var is_cursor_position: bool = (i == current_position)
 
 		if i < typed_characters.length():
 			var typed_char: String = typed_characters[i]
@@ -205,7 +206,11 @@ func _update_display() -> void:
 			else:
 				color = error_color
 
-		display_text += "[color=%s]%s[/color]" % [color, character]
+		# Add cursor styling (underline) to current character
+		if is_cursor_position:
+			display_text += "[u][color=%s]%s[/color][/u]" % [color, character]
+		else:
+			display_text += "[color=%s]%s[/color]" % [color, character]
 
 	text_display.text = display_text
 
