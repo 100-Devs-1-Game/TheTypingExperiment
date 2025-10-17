@@ -7,7 +7,6 @@ func _ready() -> void:
 	# Set day-specific data before calling parent
 	DAY_NUMBER = 1
 	corruption_color = "#00ff00"  # Green - no corruption yet
-	cursor_blink_speed = 0.5
 	super._ready()
 
 func _setup_ui_theme() -> void:

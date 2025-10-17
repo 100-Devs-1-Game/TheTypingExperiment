@@ -100,16 +100,6 @@ bbcode_enabled = true
 text = "Type the text that appears here..."
 fit_content = true
 
-[node name="Cursor" type="ColorRect" parent="MainContainer/TypingArea"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_left = 30.0
-offset_top = 48.0
-offset_right = 40.0
-offset_bottom = 50.0
-color = Color(0, 1, 0, 1)
-
 [node name="InvisibleInput" type="LineEdit" parent="MainContainer/TypingArea"]
 unique_name_in_owner = true
 layout_mode = 1

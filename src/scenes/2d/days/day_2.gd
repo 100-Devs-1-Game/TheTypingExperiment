@@ -15,7 +15,6 @@ func _ready() -> void:
 	# Set day-specific data before calling parent
 	DAY_NUMBER = 2
 	corruption_color = "#ff0000"  # Red for corrupted text
-	cursor_blink_speed = 0.5
 
 	# Setup horror effects manager for Day 2
 	_setup_horror_effects()
@@ -68,8 +67,6 @@ func _show_stage_text_typewriter() -> void:
 func _update_display() -> void:
 	if not text_display:
 		return
-
-	_update_cursor_position()
 
 	# Get the corrupted display text (what the user sees)
 	var display_sentence = DayManager.get_stage_display_sentence()

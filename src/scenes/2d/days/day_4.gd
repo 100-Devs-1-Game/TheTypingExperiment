@@ -13,7 +13,6 @@ func _ready() -> void:
 	# Set day-specific data before calling parent
 	DAY_NUMBER = 4
 	corruption_color = "#aa00aa"  # Purple for reversed corruption
-	cursor_blink_speed = 0.4  # Faster blinking shows system stress
 	super._ready()
 
 func _process(delta: float) -> void:
@@ -68,8 +67,6 @@ func _show_stage_text_typewriter() -> void:
 func _update_display() -> void:
 	if not text_display:
 		return
-
-	_update_cursor_position()
 
 	# Day 4 specific display logic with animated corruption effects
 	var display_sentence = DayManager.get_stage_display_sentence()

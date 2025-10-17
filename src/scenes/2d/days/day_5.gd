@@ -13,7 +13,6 @@ func _ready() -> void:
 	# Set day-specific data before calling parent
 	DAY_NUMBER = 5
 	corruption_color = "#ff4400"  # Red-orange for critical system failure
-	cursor_blink_speed = 0.3  # Fastest blinking - system critically unstable
 	super._ready()
 
 func _process(delta: float) -> void:
@@ -65,8 +64,6 @@ func _show_stage_text_typewriter() -> void:
 func _update_display() -> void:
 	if not text_display:
 		return
-
-	_update_cursor_position()
 
 	# Day 5 specific display logic with maximum corruption effects
 	var display_sentence = DayManager.get_stage_display_sentence()

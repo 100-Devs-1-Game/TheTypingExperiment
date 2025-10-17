@@ -11,7 +11,6 @@ signal day_end_screen_requested()
 
 # UI References (all days use these)
 @onready var text_display: RichTextLabel = %DisplayText
-@onready var cursor: ColorRect = %Cursor
 @onready var invisible_input: LineEdit = %InvisibleInput
 @onready var wmp_label: Label = %WPMLabel
 @onready var accuracy_label: Label = %AccuracyLabel
@@ -31,10 +30,6 @@ var typed_color: String = "#00ff00"
 var untyped_color: String = "#00aa00"
 var error_color: String = "#ff4444"
 var corruption_color: String = "#ff0000"  # Overridden in child classes
-var cursor_blink_speed: float = 0.5       # Overridden in child classes
-
-# Cursor animation (now using modular TextCursorCalculator)
-var cursor_blinker: TextCursorCalculator.CursorBlinker
 
 # Message handling
 var is_typing_message: bool = false
@@ -46,7 +41,6 @@ func _ready() -> void:
 	_setup_connections()
 	_setup_ui_theme()
 	_setup_interface()
-	_start_cursor_blinking()
 	_initialize_day()
 
 func _initialize_day() -> void:
@@ -82,9 +76,6 @@ func _setup_interface() -> void:
 	text_display.selection_enabled = false
 	text_display.scroll_active = false
 
-	cursor.color = Color(0, 1, 0, 1)
-	cursor.visible = true
-
 func _start_new_stage() -> void:
 	# Generate English text for typing from DayManager
 	practice_text = DayManager.generate_stage_text()
@@ -100,16 +91,6 @@ func _start_new_stage() -> void:
 	# Update UI
 	day_stage_label.text = "Day %d - Stage %d" % [DAY_NUMBER, DayManager.current_stage]
 	progress_label.text = "Stage %d of %d" % [DayManager.current_stage, DayManager.stages_per_day]
-
-	# Position cursor at the beginning
-	if cursor:
-		cursor.visible = true
-		# Reset cursor to starting position - calculate proper line height
-		var font = text_display.get_theme_default_font()
-		var font_size = text_display.get_theme_font_size("normal_font_size")
-		var line_height = font.get_height(font_size)
-		cursor.position = Vector2(30.0, 30.0 + line_height)  # 30px margin + line height
-		_start_cursor_blinking()
 
 	progress_bar.value = 0.0
 	wmp_label.text = "WPM: 0.0"
@@ -188,7 +169,6 @@ func _handle_character_input(new_text: String) -> void:
 
 	# Force immediate display update on typing
 	_update_display()
-	_update_cursor_position()
 	_check_completion()
 
 func _handle_backspace(new_text: String) -> void:
@@ -201,7 +181,6 @@ func _handle_backspace(new_text: String) -> void:
 			TypingEngine.current_position = current_position
 
 		_update_display()
-		_update_cursor_position()
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton or event is InputEventKey:
@@ -229,38 +208,6 @@ func _update_display() -> void:
 		display_text += "[color=%s]%s[/color]" % [color, character]
 
 	text_display.text = display_text
-
-func _update_cursor_position() -> void:
-	if not cursor or not text_display:
-		return
-
-	# Get the display text for cursor positioning
-	var display_sentence = DayManager.get_stage_display_sentence()
-	var current_cursor_position = typed_characters.length()
-
-	# Use modular TextCursorCalculator for positioning
-	var target_position = TextCursorCalculator.calculate_typing_cursor_position(
-		display_sentence,
-		current_cursor_position,
-		text_display,
-		30.0  # 30px margin
-	)
-
-	# Animate cursor to new position
-	TextCursorCalculator.animate_cursor_to_position(cursor, target_position, 0.1)
-
-func _start_cursor_blinking() -> void:
-	if cursor_blinker:
-		cursor_blinker.stop_blinking()
-
-	# Use modular cursor blinker
-	if cursor:
-		cursor_blinker = TextCursorCalculator.CursorBlinker.new(
-			cursor,
-			Color(typed_color),    # Bright color
-			Color(untyped_color),  # Dim color
-			cursor_blink_speed
-		)
 
 func _check_completion() -> void:
 	if current_position >= practice_text.length():
