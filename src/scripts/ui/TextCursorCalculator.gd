@@ -29,7 +29,19 @@ static func calculate_cursor_position_with_wrapping(
 		var space_width = font.get_string_size(" ", HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
 
 		# BREAK_WORD_BOUND: Try to place word on new line if it doesn't fit
-		if current_x + word_width > max_width and current_x > 0:
+		# Check if word + trailing space would fit (WORD_SMART behavior)
+		# This prevents lines from being too "full" and matches Godot's wrapping
+		var needs_newline = false
+		if current_x > 0:  # Not at start of line
+			# For WORD_SMART: check if word + space would fit (unless it's the last word)
+			var test_width = word_width
+			if word_idx < words.size() - 1:
+				test_width += space_width
+
+			if current_x + test_width > max_width:
+				needs_newline = true
+
+		if needs_newline:
 			current_line += 1
 			current_x = 0.0
 
@@ -124,8 +136,18 @@ static func calculate_typing_cursor_position(
 	var font_size = text_display.get_theme_font_size("normal_font_size")
 	var line_height = font.get_height(font_size)
 
-	# Get available width for text wrapping
+	# Get available width for text wrapping, accounting for RichTextLabel's content margins
 	var text_width = text_display.size.x
+
+	# Subtract content margins from stylebox if present
+	var stylebox = text_display.get_theme_stylebox("normal")
+	if stylebox:
+		text_width -= stylebox.content_margin_left
+		text_width -= stylebox.content_margin_right
+
+	# RichTextLabel uses slightly conservative wrapping to avoid sub-pixel rendering issues
+	# Reduce width by small epsilon to match its behavior
+	text_width -= 1.0
 
 	# Clamp cursor position to text length
 	var clamped_position = min(cursor_position, display_text.length())
@@ -179,8 +201,17 @@ static func get_line_count_with_wrapping(
 		var word_width = font.get_string_size(word, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
 		var space_width = font.get_string_size(" ", HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
 
-		# BREAK_WORD_BOUND: Try to place word on new line if it doesn't fit
-		if current_x + word_width > max_width and current_x > 0:
+		# BREAK_WORD_BOUND: Check if word + space fits (WORD_SMART behavior)
+		var needs_newline = false
+		if current_x > 0:
+			var test_width = word_width
+			if word_idx < words.size() - 1:
+				test_width += space_width
+
+			if current_x + test_width > max_width:
+				needs_newline = true
+
+		if needs_newline:
 			line_count += 1
 			current_x = 0.0
 
