@@ -13,7 +13,7 @@ config_version=5
 config/name="The Typing Experiment"
 run/main_scene="uid://bud07mn4d7mwr"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://b8ly3tjoislu0"
 
 [autoload]
 
