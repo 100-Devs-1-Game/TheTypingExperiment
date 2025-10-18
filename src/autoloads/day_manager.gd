@@ -6,6 +6,7 @@ extends Node
 signal day_started(day_number: int)
 signal stage_completed(day: int, stage: int)
 signal day_completed(day_number: int)
+signal day_performance_validated(day_number: int)  # Emitted when day completes AND performance requirements are met
 signal message_ready(message: String, message_type: String)
 
 enum MessageType {

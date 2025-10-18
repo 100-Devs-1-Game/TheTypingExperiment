@@ -11,6 +11,7 @@ var startup_triggered := false
 @onready var esc_prompt_label: Label = $UI/EscPromptLabel
 @onready var color_rect: ColorRect = $SubViewportContainer/SubViewport/PanelContainer/ColorRect
 @onready var elevator_door_audio: AudioStreamPlayer3D = $SubViewportContainer/SubViewport/World/Audio/ElevatorDoor
+@onready var toilet_flush_audio: AudioStreamPlayer3D = $SubViewportContainer/SubViewport/World/Audio/ToiletFlush
 
 # Modular systems
 var fade_manager: FadeTransitionManager
@@ -31,6 +32,10 @@ var current_keypad: KeypadController = null  # Currently active keypad
 
 # Elevator management
 var elevator_controllers: Array = []  # Array of ElevatorController instances
+
+# Day 4 horror event: Random toilet flush
+var day4_toilet_flush_stage: int = -1  # Which stage triggers the flush (-1 = not chosen yet)
+var day4_toilet_flushed: bool = false  # Ensure it only plays once
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -393,6 +398,22 @@ func _on_day_manager_stage_completed(day: int, stage: int) -> void:
 	if day == 1 and stage == DayManager.stages_per_day and elevator_door_audio:
 		print("[Main] Day 1 completed - playing elevator door sound")
 		elevator_door_audio.play()
+
+	# Day 4 horror event: Randomly pick which stage will trigger toilet flush
+	if day == 4 and stage == 1 and day4_toilet_flush_stage == -1:
+		randomize()
+		day4_toilet_flush_stage = randi_range(2, 4)  # Randomly pick stage 2, 3, or 4
+		print("[Main] Day 4 - toilet flush will occur at stage %d" % day4_toilet_flush_stage)
+
+	# Play toilet flush on the randomly chosen stage during Day 4
+	if day == 4 and stage == day4_toilet_flush_stage and not day4_toilet_flushed and toilet_flush_audio:
+		day4_toilet_flushed = true
+		# Add creepy delay after stage completion (2-4 seconds)
+		var delay = randf_range(2.0, 4.0)
+		print("[Main] Day 4, Stage %d completed - toilet will flush in %.1f seconds..." % [stage, delay])
+		await get_tree().create_timer(delay).timeout
+		toilet_flush_audio.play()
+		print("[Main] *TOILET FLUSH* - someone else is here...")
 
 # Handle player state changes to manage visualizers
 func _on_player_state_changed(old_state: PlayerStateManager.PlayerState, new_state: PlayerStateManager.PlayerState) -> void:

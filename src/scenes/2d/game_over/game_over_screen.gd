@@ -18,7 +18,6 @@ func _ready() -> void:
 
 	if skull_label_2:
 		skull_label_2.visible = false
-		skull_label_2.modulate = Color(1, 0, 0, 0)
 		skull_label_2.pivot_offset = skull_label_2.size / 2
 
 	_show_skull_eerily()

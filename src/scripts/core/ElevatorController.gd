@@ -50,7 +50,9 @@ func _ready() -> void:
 
 	# Connect to DayManager signals
 	if DayManager:
-		DayManager.stage_completed.connect(_on_stage_completed)
+		# Listen to performance validated instead of stage completed
+		# This ensures elevator only unlocks after day end screen with passing performance
+		DayManager.day_performance_validated.connect(_on_day_performance_validated)
 
 	# Check if elevator should already be unlocked based on current progress
 	_check_initial_unlock_state()
@@ -122,13 +124,11 @@ func _check_initial_unlock_state() -> void:
 		if total_stages_completed >= unlocks_after_stage:
 			unlock_elevator()
 
-## Called when any stage is completed
-func _on_stage_completed(day: int, stage: int) -> void:
-	# Calculate total stages completed
-	var total_stages_completed = (day - 1) * DayManager.stages_per_day + stage
-
-	# Check if this elevator should unlock
-	if total_stages_completed >= unlocks_after_stage and not is_unlocked:
+## Called when a day is completed AND performance requirements are met
+func _on_day_performance_validated(day: int) -> void:
+	# Check if this elevator should unlock based on completed day
+	# unlocks_after_stage represents which day completion unlocks this elevator
+	if day >= unlocks_after_stage and not is_unlocked:
 		unlock_elevator()
 
 ## Unlocks the elevator and opens doors

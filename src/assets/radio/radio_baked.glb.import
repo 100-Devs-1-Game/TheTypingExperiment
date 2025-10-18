@@ -1,0 +1,110 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://b7oswkcuna6e1"
+path="res://.godot/imported/radio_baked.glb-46af9b479072b7735c324eabfdfa9a93.scn"
+
+[deps]
+
+source_file="res://assets/radio/radio_baked.glb"
+dest_files=["res://.godot/imported/radio_baked.glb-46af9b479072b7735c324eabfdfa9a93.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"Material": {
+"use_external/enabled": false,
+"use_external/fallback_path": "res://assets/radio/materials/Material.tres",
+"use_external/path": "uid://b2ko53odgp3o3"
+},
+"Material.001": {
+"use_external/enabled": false,
+"use_external/fallback_path": "res://assets/radio/materials/Material.001.tres",
+"use_external/path": "uid://dlfqcum5b0ynd"
+},
+"Material.003": {
+"use_external/enabled": false,
+"use_external/fallback_path": "res://assets/radio/materials/Material.003.tres",
+"use_external/path": "uid://c0gkuvtv0s66d"
+},
+"Material.004": {
+"use_external/enabled": false,
+"use_external/fallback_path": "res://assets/radio/materials/Material.004.tres",
+"use_external/path": "uid://dws34dt10k65q"
+},
+"Material.005": {
+"use_external/enabled": false,
+"use_external/fallback_path": "res://assets/radio/materials/Material.005.tres",
+"use_external/path": "uid://bp3txs2pdy424"
+},
+"Material.006": {
+"use_external/enabled": false,
+"use_external/fallback_path": "res://assets/radio/materials/Material.006.tres",
+"use_external/path": "uid://b6xpjs8siy8ni"
+},
+"Material.009": {
+"use_external/enabled": false,
+"use_external/fallback_path": "res://assets/radio/materials/Material.009.tres",
+"use_external/path": "uid://byrxbuuabjhpt"
+},
+"Material.010": {
+"use_external/enabled": false,
+"use_external/fallback_path": "res://assets/radio/materials/Material.010.tres",
+"use_external/path": "uid://c2ttriblrndmy"
+},
+"Material.011": {
+"use_external/enabled": false,
+"use_external/fallback_path": "res://assets/radio/materials/Material.011.tres",
+"use_external/path": "uid://bkwx7nv60i2xk"
+},
+"Material.012": {
+"use_external/enabled": false,
+"use_external/fallback_path": "res://assets/radio/materials/Material.012.tres",
+"use_external/path": "uid://br5nexk5hr5rr"
+},
+"Material.013": {
+"use_external/enabled": false,
+"use_external/fallback_path": "res://assets/radio/materials/Material.013.tres",
+"use_external/path": "uid://3r3o75jo7rc6"
+},
+"Material.015": {
+"use_external/enabled": false,
+"use_external/fallback_path": "res://assets/radio/materials/Material.015.tres",
+"use_external/path": "uid://wsyj1xhnw0y"
+},
+"Material.016": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/radio/materials/Material.016.tres",
+"use_external/path": "uid://b0e0sryfcq7js"
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1

@@ -64,6 +64,10 @@ func _setup_day_end_screen() -> void:
 		var messages = day_info.get("day_end_messages", [])
 		if messages.size() > 0:
 			day_complete_message.text = messages[0]
+
+		# Emit performance validated signal to unlock elevator
+		DayManager.day_performance_validated.emit(current_day)
+		print("[DayEndScreen] Day %d performance validated - elevator can unlock" % current_day)
 	else:
 		title_label.text = "Performance Insufficient"
 		var summary = StatsManager.get_performance_summary()

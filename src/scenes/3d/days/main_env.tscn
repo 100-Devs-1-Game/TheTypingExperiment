@@ -1,4 +1,4 @@
-[gd_scene load_steps=168 format=4 uid="uid://bud07mn4d7mwr"]
+[gd_scene load_steps=169 format=4 uid="uid://bud07mn4d7mwr"]
 
 [ext_resource type="Script" uid="uid://dcjky3peu8uji" path="res://scenes/3d/days/main.gd" id="1_tbtjm"]
 [ext_resource type="Shader" uid="uid://barc84udpwptk" path="res://scenes/3d/assets_psx/posterize_canvas.gdshader" id="2_5gvna"]
@@ -64,6 +64,7 @@
 [ext_resource type="AudioStream" uid="uid://2aflf4s17lk8" path="res://assets/external/custom_sfx/office-ambience-24734.wav" id="63_5soqj"]
 [ext_resource type="AudioStream" uid="uid://b57wbllrscndt" path="res://assets/external/custom_sfx/elevator/elevator-door-and-ding-6694.wav" id="63_c2xj2"]
 [ext_resource type="PackedScene" uid="uid://tx5ewpe433j8" path="res://scenes/3d/interactables/pc_1.tscn" id="63_pc1sc"]
+[ext_resource type="AudioStream" uid="uid://ddhgwuqcrqeiq" path="res://assets/external/custom_sfx/toilet-flush-quite-aggressive-01-26041.wav" id="64_toilet"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_faidy"]
 
@@ -1388,7 +1389,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, -0.4, 4.5)
 [node name="PC_2" parent="SubViewportContainer/SubViewport/World/Stage_2" groups=["pc_station"] instance=ExtResource("63_pc1sc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 0, 3.4000003)
 day_number = 2
-show_startup_on_first_use = false
 
 [node name="Stage_3" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 transform = Transform3D(-4.371139e-08, 0, 1, 5.9604645e-08, -1, 1.7763568e-15, 1, 5.9604645e-08, 4.371139e-08, 3.1000004, -0.5000003, -3)
@@ -2328,6 +2328,12 @@ max_distance = 9.0
 [node name="ElevatorDoor" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/World/Audio"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -6.7)
 stream = ExtResource("63_c2xj2")
+
+[node name="ToiletFlush" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/World/Audio"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.699999, -2.9, -2.5000005)
+stream = ExtResource("64_toilet")
+volume_db = -30.0
+max_distance = 15.0
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
