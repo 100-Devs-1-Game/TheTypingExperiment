@@ -31,12 +31,6 @@ var untyped_color: String = "#00aa00"
 var error_color: String = "#ff4444"
 var corruption_color: String = "#ff0000"  # Overridden in child classes
 
-# Cursor blink settings
-var cursor_blink_time: float = 0.0
-var cursor_blink_speed: float = 0.5  # Blink every 0.5 seconds
-var cursor_blink_on: bool = true
-var cursor_color_on: String = "#00ff00"   # Light green
-var cursor_color_off: String = "#00aa00"  # Dark green
 
 # Message handling
 var is_typing_message: bool = false
@@ -51,14 +45,7 @@ func _ready() -> void:
 	_initialize_day()
 
 func _process(delta: float) -> void:
-	# Update cursor blink timer
-	cursor_blink_time += delta
-	if cursor_blink_time >= cursor_blink_speed:
-		cursor_blink_time = 0.0
-		cursor_blink_on = !cursor_blink_on
-		# Update display to show blink effect
-		if is_session_active:
-			_update_display()
+	pass
 
 func _initialize_day() -> void:
 	DayManager.start_day(DAY_NUMBER)
@@ -226,8 +213,8 @@ func _update_display() -> void:
 			else:
 				color = error_color
 
-		# Add cursor styling (blinking underline, character color stays the same)
-		if is_cursor_position and cursor_blink_on:
+		# Add cursor styling (simple underline at cursor position)
+		if is_cursor_position:
 			display_text += "[u][color=%s]%s[/color][/u]" % [color, character]
 		else:
 			display_text += "[color=%s]%s[/color]" % [color, character]

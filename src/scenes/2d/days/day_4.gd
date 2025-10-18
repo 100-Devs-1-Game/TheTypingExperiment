@@ -122,8 +122,8 @@ func _update_display() -> void:
 			else:
 				color = untyped_color  # Dark green for untyped normal words
 
-		# Add cursor styling (blinking underline, character color stays the same)
-		if is_cursor_position and cursor_blink_on:
+		# Add cursor styling (simple underline at cursor position)
+		if is_cursor_position:
 			display_text += "[u][color=%s]%s[/color][/u]" % [color, final_character]
 		else:
 			display_text += "[color=%s]%s[/color]" % [color, final_character]

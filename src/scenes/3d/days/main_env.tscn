@@ -59,7 +59,7 @@
 [ext_resource type="PackedScene" uid="uid://cyrn8yu151fwi" path="res://scenes/3d/interactables/keypad_1.tscn" id="60_oijd2"]
 [ext_resource type="AudioStream" uid="uid://cpl5v7ubvansd" path="res://assets/external/custom_sfx/old-fridge-386764s.mp3" id="61_72u8k"]
 [ext_resource type="PackedScene" uid="uid://b80ymjatyubo5" path="res://scenes/3d/assets_psx/GLB/Lighting/lamp_1_on.glb" id="61_blsrk"]
-[ext_resource type="AudioStream" uid="uid://mct5fnjy2yjb" path="res://assets/external/custom_sfx/pink-noise.wav" id="61_oijd2"]
+[ext_resource type="AudioStream" uid="uid://oky5sjk84mu0" path="res://assets/external/custom_sfx/horror-dark-silence-ambience-383321.wav" id="61_c2xj2"]
 [ext_resource type="Script" uid="uid://bm8h3wy68dhre" path="res://scripts/core/KeypadController.gd" id="62_kpctrl"]
 [ext_resource type="AudioStream" uid="uid://b57wbllrscndt" path="res://assets/external/custom_sfx/elevator/elevator-door-and-ding-6694.wav" id="63_c2xj2"]
 [ext_resource type="PackedScene" uid="uid://tx5ewpe433j8" path="res://scenes/3d/interactables/pc_1.tscn" id="63_pc1sc"]
@@ -568,7 +568,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
 audio_listener_enable_3d = true
-size = Vector2i(1280, 720)
+size = Vector2i(640, 360)
 render_target_update_mode = 4
 
 [node name="PanelContainer" type="PanelContainer" parent="SubViewportContainer/SubViewport"]
@@ -580,6 +580,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_faidy")
 
 [node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport/PanelContainer"]
+visible = false
 material = SubResource("ShaderMaterial_i0y1e")
 layout_mode = 2
 
@@ -1064,6 +1065,7 @@ shape = SubResource("ConcavePolygonShape3D_w37v3")
 
 [node name="InteractableElevator_1" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors" instance=ExtResource("43_72u8k")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.799999, 0, -1.9999999)
+door_state = 1
 
 [node name="elevator_doorway_12" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors" instance=ExtResource("45_l5w8t")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0, -2.0000002)
@@ -1386,6 +1388,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, -0.4, 4.5)
 [node name="PC_2" parent="SubViewportContainer/SubViewport/World/Stage_2" groups=["pc_station"] instance=ExtResource("63_pc1sc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 0, 3.4000003)
 day_number = 2
+show_startup_on_first_use = false
 
 [node name="Stage_3" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 transform = Transform3D(-4.371139e-08, 0, 1, 5.9604645e-08, -1, 1.7763568e-15, 1, 5.9604645e-08, 4.371139e-08, 3.1000004, -0.5000003, -3)
@@ -2305,8 +2308,9 @@ door_b_node_path = NodePath("../Stage_4/GLB/Doors/InteractableElevator_3/elevato
 
 [node name="Audio" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 
-[node name="PinkNoise" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/World/Audio"]
-stream = ExtResource("61_oijd2")
+[node name="DarkAmbience" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/World/Audio"]
+stream = ExtResource("61_c2xj2")
+volume_db = -10.0
 
 [node name="VendingMachine" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/World/Audio"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.2, -4.5)
