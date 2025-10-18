@@ -96,7 +96,7 @@ T                       Q N QPOPOPP    R PMO M SRR                       T
 
 
 
-                            T R   V    U   V S"
+"
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -172,7 +172,7 @@ T                       Q N QPOPOPP    R PMO M SRR                       T
 
 
 
-                            T R   V    U   V S"
+"
 
 [node name="PinkNoise" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_vn73t")
