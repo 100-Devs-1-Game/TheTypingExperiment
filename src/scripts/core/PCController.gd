@@ -11,6 +11,7 @@ extends Node3D
 signal monitor_turned_on()
 signal monitor_turned_off()
 signal day_content_loaded(day_number: int)
+signal game_over_glitch_requested()  # Emitted when Day 5 game over transition starts
 
 @export var day_number: int = 1  ## Which day this PC loads (1-5)
 @export var show_startup_on_first_use: bool = true  ## Show startup screen first time
@@ -126,6 +127,10 @@ func _load_day_content() -> void:
 	if day_instance.has_signal("day_end_screen_requested"):
 		day_instance.day_end_screen_requested.connect(_on_day_end_screen_requested)
 
+	# Connect to game over transition signal (Day 5)
+	if day_instance.has_signal("game_over_transition_starting"):
+		day_instance.game_over_transition_starting.connect(_on_game_over_transition_starting)
+
 	day_content_loaded.emit(day_number)
 	print("[PCController] Loaded Day %d content" % day_number)
 
@@ -147,6 +152,11 @@ func _on_day_end_screen_requested() -> void:
 
 	print("[PCController] Day %d end screen loaded" % day_number)
 
+## Called when Day 5 game over transition is starting
+func _on_game_over_transition_starting() -> void:
+	# Emit signal for main.gd to show glitch effect
+	game_over_glitch_requested.emit()
+	print("[PCController] Game over transition starting - glitch effect requested")
 
 func _on_startup_sound_finished() -> void:
 	working_sound.play()

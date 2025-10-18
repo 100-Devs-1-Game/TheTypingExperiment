@@ -8,6 +8,7 @@ extends Control
 signal stage_completed()
 signal day_completed()
 signal day_end_screen_requested()
+signal game_over_transition_starting()  # Emitted 1 second before game over screen
 
 # UI References (all days use these)
 @onready var text_display: RichTextLabel = %DisplayText
@@ -298,6 +299,9 @@ func _on_day_completed(day_number: int) -> void:
 
 		# Day 5: Go to game over screen (full scene change)
 		if day_number == 5:
+			# Signal to show glitch effect 1 second before transition
+			game_over_transition_starting.emit()
+			await get_tree().create_timer(1.0).timeout
 			get_tree().change_scene_to_file("res://scenes/2d/game_over/game_over_screen.tscn")
 		else:
 			# Other days: Request day end screen (let 3D environment handle it)

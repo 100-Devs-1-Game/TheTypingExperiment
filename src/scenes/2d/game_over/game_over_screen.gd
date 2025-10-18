@@ -35,13 +35,12 @@ func _show_skull_eerily() -> void:
 	await get_tree().create_timer(0.5).timeout
 
 	# Fade in first skull
-	if skull_label:
-		skull_label.visible = true
-		await _fade_in_skull(skull_label, 0.0)
+	skull_label.visible = true
+	await _fade_in_skull(skull_label, 0.0)
 
 	# Start zoom on first skull and wait for it to finish
-	if skull_label:
-		await _slow_zoom(skull_label)
+	#await _slow_zoom(skull_label)
+	skull_label.scale = Vector2(1.3, 1.3)
 
 	# Mark that first skull finished zooming
 	skull_1_finished_zoom = true

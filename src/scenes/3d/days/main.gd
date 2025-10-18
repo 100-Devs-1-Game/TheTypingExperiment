@@ -10,6 +10,7 @@ var startup_triggered := false
 @onready var interaction_label: Label = $SubViewportContainer/SubViewport/World/Player/Head/InteractionLabel
 @onready var esc_prompt_label: Label = $UI/EscPromptLabel
 @onready var color_rect: ColorRect = $SubViewportContainer/SubViewport/PanelContainer/ColorRect
+@onready var glitch_rect: ColorRect = $SubViewportContainer/SubViewport/PanelContainer/ColorRect2
 @onready var elevator_door_audio: AudioStreamPlayer3D = $SubViewportContainer/SubViewport/World/Audio/ElevatorDoor
 @onready var toilet_flush_audio: AudioStreamPlayer3D = $SubViewportContainer/SubViewport/World/Audio/ToiletFlush
 
@@ -242,6 +243,8 @@ func _discover_pcs() -> void:
 	for pc in pcs:
 		if pc is PCController:
 			pc_controllers.append(pc)
+			# Connect to game over glitch signal
+			pc.game_over_glitch_requested.connect(_on_game_over_glitch_requested)
 			print("[Main] Discovered PC for Day %d" % pc.day_number)
 
 	print("[Main] Total PCs discovered: %d" % pc_controllers.size())
@@ -414,6 +417,13 @@ func _on_day_manager_stage_completed(day: int, stage: int) -> void:
 		await get_tree().create_timer(delay).timeout
 		toilet_flush_audio.play()
 		print("[Main] *TOILET FLUSH* - someone else is here...")
+
+## Called when Day 5 game over transition is starting
+func _on_game_over_glitch_requested() -> void:
+	# Show the glitch effect (ColorRect2)
+	if glitch_rect:
+		glitch_rect.visible = true
+		print("[Main] Glitch effect enabled for game over transition")
 
 # Handle player state changes to manage visualizers
 func _on_player_state_changed(old_state: PlayerStateManager.PlayerState, new_state: PlayerStateManager.PlayerState) -> void:
