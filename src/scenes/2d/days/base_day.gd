@@ -111,6 +111,9 @@ func _start_new_stage() -> void:
 		# Note: TypingEngine.start_typing_session() already handles all stats tracking
 		# StatsManager was redundant and has been removed
 
+	# Update display to show cursor on first character
+	_update_display()
+
 # VIRTUAL FUNCTION - Override in child classes for day-specific typewriter effects
 func _show_stage_text_typewriter() -> void:
 	var display_sentence = DayManager.get_stage_display_sentence()

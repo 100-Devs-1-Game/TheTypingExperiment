@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dx6lgthhxr23r"]
+[gd_scene load_steps=5 format=3 uid="uid://dx6lgthhxr23r"]
 
 [ext_resource type="Script" uid="uid://dcgfywvtggjt" path="res://scenes/2d/days/day_3.gd" id="1_01o33"]
 
@@ -9,6 +9,8 @@ subpixel_positioning = 0
 [sub_resource type="Theme" id="Theme_bauee"]
 default_font = SubResource("SystemFont_de5wr")
 default_font_size = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nve3j"]
 
 [node name="Day3" type="Control"]
 layout_mode = 3
@@ -80,6 +82,7 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_nve3j")
 
 [node name="MarginContainer" type="MarginContainer" parent="MainContainer/TypingArea"]
 layout_mode = 1
@@ -139,6 +142,7 @@ size_flags_vertical = 3
 [node name="ProgressBarLabel" type="Label" parent="MainContainer/ProgressContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "░░░░░░░░░░"
 
 [node name="MessageOverlay" type="Label" parent="."]

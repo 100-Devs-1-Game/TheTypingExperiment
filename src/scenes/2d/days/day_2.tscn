@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7bnqjnx72nyp"]
+[gd_scene load_steps=5 format=3 uid="uid://b7bnqjnx72nyp"]
 
 [ext_resource type="Script" uid="uid://bas8aegoedbjd" path="res://scenes/2d/days/day_2.gd" id="1_ljcjv"]
 
@@ -8,6 +8,8 @@ font_names = PackedStringArray("Courier New")
 [sub_resource type="Theme" id="Theme_bauee"]
 default_font = SubResource("SystemFont_ljcjv")
 default_font_size = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ljcjv"]
 
 [node name="Day2" type="Control"]
 layout_mode = 3
@@ -79,6 +81,7 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ljcjv")
 
 [node name="MarginContainer" type="MarginContainer" parent="MainContainer/TypingArea"]
 layout_mode = 1
