@@ -28,6 +28,9 @@ enum DoorState {
 @onready var door_b: Node3D = null  # Will be found in _ready()
 @onready var elevator_sound: AudioStreamPlayer = $ElevatorSound
 
+# Reference to dark ambience audio (found in main_env scene)
+var dark_ambience: AudioStreamPlayer = null
+
 # Door state
 var doors_are_open: bool = false
 var is_unlocked: bool = false
@@ -41,6 +44,9 @@ func _ready() -> void:
 
 	# Find door nodes by searching for elevator_door in children
 	_find_door_nodes()
+
+	# Find dark ambience audio node
+	_find_dark_ambience()
 
 	# Connect to DayManager signals
 	if DayManager:
@@ -68,6 +74,23 @@ func _find_door_nodes() -> void:
 
 	if not door_a or not door_b:
 		push_warning("[ElevatorController] Could not find both elevator doors")
+
+## Finds the DarkAmbience audio node in the scene tree
+func _find_dark_ambience() -> void:
+	# Navigate up to find the World node, then find DarkAmbience
+	var world_node = get_node_or_null("/root/MainEnv/SubViewportContainer/SubViewport/World")
+	if not world_node:
+		# Try alternative path
+		world_node = get_tree().root.get_node_or_null("MainEnv/SubViewportContainer/SubViewport/World")
+
+	if world_node:
+		dark_ambience = world_node.get_node_or_null("Audio/DarkAmbience")
+		if dark_ambience:
+			print("[ElevatorController] Found DarkAmbience audio node")
+		else:
+			push_warning("[ElevatorController] Could not find DarkAmbience node")
+	else:
+		push_warning("[ElevatorController] Could not find World node")
 
 ## Apply the current door_state (opens or closes doors based on the state)
 func _apply_door_state() -> void:
@@ -176,6 +199,11 @@ func use_elevator() -> void:
 	if not can_use_elevator():
 		print("[ElevatorController] Elevator not yet unlocked or doors closed")
 		return
-		
+
+	# Play dark ambience when elevator is used
+	if dark_ambience and not dark_ambience.playing:
+		dark_ambience.play()
+		print("[ElevatorController] Playing DarkAmbience")
+
 	elevator_sound.play()
 	elevator_used.emit(elevator_name)

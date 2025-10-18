@@ -1,4 +1,4 @@
-[gd_scene load_steps=167 format=4 uid="uid://bud07mn4d7mwr"]
+[gd_scene load_steps=168 format=4 uid="uid://bud07mn4d7mwr"]
 
 [ext_resource type="Script" uid="uid://dcjky3peu8uji" path="res://scenes/3d/days/main.gd" id="1_tbtjm"]
 [ext_resource type="Shader" uid="uid://barc84udpwptk" path="res://scenes/3d/assets_psx/posterize_canvas.gdshader" id="2_5gvna"]
@@ -32,7 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://brcwbbw6u8o68" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/vent_mp_1.glb" id="24_8khuf"]
 [ext_resource type="PackedScene" uid="uid://beowl66eowjlp" path="res://scenes/3d/assets_psx/custom/keyboard_with_separate_keys.gltf" id="24_ixxjw"]
 [ext_resource type="PackedScene" uid="uid://b28inpdd445aa" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/glass_bottle_1.glb" id="24_r4agu"]
-[ext_resource type="PackedScene" uid="uid://b7oswkcuna6e1" path="res://assets/radio_baked.glb" id="25_krker"]
+[ext_resource type="PackedScene" uid="uid://b7oswkcuna6e1" path="res://assets/radio/radio_baked.glb" id="25_krker"]
 [ext_resource type="PackedScene" uid="uid://4wyponk1hv5c" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/glass_bottle_2.glb" id="25_nevyq"]
 [ext_resource type="PackedScene" uid="uid://n2txymoshhjt" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/cash_2.glb" id="26_e78pq"]
 [ext_resource type="PackedScene" uid="uid://bc14ef0oakx7f" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/cash_1.glb" id="27_rohpg"]
@@ -61,6 +61,7 @@
 [ext_resource type="PackedScene" uid="uid://b80ymjatyubo5" path="res://scenes/3d/assets_psx/GLB/Lighting/lamp_1_on.glb" id="61_blsrk"]
 [ext_resource type="AudioStream" uid="uid://oky5sjk84mu0" path="res://assets/external/custom_sfx/horror-dark-silence-ambience-383321.wav" id="61_c2xj2"]
 [ext_resource type="Script" uid="uid://bm8h3wy68dhre" path="res://scripts/core/KeypadController.gd" id="62_kpctrl"]
+[ext_resource type="AudioStream" uid="uid://2aflf4s17lk8" path="res://assets/external/custom_sfx/office-ambience-24734.wav" id="63_5soqj"]
 [ext_resource type="AudioStream" uid="uid://b57wbllrscndt" path="res://assets/external/custom_sfx/elevator/elevator-door-and-ding-6694.wav" id="63_c2xj2"]
 [ext_resource type="PackedScene" uid="uid://tx5ewpe433j8" path="res://scenes/3d/interactables/pc_1.tscn" id="63_pc1sc"]
 
@@ -568,7 +569,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
 audio_listener_enable_3d = true
-size = Vector2i(640, 360)
+size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
 [node name="PanelContainer" type="PanelContainer" parent="SubViewportContainer/SubViewport"]
@@ -1065,7 +1066,6 @@ shape = SubResource("ConcavePolygonShape3D_w37v3")
 
 [node name="InteractableElevator_1" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors" instance=ExtResource("43_72u8k")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.799999, 0, -1.9999999)
-door_state = 1
 
 [node name="elevator_doorway_12" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors" instance=ExtResource("45_l5w8t")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0, -2.0000002)
@@ -2317,6 +2317,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.2, -4.5)
 stream = ExtResource("61_72u8k")
 autoplay = true
 max_distance = 10.0
+
+[node name="OfficeRoom1" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/World/Audio"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0000005, 1.2, -3.3999999)
+stream = ExtResource("63_5soqj")
+volume_db = -4.0
+autoplay = true
+max_distance = 9.0
 
 [node name="ElevatorDoor" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/World/Audio"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -6.7)
