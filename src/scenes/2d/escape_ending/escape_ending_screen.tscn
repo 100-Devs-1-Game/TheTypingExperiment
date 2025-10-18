@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://bv8yj5n4m8r3k"]
+
+[ext_resource type="Script" uid="uid://cdtpq0phdvnjt" path="res://scenes/2d/escape_ending/escape_ending_screen.gd" id="1_escape"]
+[ext_resource type="AudioStream" uid="uid://mct5fnjy2yjb" path="res://assets/external/custom_sfx/pink-noise.wav" id="2_noise"]
+
+[sub_resource type="SystemFont" id="SystemFont_mono"]
+font_names = PackedStringArray("Courier New", "Consolas", "Monospace")
+subpixel_positioning = 0
+
+[node name="EscapeEnding" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_escape")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="MessageLabel" type="RichTextLabel" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 1, 0, 1)
+theme_override_fonts/normal_font = SubResource("SystemFont_mono")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+scroll_active = false
+scroll_following = true
+autowrap_mode = 0
+
+[node name="PinkNoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_noise")
+volume_db = -15.0
+autoplay = true

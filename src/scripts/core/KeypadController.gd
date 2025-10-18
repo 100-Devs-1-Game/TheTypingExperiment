@@ -6,6 +6,7 @@ extends Node3D
 
 signal code_validated(is_correct: bool)
 signal door_opened()
+signal escape_ending_triggered()  ## Emitted when secret code 1994 is entered on Keypad_3
 
 enum DoorType {
 	ROTATING,   ## Door rotates on Y axis
@@ -44,8 +45,13 @@ func _on_code_entered(entered_code: String) -> void:
 		if keypad_input and keypad_input.has_method("show_success"):
 			keypad_input.show_success()
 
-		_open_door()
-		DoorManager.unlock_stage(unlocks_stage)
+		# Check for secret escape ending (stage 999)
+		if unlocks_stage == 999:
+			escape_ending_triggered.emit()
+			print("[KeypadController] Secret code entered - triggering escape ending")
+		else:
+			_open_door()
+			DoorManager.unlock_stage(unlocks_stage)
 	else:
 		# Show error feedback and allow retry
 		if keypad_input and keypad_input.has_method("show_error"):

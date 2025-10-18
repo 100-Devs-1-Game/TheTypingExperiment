@@ -2314,7 +2314,7 @@ target_rotation_y = 0.0
 [node name="Keypad_3" parent="SubViewportContainer/SubViewport/World" groups=["keypad_station"] instance=ExtResource("60_oijd2")]
 transform = Transform3D(1.0000001, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1.0000001, 17.229996, -2.2, -6.9300003)
 script = ExtResource("62_kpctrl")
-unlocks_stage = 5
+unlocks_stage = 999
 door_type = 1
 door_a_node_path = NodePath("../Stage_4/GLB/Doors/InteractableElevator_3/elevator_22/elevator_2/elevator_door_3_a")
 door_b_node_path = NodePath("../Stage_4/GLB/Doors/InteractableElevator_3/elevator_22/elevator_2/elevator_door_3_b")

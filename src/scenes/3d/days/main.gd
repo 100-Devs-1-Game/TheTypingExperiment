@@ -282,6 +282,12 @@ func _discover_keypads() -> void:
 			if keypad_sound_player and keypad.keypad_input:
 				keypad.keypad_input.sound_player = keypad_sound_player
 				print("[Main] Injected KeypadSoundPlayer into Keypad for Stage %d" % keypad.unlocks_stage)
+
+			# Connect escape ending signal for Keypad_3 (stage 999)
+			if keypad.unlocks_stage == 999:
+				keypad.escape_ending_triggered.connect(_on_escape_ending_triggered)
+				print("[Main] Connected escape ending signal for Keypad_3")
+
 			print("[Main] Discovered Keypad for Stage %d" % keypad.unlocks_stage)
 
 	print("[Main] Total Keypads discovered: %d" % keypad_controllers.size())
@@ -317,6 +323,11 @@ func _generate_stage_codes() -> void:
 
 		# Set code in DoorManager
 		DoorManager.set_code_for_stage(stage, code)
+
+	# Secret code for Keypad_3 (escape ending)
+	# This is a separate code from the stage progression
+	DoorManager.set_code_for_stage(999, "1994")  # Using stage 999 as secret code slot
+	print("[Main] Secret code '1994' set for Keypad_3 (escape ending)")
 		
 # Setup modular systems
 func _setup_modular_systems() -> void:
@@ -424,6 +435,20 @@ func _on_game_over_glitch_requested() -> void:
 	if glitch_rect:
 		glitch_rect.visible = true
 		print("[Main] Glitch effect enabled for game over transition")
+
+## Called when player enters secret code 1994 on Keypad_3
+func _on_escape_ending_triggered() -> void:
+	print("[Main] Escape ending triggered - showing glitch and transitioning to escape scene")
+
+	# Show the glitch effect (same as game over)
+	if glitch_rect:
+		glitch_rect.visible = true
+
+	# Wait 1 second for glitch effect
+	await get_tree().create_timer(1.0).timeout
+
+	# Transition to escape ending scene
+	get_tree().change_scene_to_file("res://scenes/2d/escape_ending/escape_ending_screen.tscn")
 
 # Handle player state changes to manage visualizers
 func _on_player_state_changed(old_state: PlayerStateManager.PlayerState, new_state: PlayerStateManager.PlayerState) -> void:
