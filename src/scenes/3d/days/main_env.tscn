@@ -1,7 +1,8 @@
-[gd_scene load_steps=169 format=4 uid="uid://bud07mn4d7mwr"]
+[gd_scene load_steps=171 format=4 uid="uid://bud07mn4d7mwr"]
 
 [ext_resource type="Script" uid="uid://dcjky3peu8uji" path="res://scenes/3d/days/main.gd" id="1_tbtjm"]
 [ext_resource type="Shader" uid="uid://barc84udpwptk" path="res://scenes/3d/assets_psx/posterize_canvas.gdshader" id="2_5gvna"]
+[ext_resource type="Shader" uid="uid://csg1ptfp4xjps" path="res://scenes/3d/assets_psx/glitch_effect.gdshader" id="2_55xim"]
 [ext_resource type="PackedScene" uid="uid://b8tftp2mpw34h" path="res://scenes/3d/assets_psx/GLB/Modular Structures/window_metal_bars_single.glb" id="2_oxuu8"]
 [ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://scenes/3d/player/player.tscn" id="2_tbtjm"]
 [ext_resource type="PackedScene" uid="uid://bngcjfsk77af0" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/ceiling_fan_mp_1_1_light_off.glb" id="3_0o5wo"]
@@ -86,6 +87,14 @@ shader_parameter/tint_strength = 0.15
 shader_parameter/viewport_size_override = Vector2(0, 0)
 shader_parameter/overlay_enable = false
 shader_parameter/overlay_color = Color(0.858375, 0.943665, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h52jf"]
+shader = ExtResource("2_55xim")
+shader_parameter/glitch_intensity = 0.550000026125
+shader_parameter/distortion_amount = 0.02
+shader_parameter/aberration_amount = 0.01
+shader_parameter/scan_line_count = 200.0
+shader_parameter/noise_amount = 0.2
 
 [sub_resource type="Environment" id="Environment_faidy"]
 background_mode = 1
@@ -570,7 +579,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
 audio_listener_enable_3d = true
-size = Vector2i(1920, 1080)
+size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
 [node name="PanelContainer" type="PanelContainer" parent="SubViewportContainer/SubViewport"]
@@ -582,8 +591,12 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_faidy")
 
 [node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport/PanelContainer"]
-visible = false
 material = SubResource("ShaderMaterial_i0y1e")
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="SubViewportContainer/SubViewport/PanelContainer"]
+visible = false
+material = SubResource("ShaderMaterial_h52jf")
 layout_mode = 2
 
 [node name="World" type="Node3D" parent="SubViewportContainer/SubViewport"]
@@ -592,7 +605,7 @@ layout_mode = 2
 environment = SubResource("Environment_faidy")
 
 [node name="Player" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("2_tbtjm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0075172186, 1.4221497, -3.7251248)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.292483, -8.677851, -3.7251248)
 
 [node name="Lighting" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 

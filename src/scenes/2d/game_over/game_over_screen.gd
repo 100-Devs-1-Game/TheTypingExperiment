@@ -4,6 +4,7 @@ extends Control
 
 @onready var skull_label: Label = %SkullLabel
 @onready var skull_label_2: Label = %SkullLabel2
+@onready var final_label: Label = %Label
 
 var horror_effects: HorrorEffectsManager
 var skull_2_final_position: Vector2
@@ -117,6 +118,9 @@ func _show_and_move_skull_2() -> void:
 	# Slowly drift to final position
 	await _drift_to_final_position()
 
+	# Once drift is finished, show final message and close game
+	_show_final_message()
+
 func _choppy_fade_in_skull_2() -> void:
 	var fade_steps = 6
 	var fade_duration = 1.0
@@ -154,3 +158,18 @@ func _drift_to_final_position() -> void:
 		skull_label_2.position = start_position.lerp(skull_2_final_position, eased_progress)
 
 		await get_tree().process_frame
+
+func _show_final_message() -> void:
+	# Hide both skulls
+	if skull_label:
+		skull_label.visible = false
+	if skull_label_2:
+		skull_label_2.visible = false
+
+	# Show final label
+	if final_label:
+		final_label.visible = true
+
+	# Wait 10 seconds then close the game
+	await get_tree().create_timer(10.0).timeout
+	get_tree().quit()

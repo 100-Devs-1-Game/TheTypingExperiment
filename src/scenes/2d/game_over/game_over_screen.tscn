@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dicwlnmirtug5"]
+[gd_scene load_steps=6 format=3 uid="uid://dicwlnmirtug5"]
 
 [ext_resource type="Script" uid="uid://dcigkone7oj2b" path="res://scenes/2d/game_over/game_over_screen.gd" id="1_jw4iv"]
+[ext_resource type="AudioStream" uid="uid://mct5fnjy2yjb" path="res://assets/external/custom_sfx/pink-noise.wav" id="2_vn73t"]
 
 [sub_resource type="SystemFont" id="SystemFont_v2"]
 font_names = PackedStringArray("Courier New")
@@ -172,3 +173,8 @@ T                       Q N QPOPOPP    R PMO M SRR                       T
 
 
                             T R   V    U   V S"
+
+[node name="PinkNoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_vn73t")
+volume_db = -10.0
+autoplay = true
