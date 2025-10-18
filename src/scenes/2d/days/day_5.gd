@@ -16,6 +16,9 @@ func _ready() -> void:
 	super._ready()
 
 func _process(delta: float) -> void:
+	# Call parent to handle cursor blink
+	super._process(delta)
+
 	# Update corruption animation time
 	corruption_animation_time += delta * corruption_animation_speed
 
@@ -116,8 +119,8 @@ func _update_display() -> void:
 			else:
 				color = untyped_color  # Dark green for untyped normal words
 
-		# Add cursor styling (underline) to current character
-		if is_cursor_position:
+		# Add cursor styling (blinking underline, character color stays the same)
+		if is_cursor_position and cursor_blink_on:
 			display_text += "[u][color=%s]%s[/color][/u]" % [color, final_character]
 		else:
 			display_text += "[color=%s]%s[/color]" % [color, final_character]
