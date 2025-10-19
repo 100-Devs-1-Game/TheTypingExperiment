@@ -72,6 +72,11 @@ func _ready() -> void:
 	if DayManager:
 		DayManager.stage_completed.connect(_on_day_manager_stage_completed)
 
+	# Play elevator sound on scene start
+	if elevator_door_audio:
+		elevator_door_audio.play()
+		print("[Main] Playing elevator sound on scene start")
+
 
 func _input(event: InputEvent) -> void:
 	# Let player state manager handle state transitions first
