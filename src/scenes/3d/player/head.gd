@@ -27,6 +27,10 @@ func _ready() -> void:
 	# Store original position for head bob
 	_original_position = position
 
+	# Initialize rotation with player's current rotation (preserves scene rotation)
+	rot.y = get_owner().rotation.y
+	rot.x = rotation.x
+
 
 # Called when there is an input event
 func _input(event: InputEvent) -> void:
