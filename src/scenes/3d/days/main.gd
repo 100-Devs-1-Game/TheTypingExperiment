@@ -13,6 +13,7 @@ var startup_triggered := false
 @onready var glitch_rect: ColorRect = $SubViewportContainer/SubViewport/PanelContainer/ColorRect2
 @onready var elevator_door_audio: AudioStreamPlayer3D = $SubViewportContainer/SubViewport/World/Audio/ElevatorDoor
 @onready var toilet_flush_audio: AudioStreamPlayer3D = $SubViewportContainer/SubViewport/World/Audio/ToiletFlush
+@onready var radio: AudioStreamPlayer3D = $SubViewportContainer/SubViewport/World/Audio/Radio
 
 # Modular systems
 var fade_manager: FadeTransitionManager
@@ -192,10 +193,16 @@ func interact_with_elevator(elevator_node: Node3D = null):
 	# Use elevator (this will emit signal)
 	target_elevator.use_elevator()
 
-	# Show ColorRect when elevator_1 is used
-	if target_elevator.elevator_name == "elevator_1" and color_rect:
-		color_rect.visible = true
-		print("[Main] ColorRect enabled for elevator_1")
+	# Show ColorRect and fade out Radio when elevator_1 is used
+	if target_elevator.elevator_name == "elevator_1":
+		if color_rect:
+			color_rect.visible = true
+			print("[Main] ColorRect enabled for elevator_1")
+
+		# Fade out and stop radio
+		if radio and radio.playing:
+			print("[Main] Fading out Radio")
+			_fade_out_radio()
 
 	# Teleport player with fade transition
 	var teleport_position = target_elevator.get_teleport_position()
@@ -215,6 +222,21 @@ func _execute_elevator_teleport(teleport_position: Vector3, teleport_rotation: V
 		player.global_position = teleport_position
 		player.rotation = teleport_rotation
 		print("[Main] Player teleported to: %s" % teleport_position)
+
+## Fade out the radio audio over 2 seconds
+func _fade_out_radio() -> void:
+	if not radio:
+		return
+
+	var fade_duration = 2.0
+	var initial_volume = radio.volume_db
+	var tween = create_tween()
+	tween.tween_property(radio, "volume_db", -80, fade_duration)
+
+	await tween.finished
+	radio.stop()
+	radio.volume_db = initial_volume  # Reset volume for future use
+	print("[Main] Radio stopped")
 
 func show_menu(_show:bool):
 	showing_menu = _show
