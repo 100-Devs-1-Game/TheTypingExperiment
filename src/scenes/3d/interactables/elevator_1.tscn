@@ -55,8 +55,9 @@ visible = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="elevator_22/elevator_2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_rmtgk")
 
-[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005629, 1.49026, -0.5924396)
+visible = false
 light_color = Color(0.679622, 0.657677, 0.548465, 1)
 light_energy = 4.723
 

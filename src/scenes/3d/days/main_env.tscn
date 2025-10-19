@@ -606,7 +606,7 @@ layout_mode = 2
 environment = SubResource("Environment_faidy")
 
 [node name="Player" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("2_tbtjm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3924837, 1.122149, -5.225125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0924837, 1.122149, -5.225125)
 speed = 2.5
 acceleration = 4.0
 deceleration = 6.0
@@ -1985,9 +1985,6 @@ unlocks_after_stage = 100
 [node name="TeleportMarker" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors/InteractableElevator_3" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.8199997, 0.39999962)
 
-[node name="OmniLight3D3" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors/InteractableElevator_3" index="3"]
-visible = false
-
 [node name="Props" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB"]
 
 [node name="vending_machine_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("10_p1hi1")]
@@ -2294,9 +2291,6 @@ door_state = 1
 
 [node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_5/InteractableElevator_4/ElevatorInteraction" index="0"]
 disabled = true
-
-[node name="OmniLight3D3" parent="SubViewportContainer/SubViewport/World/Stage_5/InteractableElevator_4" index="3"]
-light_energy = 0.339
 
 [node name="PC_5" parent="SubViewportContainer/SubViewport/World/Stage_5" groups=["pc_station"] instance=ExtResource("63_pc1sc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3999999, 1.8626451e-08, 3.41)

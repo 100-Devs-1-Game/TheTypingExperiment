@@ -27,6 +27,7 @@ enum DoorState {
 @onready var door_a: Node3D = null  # Will be found in _ready()
 @onready var door_b: Node3D = null  # Will be found in _ready()
 @onready var elevator_sound: AudioStreamPlayer = $ElevatorSound
+@onready var elevator_light: OmniLight3D = null  # Will be found in _ready()
 
 # Reference to dark ambience audio (found in main_env scene)
 var dark_ambience: AudioStreamPlayer = null
@@ -43,6 +44,9 @@ func _ready() -> void:
 
 	# Find door nodes by searching for elevator_door in children
 	_find_door_nodes()
+
+	# Find elevator light
+	_find_elevator_light()
 
 	# Find dark ambience audio node
 	_find_dark_ambience()
@@ -75,6 +79,18 @@ func _find_door_nodes() -> void:
 
 	if not door_a or not door_b:
 		push_warning("[ElevatorController] Could not find both elevator doors")
+
+## Finds the elevator light (OmniLight3D3)
+func _find_elevator_light() -> void:
+	# Look for OmniLight3D in the elevator root
+	elevator_light = get_node_or_null("OmniLight3D")
+
+	if elevator_light:
+		print("[ElevatorController] Found elevator light")
+		# Disable light initially (will be enabled when doors open)
+		elevator_light.visible = false
+	else:
+		push_warning("[ElevatorController] Could not find elevator light (OmniLight3D3)")
 
 ## Finds the DarkAmbience audio node in the scene tree
 func _find_dark_ambience() -> void:
@@ -147,6 +163,10 @@ func open_doors() -> void:
 	doors_are_open = true
 	print("[ElevatorController] Opening elevator doors")
 
+	# Enable elevator light when doors open
+	if elevator_light:
+		elevator_light.visible = true
+
 	# Animate doors to fixed positions (same as KeypadController)
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
@@ -164,6 +184,10 @@ func close_doors() -> void:
 
 	doors_are_open = false
 	print("[ElevatorController] Closing elevator doors")
+
+	# Disable elevator light when doors close
+	if elevator_light:
+		elevator_light.visible = false
 
 	# Animate doors back to closed position
 	var tween = create_tween()
