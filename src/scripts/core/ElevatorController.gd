@@ -33,7 +33,6 @@ var dark_ambience: AudioStreamPlayer = null
 
 # Door state
 var doors_are_open: bool = false
-var is_unlocked: bool = false
 
 # Door animation settings (matching KeypadController)
 @export var door_animation_duration: float = 1.0  # Seconds to open/close
@@ -98,7 +97,6 @@ func _find_dark_ambience() -> void:
 func _apply_door_state() -> void:
 	if door_state == DoorState.OPEN:
 		if not doors_are_open:
-			is_unlocked = true  # Mark as unlocked so it can be used
 			open_doors()
 	elif door_state == DoorState.CLOSED:
 		if doors_are_open:
@@ -128,15 +126,14 @@ func _check_initial_unlock_state() -> void:
 func _on_day_performance_validated(day: int) -> void:
 	# Check if this elevator should unlock based on completed day
 	# unlocks_after_stage represents which day completion unlocks this elevator
-	if day >= unlocks_after_stage and not is_unlocked:
+	if day >= unlocks_after_stage:
 		unlock_elevator()
 
 ## Unlocks the elevator and opens doors
 func unlock_elevator() -> void:
-	if is_unlocked:
+	if doors_are_open:
 		return
 
-	is_unlocked = true
 	print("[ElevatorController] Elevator '%s' unlocked!" % elevator_name)
 
 	# Open doors automatically when unlocked
@@ -192,12 +189,12 @@ func get_teleport_rotation() -> Vector3:
 
 ## Check if player can use this elevator
 func can_use_elevator() -> bool:
-	return is_unlocked and doors_are_open
+	return doors_are_open
 
 ## Use the elevator (called by main.gd)
 func use_elevator() -> void:
 	if not can_use_elevator():
-		print("[ElevatorController] Elevator not yet unlocked or doors closed")
+		print("[ElevatorController] Elevator doors are closed")
 		return
 
 	# Play dark ambience when elevator is used

@@ -184,7 +184,7 @@ func interact_with_elevator(elevator_node: Node3D = null):
 
 	# Check if elevator can be used
 	if not target_elevator.can_use_elevator():
-		print("[Main] Elevator '%s' is not yet unlocked or doors are closed" % target_elevator.elevator_name)
+		print("[Main] Elevator '%s' doors are closed" % target_elevator.elevator_name)
 		return
 
 	print("[Main] Using elevator: %s" % target_elevator.elevator_name)
@@ -283,10 +283,8 @@ func _discover_keypads() -> void:
 				keypad.keypad_input.sound_player = keypad_sound_player
 				print("[Main] Injected KeypadSoundPlayer into Keypad for Stage %d" % keypad.unlocks_stage)
 
-			# Connect escape ending signal for Keypad_3 (stage 999)
-			if keypad.unlocks_stage == 999:
-				keypad.escape_ending_triggered.connect(_on_escape_ending_triggered)
-				print("[Main] Connected escape ending signal for Keypad_3")
+			# Connect escape ending signal (secret code works on any keypad)
+			keypad.escape_ending_triggered.connect(_on_escape_ending_triggered)
 
 			print("[Main] Discovered Keypad for Stage %d" % keypad.unlocks_stage)
 
@@ -324,10 +322,8 @@ func _generate_stage_codes() -> void:
 		# Set code in DoorManager
 		DoorManager.set_code_for_stage(stage, code)
 
-	# Secret code for Keypad_3 (escape ending)
-	# This is a separate code from the stage progression
-	DoorManager.set_code_for_stage(999, "1994")  # Using stage 999 as secret code slot
-	print("[Main] Secret code '1994' set for Keypad_3 (escape ending)")
+	# Note: Secret code "1994" is hardcoded in KeypadController
+	# and works on any keypad to trigger the escape ending
 		
 # Setup modular systems
 func _setup_modular_systems() -> void:

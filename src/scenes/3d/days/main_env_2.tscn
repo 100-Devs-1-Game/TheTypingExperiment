@@ -1,95 +1,95 @@
-[gd_scene load_steps=171 format=4 uid="uid://bud07mn4d7mwr"]
+[gd_scene load_steps=171 format=4 uid="uid://cifekfpjarn57"]
 
-[ext_resource type="Script" uid="uid://dcjky3peu8uji" path="res://scenes/3d/days/main.gd" id="1_tbtjm"]
-[ext_resource type="Shader" uid="uid://barc84udpwptk" path="res://scenes/3d/assets_psx/posterize_canvas.gdshader" id="2_5gvna"]
-[ext_resource type="Shader" uid="uid://csg1ptfp4xjps" path="res://scenes/3d/assets_psx/glitch_effect.gdshader" id="2_55xim"]
-[ext_resource type="PackedScene" uid="uid://b8tftp2mpw34h" path="res://scenes/3d/assets_psx/GLB/Modular Structures/window_metal_bars_single.glb" id="2_oxuu8"]
-[ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://scenes/3d/player/player.tscn" id="2_tbtjm"]
-[ext_resource type="PackedScene" uid="uid://bngcjfsk77af0" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/ceiling_fan_mp_1_1_light_off.glb" id="3_0o5wo"]
-[ext_resource type="PackedScene" uid="uid://c6fy4f27r66ld" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/ceiling_fan_mp_1_1_light_on.glb" id="4_kj1kj"]
-[ext_resource type="PackedScene" uid="uid://cyg1iphb51hca" path="res://scenes/3d/assets_psx/GLB/Lighting/ceiling_lamp_1_on.glb" id="5_gafn2"]
-[ext_resource type="PackedScene" uid="uid://dxqf80mdlqv6v" path="res://scenes/3d/assets_psx/GLB/Modular Structures/wall_1_half.glb" id="5_pp6gi"]
-[ext_resource type="PackedScene" uid="uid://cprro8v43k6c8" path="res://scenes/3d/assets_psx/GLB/Lighting/ceiling_lamp_1_off.glb" id="6_kd7lt"]
-[ext_resource type="PackedScene" uid="uid://dxjbonie1ds8s" path="res://scenes/3d/assets_psx/GLB/Modular Structures/doorway_1_1.glb" id="6_q1atb"]
-[ext_resource type="PackedScene" uid="uid://c7tfp2r8h0kwp" path="res://scenes/3d/assets_psx/GLB/Modular Structures/window_2_single.glb" id="7_qmigb"]
-[ext_resource type="PackedScene" uid="uid://c4ln2llodbsg6" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/vent_1.glb" id="8_j6d3m"]
-[ext_resource type="PackedScene" uid="uid://rdfk1rcepjhd" path="res://scenes/3d/assets_psx/GLB/Furniture/wardrobe_mp_1_4.glb" id="9_pmrjd"]
-[ext_resource type="PackedScene" uid="uid://gtmjcjkveqqc" path="res://scenes/3d/assets_psx/GLB/Large Props/vending_machine_1.glb" id="10_p1hi1"]
-[ext_resource type="PackedScene" uid="uid://dgh6hdolpg81w" path="res://scenes/3d/assets_psx/GLB/Large Props/cardboard_box_2_1.glb" id="11_3tbit"]
-[ext_resource type="PackedScene" uid="uid://wvbikn5axvlw" path="res://scenes/3d/assets_psx/GLB/Large Props/cardboard_box_1.glb" id="12_0p4eh"]
-[ext_resource type="PackedScene" uid="uid://bvbcrkl0hnbda" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/mouse_pad_mp_1.glb" id="13_j6d3m"]
-[ext_resource type="PackedScene" uid="uid://brrijnnbt6cs7" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/pc_mouse_mp_1.glb" id="14_pmrjd"]
-[ext_resource type="PackedScene" uid="uid://cd1fpsvuqrhht" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/pc_monitor_mp_1.glb" id="15_p1hi1"]
-[ext_resource type="PackedScene" uid="uid://cs1m0beq0kj8m" path="res://scenes/3d/assets_psx/GLB/Furniture/table_large_2_4.glb" id="16_3tbit"]
-[ext_resource type="PackedScene" uid="uid://ce6eiqkdkgkg1" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/light_switch_1.glb" id="16_p1hi1"]
-[ext_resource type="PackedScene" uid="uid://lvcsxr7i7l7g" path="res://scenes/3d/assets_psx/GLB/Furniture/chair_mp_3_4.glb" id="17_0p4eh"]
-[ext_resource type="PackedScene" uid="uid://bvwmbil1o5d3q" path="res://scenes/3d/assets_psx/GLB/Small Props/clock_1.glb" id="17_ixxjw"]
-[ext_resource type="PackedScene" uid="uid://bpkqadepsc6b4" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/pc_mp_1.glb" id="18_ixxjw"]
-[ext_resource type="PackedScene" uid="uid://dtu21dj0h2lya" path="res://scenes/3d/assets_psx/GLB/Modular Structures/floor_ceiling_1.glb" id="19_67gp5"]
-[ext_resource type="PackedScene" uid="uid://bxmioxxh5xh17" path="res://scenes/3d/assets_psx/GLB/Small Props/keypad_2.glb" id="21_3tbit"]
-[ext_resource type="PackedScene" uid="uid://b17drwy7cs5qi" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/electrical_outlet_1.glb" id="22_67gp5"]
-[ext_resource type="PackedScene" uid="uid://drqolpi65k1ij" path="res://scenes/3d/assets_psx/GLB/Furniture/shelf_mp_3_4.glb" id="22_y2fjs"]
-[ext_resource type="PackedScene" uid="uid://csxkq7xtskx7i" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/floppy_disc_1.glb" id="23_a86nj"]
-[ext_resource type="PackedScene" uid="uid://brcwbbw6u8o68" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/vent_mp_1.glb" id="24_8khuf"]
-[ext_resource type="PackedScene" uid="uid://beowl66eowjlp" path="res://scenes/3d/assets_psx/custom/keyboard_with_separate_keys.gltf" id="24_ixxjw"]
-[ext_resource type="PackedScene" uid="uid://b28inpdd445aa" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/glass_bottle_1.glb" id="24_r4agu"]
-[ext_resource type="PackedScene" uid="uid://b7oswkcuna6e1" path="res://assets/radio/radio_baked.glb" id="25_krker"]
-[ext_resource type="PackedScene" uid="uid://4wyponk1hv5c" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/glass_bottle_2.glb" id="25_nevyq"]
-[ext_resource type="PackedScene" uid="uid://n2txymoshhjt" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/cash_2.glb" id="26_e78pq"]
-[ext_resource type="PackedScene" uid="uid://bc14ef0oakx7f" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/cash_1.glb" id="27_rohpg"]
-[ext_resource type="PackedScene" uid="uid://d1fqnn18r8nuj" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/cassette_tape_mp_1.glb" id="28_5gvna"]
-[ext_resource type="PackedScene" uid="uid://bmmihpyxeckom" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/cassette_tape_mp_2.glb" id="29_i0y1e"]
-[ext_resource type="PackedScene" uid="uid://pack1nwuufn3" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/cigs_packet_1.glb" id="30_7xhva"]
-[ext_resource type="PackedScene" uid="uid://didydws1xrcov" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/flashlight_1.glb" id="31_rd8gm"]
-[ext_resource type="Texture2D" uid="uid://bjwcyycx2cecq" path="res://scenes/3d/assets_psx/GLB/Modular Structures/doorway_2_door_1.png" id="42_xy65r"]
-[ext_resource type="PackedScene" uid="uid://b3aq2r4yqaldr" path="res://scenes/3d/interactables/elevator_1.tscn" id="43_72u8k"]
-[ext_resource type="Texture2D" uid="uid://ct4vy5hhe0xjl" path="res://scenes/3d/assets_psx/GLB/Modular Structures/doorway_2_door_handle_1.png" id="43_jfovm"]
-[ext_resource type="PackedScene" uid="uid://dy68pl5d2m1a0" path="res://scenes/3d/assets_psx/GLB/Modular Structures/elevator_doorway_1.glb" id="45_l5w8t"]
-[ext_resource type="PackedScene" uid="uid://ceu7hrwg2omf1" path="res://scenes/3d/assets_psx/GLB/Modular Structures/doorway_1.glb" id="46_blsrk"]
-[ext_resource type="PackedScene" uid="uid://c0uvgm1rj65ew" path="res://scenes/3d/assets_psx/GLB/Modular Structures/doorway_1_plain.glb" id="47_nevyq"]
-[ext_resource type="PackedScene" uid="uid://d3cah0tentm4u" path="res://scenes/3d/assets_psx/GLB/Modular Structures/wall_1_plain.glb" id="48_e78pq"]
-[ext_resource type="PackedScene" uid="uid://dpaxjr16fo5up" path="res://scenes/3d/assets_psx/GLB/Modular Structures/floor_ceiling_3.glb" id="49_rohpg"]
-[ext_resource type="PackedScene" uid="uid://c2e4prnuhcsq1" path="res://scenes/3d/assets_psx/GLB/Modular Structures/window_1_single.glb" id="50_5gvna"]
-[ext_resource type="PackedScene" uid="uid://iotb2nckemya" path="res://scenes/3d/assets_psx/GLB/Modular Structures/elevator_doorway_3.glb" id="51_i0y1e"]
-[ext_resource type="PackedScene" uid="uid://bc7gljv60hnt6" path="res://scenes/3d/assets_psx/GLB/Modular Structures/wall_1_tunnel_hole_1.glb" id="53_7xhva"]
-[ext_resource type="PackedScene" uid="uid://d267t46q2nljq" path="res://scenes/3d/assets_psx/GLB/Modular Structures/tunnel_1.glb" id="54_rd8gm"]
-[ext_resource type="PackedScene" uid="uid://67rbu235mvog" path="res://scenes/3d/assets_psx/GLB/Large Props/toilet_mp_1_1.glb" id="55_jfovm"]
-[ext_resource type="PackedScene" uid="uid://bd2gep1e4ojyw" path="res://scenes/3d/assets_psx/GLB/Large Props/pipe_1_corner.glb" id="58_w85uq"]
-[ext_resource type="PackedScene" uid="uid://3343sn8p0cs" path="res://scenes/3d/assets_psx/GLB/Large Props/pipe_1.glb" id="59_l5w8t"]
-[ext_resource type="PackedScene" uid="uid://cg17wfnogu46h" path="res://scenes/3d/assets_psx/GLB/Modular Structures/bars_metal_1.glb" id="60_l5w8t"]
-[ext_resource type="PackedScene" uid="uid://cyrn8yu151fwi" path="res://scenes/3d/interactables/keypad_1.tscn" id="60_oijd2"]
-[ext_resource type="AudioStream" uid="uid://cpl5v7ubvansd" path="res://assets/external/custom_sfx/old-fridge-386764s.mp3" id="61_72u8k"]
-[ext_resource type="PackedScene" uid="uid://b80ymjatyubo5" path="res://scenes/3d/assets_psx/GLB/Lighting/lamp_1_on.glb" id="61_blsrk"]
-[ext_resource type="AudioStream" uid="uid://oky5sjk84mu0" path="res://assets/external/custom_sfx/horror-dark-silence-ambience-383321.wav" id="61_c2xj2"]
-[ext_resource type="Script" uid="uid://bm8h3wy68dhre" path="res://scripts/core/KeypadController.gd" id="62_kpctrl"]
-[ext_resource type="AudioStream" uid="uid://2aflf4s17lk8" path="res://assets/external/custom_sfx/office-ambience-24734.wav" id="63_5soqj"]
-[ext_resource type="AudioStream" uid="uid://b57wbllrscndt" path="res://assets/external/custom_sfx/elevator/elevator-door-and-ding-6694.wav" id="63_c2xj2"]
-[ext_resource type="PackedScene" uid="uid://tx5ewpe433j8" path="res://scenes/3d/interactables/pc_1.tscn" id="63_pc1sc"]
-[ext_resource type="AudioStream" uid="uid://ddhgwuqcrqeiq" path="res://assets/external/custom_sfx/toilet-flush-quite-aggressive-01-26041.wav" id="64_toilet"]
+[ext_resource type="Script" uid="uid://dcjky3peu8uji" path="res://scenes/3d/days/main.gd" id="1_k8u4c"]
+[ext_resource type="Shader" uid="uid://barc84udpwptk" path="res://scenes/3d/assets_psx/posterize_canvas.gdshader" id="2_bt4hk"]
+[ext_resource type="Shader" uid="uid://csg1ptfp4xjps" path="res://scenes/3d/assets_psx/glitch_effect.gdshader" id="3_7aaht"]
+[ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://scenes/3d/player/player.tscn" id="4_dt11d"]
+[ext_resource type="PackedScene" uid="uid://bngcjfsk77af0" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/ceiling_fan_mp_1_1_light_off.glb" id="5_i3ye3"]
+[ext_resource type="PackedScene" uid="uid://c6fy4f27r66ld" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/ceiling_fan_mp_1_1_light_on.glb" id="6_ol5sp"]
+[ext_resource type="PackedScene" uid="uid://cyg1iphb51hca" path="res://scenes/3d/assets_psx/GLB/Lighting/ceiling_lamp_1_on.glb" id="7_u3es4"]
+[ext_resource type="PackedScene" uid="uid://cprro8v43k6c8" path="res://scenes/3d/assets_psx/GLB/Lighting/ceiling_lamp_1_off.glb" id="8_s5q5n"]
+[ext_resource type="PackedScene" uid="uid://dtu21dj0h2lya" path="res://scenes/3d/assets_psx/GLB/Modular Structures/floor_ceiling_1.glb" id="9_cr663"]
+[ext_resource type="PackedScene" uid="uid://dxqf80mdlqv6v" path="res://scenes/3d/assets_psx/GLB/Modular Structures/wall_1_half.glb" id="10_whmcn"]
+[ext_resource type="PackedScene" uid="uid://dxjbonie1ds8s" path="res://scenes/3d/assets_psx/GLB/Modular Structures/doorway_1_1.glb" id="11_qk4sg"]
+[ext_resource type="PackedScene" uid="uid://c7tfp2r8h0kwp" path="res://scenes/3d/assets_psx/GLB/Modular Structures/window_2_single.glb" id="12_2s4ot"]
+[ext_resource type="PackedScene" uid="uid://c4ln2llodbsg6" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/vent_1.glb" id="13_7trot"]
+[ext_resource type="PackedScene" uid="uid://ceu7hrwg2omf1" path="res://scenes/3d/assets_psx/GLB/Modular Structures/doorway_1.glb" id="14_dlbj6"]
+[ext_resource type="PackedScene" uid="uid://rdfk1rcepjhd" path="res://scenes/3d/assets_psx/GLB/Furniture/wardrobe_mp_1_4.glb" id="15_5lad0"]
+[ext_resource type="PackedScene" uid="uid://dgh6hdolpg81w" path="res://scenes/3d/assets_psx/GLB/Large Props/cardboard_box_2_1.glb" id="16_3ct8i"]
+[ext_resource type="PackedScene" uid="uid://wvbikn5axvlw" path="res://scenes/3d/assets_psx/GLB/Large Props/cardboard_box_1.glb" id="17_r5qjd"]
+[ext_resource type="PackedScene" uid="uid://b8tftp2mpw34h" path="res://scenes/3d/assets_psx/GLB/Modular Structures/window_metal_bars_single.glb" id="18_8g1h2"]
+[ext_resource type="PackedScene" uid="uid://ce6eiqkdkgkg1" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/light_switch_1.glb" id="19_mjhee"]
+[ext_resource type="PackedScene" uid="uid://bvwmbil1o5d3q" path="res://scenes/3d/assets_psx/GLB/Small Props/clock_1.glb" id="20_35w0s"]
+[ext_resource type="PackedScene" uid="uid://brcwbbw6u8o68" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/vent_mp_1.glb" id="21_07x6y"]
+[ext_resource type="PackedScene" uid="uid://b17drwy7cs5qi" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/electrical_outlet_1.glb" id="22_kfedq"]
+[ext_resource type="PackedScene" uid="uid://drqolpi65k1ij" path="res://scenes/3d/assets_psx/GLB/Furniture/shelf_mp_3_4.glb" id="23_l8msb"]
+[ext_resource type="PackedScene" uid="uid://csxkq7xtskx7i" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/floppy_disc_1.glb" id="24_2uev0"]
+[ext_resource type="PackedScene" uid="uid://b28inpdd445aa" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/glass_bottle_1.glb" id="25_s0l33"]
+[ext_resource type="PackedScene" uid="uid://4wyponk1hv5c" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/glass_bottle_2.glb" id="26_bkg2k"]
+[ext_resource type="PackedScene" uid="uid://n2txymoshhjt" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/cash_2.glb" id="27_paqf7"]
+[ext_resource type="PackedScene" uid="uid://bc14ef0oakx7f" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/cash_1.glb" id="28_6h4w8"]
+[ext_resource type="PackedScene" uid="uid://d1fqnn18r8nuj" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/cassette_tape_mp_1.glb" id="29_x7q4g"]
+[ext_resource type="PackedScene" uid="uid://bmmihpyxeckom" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/cassette_tape_mp_2.glb" id="30_o4wy4"]
+[ext_resource type="PackedScene" uid="uid://pack1nwuufn3" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/cigs_packet_1.glb" id="31_85bol"]
+[ext_resource type="PackedScene" uid="uid://didydws1xrcov" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/flashlight_1.glb" id="32_5o2dn"]
+[ext_resource type="PackedScene" uid="uid://tx5ewpe433j8" path="res://scenes/3d/interactables/pc_1.tscn" id="33_j5kln"]
+[ext_resource type="PackedScene" uid="uid://cd1fpsvuqrhht" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/pc_monitor_mp_1.glb" id="34_cjmm2"]
+[ext_resource type="PackedScene" uid="uid://cs1m0beq0kj8m" path="res://scenes/3d/assets_psx/GLB/Furniture/table_large_2_4.glb" id="35_a3ggp"]
+[ext_resource type="PackedScene" uid="uid://lvcsxr7i7l7g" path="res://scenes/3d/assets_psx/GLB/Furniture/chair_mp_3_4.glb" id="36_cib38"]
+[ext_resource type="PackedScene" uid="uid://bpkqadepsc6b4" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/pc_mp_1.glb" id="37_6exoo"]
+[ext_resource type="PackedScene" uid="uid://b7oswkcuna6e1" path="res://assets/radio/radio_baked.glb" id="38_c6op1"]
+[ext_resource type="PackedScene" uid="uid://bxmioxxh5xh17" path="res://scenes/3d/assets_psx/GLB/Small Props/keypad_2.glb" id="39_xs6s4"]
+[ext_resource type="PackedScene" uid="uid://beowl66eowjlp" path="res://scenes/3d/assets_psx/custom/keyboard_with_separate_keys.gltf" id="40_sl7le"]
+[ext_resource type="PackedScene" uid="uid://gtmjcjkveqqc" path="res://scenes/3d/assets_psx/GLB/Large Props/vending_machine_1.glb" id="41_wmc72"]
+[ext_resource type="Texture2D" uid="uid://bjwcyycx2cecq" path="res://scenes/3d/assets_psx/GLB/Modular Structures/doorway_2_door_1.png" id="42_j6asg"]
+[ext_resource type="Texture2D" uid="uid://ct4vy5hhe0xjl" path="res://scenes/3d/assets_psx/GLB/Modular Structures/doorway_2_door_handle_1.png" id="43_t5ubw"]
+[ext_resource type="PackedScene" uid="uid://b3aq2r4yqaldr" path="res://scenes/3d/interactables/elevator_1.tscn" id="44_0kgma"]
+[ext_resource type="PackedScene" uid="uid://dy68pl5d2m1a0" path="res://scenes/3d/assets_psx/GLB/Modular Structures/elevator_doorway_1.glb" id="45_fs784"]
+[ext_resource type="PackedScene" uid="uid://c0uvgm1rj65ew" path="res://scenes/3d/assets_psx/GLB/Modular Structures/doorway_1_plain.glb" id="46_6vp0n"]
+[ext_resource type="PackedScene" uid="uid://d3cah0tentm4u" path="res://scenes/3d/assets_psx/GLB/Modular Structures/wall_1_plain.glb" id="47_yi2lg"]
+[ext_resource type="PackedScene" uid="uid://dpaxjr16fo5up" path="res://scenes/3d/assets_psx/GLB/Modular Structures/floor_ceiling_3.glb" id="48_8gldl"]
+[ext_resource type="PackedScene" uid="uid://c2e4prnuhcsq1" path="res://scenes/3d/assets_psx/GLB/Modular Structures/window_1_single.glb" id="49_yy55m"]
+[ext_resource type="PackedScene" uid="uid://iotb2nckemya" path="res://scenes/3d/assets_psx/GLB/Modular Structures/elevator_doorway_3.glb" id="50_dhsg4"]
+[ext_resource type="PackedScene" uid="uid://bvbcrkl0hnbda" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/mouse_pad_mp_1.glb" id="51_nx22y"]
+[ext_resource type="PackedScene" uid="uid://brrijnnbt6cs7" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/pc_mouse_mp_1.glb" id="52_k08qh"]
+[ext_resource type="PackedScene" uid="uid://bc7gljv60hnt6" path="res://scenes/3d/assets_psx/GLB/Modular Structures/wall_1_tunnel_hole_1.glb" id="53_8nl1k"]
+[ext_resource type="PackedScene" uid="uid://d267t46q2nljq" path="res://scenes/3d/assets_psx/GLB/Modular Structures/tunnel_1.glb" id="54_qurun"]
+[ext_resource type="PackedScene" uid="uid://b80ymjatyubo5" path="res://scenes/3d/assets_psx/GLB/Lighting/lamp_1_on.glb" id="55_03s60"]
+[ext_resource type="PackedScene" uid="uid://cg17wfnogu46h" path="res://scenes/3d/assets_psx/GLB/Modular Structures/bars_metal_1.glb" id="56_6005a"]
+[ext_resource type="PackedScene" uid="uid://67rbu235mvog" path="res://scenes/3d/assets_psx/GLB/Large Props/toilet_mp_1_1.glb" id="57_aymcj"]
+[ext_resource type="PackedScene" uid="uid://bd2gep1e4ojyw" path="res://scenes/3d/assets_psx/GLB/Large Props/pipe_1_corner.glb" id="58_xb5t2"]
+[ext_resource type="PackedScene" uid="uid://3343sn8p0cs" path="res://scenes/3d/assets_psx/GLB/Large Props/pipe_1.glb" id="59_iw734"]
+[ext_resource type="PackedScene" uid="uid://cyrn8yu151fwi" path="res://scenes/3d/interactables/keypad_1.tscn" id="60_kf5b5"]
+[ext_resource type="Script" uid="uid://bm8h3wy68dhre" path="res://scripts/core/KeypadController.gd" id="61_y4uid"]
+[ext_resource type="AudioStream" uid="uid://oky5sjk84mu0" path="res://assets/external/custom_sfx/horror-dark-silence-ambience-383321.wav" id="62_wv40h"]
+[ext_resource type="AudioStream" uid="uid://cpl5v7ubvansd" path="res://assets/external/custom_sfx/old-fridge-386764s.mp3" id="63_8y3ry"]
+[ext_resource type="AudioStream" uid="uid://2aflf4s17lk8" path="res://assets/external/custom_sfx/office-ambience-24734.wav" id="64_bs8xl"]
+[ext_resource type="AudioStream" uid="uid://b57wbllrscndt" path="res://assets/external/custom_sfx/elevator/elevator-door-and-ding-6694.wav" id="65_bvpq0"]
+[ext_resource type="AudioStream" uid="uid://ddhgwuqcrqeiq" path="res://assets/external/custom_sfx/toilet-flush-quite-aggressive-01-26041.wav" id="66_qtdom"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_faidy"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i0y1e"]
-shader = ExtResource("2_5gvna")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h52jf"]
+shader = ExtResource("2_bt4hk")
 shader_parameter/exposure = 1.0
-shader_parameter/contrast = 1.1
+shader_parameter/contrast = 1.05
 shader_parameter/saturation = 0.9
-shader_parameter/enable_pixelate = false
-shader_parameter/pixel_factor = 1.1
+shader_parameter/enable_pixelate = true
+shader_parameter/pixel_factor = 2.0
 shader_parameter/enable_posterize = true
-shader_parameter/color_levels = 8.0
-shader_parameter/dither_strength = 0.3
-shader_parameter/chrom_aberration = 0.01
-shader_parameter/vignette_strength = 2.0
+shader_parameter/color_levels = 4.8750001365625
+shader_parameter/dither_strength = 0.35
+shader_parameter/chrom_aberration = 0.35
+shader_parameter/vignette_strength = 1.0
 shader_parameter/grain_strength = 0.2
 shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
 shader_parameter/tint_strength = 0.15
 shader_parameter/viewport_size_override = Vector2(0, 0)
 shader_parameter/overlay_enable = false
-shader_parameter/overlay_color = Color(0.858375, 0.943665, 0, 1)
+shader_parameter/overlay_color = Color(0, 0, 0, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h52jf"]
-shader = ExtResource("2_55xim")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i0y1e"]
+shader = ExtResource("3_7aaht")
 shader_parameter/glitch_intensity = 0.550000026125
 shader_parameter/distortion_amount = 0.02
 shader_parameter/aberration_amount = 0.01
@@ -180,13 +180,13 @@ data = PackedVector3Array(-0.2131, 0.3639, -0.3753, -0.1267, 0.3861, -0.3753, -0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8n2cg"]
 resource_name = "door_1"
 cull_mode = 2
-albedo_texture = ExtResource("42_xy65r")
+albedo_texture = ExtResource("42_j6asg")
 texture_filter = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_um1gp"]
 resource_name = "door_handle_1"
 cull_mode = 2
-albedo_texture = ExtResource("43_jfovm")
+albedo_texture = ExtResource("43_t5ubw")
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_q3shm"]
@@ -565,7 +565,7 @@ data = PackedVector3Array(-0.36, -0.36, -0.0036, -0.36, -0.2855, 0, -0.2676, -0.
 size = Vector3(51.8, 9.3, 20)
 
 [node name="MainEnv" type="Node3D" node_paths=PackedStringArray("sub_viewport")]
-script = ExtResource("1_tbtjm")
+script = ExtResource("1_k8u4c")
 sub_viewport = NodePath("SubViewportContainer/SubViewport")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
@@ -591,12 +591,12 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_faidy")
 
 [node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport/PanelContainer"]
-material = SubResource("ShaderMaterial_i0y1e")
+material = SubResource("ShaderMaterial_h52jf")
 layout_mode = 2
 
 [node name="ColorRect2" type="ColorRect" parent="SubViewportContainer/SubViewport/PanelContainer"]
 visible = false
-material = SubResource("ShaderMaterial_h52jf")
+material = SubResource("ShaderMaterial_i0y1e")
 layout_mode = 2
 
 [node name="World" type="Node3D" parent="SubViewportContainer/SubViewport"]
@@ -604,8 +604,8 @@ layout_mode = 2
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/World"]
 environment = SubResource("Environment_faidy")
 
-[node name="Player" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("2_tbtjm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.192484, -2.377851, -5.225125)
+[node name="Player" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("4_dt11d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.392484, -8.777851, -3.7251248)
 
 [node name="Lighting" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 
@@ -630,22 +630,22 @@ light_energy = 4.723
 
 [node name="Models" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Lighting"]
 
-[node name="ceiling_fan_mp_1_1_light_off2" parent="SubViewportContainer/SubViewport/World/Stage_1/Lighting/Models" instance=ExtResource("3_0o5wo")]
+[node name="ceiling_fan_mp_1_1_light_off2" parent="SubViewportContainer/SubViewport/World/Stage_1/Lighting/Models" instance=ExtResource("5_i3ye3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 2)
 visible = false
 
-[node name="ceiling_fan_mp_1_1_light_on2" parent="SubViewportContainer/SubViewport/World/Stage_1/Lighting/Models" instance=ExtResource("4_kj1kj")]
+[node name="ceiling_fan_mp_1_1_light_on2" parent="SubViewportContainer/SubViewport/World/Stage_1/Lighting/Models" instance=ExtResource("6_ol5sp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 2)
 
-[node name="ceiling_lamp_1_on2" parent="SubViewportContainer/SubViewport/World/Stage_1/Lighting/Models" instance=ExtResource("5_gafn2")]
+[node name="ceiling_lamp_1_on2" parent="SubViewportContainer/SubViewport/World/Stage_1/Lighting/Models" instance=ExtResource("7_u3es4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -4)
 
-[node name="ceiling_lamp_1_off2" parent="SubViewportContainer/SubViewport/World/Stage_1/Lighting/Models" instance=ExtResource("6_kd7lt")]
+[node name="ceiling_lamp_1_off2" parent="SubViewportContainer/SubViewport/World/Stage_1/Lighting/Models" instance=ExtResource("8_s5q5n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -4)
 
 [node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_1"]
 
-[node name="floor_ceiling_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("19_67gp5")]
+[node name="floor_ceiling_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("9_cr663")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 0, 2)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/floor_ceiling_12/floor_ceiling_1" index="0"]
@@ -653,7 +653,7 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 0, 2)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/floor_ceiling_12/floor_ceiling_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_67gp5")
 
-[node name="floor_ceiling_14" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("19_67gp5")]
+[node name="floor_ceiling_14" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("9_cr663")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 0, -4)
 
 [node name="floor_ceiling_1" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/floor_ceiling_14" index="0"]
@@ -664,7 +664,7 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/floor_ceiling_14/floor_ceiling_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_67gp5")
 
-[node name="floor_ceiling_15" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("19_67gp5")]
+[node name="floor_ceiling_15" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("9_cr663")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 2, -4)
 
 [node name="floor_ceiling_1" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/floor_ceiling_15" index="0"]
@@ -675,10 +675,10 @@ transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.6666666, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/floor_ceiling_15/floor_ceiling_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_67gp5")
 
-[node name="floor_ceiling_13" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("19_67gp5")]
+[node name="floor_ceiling_13" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("9_cr663")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 3, 2)
 
-[node name="wall_1_half2" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half2" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/wall_1_half2/wall_1_half" index="0"]
@@ -686,7 +686,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/wall_1_half2/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_tbtjm")
 
-[node name="wall_1_half10" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half10" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, -2, 0, -5.9000006)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/wall_1_half10/wall_1_half" index="0"]
@@ -694,7 +694,7 @@ transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, -2, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/wall_1_half10/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_tbtjm")
 
-[node name="wall_1_half11" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half11" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, 2, 0, -5.9000006)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/wall_1_half11/wall_1_half" index="0"]
@@ -702,7 +702,7 @@ transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, 2, 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/wall_1_half11/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_tbtjm")
 
-[node name="wall_1_half3" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half3" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3, 0, 5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/wall_1_half3/wall_1_half" index="0"]
@@ -710,7 +710,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3, 0,
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/wall_1_half3/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_faidy")
 
-[node name="wall_1_half9" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half9" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -4, 0, 4)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/wall_1_half9/wall_1_half" index="0"]
@@ -718,7 +718,7 @@ transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -4, 0, 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/wall_1_half9/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_krker")
 
-[node name="wall_1_half4" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half4" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/wall_1_half4/wall_1_half" index="0"]
@@ -726,7 +726,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 5)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/wall_1_half4/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_u67q8")
 
-[node name="wall_1_half5" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half5" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1, 0, 5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/wall_1_half5/wall_1_half" index="0"]
@@ -734,7 +734,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1, 0, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/wall_1_half5/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_llw38")
 
-[node name="wall_1_half6" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half6" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 4)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/wall_1_half6/wall_1_half" index="0"]
@@ -742,7 +742,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/wall_1_half6/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_rqww4")
 
-[node name="wall_1_half7" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half7" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 2, 0, 2)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/wall_1_half7/wall_1_half" index="0"]
@@ -750,7 +750,7 @@ transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 2, 0, 2)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/wall_1_half7/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_insc1")
 
-[node name="wall_1_half8" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half8" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/wall_1_half8/wall_1_half" index="0"]
@@ -758,7 +758,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/wall_1_half8/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_j65f3")
 
-[node name="doorway_1_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("6_q1atb")]
+[node name="doorway_1_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("11_qk4sg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="door_3" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/doorway_1_12/doorway_1_1" index="0"]
@@ -769,7 +769,7 @@ visible = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/doorway_1_12/doorway_1_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_gafn2")
 
-[node name="window_2_single2" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("7_qmigb")]
+[node name="window_2_single2" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("12_2s4ot")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, 1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/window_2_single2/window_2_single" index="0"]
@@ -777,14 +777,14 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0,
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/window_2_single2/window_2_single/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_w2gbu")
 
-[node name="vent_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("8_j6d3m")]
+[node name="vent_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("13_7trot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.6, -0.9)
 
-[node name="floor_ceiling_16" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("19_67gp5")]
+[node name="floor_ceiling_16" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("9_cr663")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 3, 2)
 visible = false
 
-[node name="doorway_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("46_blsrk")]
+[node name="doorway_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("14_dlbj6")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.0000002, 0, -3.0000002)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/doorway_12/doorway_1" index="0"]
@@ -792,7 +792,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.00
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/doorway_12/doorway_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_l5w8t")
 
-[node name="doorway_13" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("46_blsrk")]
+[node name="doorway_13" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls" instance=ExtResource("14_dlbj6")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.9999998, 0, -3.0000002)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Walls/doorway_13/doorway_1" index="0"]
@@ -802,7 +802,7 @@ shape = SubResource("ConcavePolygonShape3D_s60g4")
 
 [node name="Props" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_1"]
 
-[node name="wardrobe_mp_1_42" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("9_pmrjd")]
+[node name="wardrobe_mp_1_42" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("15_5lad0")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.5, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/wardrobe_mp_1_42/wardrobe_mp_1_4" index="3"]
@@ -810,7 +810,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.5, 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/wardrobe_mp_1_42/wardrobe_mp_1_4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_d5wf1")
 
-[node name="cardboard_box_2_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("11_3tbit")]
+[node name="cardboard_box_2_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("16_3ct8i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 0, 4.6)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/cardboard_box_2_12/cardboard_box_2_1" index="0"]
@@ -818,7 +818,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 0, 4.6)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/cardboard_box_2_12/cardboard_box_2_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_0o5wo")
 
-[node name="cardboard_box_2_13" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("11_3tbit")]
+[node name="cardboard_box_2_13" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("16_3ct8i")]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.1, 0, 3.6)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/cardboard_box_2_13/cardboard_box_2_1" index="0"]
@@ -826,7 +826,7 @@ transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.1, 0, 3.
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/cardboard_box_2_13/cardboard_box_2_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_kj1kj")
 
-[node name="cardboard_box_2_14" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("11_3tbit")]
+[node name="cardboard_box_2_14" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("16_3ct8i")]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0.4, 0, 4.4)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/cardboard_box_2_14/cardboard_box_2_1" index="0"]
@@ -839,7 +839,7 @@ shape = SubResource("ConcavePolygonShape3D_ixxjw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/cardboard_box_2_14/cardboard_box_2_1/StaticBody3D2"]
 shape = SubResource("ConcavePolygonShape3D_pp6gi")
 
-[node name="cardboard_box_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("12_0p4eh")]
+[node name="cardboard_box_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("17_r5qjd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.8, 4.2)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/cardboard_box_12/cardboard_box_1" index="0"]
@@ -847,94 +847,94 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.8, 4.2)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/cardboard_box_12/cardboard_box_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_q1atb")
 
-[node name="window_metal_bars_single2" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("2_oxuu8")]
+[node name="window_metal_bars_single2" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("18_8g1h2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, 1)
 visible = false
 
-[node name="light_switch_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("16_p1hi1")]
+[node name="light_switch_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("19_mjhee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 1.4, -0.9)
 
-[node name="clock_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("17_ixxjw")]
+[node name="clock_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("20_35w0s")]
 transform = Transform3D(7.15295e-08, 1.04216e-14, 1, 0, 1, -3.55271e-15, -1, -1.19209e-07, 1.90739e-07, -3.91, 2.2, 2.5)
 
-[node name="vent_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("24_8khuf")]
+[node name="vent_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("21_07x6y")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.6, 1, 4.935)
 
-[node name="electrical_outlet_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("22_67gp5")]
+[node name="electrical_outlet_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("22_kfedq")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.3, 0.6, 4.925)
 
-[node name="electrical_outlet_13" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("22_67gp5")]
+[node name="electrical_outlet_13" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("22_kfedq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.92, 0.6, 3.925)
 
-[node name="electrical_outlet_14" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("22_67gp5")]
+[node name="electrical_outlet_14" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("22_kfedq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.92, 0.6, 2.325)
 
-[node name="electrical_outlet_15" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("22_67gp5")]
+[node name="electrical_outlet_15" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("22_kfedq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.92, 0.6, 0.7249997)
 
-[node name="shelf_mp_3_42" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("22_y2fjs")]
+[node name="shelf_mp_3_42" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("23_l8msb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3, 0, -0.5999999)
 
 [node name="shelf_props" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Props"]
 transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, -1.5973772, 0.17335266, -0.5)
 
-[node name="floppy_disc_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("23_a86nj")]
+[node name="floppy_disc_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("24_2uev0")]
 
-[node name="floppy_disc_13" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("23_a86nj")]
+[node name="floppy_disc_13" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("24_2uev0")]
 transform = Transform3D(-0.7071068, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, -0.7071068, 0.21085238, 0, 0.12173569)
 
-[node name="floppy_disc_14" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("23_a86nj")]
+[node name="floppy_disc_14" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("24_2uev0")]
 transform = Transform3D(-0.26516622, -0.20897368, 0.94128466, -0.09729473, -0.96544915, -0.24174702, 0.9592813, -0.15568517, 0.23567247, 0.30175614, 0.0014693439, 0.1742189)
 
-[node name="floppy_disc_15" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("23_a86nj")]
+[node name="floppy_disc_15" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("24_2uev0")]
 transform = Transform3D(-0.25881907, -7.550035e-08, 0.9659258, -3.3273743e-08, -1, -8.6480426e-08, 0.9659258, -4.804349e-08, 0.25881904, 0.06288147, 0.01183784, 0.09108603)
 
-[node name="floppy_disc_16" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("23_a86nj")]
+[node name="floppy_disc_16" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("24_2uev0")]
 transform = Transform3D(-0.8605732, 0, 0.5093267, 0, 1, 0, -0.5093267, 0, -0.8605732, 0.5217185, 0, 0.3212285)
 
-[node name="floppy_disc_17" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("23_a86nj")]
+[node name="floppy_disc_17" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("24_2uev0")]
 transform = Transform3D(0.9686656, 0, 0.24836874, 0, 1, 0, -0.24836874, 0, 0.9686656, 0.4022678, 0, 0.10907316)
 
-[node name="floppy_disc_18" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("23_a86nj")]
+[node name="floppy_disc_18" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("24_2uev0")]
 transform = Transform3D(0.71678257, 0.10054258, -0.69001013, -0.09729473, -0.96544915, -0.24174704, -0.6904755, 0.24041438, -0.68223476, 0.35076958, 0.0014693439, 0.017607927)
 
-[node name="floppy_disc_19" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("23_a86nj")]
+[node name="floppy_disc_19" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("24_2uev0")]
 transform = Transform3D(0.71470463, 4.0503743e-08, -0.6994264, -3.3273743e-08, -1, -8.6480426e-08, -0.69942653, 7.979929e-08, -0.71470463, 0.5139969, 0.01183784, 0.21081507)
 
-[node name="glass_bottle_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("24_r4agu")]
+[node name="glass_bottle_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("25_s0l33")]
 transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 0.5307412, 1.1266475, 0.07548344)
 
-[node name="glass_bottle_22" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("25_nevyq")]
+[node name="glass_bottle_22" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("26_bkg2k")]
 transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 0.6539464, 1.1266475, 0.26208603)
 
-[node name="cash_22" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("26_e78pq")]
+[node name="cash_22" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("27_paqf7")]
 transform = Transform3D(0.9659258, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.9659258, 0.04772854, 0.7266473, -0.08791399)
 
-[node name="cash_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("27_rohpg")]
+[node name="cash_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("28_6h4w8")]
 transform = Transform3D(0.23795295, -0.22414389, -0.94505966, 0.18301271, 0.9659257, -0.18301271, 0.95387864, -0.12940954, 0.270866, 0.013025522, 0.7631007, -0.0707165)
 
-[node name="cash_13" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("27_rohpg")]
+[node name="cash_13" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("28_6h4w8")]
 transform = Transform3D(0.68612766, 0.007827193, 0.72743887, 0.1830127, 0.96592563, -0.1830127, -0.70408446, 0.25870067, 0.661316, 0.16826415, 0.7631007, 0.018910646)
 
-[node name="cassette_tape_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("28_5gvna")]
+[node name="cassette_tape_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("29_x7q4g")]
 transform = Transform3D(0.9659258, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.9659258, 0.56734383, 0.7266474, 0.21208608)
 
-[node name="cassette_tape_mp_22" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("29_i0y1e")]
+[node name="cassette_tape_mp_22" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("30_o4wy4")]
 transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, 0.39413875, 0.7266474, 0.11208594)
 
-[node name="cigs_packet_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("30_7xhva")]
+[node name="cigs_packet_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("31_85bol")]
 transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 0.04772854, 0.32664734, -0.08791399)
 
-[node name="flashlight_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("31_rd8gm")]
+[node name="flashlight_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("32_5o2dn")]
 transform = Transform3D(-0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, -0.49999997, 0.39413875, 0.32664734, 0.11208594)
 
-[node name="PC_1" parent="SubViewportContainer/SubViewport/World/Stage_1" groups=["pc_station"] instance=ExtResource("63_pc1sc")]
+[node name="PC_1" parent="SubViewportContainer/SubViewport/World/Stage_1" groups=["pc_station"] instance=ExtResource("33_j5kln")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3999999, 1.8626451e-08, 3.41)
 
 [node name="Desk2" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
 
-[node name="pc_monitor_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2" instance=ExtResource("15_p1hi1")]
+[node name="pc_monitor_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2" instance=ExtResource("34_cjmm2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.5, 0.98, 3.6)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2/pc_monitor_mp_12/pc_monitor_mp_1/pc_monitor_mp_1_screen" index="0"]
@@ -947,7 +947,7 @@ shape = SubResource("ConcavePolygonShape3D_cktwr")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2/pc_monitor_mp_12/pc_monitor_mp_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_of86m")
 
-[node name="table_large_2_42" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2" instance=ExtResource("16_3tbit")]
+[node name="table_large_2_42" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2" instance=ExtResource("35_a3ggp")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 0, 3.5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2/table_large_2_42/table_large_2_4" index="0"]
@@ -955,7 +955,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2/table_large_2_42/table_large_2_4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_rhdg0")
 
-[node name="chair_mp_3_42" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2" instance=ExtResource("17_0p4eh")]
+[node name="chair_mp_3_42" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2" instance=ExtResource("36_cib38")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.6, 0, 3.5)
 
 [node name="chair_mp_3_4" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2/chair_mp_3_42" index="0"]
@@ -966,7 +966,7 @@ transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0.0999999, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2/chair_mp_3_42/chair_mp_3_4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_6bp14")
 
-[node name="pc_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2" instance=ExtResource("18_ixxjw")]
+[node name="pc_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2" instance=ExtResource("37_6exoo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 0.98, 2.9)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2/pc_mp_12/pc_mp_1" index="0"]
@@ -974,13 +974,13 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2/pc_mp_12/pc_mp_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_hvhkb")
 
-[node name="radio_baked" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2" instance=ExtResource("25_krker")]
+[node name="radio_baked" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2" instance=ExtResource("38_c6op1")]
 transform = Transform3D(0.0029960703, 0, 0.00015350466, 0, 0.003, 0, -0.00015350466, 0, 0.0029960703, -1.3907084, 1.4267894, 0.857383)
 
 [node name="Desk3" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.0100965)
 
-[node name="pc_monitor_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk3" instance=ExtResource("15_p1hi1")]
+[node name="pc_monitor_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk3" instance=ExtResource("34_cjmm2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.5, 0.98, 3.6)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk3/pc_monitor_mp_12/pc_monitor_mp_1/pc_monitor_mp_1_screen" index="0"]
@@ -993,7 +993,7 @@ shape = SubResource("ConcavePolygonShape3D_cktwr")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk3/pc_monitor_mp_12/pc_monitor_mp_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_of86m")
 
-[node name="table_large_2_42" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk3" instance=ExtResource("16_3tbit")]
+[node name="table_large_2_42" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk3" instance=ExtResource("35_a3ggp")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 0, 3.5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk3/table_large_2_42/table_large_2_4" index="0"]
@@ -1001,7 +1001,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk3/table_large_2_42/table_large_2_4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_rhdg0")
 
-[node name="chair_mp_3_42" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk3" instance=ExtResource("17_0p4eh")]
+[node name="chair_mp_3_42" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk3" instance=ExtResource("36_cib38")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.6, 0, 3.5)
 
 [node name="chair_mp_3_4" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk3/chair_mp_3_42" index="0"]
@@ -1012,7 +1012,7 @@ transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0.0999999, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk3/chair_mp_3_42/chair_mp_3_4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_6bp14")
 
-[node name="pc_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk3" instance=ExtResource("18_ixxjw")]
+[node name="pc_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk3" instance=ExtResource("37_6exoo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 0.98, 2.9)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk3/pc_mp_12/pc_mp_1" index="0"]
@@ -1022,15 +1022,15 @@ shape = SubResource("ConcavePolygonShape3D_hvhkb")
 
 [node name="Custom" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_1"]
 
-[node name="keypad_22" parent="SubViewportContainer/SubViewport/World/Stage_1/Custom" instance=ExtResource("21_3tbit")]
+[node name="keypad_22" parent="SubViewportContainer/SubViewport/World/Stage_1/Custom" instance=ExtResource("39_xs6s4")]
 visible = false
 
-[node name="keyboard_with_separate_keys" parent="SubViewportContainer/SubViewport/World/Stage_1/Custom" instance=ExtResource("24_ixxjw")]
+[node name="keyboard_with_separate_keys" parent="SubViewportContainer/SubViewport/World/Stage_1/Custom" instance=ExtResource("40_sl7le")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, -0.4, 4.5)
 
 [node name="GLB2" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_1"]
 
-[node name="vending_machine_12" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2" instance=ExtResource("10_p1hi1")]
+[node name="vending_machine_12" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2" instance=ExtResource("41_wmc72")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6, 0, -0.5)
 
 [node name="vending_machine_1" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/vending_machine_12" index="0"]
@@ -1078,10 +1078,10 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors/door_2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_w37v3")
 
-[node name="InteractableElevator_1" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors" instance=ExtResource("43_72u8k")]
+[node name="InteractableElevator_1" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors" instance=ExtResource("44_0kgma")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.799999, 0, -1.9999999)
 
-[node name="elevator_doorway_12" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors" instance=ExtResource("45_l5w8t")]
+[node name="elevator_doorway_12" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors" instance=ExtResource("45_fs784")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0, -2.0000002)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors/elevator_doorway_12/elevator_doorway_1" index="0"]
@@ -1108,29 +1108,29 @@ light_energy = 4.723
 
 [node name="Models" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Lighting"]
 
-[node name="ceiling_fan_mp_1_1_light_off2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Lighting/Models" instance=ExtResource("3_0o5wo")]
+[node name="ceiling_fan_mp_1_1_light_off2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Lighting/Models" instance=ExtResource("5_i3ye3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 2)
 visible = false
 
-[node name="ceiling_fan_mp_1_1_light_on2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Lighting/Models" instance=ExtResource("4_kj1kj")]
+[node name="ceiling_fan_mp_1_1_light_on2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Lighting/Models" instance=ExtResource("6_ol5sp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 2)
 
-[node name="ceiling_lamp_1_on2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Lighting/Models" instance=ExtResource("5_gafn2")]
+[node name="ceiling_lamp_1_on2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Lighting/Models" instance=ExtResource("7_u3es4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -4)
 
-[node name="ceiling_lamp_1_off2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Lighting/Models" instance=ExtResource("6_kd7lt")]
+[node name="ceiling_lamp_1_off2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Lighting/Models" instance=ExtResource("8_s5q5n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -4)
 
 [node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB"]
 
-[node name="floor_ceiling_13" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("19_67gp5")]
+[node name="floor_ceiling_13" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("9_cr663")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 3, 2)
 visible = false
 
-[node name="vent_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("8_j6d3m")]
+[node name="vent_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("13_7trot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.6, -0.9)
 
-[node name="doorway_1_plain2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("47_nevyq")]
+[node name="doorway_1_plain2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("46_6vp0n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="door_mp_6" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/doorway_1_plain2/doorway_1_plain" index="0"]
@@ -1141,7 +1141,7 @@ visible = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/doorway_1_plain2/doorway_1_plain/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_oqsf5")
 
-[node name="doorway_1_plain3" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("47_nevyq")]
+[node name="doorway_1_plain3" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("46_6vp0n")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, -3)
 
 [node name="door_mp_6" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/doorway_1_plain3/doorway_1_plain" index="0"]
@@ -1153,7 +1153,7 @@ visible = false
 shape = SubResource("ConcavePolygonShape3D_lxvov")
 disabled = true
 
-[node name="doorway_1_plain4" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("47_nevyq")]
+[node name="doorway_1_plain4" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("46_6vp0n")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 2, 0, -3)
 
 [node name="door_mp_6" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/doorway_1_plain4/doorway_1_plain" index="0"]
@@ -1164,7 +1164,7 @@ visible = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/doorway_1_plain4/doorway_1_plain/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_xkw6a")
 
-[node name="wall_1_plain2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("47_yi2lg")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, -7)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/wall_1_plain2/wall_1_plain" index="0"]
@@ -1172,7 +1172,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/wall_1_plain2/wall_1_plain/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_us4xx")
 
-[node name="wall_1_plain4" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain4" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("47_yi2lg")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/wall_1_plain4/wall_1_plain" index="0"]
@@ -1180,7 +1180,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/wall_1_plain4/wall_1_plain/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_hqv00")
 
-[node name="wall_1_plain5" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain5" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("47_yi2lg")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/wall_1_plain5/wall_1_plain" index="0"]
@@ -1188,7 +1188,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/wall_1_plain5/wall_1_plain/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_suqb0")
 
-[node name="wall_1_plain6" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain6" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("47_yi2lg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/wall_1_plain6/wall_1_plain" index="0"]
@@ -1196,7 +1196,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/wall_1_plain6/wall_1_plain/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_wru4b")
 
-[node name="wall_1_plain7" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain7" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("47_yi2lg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/wall_1_plain7/wall_1_plain" index="0"]
@@ -1204,7 +1204,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 5)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/wall_1_plain7/wall_1_plain/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_t4xkc")
 
-[node name="wall_1_plain9" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain9" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("47_yi2lg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/wall_1_plain9/wall_1_plain" index="0"]
@@ -1212,7 +1212,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -1)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/wall_1_plain9/wall_1_plain/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ufgpu")
 
-[node name="wall_1_plain8" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain8" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("47_yi2lg")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, 5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/wall_1_plain8/wall_1_plain" index="0"]
@@ -1220,7 +1220,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0,
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/wall_1_plain8/wall_1_plain/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_qypo1")
 
-[node name="wall_1_plain3" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain3" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("47_yi2lg")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0, -7)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/wall_1_plain3/wall_1_plain" index="0"]
@@ -1228,7 +1228,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0,
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/wall_1_plain3/wall_1_plain/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_tq0ta")
 
-[node name="floor_ceiling_32" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("49_rohpg")]
+[node name="floor_ceiling_32" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("48_8gldl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, -5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/floor_ceiling_32/floor_ceiling_3" index="0"]
@@ -1241,10 +1241,10 @@ shape = SubResource("ConcavePolygonShape3D_7xhva")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/floor_ceiling_32/floor_ceiling_3/StaticBody3D2"]
 shape = SubResource("ConcavePolygonShape3D_fvp8t")
 
-[node name="floor_ceiling_35" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("49_rohpg")]
+[node name="floor_ceiling_35" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("48_8gldl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 3, -5)
 
-[node name="floor_ceiling_33" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("49_rohpg")]
+[node name="floor_ceiling_33" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("48_8gldl")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 0, 2)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/floor_ceiling_33/floor_ceiling_3" index="0"]
@@ -1257,10 +1257,10 @@ shape = SubResource("ConcavePolygonShape3D_rd8gm")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/floor_ceiling_33/floor_ceiling_3/StaticBody3D2"]
 shape = SubResource("ConcavePolygonShape3D_axil6")
 
-[node name="floor_ceiling_34" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("49_rohpg")]
+[node name="floor_ceiling_34" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("48_8gldl")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 3, 2)
 
-[node name="window_1_single2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("50_5gvna")]
+[node name="window_1_single2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("49_yy55m")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, 1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/window_1_single2/window_1_single" index="0"]
@@ -1301,7 +1301,7 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/door_2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_8nkm2")
 
-[node name="InteractableElevator_2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors" instance=ExtResource("43_72u8k")]
+[node name="InteractableElevator_2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors" instance=ExtResource("44_0kgma")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.799999, 0.099999905, -2)
 elevator_name = "elevator_2"
 unlocks_after_stage = 3
@@ -1310,7 +1310,7 @@ door_state = 1
 [node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/InteractableElevator_2/ElevatorInteraction" index="0"]
 disabled = true
 
-[node name="elevator_doorway_32" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors" instance=ExtResource("51_i0y1e")]
+[node name="elevator_doorway_32" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors" instance=ExtResource("50_dhsg4")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0, -2.0000002)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/elevator_doorway_32/elevator_doorway_3" index="0"]
@@ -1320,7 +1320,7 @@ shape = SubResource("ConcavePolygonShape3D_a5j65")
 
 [node name="Props" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB"]
 
-[node name="wardrobe_mp_1_42" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("9_pmrjd")]
+[node name="wardrobe_mp_1_42" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("15_5lad0")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.5, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props/wardrobe_mp_1_42/wardrobe_mp_1_4" index="3"]
@@ -1328,7 +1328,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.5, 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props/wardrobe_mp_1_42/wardrobe_mp_1_4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_blsrk")
 
-[node name="vending_machine_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("10_p1hi1")]
+[node name="vending_machine_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("41_wmc72")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6, 0, -0.5)
 
 [node name="vending_machine_1" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props/vending_machine_12" index="0"]
@@ -1339,7 +1339,7 @@ transform = Transform3D(-4.37114e-08, 1, 0, 0, 0, -1, -1, -4.37114e-08, 0, 0, 0,
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props/vending_machine_12/vending_machine_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_q3shm")
 
-[node name="cardboard_box_2_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("11_3tbit")]
+[node name="cardboard_box_2_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("16_3ct8i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 0, 4.6)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props/cardboard_box_2_12/cardboard_box_2_1" index="0"]
@@ -1347,7 +1347,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 0, 4.6)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props/cardboard_box_2_12/cardboard_box_2_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_f3vld")
 
-[node name="cardboard_box_2_13" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("11_3tbit")]
+[node name="cardboard_box_2_13" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("16_3ct8i")]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.1, 0, 3.6)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props/cardboard_box_2_13/cardboard_box_2_1" index="0"]
@@ -1355,7 +1355,7 @@ transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.1, 0, 3.
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props/cardboard_box_2_13/cardboard_box_2_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_uqdhs")
 
-[node name="cardboard_box_2_14" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("11_3tbit")]
+[node name="cardboard_box_2_14" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("16_3ct8i")]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0.4, 0, 4.4)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props/cardboard_box_2_14/cardboard_box_2_1" index="0"]
@@ -1368,7 +1368,7 @@ shape = SubResource("ConcavePolygonShape3D_ado21")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props/cardboard_box_2_14/cardboard_box_2_1/StaticBody3D2"]
 shape = SubResource("ConcavePolygonShape3D_pfx0d")
 
-[node name="cardboard_box_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("12_0p4eh")]
+[node name="cardboard_box_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("17_r5qjd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.8, 4.2)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props/cardboard_box_12/cardboard_box_1" index="0"]
@@ -1376,30 +1376,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.8, 4.2)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props/cardboard_box_12/cardboard_box_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_yinpb")
 
-[node name="window_metal_bars_single2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("2_oxuu8")]
+[node name="window_metal_bars_single2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("18_8g1h2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, 1)
 
-[node name="light_switch_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("16_p1hi1")]
+[node name="light_switch_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("19_mjhee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 1.4, -0.9)
 
-[node name="clock_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("17_ixxjw")]
+[node name="clock_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("20_35w0s")]
 transform = Transform3D(7.15295e-08, 1.04216e-14, 1, 0, 1, -3.55271e-15, -1, -1.19209e-07, 1.90739e-07, -3.91, 2.2, 2.5)
 
-[node name="vent_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("24_8khuf")]
+[node name="vent_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("21_07x6y")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.6, 1, 4.935)
 
-[node name="electrical_outlet_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("22_67gp5")]
+[node name="electrical_outlet_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("22_kfedq")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.3, 0.6, 4.925)
 
-[node name="electrical_outlet_13" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("22_67gp5")]
+[node name="electrical_outlet_13" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("22_kfedq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.92, 0.6, 3.925)
 
 [node name="Custom" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_2"]
 
-[node name="keyboard_with_separate_keys" parent="SubViewportContainer/SubViewport/World/Stage_2/Custom" instance=ExtResource("24_ixxjw")]
+[node name="keyboard_with_separate_keys" parent="SubViewportContainer/SubViewport/World/Stage_2/Custom" instance=ExtResource("40_sl7le")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, -0.4, 4.5)
 
-[node name="PC_2" parent="SubViewportContainer/SubViewport/World/Stage_2" groups=["pc_station"] instance=ExtResource("63_pc1sc")]
+[node name="PC_2" parent="SubViewportContainer/SubViewport/World/Stage_2" groups=["pc_station"] instance=ExtResource("33_j5kln")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 0, 3.4000003)
 day_number = 2
 
@@ -1410,11 +1410,11 @@ transform = Transform3D(-4.371139e-08, 0, 1, 5.9604645e-08, -1, 1.7763568e-15, 1
 
 [node name="Models" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Lighting"]
 
-[node name="ceiling_fan_mp_1_1_light_off2" parent="SubViewportContainer/SubViewport/World/Stage_3/Lighting/Models" instance=ExtResource("3_0o5wo")]
+[node name="ceiling_fan_mp_1_1_light_off2" parent="SubViewportContainer/SubViewport/World/Stage_3/Lighting/Models" instance=ExtResource("5_i3ye3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3.0000005, 2)
 visible = false
 
-[node name="ceiling_fan_mp_1_1_light_on2" parent="SubViewportContainer/SubViewport/World/Stage_3/Lighting/Models" instance=ExtResource("4_kj1kj")]
+[node name="ceiling_fan_mp_1_1_light_on2" parent="SubViewportContainer/SubViewport/World/Stage_3/Lighting/Models" instance=ExtResource("6_ol5sp")]
 transform = Transform3D(-1, -8.742278e-08, -8.742278e-08, 8.742278e-08, -1, 3.8213714e-15, -8.742278e-08, -3.821371e-15, 1, -0.99437094, 0.041219592, 2.0000002)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Lighting"]
@@ -1424,7 +1424,7 @@ light_energy = 6.818
 
 [node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_3"]
 
-[node name="floor_ceiling_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("19_67gp5")]
+[node name="floor_ceiling_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("9_cr663")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 0, 2)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls/floor_ceiling_12/floor_ceiling_1" index="0"]
@@ -1432,7 +1432,7 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 0, 2)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls/floor_ceiling_12/floor_ceiling_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_67gp5")
 
-[node name="floor_ceiling_13" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("19_67gp5")]
+[node name="floor_ceiling_13" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("9_cr663")]
 transform = Transform3D(1.55, 0, 0, 0, 1.55, 0, 0, 0, 1.55, -1, 3, 2)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls/floor_ceiling_13/floor_ceiling_1" index="0"]
@@ -1440,7 +1440,7 @@ transform = Transform3D(1.55, 0, 0, 0, 1.55, 0, 0, 0, 1.55, -1, 3, 2)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls/floor_ceiling_13/floor_ceiling_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_uo20v")
 
-[node name="wall_1_half2" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half2" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls/wall_1_half2/wall_1_half" index="0"]
@@ -1448,7 +1448,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls/wall_1_half2/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_tbtjm")
 
-[node name="wall_1_half3" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half3" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1, 0, 5)
 
 [node name="wall_1_half" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls/wall_1_half3" index="0"]
@@ -1459,7 +1459,7 @@ transform = Transform3D(-1, 8.742282e-08, 8.742278e-08, 8.742278e-08, -3.8213726
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls/wall_1_half3/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_faidy")
 
-[node name="wall_1_half9" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half9" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -4, 0, 4)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls/wall_1_half9/wall_1_half" index="0"]
@@ -1467,7 +1467,7 @@ transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -4, 0, 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls/wall_1_half9/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_krker")
 
-[node name="wall_1_half6" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half6" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 4)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls/wall_1_half6/wall_1_half" index="0"]
@@ -1475,7 +1475,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls/wall_1_half6/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_rqww4")
 
-[node name="wall_1_half7" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half7" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 2, 0, 2)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls/wall_1_half7/wall_1_half" index="0"]
@@ -1483,7 +1483,7 @@ transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 2, 0, 2)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls/wall_1_half7/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_insc1")
 
-[node name="wall_1_half8" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half8" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls/wall_1_half8/wall_1_half" index="0"]
@@ -1491,7 +1491,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls/wall_1_half8/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_j65f3")
 
-[node name="doorway_1_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("6_q1atb")]
+[node name="doorway_1_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("11_qk4sg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="doorway_1_1" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls/doorway_1_12" index="0"]
@@ -1505,7 +1505,7 @@ visible = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls/doorway_1_12/doorway_1_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_gafn2")
 
-[node name="window_2_single2" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("7_qmigb")]
+[node name="window_2_single2" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("12_2s4ot")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, 1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls/window_2_single2/window_2_single" index="0"]
@@ -1513,14 +1513,14 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0,
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls/window_2_single2/window_2_single/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_w2gbu")
 
-[node name="vent_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("8_j6d3m")]
+[node name="vent_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("13_7trot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.6, -0.9)
 
-[node name="floor_ceiling_16" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("19_67gp5")]
+[node name="floor_ceiling_16" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("9_cr663")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 3, 2)
 visible = false
 
-[node name="doorway_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("46_blsrk")]
+[node name="doorway_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls" instance=ExtResource("14_dlbj6")]
 transform = Transform3D(-1, 8.742277e-08, -8.742278e-08, -8.742278e-08, -1, 5.960473e-08, -8.742277e-08, 5.9604645e-08, 1, -1.9650003, 3.0000005, 5.005)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Walls/doorway_12/doorway_1" index="0"]
@@ -1530,7 +1530,7 @@ shape = SubResource("ConcavePolygonShape3D_c2xj2")
 
 [node name="Props" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_3"]
 
-[node name="cardboard_box_2_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("11_3tbit")]
+[node name="cardboard_box_2_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("16_3ct8i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 0, 4.6)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/cardboard_box_2_12/cardboard_box_2_1" index="0"]
@@ -1538,7 +1538,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 0, 4.6)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/cardboard_box_2_12/cardboard_box_2_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_0o5wo")
 
-[node name="cardboard_box_2_13" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("11_3tbit")]
+[node name="cardboard_box_2_13" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("16_3ct8i")]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.1, 0, 3.6)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/cardboard_box_2_13/cardboard_box_2_1" index="0"]
@@ -1546,7 +1546,7 @@ transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.1, 0, 3.
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/cardboard_box_2_13/cardboard_box_2_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_kj1kj")
 
-[node name="cardboard_box_2_14" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("11_3tbit")]
+[node name="cardboard_box_2_14" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("16_3ct8i")]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0.4, 0, 4.4)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/cardboard_box_2_14/cardboard_box_2_1" index="0"]
@@ -1559,7 +1559,7 @@ shape = SubResource("ConcavePolygonShape3D_ixxjw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/cardboard_box_2_14/cardboard_box_2_1/StaticBody3D2"]
 shape = SubResource("ConcavePolygonShape3D_pp6gi")
 
-[node name="cardboard_box_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("12_0p4eh")]
+[node name="cardboard_box_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("17_r5qjd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.8, 4.2)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/cardboard_box_12/cardboard_box_1" index="0"]
@@ -1567,96 +1567,96 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.8, 4.2)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/cardboard_box_12/cardboard_box_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_q1atb")
 
-[node name="mouse_pad_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("13_j6d3m")]
+[node name="mouse_pad_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("51_nx22y")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.145, 0.98, 3.185)
 
-[node name="pc_mouse_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("14_pmrjd")]
+[node name="pc_mouse_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("52_k08qh")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -3.12, 1, 3.165)
 
-[node name="window_metal_bars_single2" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("2_oxuu8")]
+[node name="window_metal_bars_single2" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("18_8g1h2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, 1)
 visible = false
 
-[node name="light_switch_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("16_p1hi1")]
+[node name="light_switch_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("19_mjhee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 1.4, -0.9)
 
-[node name="clock_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("17_ixxjw")]
+[node name="clock_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("20_35w0s")]
 transform = Transform3D(7.15295e-08, 1.04216e-14, 1, 0, 1, -3.55271e-15, -1, -1.19209e-07, 1.90739e-07, -3.91, 2.2, 2.5)
 
-[node name="vent_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("24_8khuf")]
+[node name="vent_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("21_07x6y")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.6, 1, 4.935)
 
-[node name="electrical_outlet_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("22_67gp5")]
+[node name="electrical_outlet_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("22_kfedq")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.3, 0.6, 4.925)
 
-[node name="electrical_outlet_13" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("22_67gp5")]
+[node name="electrical_outlet_13" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("22_kfedq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.92, 0.6, 3.925)
 
-[node name="electrical_outlet_14" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("22_67gp5")]
+[node name="electrical_outlet_14" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("22_kfedq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.92, 0.6, 2.325)
 
-[node name="electrical_outlet_15" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("22_67gp5")]
+[node name="electrical_outlet_15" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("22_kfedq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.92, 0.6, 0.7249997)
 
-[node name="shelf_mp_3_42" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("22_y2fjs")]
+[node name="shelf_mp_3_42" parent="SubViewportContainer/SubViewport/World/Stage_3/Props" instance=ExtResource("23_l8msb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3, 0, -0.5999999)
 
 [node name="shelf_props" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Props"]
 transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, -1.5973772, 0.17335266, -0.5)
 
-[node name="floppy_disc_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("23_a86nj")]
+[node name="floppy_disc_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("24_2uev0")]
 
-[node name="floppy_disc_13" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("23_a86nj")]
+[node name="floppy_disc_13" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("24_2uev0")]
 transform = Transform3D(-0.7071068, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, -0.7071068, 0.21085238, 0, 0.12173569)
 
-[node name="floppy_disc_14" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("23_a86nj")]
+[node name="floppy_disc_14" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("24_2uev0")]
 transform = Transform3D(-0.26516622, -0.20897368, 0.94128466, -0.09729473, -0.96544915, -0.24174702, 0.9592813, -0.15568517, 0.23567247, 0.30175614, 0.0014693439, 0.1742189)
 
-[node name="floppy_disc_15" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("23_a86nj")]
+[node name="floppy_disc_15" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("24_2uev0")]
 transform = Transform3D(-0.25881907, -7.550035e-08, 0.9659258, -3.3273743e-08, -1, -8.6480426e-08, 0.9659258, -4.804349e-08, 0.25881904, 0.06288147, 0.01183784, 0.09108603)
 
-[node name="floppy_disc_16" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("23_a86nj")]
+[node name="floppy_disc_16" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("24_2uev0")]
 transform = Transform3D(-0.8605732, 0, 0.5093267, 0, 1, 0, -0.5093267, 0, -0.8605732, 0.5217185, 0, 0.3212285)
 
-[node name="floppy_disc_17" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("23_a86nj")]
+[node name="floppy_disc_17" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("24_2uev0")]
 transform = Transform3D(0.9686656, 0, 0.24836874, 0, 1, 0, -0.24836874, 0, 0.9686656, 0.4022678, 0, 0.10907316)
 
-[node name="floppy_disc_18" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("23_a86nj")]
+[node name="floppy_disc_18" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("24_2uev0")]
 transform = Transform3D(0.71678257, 0.10054258, -0.69001013, -0.09729473, -0.96544915, -0.24174704, -0.6904755, 0.24041438, -0.68223476, 0.35076958, 0.0014693439, 0.017607927)
 
-[node name="floppy_disc_19" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("23_a86nj")]
+[node name="floppy_disc_19" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("24_2uev0")]
 transform = Transform3D(0.71470463, 4.0503743e-08, -0.6994264, -3.3273743e-08, -1, -8.6480426e-08, -0.69942653, 7.979929e-08, -0.71470463, 0.5139969, 0.01183784, 0.21081507)
 
-[node name="glass_bottle_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("24_r4agu")]
+[node name="glass_bottle_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("25_s0l33")]
 transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 0.5307412, 1.1266475, 0.07548344)
 
-[node name="glass_bottle_22" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("25_nevyq")]
+[node name="glass_bottle_22" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("26_bkg2k")]
 transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 0.6539464, 1.1266475, 0.26208603)
 
-[node name="cash_22" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("26_e78pq")]
+[node name="cash_22" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("27_paqf7")]
 transform = Transform3D(0.9659258, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.9659258, 0.04772854, 0.7266473, -0.08791399)
 
-[node name="cash_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("27_rohpg")]
+[node name="cash_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("28_6h4w8")]
 transform = Transform3D(0.23795295, -0.22414389, -0.94505966, 0.18301271, 0.9659257, -0.18301271, 0.95387864, -0.12940954, 0.270866, 0.013025522, 0.7631007, -0.0707165)
 
-[node name="cash_13" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("27_rohpg")]
+[node name="cash_13" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("28_6h4w8")]
 transform = Transform3D(0.68612766, 0.007827193, 0.72743887, 0.1830127, 0.96592563, -0.1830127, -0.70408446, 0.25870067, 0.661316, 0.16826415, 0.7631007, 0.018910646)
 
-[node name="cassette_tape_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("28_5gvna")]
+[node name="cassette_tape_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("29_x7q4g")]
 transform = Transform3D(0.9659258, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.9659258, 0.56734383, 0.7266474, 0.21208608)
 
-[node name="cassette_tape_mp_22" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("29_i0y1e")]
+[node name="cassette_tape_mp_22" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("30_o4wy4")]
 transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, 0.39413875, 0.7266474, 0.11208594)
 
-[node name="cigs_packet_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("30_7xhva")]
+[node name="cigs_packet_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("31_85bol")]
 transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 0.04772854, 0.32664734, -0.08791399)
 
-[node name="flashlight_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("31_rd8gm")]
+[node name="flashlight_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Props/shelf_props" instance=ExtResource("32_5o2dn")]
 transform = Transform3D(-0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, -0.49999997, 0.39413875, 0.32664734, 0.11208594)
 
 [node name="Desk" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_3"]
 
-[node name="pc_monitor_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk" instance=ExtResource("15_p1hi1")]
+[node name="pc_monitor_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk" instance=ExtResource("34_cjmm2")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.5, 0.98, 3.6)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk/pc_monitor_mp_12/pc_monitor_mp_1/pc_monitor_mp_1_screen" index="0"]
@@ -1669,7 +1669,7 @@ shape = SubResource("ConcavePolygonShape3D_j6d3m")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk/pc_monitor_mp_12/pc_monitor_mp_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_pmrjd")
 
-[node name="table_large_2_42" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk" instance=ExtResource("16_3tbit")]
+[node name="table_large_2_42" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk" instance=ExtResource("35_a3ggp")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 0, 3.5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk/table_large_2_42/table_large_2_4" index="0"]
@@ -1677,7 +1677,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk/table_large_2_42/table_large_2_4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_8khuf")
 
-[node name="chair_mp_3_42" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk" instance=ExtResource("17_0p4eh")]
+[node name="chair_mp_3_42" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk" instance=ExtResource("36_cib38")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.6, 0, 3.5)
 
 [node name="chair_mp_3_4" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk/chair_mp_3_42" index="0"]
@@ -1688,7 +1688,7 @@ transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0.0999999, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk/chair_mp_3_42/chair_mp_3_4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_p1hi1")
 
-[node name="pc_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk" instance=ExtResource("18_ixxjw")]
+[node name="pc_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk" instance=ExtResource("37_6exoo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 0.98, 2.9)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk/pc_mp_12/pc_mp_1" index="0"]
@@ -1699,7 +1699,7 @@ shape = SubResource("ConcavePolygonShape3D_3tbit")
 [node name="Desk2" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
 
-[node name="pc_monitor_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk2" instance=ExtResource("15_p1hi1")]
+[node name="pc_monitor_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk2" instance=ExtResource("34_cjmm2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.5, 0.98, 3.6)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk2/pc_monitor_mp_12/pc_monitor_mp_1/pc_monitor_mp_1_screen" index="0"]
@@ -1712,7 +1712,7 @@ shape = SubResource("ConcavePolygonShape3D_cktwr")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk2/pc_monitor_mp_12/pc_monitor_mp_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_of86m")
 
-[node name="table_large_2_42" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk2" instance=ExtResource("16_3tbit")]
+[node name="table_large_2_42" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk2" instance=ExtResource("35_a3ggp")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 0, 3.5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk2/table_large_2_42/table_large_2_4" index="0"]
@@ -1720,7 +1720,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk2/table_large_2_42/table_large_2_4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_rhdg0")
 
-[node name="chair_mp_3_42" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk2" instance=ExtResource("17_0p4eh")]
+[node name="chair_mp_3_42" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk2" instance=ExtResource("36_cib38")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.6, 0, 3.5)
 
 [node name="chair_mp_3_4" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk2/chair_mp_3_42" index="0"]
@@ -1731,7 +1731,7 @@ transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0.0999999, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk2/chair_mp_3_42/chair_mp_3_4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_6bp14")
 
-[node name="pc_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk2" instance=ExtResource("18_ixxjw")]
+[node name="pc_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk2" instance=ExtResource("37_6exoo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 0.98, 2.9)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk2/pc_mp_12/pc_mp_1" index="0"]
@@ -1739,13 +1739,13 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk2/pc_mp_12/pc_mp_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_hvhkb")
 
-[node name="radio_baked" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk2" instance=ExtResource("25_krker")]
+[node name="radio_baked" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk2" instance=ExtResource("38_c6op1")]
 transform = Transform3D(0.0029960703, 0, 0.00015350466, 0, 0.003, 0, -0.00015350466, 0, 0.0029960703, -1.3907084, 1.4267894, 0.857383)
 
 [node name="Desk3" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.0100965)
 
-[node name="pc_monitor_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk3" instance=ExtResource("15_p1hi1")]
+[node name="pc_monitor_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk3" instance=ExtResource("34_cjmm2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.5, 0.98, 3.6)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk3/pc_monitor_mp_12/pc_monitor_mp_1/pc_monitor_mp_1_screen" index="0"]
@@ -1758,7 +1758,7 @@ shape = SubResource("ConcavePolygonShape3D_cktwr")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk3/pc_monitor_mp_12/pc_monitor_mp_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_of86m")
 
-[node name="table_large_2_42" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk3" instance=ExtResource("16_3tbit")]
+[node name="table_large_2_42" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk3" instance=ExtResource("35_a3ggp")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 0, 3.5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk3/table_large_2_42/table_large_2_4" index="0"]
@@ -1766,7 +1766,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk3/table_large_2_42/table_large_2_4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_rhdg0")
 
-[node name="chair_mp_3_42" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk3" instance=ExtResource("17_0p4eh")]
+[node name="chair_mp_3_42" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk3" instance=ExtResource("36_cib38")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.6, 0, 3.5)
 
 [node name="chair_mp_3_4" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk3/chair_mp_3_42" index="0"]
@@ -1777,7 +1777,7 @@ transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0.0999999, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk3/chair_mp_3_42/chair_mp_3_4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_6bp14")
 
-[node name="pc_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk3" instance=ExtResource("18_ixxjw")]
+[node name="pc_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk3" instance=ExtResource("37_6exoo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 0.98, 2.9)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Desk3/pc_mp_12/pc_mp_1" index="0"]
@@ -1787,19 +1787,19 @@ shape = SubResource("ConcavePolygonShape3D_hvhkb")
 
 [node name="Custom" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_3"]
 
-[node name="keypad_22" parent="SubViewportContainer/SubViewport/World/Stage_3/Custom" instance=ExtResource("21_3tbit")]
+[node name="keypad_22" parent="SubViewportContainer/SubViewport/World/Stage_3/Custom" instance=ExtResource("39_xs6s4")]
 visible = false
 
-[node name="keyboard_with_separate_keys" parent="SubViewportContainer/SubViewport/World/Stage_3/Custom" instance=ExtResource("24_ixxjw")]
+[node name="keyboard_with_separate_keys" parent="SubViewportContainer/SubViewport/World/Stage_3/Custom" instance=ExtResource("40_sl7le")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, -0.4, 4.5)
 
-[node name="PC_3" parent="SubViewportContainer/SubViewport/World/Stage_3" groups=["pc_station"] instance=ExtResource("63_pc1sc")]
+[node name="PC_3" parent="SubViewportContainer/SubViewport/World/Stage_3" groups=["pc_station"] instance=ExtResource("33_j5kln")]
 transform = Transform3D(1.3113416e-07, 5.960465e-08, -1, 1.470274e-07, -1, -5.9604634e-08, -1, -1.4702742e-07, -1.3113416e-07, 0.20000005, 3, 4.4000015)
 day_number = 3
 
 [node name="GLB2" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_3"]
 
-[node name="vending_machine_12" parent="SubViewportContainer/SubViewport/World/Stage_3/GLB2" instance=ExtResource("10_p1hi1")]
+[node name="vending_machine_12" parent="SubViewportContainer/SubViewport/World/Stage_3/GLB2" instance=ExtResource("41_wmc72")]
 transform = Transform3D(-1, -1.0658141e-14, -1.7484558e-07, -7.1054274e-15, -1, 8.742273e-08, -1.7484555e-07, 8.742278e-08, 1, 1.5999997, 3.0000005, 1.1999998)
 
 [node name="vending_machine_1" parent="SubViewportContainer/SubViewport/World/Stage_3/GLB2/vending_machine_12" index="0"]
@@ -1835,10 +1835,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0, 0)
 
 [node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4"]
 
-[node name="wall_1_tunnel_hole_12" parent="SubViewportContainer/SubViewport/World/Stage_4" instance=ExtResource("53_7xhva")]
+[node name="wall_1_tunnel_hole_12" parent="SubViewportContainer/SubViewport/World/Stage_4" instance=ExtResource("53_8nl1k")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8.5, -3.5, -5)
 
-[node name="tunnel_12" parent="SubViewportContainer/SubViewport/World/Stage_4" instance=ExtResource("54_rd8gm")]
+[node name="tunnel_12" parent="SubViewportContainer/SubViewport/World/Stage_4" instance=ExtResource("54_qurun")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 11.5, -3.5, -5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/tunnel_12/tunnel_1" index="0"]
@@ -1868,26 +1868,26 @@ light_energy = 3.0
 
 [node name="Models" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Lighting"]
 
-[node name="ceiling_fan_mp_1_1_light_off2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Lighting/Models" instance=ExtResource("3_0o5wo")]
+[node name="ceiling_fan_mp_1_1_light_off2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Lighting/Models" instance=ExtResource("5_i3ye3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 2)
 visible = false
 
-[node name="ceiling_fan_mp_1_1_light_on2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Lighting/Models" instance=ExtResource("4_kj1kj")]
+[node name="ceiling_fan_mp_1_1_light_on2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Lighting/Models" instance=ExtResource("6_ol5sp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 2)
 
-[node name="lamp_1_on2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Lighting/Models" instance=ExtResource("61_blsrk")]
+[node name="lamp_1_on2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Lighting/Models" instance=ExtResource("55_03s60")]
 transform = Transform3D(-0.9999999, 0, 4.3711385e-08, 0, 1, 0, -4.3711385e-08, 0, -0.9999999, 0, 2.3000002, -1.0700026)
 
 [node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB"]
 
-[node name="floor_ceiling_13" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("19_67gp5")]
+[node name="floor_ceiling_13" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("9_cr663")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 3, 2)
 visible = false
 
-[node name="vent_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("8_j6d3m")]
+[node name="vent_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("13_7trot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.6, -0.9)
 
-[node name="doorway_1_plain2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("47_nevyq")]
+[node name="doorway_1_plain2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("46_6vp0n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="door_mp_6" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/doorway_1_plain2/doorway_1_plain" index="0"]
@@ -1898,7 +1898,7 @@ visible = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/doorway_1_plain2/doorway_1_plain/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_idcbs")
 
-[node name="wall_1_plain5" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain5" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("47_yi2lg")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/wall_1_plain5/wall_1_plain" index="0"]
@@ -1906,7 +1906,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/wall_1_plain5/wall_1_plain/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_35qht")
 
-[node name="wall_1_plain6" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain6" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("47_yi2lg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/wall_1_plain6/wall_1_plain" index="0"]
@@ -1914,7 +1914,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/wall_1_plain6/wall_1_plain/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_2ltw4")
 
-[node name="wall_1_plain7" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain7" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("47_yi2lg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/wall_1_plain7/wall_1_plain" index="0"]
@@ -1922,7 +1922,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 5)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/wall_1_plain7/wall_1_plain/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_loo5p")
 
-[node name="wall_1_plain9" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain9" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("47_yi2lg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/wall_1_plain9/wall_1_plain" index="0"]
@@ -1930,7 +1930,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -1)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/wall_1_plain9/wall_1_plain/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_lge0e")
 
-[node name="wall_1_plain8" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain8" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("47_yi2lg")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, 5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/wall_1_plain8/wall_1_plain" index="0"]
@@ -1938,7 +1938,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0,
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/wall_1_plain8/wall_1_plain/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_g2ckg")
 
-[node name="floor_ceiling_33" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("49_rohpg")]
+[node name="floor_ceiling_33" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("48_8gldl")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 0, 2)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/floor_ceiling_33/floor_ceiling_3" index="0"]
@@ -1946,7 +1946,7 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 0, 2)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/floor_ceiling_33/floor_ceiling_3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_rd8gm")
 
-[node name="floor_ceiling_34" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("49_rohpg")]
+[node name="floor_ceiling_34" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("48_8gldl")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 3, 2)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/floor_ceiling_34/floor_ceiling_3" index="0"]
@@ -1954,7 +1954,7 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 3, 2)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/floor_ceiling_34/floor_ceiling_3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_pbufh")
 
-[node name="window_1_single2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("50_5gvna")]
+[node name="window_1_single2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("49_yy55m")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, 1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/window_1_single2/window_1_single" index="0"]
@@ -1965,7 +1965,7 @@ shape = SubResource("ConcavePolygonShape3D_m8t8b")
 [node name="Doors" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, -3)
 
-[node name="elevator_doorway_32" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors" instance=ExtResource("51_i0y1e")]
+[node name="elevator_doorway_32" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors" instance=ExtResource("50_dhsg4")]
 transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -4, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors/elevator_doorway_32/elevator_doorway_3" index="0"]
@@ -1973,10 +1973,10 @@ transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -4, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors/elevator_doorway_32/elevator_doorway_3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_kd8ae")
 
-[node name="InteractableElevator_3" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors" instance=ExtResource("43_72u8k")]
+[node name="InteractableElevator_3" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors" instance=ExtResource("44_0kgma")]
 transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -1, -4, 0, 1.7999997)
 elevator_name = "elevator_3"
-unlocks_after_stage = 100
+unlocks_after_stage = 4
 
 [node name="TeleportMarker" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors/InteractableElevator_3" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.8199997, 0.39999962)
@@ -1986,7 +1986,7 @@ visible = false
 
 [node name="Props" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB"]
 
-[node name="vending_machine_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("10_p1hi1")]
+[node name="vending_machine_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("41_wmc72")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6, 0, -0.5)
 
 [node name="vending_machine_1" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/vending_machine_12" index="0"]
@@ -1997,7 +1997,7 @@ transform = Transform3D(1, 1.0658141e-14, 0, 0, 0, -1, -1.0658141e-14, 1, 0, 0, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/vending_machine_12/vending_machine_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_q3shm")
 
-[node name="cardboard_box_2_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("11_3tbit")]
+[node name="cardboard_box_2_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("16_3ct8i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 0, 4.6)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_2_12/cardboard_box_2_1" index="0"]
@@ -2005,7 +2005,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 0, 4.6)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_2_12/cardboard_box_2_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_f3vld")
 
-[node name="cardboard_box_2_13" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("11_3tbit")]
+[node name="cardboard_box_2_13" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("16_3ct8i")]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.1, 0, 3.6)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_2_13/cardboard_box_2_1" index="0"]
@@ -2013,7 +2013,7 @@ transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.1, 0, 3.
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_2_13/cardboard_box_2_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_uqdhs")
 
-[node name="cardboard_box_2_14" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("11_3tbit")]
+[node name="cardboard_box_2_14" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("16_3ct8i")]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0.4, 0, 4.4)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_2_14/cardboard_box_2_1" index="0"]
@@ -2026,7 +2026,7 @@ shape = SubResource("ConcavePolygonShape3D_ado21")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_2_14/cardboard_box_2_1/StaticBody3D2"]
 shape = SubResource("ConcavePolygonShape3D_pfx0d")
 
-[node name="cardboard_box_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("12_0p4eh")]
+[node name="cardboard_box_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("17_r5qjd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.8, 4.2)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_12/cardboard_box_1" index="0"]
@@ -2034,44 +2034,44 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.8, 4.2)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props/cardboard_box_12/cardboard_box_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_yinpb")
 
-[node name="window_metal_bars_single2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("2_oxuu8")]
+[node name="window_metal_bars_single2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("18_8g1h2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, 1)
 
-[node name="light_switch_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("16_p1hi1")]
+[node name="light_switch_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("19_mjhee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 1.4, -0.9)
 
-[node name="clock_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("17_ixxjw")]
+[node name="clock_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("20_35w0s")]
 transform = Transform3D(7.15295e-08, 1.04216e-14, 1, 0, 1, -3.55271e-15, -1, -1.19209e-07, 1.90739e-07, -3.91, 2.2, 2.5)
 
-[node name="vent_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("24_8khuf")]
+[node name="vent_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("21_07x6y")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.6, 1, 4.935)
 
-[node name="electrical_outlet_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("22_67gp5")]
+[node name="electrical_outlet_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("22_kfedq")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.3, 0.6, 4.925)
 
-[node name="electrical_outlet_13" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("22_67gp5")]
+[node name="electrical_outlet_13" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("22_kfedq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.92, 0.6, 3.925)
 
-[node name="bars_metal_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("60_l5w8t")]
+[node name="bars_metal_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("56_6005a")]
 transform = Transform3D(-0.9999999, 0, 4.3711385e-08, 0, 1, 0, -4.3711385e-08, 0, -0.9999999, -0.099999905, -0.10000014, -1.170001)
 
 [node name="Desk" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB"]
 
-[node name="toilet_mp_1_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk" instance=ExtResource("55_jfovm")]
+[node name="toilet_mp_1_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk" instance=ExtResource("57_aymcj")]
 transform = Transform3D(-4.3711385e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -4.3711385e-08, -2.5999997, 0.29999995, 3.5299997)
 
-[node name="pipe_1_corner2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk" instance=ExtResource("58_w85uq")]
+[node name="pipe_1_corner2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk" instance=ExtResource("58_xb5t2")]
 transform = Transform3D(0, 0.49999994, 2.1855692e-08, 0, -2.1855694e-08, 0.5, 0.49999994, 0, 0, -2.0299997, 0.20000005, 3.5299978)
 
-[node name="pipe_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk" instance=ExtResource("59_l5w8t")]
+[node name="pipe_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk" instance=ExtResource("59_iw734")]
 transform = Transform3D(0, 0, -0.49999994, -0.5, -2.1855694e-08, 0, -2.1855692e-08, 0.49999994, 0, -1.8800001, 0.20000005, 3.6799974)
 
 [node name="Custom" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4"]
 
-[node name="keyboard_with_separate_keys" parent="SubViewportContainer/SubViewport/World/Stage_4/Custom" instance=ExtResource("24_ixxjw")]
+[node name="keyboard_with_separate_keys" parent="SubViewportContainer/SubViewport/World/Stage_4/Custom" instance=ExtResource("40_sl7le")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, -0.4, 4.5)
 
-[node name="PC_4" parent="SubViewportContainer/SubViewport/World/Stage_4" groups=["pc_station"] instance=ExtResource("63_pc1sc")]
+[node name="PC_4" parent="SubViewportContainer/SubViewport/World/Stage_4" groups=["pc_station"] instance=ExtResource("33_j5kln")]
 transform = Transform3D(0, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 0, 18.870003, -3.5, -1.6000003)
 day_number = 4
 
@@ -2102,17 +2102,17 @@ spot_angle = 60.3334
 
 [node name="Models" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Lighting"]
 
-[node name="ceiling_fan_mp_1_1_light_off2" parent="SubViewportContainer/SubViewport/World/Stage_5/Lighting/Models" instance=ExtResource("3_0o5wo")]
+[node name="ceiling_fan_mp_1_1_light_off2" parent="SubViewportContainer/SubViewport/World/Stage_5/Lighting/Models" instance=ExtResource("5_i3ye3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 2)
 visible = false
 
-[node name="ceiling_fan_mp_1_1_light_on2" parent="SubViewportContainer/SubViewport/World/Stage_5/Lighting/Models" instance=ExtResource("4_kj1kj")]
+[node name="ceiling_fan_mp_1_1_light_on2" parent="SubViewportContainer/SubViewport/World/Stage_5/Lighting/Models" instance=ExtResource("6_ol5sp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 2)
 visible = false
 
 [node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_5"]
 
-[node name="floor_ceiling_12" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("19_67gp5")]
+[node name="floor_ceiling_12" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("9_cr663")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 0, 2)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls/floor_ceiling_12/floor_ceiling_1" index="0"]
@@ -2120,10 +2120,10 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 0, 2)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls/floor_ceiling_12/floor_ceiling_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_72u8k")
 
-[node name="floor_ceiling_13" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("19_67gp5")]
+[node name="floor_ceiling_13" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("9_cr663")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 3, 2)
 
-[node name="wall_1_half2" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half2" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls/wall_1_half2/wall_1_half" index="0"]
@@ -2131,7 +2131,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls/wall_1_half2/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_55xim")
 
-[node name="wall_1_half3" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half3" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3, 0, 5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls/wall_1_half3/wall_1_half" index="0"]
@@ -2139,7 +2139,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3, 0,
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls/wall_1_half3/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_h52jf")
 
-[node name="wall_1_half9" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half9" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -4, 0, 4)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls/wall_1_half9/wall_1_half" index="0"]
@@ -2147,7 +2147,7 @@ transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -4, 0, 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls/wall_1_half9/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_wwjx8")
 
-[node name="wall_1_half4" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half4" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls/wall_1_half4/wall_1_half" index="0"]
@@ -2155,7 +2155,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 5)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls/wall_1_half4/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_n10ru")
 
-[node name="wall_1_half5" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half5" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1, 0, 5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls/wall_1_half5/wall_1_half" index="0"]
@@ -2163,7 +2163,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1, 0, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls/wall_1_half5/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_rxgg7")
 
-[node name="wall_1_half6" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half6" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 4)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls/wall_1_half6/wall_1_half" index="0"]
@@ -2171,7 +2171,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls/wall_1_half6/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_5rjd7")
 
-[node name="wall_1_half7" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half7" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 2, 0, 2)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls/wall_1_half7/wall_1_half" index="0"]
@@ -2179,7 +2179,7 @@ transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 2, 0, 2)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls/wall_1_half7/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_0gw0d")
 
-[node name="wall_1_half8" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("5_pp6gi")]
+[node name="wall_1_half8" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("10_whmcn")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls/wall_1_half8/wall_1_half" index="0"]
@@ -2187,7 +2187,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls/wall_1_half8/wall_1_half/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_wrr2r")
 
-[node name="window_2_single2" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("7_qmigb")]
+[node name="window_2_single2" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("12_2s4ot")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, 1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls/window_2_single2/window_2_single" index="0"]
@@ -2195,10 +2195,10 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0,
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls/window_2_single2/window_2_single/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_njesq")
 
-[node name="vent_12" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("8_j6d3m")]
+[node name="vent_12" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("13_7trot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.6, -0.9)
 
-[node name="elevator_doorway_12" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("45_l5w8t")]
+[node name="elevator_doorway_12" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls" instance=ExtResource("45_fs784")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 0, 0, -3)
 
 [node name="elevator_doorway_1" parent="SubViewportContainer/SubViewport/World/Stage_5/Walls/elevator_doorway_12" index="0"]
@@ -2211,7 +2211,7 @@ shape = SubResource("ConcavePolygonShape3D_0y0r0")
 
 [node name="Props" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_5"]
 
-[node name="wardrobe_mp_1_42" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("9_pmrjd")]
+[node name="wardrobe_mp_1_42" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("15_5lad0")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.5, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Props/wardrobe_mp_1_42/wardrobe_mp_1_4" index="3"]
@@ -2219,7 +2219,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.5, 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Props/wardrobe_mp_1_42/wardrobe_mp_1_4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_g3e6u")
 
-[node name="vending_machine_12" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("10_p1hi1")]
+[node name="vending_machine_12" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("41_wmc72")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6, 0, -0.5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Props/vending_machine_12/vending_machine_1" index="0"]
@@ -2227,7 +2227,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6, 0, -0.5)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Props/vending_machine_12/vending_machine_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_chdcq")
 
-[node name="cardboard_box_2_12" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("11_3tbit")]
+[node name="cardboard_box_2_12" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("16_3ct8i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 0, 4.6)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Props/cardboard_box_2_12/cardboard_box_2_1" index="0"]
@@ -2235,7 +2235,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 0, 4.6)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Props/cardboard_box_2_12/cardboard_box_2_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_boohb")
 
-[node name="cardboard_box_2_13" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("11_3tbit")]
+[node name="cardboard_box_2_13" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("16_3ct8i")]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.1, 0, 3.6)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Props/cardboard_box_2_13/cardboard_box_2_1" index="0"]
@@ -2243,7 +2243,7 @@ transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.1, 0, 3.
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Props/cardboard_box_2_13/cardboard_box_2_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_fl2gr")
 
-[node name="cardboard_box_2_14" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("11_3tbit")]
+[node name="cardboard_box_2_14" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("16_3ct8i")]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0.4, 0, 4.4)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Props/cardboard_box_2_14/cardboard_box_2_1" index="0"]
@@ -2256,7 +2256,7 @@ shape = SubResource("ConcavePolygonShape3D_ixkei")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Props/cardboard_box_2_14/cardboard_box_2_1/StaticBody3D2"]
 shape = SubResource("ConcavePolygonShape3D_2u6r5")
 
-[node name="cardboard_box_12" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("12_0p4eh")]
+[node name="cardboard_box_12" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("17_r5qjd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.8, 4.2)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Props/cardboard_box_12/cardboard_box_1" index="0"]
@@ -2264,25 +2264,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.8, 4.2)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Props/cardboard_box_12/cardboard_box_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_5sdx6")
 
-[node name="window_metal_bars_single2" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("2_oxuu8")]
+[node name="window_metal_bars_single2" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("18_8g1h2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, 1)
 
-[node name="light_switch_12" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("16_p1hi1")]
+[node name="light_switch_12" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("19_mjhee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 1.4, -0.9)
 
-[node name="clock_12" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("17_ixxjw")]
+[node name="clock_12" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("20_35w0s")]
 transform = Transform3D(7.15295e-08, 1.04216e-14, 1, 0, 1, -3.55271e-15, -1, -1.19209e-07, 1.90739e-07, -3.91, 2.2, 2.5)
 
-[node name="vent_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("24_8khuf")]
+[node name="vent_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("21_07x6y")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.6, 1, 4.935)
 
-[node name="electrical_outlet_12" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("22_67gp5")]
+[node name="electrical_outlet_12" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("22_kfedq")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.3, 0.6, 4.925)
 
-[node name="electrical_outlet_13" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("22_67gp5")]
+[node name="electrical_outlet_13" parent="SubViewportContainer/SubViewport/World/Stage_5/Props" instance=ExtResource("22_kfedq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.92, 0.6, 3.925)
 
-[node name="InteractableElevator_4" parent="SubViewportContainer/SubViewport/World/Stage_5" instance=ExtResource("43_72u8k")]
+[node name="InteractableElevator_4" parent="SubViewportContainer/SubViewport/World/Stage_5" instance=ExtResource("44_0kgma")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 0, 0, -2.8000002)
 elevator_name = "elevator_4"
 unlocks_after_stage = 0
@@ -2294,58 +2294,57 @@ disabled = true
 [node name="OmniLight3D3" parent="SubViewportContainer/SubViewport/World/Stage_5/InteractableElevator_4" index="3"]
 light_energy = 0.339
 
-[node name="PC_5" parent="SubViewportContainer/SubViewport/World/Stage_5" groups=["pc_station"] instance=ExtResource("63_pc1sc")]
+[node name="PC_5" parent="SubViewportContainer/SubViewport/World/Stage_5" groups=["pc_station"] instance=ExtResource("33_j5kln")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3999999, 1.8626451e-08, 3.41)
 day_number = 5
 
-[node name="Keypad_1" parent="SubViewportContainer/SubViewport/World" groups=["keypad_station"] instance=ExtResource("60_oijd2")]
+[node name="Keypad_1" parent="SubViewportContainer/SubViewport/World" groups=["keypad_station"] instance=ExtResource("60_kf5b5")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.93, -2.2, -2.23)
-script = ExtResource("62_kpctrl")
+script = ExtResource("61_y4uid")
 unlocks_stage = 3
 door_node_path = NodePath("../Stage_2/GLB/Doors/door_keypad_1")
 
-[node name="Keypad_2" parent="SubViewportContainer/SubViewport/World" groups=["keypad_station"] instance=ExtResource("60_oijd2")]
+[node name="Keypad_2" parent="SubViewportContainer/SubViewport/World" groups=["keypad_station"] instance=ExtResource("60_kf5b5")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.030001, -2.2, -4.13)
-script = ExtResource("62_kpctrl")
+script = ExtResource("61_y4uid")
 unlocks_stage = 4
 door_node_path = NodePath("../Stage_3/GLB2/Doors/door_keypad_2")
 target_rotation_y = 0.0
 
-[node name="Keypad_3" parent="SubViewportContainer/SubViewport/World" groups=["keypad_station"] instance=ExtResource("60_oijd2")]
+[node name="Keypad_3" parent="SubViewportContainer/SubViewport/World" groups=["keypad_station"] instance=ExtResource("60_kf5b5")]
 transform = Transform3D(1.0000001, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1.0000001, 17.229996, -2.2, -6.9300003)
-script = ExtResource("62_kpctrl")
+script = ExtResource("61_y4uid")
 unlocks_stage = 5
 door_type = 1
 door_a_node_path = NodePath("../Stage_4/GLB/Doors/InteractableElevator_3/elevator_22/elevator_2/elevator_door_3_a")
 door_b_node_path = NodePath("../Stage_4/GLB/Doors/InteractableElevator_3/elevator_22/elevator_2/elevator_door_3_b")
-elevator_controller_path = NodePath("../Stage_4/GLB/Doors/InteractableElevator_3")
 
 [node name="Audio" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 
 [node name="DarkAmbience" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/World/Audio"]
-stream = ExtResource("61_c2xj2")
+stream = ExtResource("62_wv40h")
 volume_db = -10.0
 
 [node name="VendingMachine" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/World/Audio"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.2, -4.5)
-stream = ExtResource("61_72u8k")
+stream = ExtResource("63_8y3ry")
 autoplay = true
 max_distance = 10.0
 
 [node name="OfficeRoom1" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/World/Audio"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0000005, 1.2, -3.3999999)
-stream = ExtResource("63_5soqj")
+stream = ExtResource("64_bs8xl")
 volume_db = -4.0
 autoplay = true
 max_distance = 9.0
 
 [node name="ElevatorDoor" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/World/Audio"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -6.7)
-stream = ExtResource("63_c2xj2")
+stream = ExtResource("65_bvpq0")
 
 [node name="ToiletFlush" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/World/Audio"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.699999, -2.9, -2.5000005)
-stream = ExtResource("64_toilet")
+stream = ExtResource("66_qtdom")
 volume_db = -30.0
 max_distance = 15.0
 

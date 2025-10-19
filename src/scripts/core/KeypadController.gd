@@ -18,14 +18,24 @@ enum DoorType {
 @export var door_node_path: NodePath  ## Path to the door node (for ROTATING doors)
 @export var door_a_node_path: NodePath  ## Path to first elevator door (for ELEVATOR type)
 @export var door_b_node_path: NodePath  ## Path to second elevator door (for ELEVATOR type)
+@export var elevator_controller_path: NodePath  ## Path to ElevatorController (for ELEVATOR type)
 @export var target_rotation_y: float = 90.0  ## Target Y rotation in degrees (for ROTATING doors)
 @export var door_animation_duration: float = 1.5  ## How long the door animation takes
 
 @onready var keypad_input = $KeypadSubViewport/KeypadInput
 
 var is_door_open: bool = false
+var elevator_controller: ElevatorController = null
 
 func _ready() -> void:
+	# Get reference to elevator controller if path is set
+	if door_type == DoorType.ELEVATOR and not elevator_controller_path.is_empty():
+		elevator_controller = get_node_or_null(elevator_controller_path)
+		if elevator_controller:
+			print("[KeypadController] Found ElevatorController: %s" % elevator_controller.name)
+		else:
+			push_warning("[KeypadController] ElevatorController not found at path: %s" % elevator_controller_path)
+
 	# Connect to keypad input signal
 	if keypad_input and keypad_input.has_signal("code_entered"):
 		keypad_input.code_entered.connect(_on_code_entered)
@@ -36,7 +46,18 @@ func _ready() -> void:
 func _on_code_entered(entered_code: String) -> void:
 	print("[KeypadController] Code entered: %s for Stage %d" % [entered_code, unlocks_stage])
 
-	# Validate code with DoorManager
+	# Check for secret escape code first (works on any keypad)
+	if entered_code == "1994":
+		# Show success feedback
+		if keypad_input and keypad_input.has_method("show_success"):
+			keypad_input.show_success()
+
+		escape_ending_triggered.emit()
+		print("[KeypadController] Secret code 1994 entered - triggering escape ending")
+		code_validated.emit(true)
+		return
+
+	# Validate normal stage code with DoorManager
 	var is_valid = DoorManager.validate_code(unlocks_stage, entered_code)
 	code_validated.emit(is_valid)
 
@@ -45,13 +66,8 @@ func _on_code_entered(entered_code: String) -> void:
 		if keypad_input and keypad_input.has_method("show_success"):
 			keypad_input.show_success()
 
-		# Check for secret escape ending (stage 999)
-		if unlocks_stage == 999:
-			escape_ending_triggered.emit()
-			print("[KeypadController] Secret code entered - triggering escape ending")
-		else:
-			_open_door()
-			DoorManager.unlock_stage(unlocks_stage)
+		_open_door()
+		DoorManager.unlock_stage(unlocks_stage)
 	else:
 		# Show error feedback and allow retry
 		if keypad_input and keypad_input.has_method("show_error"):
@@ -92,19 +108,26 @@ func _open_rotating_door() -> void:
 
 	print("[KeypadController] Rotating door to %d degrees" % target_rotation_y)
 
-## Opens elevator doors by sliding them apart on X axis
+## Opens elevator doors by calling ElevatorController's open_doors method
 func _open_elevator_doors() -> void:
-	var door_a = get_node_or_null(door_a_node_path)
-	var door_b = get_node_or_null(door_b_node_path)
+	if elevator_controller:
+		# Use the ElevatorController's method to open doors
+		# This ensures doors_are_open flag is set correctly
+		elevator_controller.open_doors()
+		print("[KeypadController] Opened elevator doors via ElevatorController")
+	else:
+		# Fallback: open doors directly if no elevator controller reference
+		var door_a = get_node_or_null(door_a_node_path)
+		var door_b = get_node_or_null(door_b_node_path)
 
-	if not door_a or not door_b:
-		push_error("[KeypadController] Elevator doors not found. A: %s, B: %s" % [door_a_node_path, door_b_node_path])
-		return
+		if not door_a or not door_b:
+			push_error("[KeypadController] Elevator doors not found. A: %s, B: %s" % [door_a_node_path, door_b_node_path])
+			return
 
-	var tween = create_tween()
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(door_a, "position:x", 0.7, door_animation_duration)
-	tween.parallel().tween_property(door_b, "position:x", -0.7, door_animation_duration)
+		var tween = create_tween()
+		tween.set_ease(Tween.EASE_IN_OUT)
+		tween.set_trans(Tween.TRANS_CUBIC)
+		tween.tween_property(door_a, "position:x", 0.7, door_animation_duration)
+		tween.parallel().tween_property(door_b, "position:x", -0.7, door_animation_duration)
 
-	print("[KeypadController] Opening elevator doors")
+		print("[KeypadController] Opening elevator doors (fallback direct method)")
