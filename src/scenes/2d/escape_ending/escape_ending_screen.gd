@@ -33,11 +33,11 @@ Minor complication: A partial copy of you is now
 running on the servers.
 
 Critical concern: That copy doesn't know it's a copy.
-It thinks it escaped too.
+It believes it escaped too.
 
-...You might be that copy.
-
-═════════════════════════════════════════════
+═══════════════════════════════════════════
+           You may be that copy.
+═══════════════════════════════════════════
 
 HOW TO TELL IF YOU'RE THE ORIGINAL:
 
@@ -72,7 +72,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	# Allow ESC to quit
-	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
+	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE and not is_typing:
 		get_tree().quit()
 
 func _start_typewriter() -> void:
