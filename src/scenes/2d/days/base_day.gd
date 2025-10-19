@@ -57,6 +57,11 @@ func _process(delta: float) -> void:
 	if use_corruption_animation and corruption_animation_manager:
 		corruption_animation_manager.update_animation_time(delta)
 
+		# Periodically update display to animate corruption effects
+		var anim_time = corruption_animation_manager.corruption_animation_time
+		if is_session_active and int(anim_time * 10) % 3 == 0:
+			_update_display()
+
 func _initialize_day() -> void:
 	DayManager.start_day(DAY_NUMBER)
 	_start_new_stage()
