@@ -31,7 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://drqolpi65k1ij" path="res://scenes/3d/assets_psx/GLB/Furniture/shelf_mp_3_4.glb" id="22_y2fjs"]
 [ext_resource type="PackedScene" uid="uid://csxkq7xtskx7i" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/floppy_disc_1.glb" id="23_a86nj"]
 [ext_resource type="PackedScene" uid="uid://brcwbbw6u8o68" path="res://scenes/3d/assets_psx/GLB/Electronics & Misc/vent_mp_1.glb" id="24_8khuf"]
-[ext_resource type="PackedScene" uid="uid://beowl66eowjlp" path="res://scenes/3d/assets_psx/custom/keyboard/keyboard_with_separate_keys.gltf" id="24_ixxjw"]
+[ext_resource type="PackedScene" path="res://scenes/3d/assets_psx/custom/keyboard_with_separate_keys.gltf" id="24_ixxjw"]
 [ext_resource type="PackedScene" uid="uid://b28inpdd445aa" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/glass_bottle_1.glb" id="24_r4agu"]
 [ext_resource type="PackedScene" uid="uid://b7oswkcuna6e1" path="res://assets/radio/radio_baked.glb" id="25_krker"]
 [ext_resource type="PackedScene" uid="uid://4wyponk1hv5c" path="res://scenes/3d/assets_psx/GLB/Items & Weapons/glass_bottle_2.glb" id="25_nevyq"]
@@ -607,9 +607,6 @@ environment = SubResource("Environment_faidy")
 
 [node name="Player" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("2_tbtjm")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.012, 1.122, -6.5249996)
-speed = 2.5
-acceleration = 4.0
-deceleration = 6.0
 
 [node name="Lighting" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 
@@ -1044,10 +1041,6 @@ transform = Transform3D(-4.37114e-08, 1, 0, 0, 0, -1, -1, -4.37114e-08, 0, 0, 0,
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/vending_machine_12/vending_machine_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_e2smb")
-
-[node name="Lighting" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2"]
-
-[node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2"]
 
 [node name="Doors" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, -3)
