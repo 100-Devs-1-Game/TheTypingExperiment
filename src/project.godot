@@ -17,11 +17,11 @@ config/icon="uid://b8ly3tjoislu0"
 
 [autoload]
 
-TypingEngine="*res://autoloads/typing_engine.gd"
-StatsManager="*res://autoloads/stats_manager.gd"
-CorruptionManager="*res://autoloads/corruption_manager.gd"
-DayManager="*res://autoloads/day_manager.gd"
-DoorManager="*res://autoloads/door_manager.gd"
+TypingEngine="*res://scripts/autoloads/typing_engine.gd"
+StatsManager="*res://scripts/autoloads/stats_manager.gd"
+CorruptionManager="*res://scripts/autoloads/corruption_manager.gd"
+DayManager="*res://scripts/autoloads/day_manager.gd"
+DoorManager="*res://scripts/autoloads/door_manager.gd"
 
 [display]
 

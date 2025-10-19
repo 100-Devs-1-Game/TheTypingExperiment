@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cyrn8yu151fwi"]
 
 [ext_resource type="PackedScene" uid="uid://bwh5x8yqm2k3h" path="res://scenes/2d/keypad/keypad_input.tscn" id="1_6cdl5"]
-[ext_resource type="PackedScene" uid="uid://c8xm2e2c3pdto" path="res://scenes/3d/assets_psx/custom/keypad/keypad_separate_keys.gltf" id="2_1i7pp"]
+[ext_resource type="PackedScene" uid="uid://c8xm2e2c3pdto" path="res://assets/external/assets_psx/custom/keypad/keypad_separate_keys.gltf" id="2_1i7pp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p4wxy"]
 size = Vector3(0.5, 0.5, 0.15)
