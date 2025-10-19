@@ -32,12 +32,19 @@ var untyped_color: String = "#00aa00"
 var error_color: String = "#ff4444"
 var corruption_color: String = "#ff0000"  # Overridden in child classes
 
+# Corruption animation manager (used by days 2-5)
+var corruption_animation_manager: CorruptionAnimationManager = null
+var use_corruption_animation: bool = false  # Set to true in days 2-5
 
 # Message handling
 var is_typing_message: bool = false
 
 # Day-specific data (must be set in child classes)
 var DAY_NUMBER: int = 1
+
+# Corruption word position cache for performance optimization
+var _corruption_word_cache: Dictionary = {}  # {char_pos: bool}
+var _last_cached_sentence: String = ""
 
 func _ready() -> void:
 	_setup_connections()
@@ -46,7 +53,9 @@ func _ready() -> void:
 	_initialize_day()
 
 func _process(delta: float) -> void:
-	pass
+	# Update corruption animation time if using corruption
+	if use_corruption_animation and corruption_animation_manager:
+		corruption_animation_manager.update_animation_time(delta)
 
 func _initialize_day() -> void:
 	DayManager.start_day(DAY_NUMBER)
@@ -194,14 +203,21 @@ func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton or event is InputEventKey:
 		invisible_input.grab_focus()
 
-# VIRTUAL FUNCTION - Override in child classes for day-specific display logic
+## Main display update function - handles both simple (Day 1) and corrupted (Days 2-5) display
 func _update_display() -> void:
 	if not text_display:
 		return
 
+	# Use corrupted display for days 2-5, simple display for day 1
+	if use_corruption_animation and corruption_animation_manager:
+		_update_display_with_corruption()
+	else:
+		_update_display_simple()
+
+## Simple display for Day 1 (no corruption)
+func _update_display_simple() -> void:
 	var display_text: String = ""
 
-	# Default simple display (Day 1 style)
 	for i in range(practice_text.length()):
 		var character: String = practice_text[i]
 		var color: String = untyped_color
@@ -222,31 +238,133 @@ func _update_display() -> void:
 
 	text_display.text = display_text
 
+## Advanced display with corruption animation for Days 2-5
+func _update_display_with_corruption() -> void:
+	var display_sentence = DayManager.get_stage_display_sentence()
+	var display_text: String = ""
+
+	for i in range(display_sentence.length()):
+		var character: String = display_sentence[i]
+		var color: String = untyped_color
+		var final_character: String = character
+		var is_cursor_position: bool = (i == current_position)
+
+		if i < typed_characters.length():
+			# Character has been typed
+			var typed_char: String = typed_characters[i]
+			var expected_char: String = practice_text[i] if i < practice_text.length() else ""
+
+			if typed_char == expected_char:
+				# Correctly typed
+				if _is_character_in_corruption_word(i, display_sentence):
+					# Apply animated corruption effects to correctly typed corrupted words
+					var corruption_effects = corruption_animation_manager.get_corruption_effects(
+						i, DayManager.current_stage, DayManager.stages_per_day, true
+					)
+					color = corruption_effects.color
+					if corruption_effects.character != "":
+						final_character = corruption_effects.character
+					else:
+						final_character = character
+				else:
+					color = typed_color  # Normal typed words in green
+			else:
+				# Incorrectly typed
+				if _is_character_in_corruption_word(i, display_sentence):
+					# Apply corruption effects with error tinting
+					var corruption_effects = corruption_animation_manager.get_corruption_effects(
+						i, DayManager.current_stage, DayManager.stages_per_day, false
+					)
+					color = _blend_error_with_corruption(corruption_effects.color)
+					if corruption_effects.character != "":
+						final_character = corruption_effects.character
+					else:
+						final_character = character
+				else:
+					color = error_color  # Normal incorrect typing
+		else:
+			# Character not yet typed
+			if _is_character_in_corruption_word(i, display_sentence):
+				# Apply animated corruption effects to untyped corrupted words
+				var corruption_effects = corruption_animation_manager.get_corruption_effects(
+					i, DayManager.current_stage, DayManager.stages_per_day, false
+				)
+				color = corruption_effects.color
+				if corruption_effects.character != "":
+					final_character = corruption_effects.character
+				else:
+					final_character = character
+			else:
+				color = untyped_color  # Normal untyped words
+
+		# Add cursor styling
+		if is_cursor_position:
+			display_text += "[u][color=%s]%s[/color][/u]" % [color, final_character]
+		else:
+			display_text += "[color=%s]%s[/color]" % [color, final_character]
+
+	text_display.text = display_text
+
 func _check_completion() -> void:
 	if current_position >= practice_text.length():
 		_complete_stage()
 
 ## Helper function to determine if character at position is part of a corruption word
-## Used by day-specific classes to determine coloring and effects
+## Optimized with caching for better performance
 func _is_character_in_corruption_word(char_pos: int, sentence: String) -> bool:
+	# Use cache if sentence hasn't changed
+	if sentence == _last_cached_sentence and _corruption_word_cache.has(char_pos):
+		return _corruption_word_cache[char_pos]
+
+	# Rebuild cache if sentence changed
+	if sentence != _last_cached_sentence:
+		_rebuild_corruption_cache(sentence)
+		_last_cached_sentence = sentence
+
+	# Return cached value or false if not in cache
+	return _corruption_word_cache.get(char_pos, false)
+
+## Rebuild the corruption word position cache for a sentence
+func _rebuild_corruption_cache(sentence: String) -> void:
+	_corruption_word_cache.clear()
 	var words = sentence.split(" ")
 	var current_pos = 0
 
 	for word in words:
-		if char_pos >= current_pos and char_pos < current_pos + word.length():
-			# Character is within this word - check if it's corrupted
-			# Check both corruption_mappings AND day_stage_corrupted_words
-			if DayManager.corruption_mappings.has(word):
-				return true
+		# Check if word is corrupted
+		var is_corrupted = false
 
-			# Also check if word is in the current day/stage corrupted words list
+		# Check corruption_mappings
+		if DayManager.corruption_mappings.has(word):
+			is_corrupted = true
+		else:
+			# Check day_stage_corrupted_words
 			var day_stages = DayManager.day_stage_corrupted_words.get(DayManager.current_day, {})
 			var stage_corrupted_words = day_stages.get(DayManager.current_stage, [])
 			if word in stage_corrupted_words:
-				return true
+				is_corrupted = true
+
+		# Cache each character position in this word
+		for i in range(word.length()):
+			_corruption_word_cache[current_pos + i] = is_corrupted
+
 		current_pos += word.length() + 1  # +1 for space
 
-	return false
+## Helper function to blend corruption colors with error color for visual feedback
+## Used by days 2-5 to show errors on corrupted text
+func _blend_error_with_corruption(corruption_color_hex: String) -> String:
+	# Parse the corruption color (hex format like "#ff0000")
+	var hex_color = corruption_color_hex.replace("#", "")
+	var red = ("0x" + hex_color.substr(0, 2)).hex_to_int()
+	var green = ("0x" + hex_color.substr(2, 2)).hex_to_int()
+	var blue = ("0x" + hex_color.substr(4, 2)).hex_to_int()
+
+	# Blend with error color (yellow/orange tint) to indicate error while keeping corruption effects
+	red = min(255, int(red * 0.9))  # Slightly reduce red intensity
+	green = min(255, int(green + 100))  # Add yellow/orange tint (base amount)
+	blue = max(0, int(blue * 0.8))  # Reduce blue component
+
+	return "#%02x%02x%02x" % [red, green, blue]
 
 func _complete_stage() -> void:
 	is_session_active = false
