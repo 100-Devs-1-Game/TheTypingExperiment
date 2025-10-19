@@ -16,10 +16,16 @@ var is_active := true
 @export var interaction_label: Label
 var can_move_camera = true
 
+# Head bob tracking
+var _original_position := Vector3.ZERO
+var _bob_offset := Vector3.ZERO
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	mouse_sensitivity = mouse_sensitivity / 1000
 	y_limit = deg_to_rad(y_limit)
+	# Store original position for head bob
+	_original_position = position
 
 
 # Called when there is an input event
@@ -105,6 +111,11 @@ func camera_rotation() -> void:
 	rot.y -= mouse_axis.x * mouse_sensitivity
 	# Vertical mouse look.
 	rot.x = clamp(rot.x - mouse_axis.y * mouse_sensitivity, -y_limit, y_limit)
-	
+
 	get_owner().rotation.y = rot.y
 	rotation.x = rot.x
+
+## Apply head bob offset (called by MovementController)
+func apply_head_bob(bob_offset: Vector3) -> void:
+	_bob_offset = bob_offset
+	position = _original_position + _bob_offset
