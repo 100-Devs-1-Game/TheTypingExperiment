@@ -32,6 +32,71 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="SkullLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 451.0
+offset_top = 10.0
+offset_right = 829.0
+offset_bottom = 709.0
+scale = Vector2(1.3, 1.3)
+pivot_offset = Vector2(189, 349.5)
+theme_override_font_sizes/font_size = 8
+text = "                        M MMN P MLLMPQMOOROOMOPQNN
+                              L   K    L     J
+             ROQPQPQQOOPPPPPNQPQPPPQQPPPOOPQQRPPQPOOOPRQQPP
+           ONNLKKKNMMOMLMNONNLOMMLNLPMMOMMLNKMLMMLKMNMMNMMM   O
+         O NNOOOPONNMMMOOONNOPOPMMNONMMNNMNONNNOPOOPNOPPOOMNQN
+       NOPNNNONPPPPNONNONONNMNMNMONONONNOOONOMMMONNNNNNOPNQNPSTUU
+         OLJJKLPPROONOPPONOPPPOOOOPPPOOOONONMOPPPPNOOOQTQRRRRQPQR
+    OPOPOPONOOPRRQQQQQNQQQQPOOPOOPQPPOPPOOOPPRPQQQPPQPQOQPSQSQPQQQQOP
+                  L   POOOONNKNNNMNMNNKMMMMMMONNOO  N
+  PNOMRPOPONNPPNPQQQPRQQRSRRPSPPPPRQRPPPQOQRQSQQPRRRRQQPPMPORPOQPPQPPNOQ
+  N  PNN OMNOOMO PPPPOOONMOPNLMNNMMMNNNPNOMNQOQSRPQNONQOO ONONMONQ  OONM
+N MNOOQNPPNOOOPOPQRRPOPPPPPPPROPQQQOQOPQOOQPQRRRRRQRRRRRQNPOPOOPNPNRQPNN P
+    QQPSPPPOOPOOOPPPOOSLORPOQLMMOPOOMRNQNQPRRSQPPMNOPLNPPLOQPPOPRRQQPOQR
+N   N PO OPPQQ        POOQPPPNQPPOPOPONPQQQQORRPOP    O    RPPP    R N
+    PPMOQPOPQPOO        LLKPPNQQONNOPNLNOQORNQOOON        P NRSRPSOSPO
+
+    URQQRQ P                     QL OP RMO                      P TSRR
+
+                              S   OPPPNPPS
+                               POPLNPO POPN
+                              O  LI NMNP N
+                              QMOL         Q
+                              QQ           R
+                            OLP            R S
+
+  NK                    QPPPN                QOPPO                 P LLQ P
+  POON               OPL PPO                     N P               Q RPP
+P PQON   O     P     PPPRPP O                N O N  L           P    PPN N
+ LQTTQRRS   OQPSNN                               OOO      Q     RQQSSQPP
+S   US                                              W     R        S     P
+  PM  R                 O                                          RPPOP   P
+
+PKN                         P                O OQM                       Q
+                              T            P
+                           LO R            M POPM
+                        QTT       Q          NUTRT
+T                       Q N QPOPOPP    R PMO M SRR                       T
+                      J POPRS POPMN    NOOPPOSSQPRPP
+                        NPR                     PS
+                      I QRRPO                PRR PPO
+
+                   R P            R      P   QRS
+
+                     QP T         RR         O   P
+
+
+
+
+
+
+
+
+
+"
+
 [node name="SkullLabel2" type="Label" parent="."]
 unique_name_in_owner = true
 visible = false
@@ -107,7 +172,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="CenterContainer"]
-unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
@@ -115,64 +179,13 @@ theme_override_fonts/font = SubResource("SystemFont_8h3y3")
 theme_override_font_sizes/font_size = 20
 text = "The previous user session has ended"
 
-[node name="SkullLabel" type="Label" parent="CenterContainer"]
-unique_name_in_owner = true
+[node name="Label2" type="Label" parent="CenterContainer"]
+visible = false
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
-text = "                        M MMN P MLLMPQMOOROOMOPQNN
-                              L   K    L     J
-             ROQPQPQQOOPPPPPNQPQPPPQQPPPOOPQQRPPQPOOOPRQQPP
-           ONNLKKKNMMOMLMNONNLOMMLNLPMMOMMLNKMLMMLKMNMMNMMM   O
-         O NNOOOPONNMMMOOONNOPOPMMNONMMNNMNONNNOPOOPNOPPOOMNQN
-       NOPNNNONPPPPNONNONONNMNMNMONONONNOOONOMMMONNNNNNOPNQNPSTUU
-         OLJJKLPPROONOPPONOPPPOOOOPPPOOOONONMOPPPPNOOOQTQRRRRQPQR
-    OPOPOPONOOPRRQQQQQNQQQQPOOPOOPQPPOPPOOOPPRPQQQPPQPQOQPSQSQPQQQQOP
-                  L   POOOONNKNNNMNMNNKMMMMMMONNOO  N
-  PNOMRPOPONNPPNPQQQPRQQRSRRPSPPPPRQRPPPQOQRQSQQPRRRRQQPPMPORPOQPPQPPNOQ
-  N  PNN OMNOOMO PPPPOOONMOPNLMNNMMMNNNPNOMNQOQSRPQNONQOO ONONMONQ  OONM
-N MNOOQNPPNOOOPOPQRRPOPPPPPPPROPQQQOQOPQOOQPQRRRRRQRRRRRQNPOPOOPNPNRQPNN P
-    QQPSPPPOOPOOOPPPOOSLORPOQLMMOPOOMRNQNQPRRSQPPMNOPLNPPLOQPPOPRRQQPOQR
-N   N PO OPPQQ        POOQPPPNQPPOPOPONPQQQQORRPOP    O    RPPP    R N
-    PPMOQPOPQPOO        LLKPPNQQONNOPNLNOQORNQOOON        P NRSRPSOSPO
-
-    URQQRQ P                     QL OP RMO                      P TSRR
-
-                              S   OPPPNPPS
-                               POPLNPO POPN
-                              O  LI NMNP N
-                              QMOL         Q
-                              QQ           R
-                            OLP            R S
-
-  NK                    QPPPN                QOPPO                 P LLQ P
-  POON               OPL PPO                     N P               Q RPP
-P PQON   O     P     PPPRPP O                N O N  L           P    PPN N
- LQTTQRRS   OQPSNN                               OOO      Q     RQQSSQPP
-S   US                                              W     R        S     P
-  PM  R                 O                                          RPPOP   P
-
-PKN                         P                O OQM                       Q
-                              T            P
-                           LO R            M POPM
-                        QTT       Q          NUTRT
-T                       Q N QPOPOPP    R PMO M SRR                       T
-                      J POPRS POPMN    NOOPPOSSQPRPP
-                        NPR                     PS
-                      I QRRPO                PRR PPO
-
-                   R P            R      P   QRS
-
-                     QP T         RR         O   P
-
-
-
-
-
-
-
-
-
-"
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_8h3y3")
+theme_override_font_sizes/font_size = 20
+text = "Press \"Space\" to restart"
 
 [node name="PinkNoise" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_vn73t")

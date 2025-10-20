@@ -4,7 +4,8 @@ extends Control
 
 @onready var skull_label: Label = %SkullLabel
 @onready var skull_label_2: Label = %SkullLabel2
-@onready var final_label: Label = %Label
+@onready var final_label: Label = $CenterContainer/Label
+@onready var final_label_2: Label = $CenterContainer/Label2
 
 var horror_effects: HorrorEffectsManager
 var skull_2_final_position: Vector2
@@ -40,7 +41,6 @@ func _show_skull_eerily() -> void:
 
 	# Start zoom on first skull and wait for it to finish
 	#await _slow_zoom(skull_label)
-	skull_label.scale = Vector2(1.3, 1.3)
 
 	# Mark that first skull finished zooming
 	skull_1_finished_zoom = true
@@ -169,6 +169,27 @@ func _show_final_message() -> void:
 	if final_label:
 		final_label.visible = true
 
-	# Wait 10 seconds then close the game
-	await get_tree().create_timer(10.0).timeout
-	get_tree().quit()
+	# Hide label2 initially
+	if final_label_2:
+		final_label_2.visible = false
+
+	# Wait 10 seconds
+	await get_tree().create_timer(5.0).timeout
+
+	# Hide first label and show second label
+	if final_label:
+		final_label.visible = false
+	if final_label_2:
+		final_label_2.visible = true
+
+	# Wait for space bar press
+	await _wait_for_space_press()
+
+	# Restart main scene
+	get_tree().change_scene_to_file("res://scenes/3d/days/main.tscn")
+
+func _wait_for_space_press() -> void:
+	while true:
+		await get_tree().process_frame
+		if Input.is_action_just_pressed("ui_accept"):
+			break
