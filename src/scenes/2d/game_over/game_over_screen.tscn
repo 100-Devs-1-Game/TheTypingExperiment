@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dicwlnmirtug5"]
+[gd_scene load_steps=7 format=3 uid="uid://dicwlnmirtug5"]
 
 [ext_resource type="Script" uid="uid://dcigkone7oj2b" path="res://scenes/2d/game_over/game_over_screen.gd" id="1_jw4iv"]
 [ext_resource type="AudioStream" uid="uid://mct5fnjy2yjb" path="res://assets/external/custom_sfx/pink-noise.wav" id="2_vn73t"]
@@ -9,6 +9,9 @@ subpixel_positioning = 0
 
 [sub_resource type="Theme" id="Theme_v2"]
 default_font = SubResource("SystemFont_v2")
+
+[sub_resource type="SystemFont" id="SystemFont_vn73t"]
+font_names = PackedStringArray("Monospace")
 
 [sub_resource type="SystemFont" id="SystemFont_8h3y3"]
 font_names = PackedStringArray("Courier New")
@@ -41,6 +44,7 @@ offset_right = 829.0
 offset_bottom = 709.0
 scale = Vector2(1.3, 1.3)
 pivot_offset = Vector2(189, 349.5)
+theme_override_fonts/font = SubResource("SystemFont_vn73t")
 theme_override_font_sizes/font_size = 8
 text = "                        M MMN P MLLMPQMOOROOMOPQNN
                               L   K    L     J

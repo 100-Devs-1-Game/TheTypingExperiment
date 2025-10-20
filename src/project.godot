@@ -34,6 +34,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="haunted-typing-practice-2d"
 
+[gui]
+
+theme/custom_font="uid://d1knohdvdcyrj"
+
 [input]
 
 ui_accept={

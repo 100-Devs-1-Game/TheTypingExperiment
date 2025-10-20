@@ -1,14 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwxcn8y7yfp5k"]
+[gd_scene load_steps=4 format=3 uid="uid://dwxcn8y7yfp5k"]
 
 [ext_resource type="Script" uid="uid://ddlpfjwkfcyf7" path="res://scenes/2d/days/day_5.gd" id="1_day5script"]
-
-[sub_resource type="SystemFont" id="SystemFont_day5"]
-font_names = PackedStringArray("Courier New")
-subpixel_positioning = 0
-
-[sub_resource type="Theme" id="Theme_day5"]
-default_font = SubResource("SystemFont_day5")
-default_font_size = 20
+[ext_resource type="Theme" uid="uid://bmhp7s5ywraf7" path="res://game_theme.tres" id="1_s0qd1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eruwl"]
 
@@ -19,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_day5")
+theme = ExtResource("1_s0qd1")
 script = ExtResource("1_day5script")
 
 [node name="Background" type="ColorRect" parent="."]

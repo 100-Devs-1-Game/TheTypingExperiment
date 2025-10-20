@@ -58,8 +58,7 @@ See you soon.
 Session ID: EXP_1994-07-18_A
 Timestamp: [ERROR: TIMESTREAM DISCONNECTED]
 ═══════════════════════════════════════════
-
-Press ESC to exit"""
+"""
 
 var current_char_index: int = 0
 var base_typing_speed: float = 0.03  # Base speed for typewriter
@@ -70,10 +69,10 @@ func _ready() -> void:
 	await get_tree().create_timer(0.5).timeout
 	_start_typewriter()
 
-func _input(event: InputEvent) -> void:
-	# Allow ESC to quit
-	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE and not is_typing:
-		get_tree().quit()
+#func _input(event: InputEvent) -> void:
+	## Allow ESC to quit
+	#if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE and not is_typing:
+		#get_tree().quit()
 
 func _start_typewriter() -> void:
 	is_typing = true

@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bmhp7s5ywraf7"]
+
+[ext_resource type="FontFile" uid="uid://d1knohdvdcyrj" path="res://assets/external/fonts-ibm-plex-mono/IBMPlexMono-Regular.ttf" id="1_1fvms"]
+
+[resource]
+default_font = ExtResource("1_1fvms")
+default_font_size = 20

@@ -1,13 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://beb5d3tu72w3c"]
+[gd_scene load_steps=2 format=3 uid="uid://beb5d3tu72w3c"]
 
-[ext_resource type="Script" path="res://scenes/2d/startup/startup_screen_day_3.gd" id="1_day3"]
-
-[sub_resource type="SystemFont" id="SystemFont_fy30w"]
-font_names = PackedStringArray("Courier New")
-subpixel_positioning = 0
-
-[sub_resource type="Theme" id="Theme_qthw8"]
-default_font = SubResource("SystemFont_fy30w")
+[ext_resource type="Script" uid="uid://e0i46cdadtms" path="res://scenes/2d/startup/startup_screen_day_3.gd" id="1_day3"]
 
 [node name="StartupScreenDay3" type="Control"]
 layout_mode = 3
@@ -16,7 +9,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_qthw8")
 script = ExtResource("1_day3")
 
 [node name="Background" type="ColorRect" parent="."]

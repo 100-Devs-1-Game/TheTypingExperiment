@@ -90,7 +90,7 @@ const DAY_CONFIGS: Dictionary = {
 		"color_mid": "#dd3300",
 		"color_low": "#aa2200",
 		"flicker_colors": ["#ff4400", "#ee3300", "#cc2200", "#ff5500", "#ff0000"],
-		"glitch_chars": ["█", "▓", "▒", "░", "▄", "▀", "▌", "▐", "■", "□", "▪", "▫", "◆", "◇", "●", "○"],
+		"glitch_chars": ["█", "▓", "▒", "░", "▄", "▀", "▌", "▐", "■", "□", "▪", "▫", "◆", "◇"],
 		"typed_color_base": 170,  # For variable red-orange range
 		"typed_pulse_speed": 2.0
 	}
