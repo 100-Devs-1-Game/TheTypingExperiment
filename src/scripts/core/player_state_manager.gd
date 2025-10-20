@@ -35,7 +35,7 @@ var is_state_saved: bool = false
 
 # ESC prompt settings
 @export var show_esc_prompt: bool = true
-@export var esc_prompt_text: String = "ESC: Stand Up"
+@export var esc_prompt_text: String = "TAB: Stand Up"
 @export var esc_prompt_delay: float = 3.0
 
 # Original state storage
@@ -393,6 +393,13 @@ func can_interact() -> bool:
 
 ## Handle input for state transitions (call from main input handler)
 func handle_input_event(event: InputEvent) -> bool:
+	# Check for Tab key when seated at PC (browser-friendly alternative to ESC)
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.physical_keycode == KEY_TAB and current_state == PlayerState.SEATED_AT_PC:
+			stand_up_from_computer()
+			return true  # Input handled
+
+	# Keep ESC as backup for all states (desktop builds)
 	if event.is_action_pressed("ui_cancel"):
 		match current_state:
 			PlayerState.SEATED_AT_PC:
