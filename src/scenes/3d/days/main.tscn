@@ -65,8 +65,8 @@
 [ext_resource type="AudioStream" uid="uid://2aflf4s17lk8" path="res://assets/external/custom_sfx/office-ambience-24734.wav" id="63_5soqj"]
 [ext_resource type="AudioStream" uid="uid://b57wbllrscndt" path="res://assets/external/custom_sfx/elevator/elevator-door-and-ding-6694.wav" id="63_c2xj2"]
 [ext_resource type="PackedScene" uid="uid://tx5ewpe433j8" path="res://scenes/3d/interactables/pc_1.tscn" id="63_pc1sc"]
+[ext_resource type="AudioStream" uid="uid://ck2ibksmgjrhc" path="res://assets/external/custom_sfx/songs/lively-big-band-swing-for-dancing-296170.wav" id="64_1yanm"]
 [ext_resource type="AudioStream" uid="uid://ddhgwuqcrqeiq" path="res://assets/external/custom_sfx/toilet-flush-quite-aggressive-01-26041.wav" id="64_toilet"]
-[ext_resource type="AudioStream" uid="uid://dm1h5rabwut35" path="res://assets/external/Tengo Ritmo - Muzak Orchestra.mp3" id="64_wwjx8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_faidy"]
 
@@ -2285,6 +2285,10 @@ door_state = 1
 [node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_5/InteractableElevator_4/ElevatorInteraction" index="0"]
 disabled = true
 
+[node name="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stage_5/InteractableElevator_4" index="3"]
+visible = true
+light_energy = 0.3
+
 [node name="PC_5" parent="SubViewportContainer/SubViewport/World/Stage_5" groups=["pc_station"] instance=ExtResource("63_pc1sc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3999999, 1.8626451e-08, 3.41)
 day_number = 5
@@ -2325,8 +2329,9 @@ max_distance = 10.0
 
 [node name="Radio" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/World/Audio"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.3000001, -0.69999975)
-stream = ExtResource("64_wwjx8")
+stream = ExtResource("64_1yanm")
 volume_db = -15.0
+pitch_scale = 0.8
 autoplay = true
 max_distance = 10.0
 

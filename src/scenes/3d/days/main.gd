@@ -72,6 +72,9 @@ func _ready() -> void:
 	if DayManager:
 		DayManager.stage_completed.connect(_on_day_manager_stage_completed)
 
+	# Play elevator arrival sequence on startup
+	_play_startup_elevator_arrival()
+
 
 func _input(event: InputEvent) -> void:
 	# Let player state manager handle state transitions first
@@ -79,9 +82,9 @@ func _input(event: InputEvent) -> void:
 		return  # Input was handled by state manager
 
 	# Normal menu handling when walking
-	if event.is_action_pressed("ui_cancel") and player_state_manager and player_state_manager.is_walking():
-		show_menu(!showing_menu)
-		return
+	#if event.is_action_pressed("ui_cancel") and player_state_manager and player_state_manager.is_walking():
+		#show_menu(!showing_menu)
+		#return
 
 	# Handle keyboard visualization when seated at PC
 	if player_state_manager and player_state_manager.is_seated() and keyboard_visualizer:
@@ -116,6 +119,16 @@ func _input(event: InputEvent) -> void:
 					var keypad_viewport = current_keypad.get_node_or_null("KeypadSubViewport")
 					if keypad_viewport:
 						keypad_viewport.push_input(event)
+
+func _notification(what: int) -> void:
+	# Handle window focus to re-capture mouse in web builds
+	# In web, pressing ESC releases pointer lock (browser security feature)
+	# We need to re-capture when player clicks back into the game
+	if what == NOTIFICATION_WM_WINDOW_FOCUS_IN:
+		# Only re-capture mouse if player is in walking state (has camera control)
+		if player_state_manager and player_state_manager.is_walking():
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			print("[Main] Window focused - mouse re-captured")
 
 # Called by the head script when player interacts with PC
 func interact_with_pc():
@@ -479,3 +492,33 @@ func _on_player_state_changed(old_state: PlayerStateManager.PlayerState, new_sta
 	# Clear keyboard visualizer when LEAVING PC (standing up)
 	if old_state == PlayerStateManager.PlayerState.SEATED_AT_PC and new_state != PlayerStateManager.PlayerState.SEATED_AT_PC and keyboard_visualizer:
 		keyboard_visualizer.clear_active_pc()
+
+## Play elevator arrival sequence on scene start
+func _play_startup_elevator_arrival() -> void:
+	# Wait for scene to finish setting up
+	await get_tree().process_frame
+
+	# Create a black overlay that starts fully opaque
+	var fade_overlay = ColorRect.new()
+	fade_overlay.color = Color.BLACK
+	fade_overlay.modulate.a = 1.0  # Start fully black
+	fade_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	fade_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	get_viewport().add_child(fade_overlay)
+
+	# Wait a brief moment, then play elevator sound
+	await get_tree().create_timer(0.5).timeout
+	if elevator_door_audio:
+		elevator_door_audio.play()
+
+	# Wait for elevator sound to play (about 2 seconds into the sound)
+	await get_tree().create_timer(2.0).timeout
+
+	# Fade in from black (reveal the scene)
+	var tween = create_tween()
+	tween.tween_property(fade_overlay, "modulate:a", 0.0, 1.5)  # 1.5 second fade in
+	await tween.finished
+
+	# Clean up overlay
+	fade_overlay.queue_free()
+	print("[Main] Elevator arrival sequence completed")

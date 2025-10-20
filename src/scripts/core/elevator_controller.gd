@@ -16,6 +16,7 @@ enum DoorState {
 @export var elevator_name: String = "elevator_1"
 @export var unlocks_after_stage: int = 1  # Which stage completion unlocks this elevator
 @export var teleport_offset: Vector3 = Vector3.ZERO  # Optional offset from teleport marker
+@export var keep_light_disabled: bool = false  # If true, light never turns on (for dark elevators)
 @export var door_state: DoorState = DoorState.CLOSED:
 	set(value):
 		door_state = value
@@ -87,8 +88,10 @@ func _find_elevator_light() -> void:
 
 	if elevator_light:
 		print("[ElevatorController] Found elevator light")
-		# Disable light initially (will be enabled when doors open)
+		# Disable light initially (will be enabled when doors open, unless keep_light_disabled)
 		elevator_light.visible = false
+		if keep_light_disabled:
+			print("[ElevatorController] Light will remain disabled (keep_light_disabled = true)")
 	else:
 		push_warning("[ElevatorController] Could not find elevator light (OmniLight3D3)")
 
@@ -163,8 +166,8 @@ func open_doors() -> void:
 	doors_are_open = true
 	print("[ElevatorController] Opening elevator doors")
 
-	# Enable elevator light when doors open
-	if elevator_light:
+	# Enable elevator light when doors open (unless keep_light_disabled is true)
+	if elevator_light and not keep_light_disabled:
 		elevator_light.visible = true
 
 	# Animate doors to fixed positions (same as KeypadController)
