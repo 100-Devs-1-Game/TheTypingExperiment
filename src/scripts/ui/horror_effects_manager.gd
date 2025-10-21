@@ -382,7 +382,7 @@ func _corrupted_fade_in_intense(message_overlay: Control, corrupted_message: Str
 			await get_tree().create_timer(actual_duration).timeout
 
 ## Hold message with glitch pulses (Days 3-4)
-func _hold_with_glitch_pulses(message_overlay: Control, message: String, corruption_chars: Array, duration: float) -> void:
+func _hold_with_glitch_pulses(message_overlay: Control, _message: String, corruption_chars: Array, duration: float) -> void:
 	var elapsed = 0.0
 	var pulse_interval = 0.8
 	var next_pulse = pulse_interval
@@ -415,7 +415,7 @@ func _hold_with_glitch_pulses(message_overlay: Control, message: String, corrupt
 		await get_tree().create_timer(delta).timeout
 
 ## Hold message with intense glitch pulses (Day 5)
-func _hold_with_glitch_pulses_intense(message_overlay: Control, message: String, corruption_chars: Array, duration: float) -> void:
+func _hold_with_glitch_pulses_intense(message_overlay: Control, _message: String, corruption_chars: Array, duration: float) -> void:
 	var elapsed = 0.0
 	var pulse_interval = 0.6
 	var next_pulse = pulse_interval
