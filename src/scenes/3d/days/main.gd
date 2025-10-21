@@ -15,6 +15,10 @@ var startup_triggered := false
 @onready var toilet_flush_audio: AudioStreamPlayer3D = $SubViewportContainer/SubViewport/World/Audio/ToiletFlush
 @onready var radio: AudioStreamPlayer3D = $SubViewportContainer/SubViewport/World/Audio/Radio
 
+# Radio state
+var radio_is_on: bool = false
+var radio_default_volume: float = 0.0  # Store the default volume
+
 # Modular systems
 var fade_manager: FadeTransitionManager
 var horror_effects: HorrorEffectsManager
@@ -55,6 +59,11 @@ func _ready() -> void:
 	_setup_keyboard_sound_player()
 	_setup_keypad_visualizer()
 	_setup_keypad_sound_player()
+
+	# Initialize radio state
+	if radio:
+		radio_default_volume = radio.volume_db
+		radio_is_on = radio.playing
 
 	# Discover all PC instances
 	_discover_pcs()
@@ -236,6 +245,23 @@ func _execute_elevator_teleport(teleport_position: Vector3, teleport_rotation: V
 		player.rotation = teleport_rotation
 		print("[Main] Player teleported to: %s" % teleport_position)
 
+# Called by the head script when player interacts with radio
+func interact_with_radio():
+	if not player_state_manager or not player_state_manager.can_interact():
+		return
+
+	if not radio:
+		push_error("[Main] Radio node not found")
+		return
+
+	# Toggle radio on/off
+	if radio_is_on:
+		print("[Main] Turning radio OFF")
+		_fade_out_radio()
+	else:
+		print("[Main] Turning radio ON")
+		_fade_in_radio()
+
 ## Fade out the radio audio over 2 seconds
 func _fade_out_radio() -> void:
 	if not radio:
@@ -249,7 +275,26 @@ func _fade_out_radio() -> void:
 	await tween.finished
 	radio.stop()
 	radio.volume_db = initial_volume  # Reset volume for future use
+	radio_is_on = false
 	print("[Main] Radio stopped")
+
+## Fade in the radio audio over 2 seconds
+func _fade_in_radio() -> void:
+	if not radio:
+		return
+
+	# Start playing if not already playing
+	if not radio.playing:
+		radio.volume_db = -80  # Start at silent
+		radio.play()
+
+	var fade_duration = 2.0
+	var tween = create_tween()
+	tween.tween_property(radio, "volume_db", radio_default_volume, fade_duration)
+
+	await tween.finished
+	radio_is_on = true
+	print("[Main] Radio playing")
 
 func show_menu(_show:bool):
 	showing_menu = _show

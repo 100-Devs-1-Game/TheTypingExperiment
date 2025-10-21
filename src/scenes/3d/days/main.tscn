@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=4 uid="uid://bud07mn4d7mwr"]
+[gd_scene load_steps=85 format=4 uid="uid://bud07mn4d7mwr"]
 
 [ext_resource type="Script" uid="uid://dcjky3peu8uji" path="res://scenes/3d/days/main.gd" id="1_tbtjm"]
 [ext_resource type="Shader" uid="uid://barc84udpwptk" path="res://shaders/posterize_canvas.gdshader" id="2_5gvna"]
@@ -26,12 +26,10 @@
 [ext_resource type="PackedScene" uid="uid://bvwmbil1o5d3q" path="res://assets/external/assets_psx/GLB/Small Props/clock_1.glb" id="17_ixxjw"]
 [ext_resource type="PackedScene" uid="uid://bpkqadepsc6b4" path="res://assets/external/assets_psx/GLB/Electronics & Misc/pc_mp_1.glb" id="18_ixxjw"]
 [ext_resource type="PackedScene" uid="uid://dtu21dj0h2lya" path="res://assets/external/assets_psx/GLB/Modular Structures/floor_ceiling_1.glb" id="19_67gp5"]
-[ext_resource type="PackedScene" uid="uid://bxmioxxh5xh17" path="res://assets/external/assets_psx/GLB/Small Props/keypad_2.glb" id="21_3tbit"]
 [ext_resource type="PackedScene" uid="uid://b17drwy7cs5qi" path="res://assets/external/assets_psx/GLB/Electronics & Misc/electrical_outlet_1.glb" id="22_67gp5"]
 [ext_resource type="PackedScene" uid="uid://drqolpi65k1ij" path="res://assets/external/assets_psx/GLB/Furniture/shelf_mp_3_4.glb" id="22_y2fjs"]
 [ext_resource type="PackedScene" uid="uid://csxkq7xtskx7i" path="res://assets/external/assets_psx/GLB/Items & Weapons/floppy_disc_1.glb" id="23_a86nj"]
 [ext_resource type="PackedScene" uid="uid://brcwbbw6u8o68" path="res://assets/external/assets_psx/GLB/Electronics & Misc/vent_mp_1.glb" id="24_8khuf"]
-[ext_resource type="PackedScene" uid="uid://beowl66eowjlp" path="res://assets/external/assets_psx/custom/keyboard_with_separate_keys.gltf" id="24_ixxjw"]
 [ext_resource type="PackedScene" uid="uid://b28inpdd445aa" path="res://assets/external/assets_psx/GLB/Items & Weapons/glass_bottle_1.glb" id="24_r4agu"]
 [ext_resource type="PackedScene" uid="uid://b7oswkcuna6e1" path="res://assets/radio/radio_baked.glb" id="25_krker"]
 [ext_resource type="PackedScene" uid="uid://4wyponk1hv5c" path="res://assets/external/assets_psx/GLB/Items & Weapons/glass_bottle_2.glb" id="25_nevyq"]
@@ -100,6 +98,9 @@ background_mode = 1
 ambient_light_source = 1
 tonemap_mode = 2
 adjustment_brightness = 0.01
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t4t66"]
+size = Vector3(110.200005, 99.6, 74.6)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8n2cg"]
 resource_name = "door_1"
@@ -354,8 +355,6 @@ environment = SubResource("Environment_faidy")
 [node name="Player" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("2_tbtjm")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.012, 1.122, -6.5249996)
 
-[node name="Lighting" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
-
 [node name="Stage_1" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 
 [node name="Lighting" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_1"]
@@ -376,10 +375,6 @@ light_color = Color(0.679622, 0.657677, 0.548465, 1)
 light_energy = 4.723
 
 [node name="Models" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Lighting"]
-
-[node name="ceiling_fan_mp_1_1_light_off2" parent="SubViewportContainer/SubViewport/World/Stage_1/Lighting/Models" instance=ExtResource("3_0o5wo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 2)
-visible = false
 
 [node name="ceiling_fan_mp_1_1_light_on2" parent="SubViewportContainer/SubViewport/World/Stage_1/Lighting/Models" instance=ExtResource("4_kj1kj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 2)
@@ -560,312 +555,296 @@ transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 0.047728
 [node name="flashlight_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/shelf_props" instance=ExtResource("31_rd8gm")]
 transform = Transform3D(-0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, -0.49999997, 0.39413875, 0.32664734, 0.11208594)
 
+[node name="vending_machine_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props" instance=ExtResource("10_p1hi1")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.6, 0, -4.7000003)
+
+[node name="Desk2" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+
+[node name="pc_monitor_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/Desk2" instance=ExtResource("15_p1hi1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.5, 0.98, 3.6)
+
+[node name="table_large_2_42" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/Desk2" instance=ExtResource("16_3tbit")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 0, 3.5)
+
+[node name="chair_mp_3_42" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/Desk2" instance=ExtResource("17_0p4eh")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.6, 0, 3.5)
+
+[node name="pc_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/Desk2" instance=ExtResource("18_ixxjw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 0.98, 2.9)
+
+[node name="radio_baked" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/Desk2" instance=ExtResource("25_krker")]
+transform = Transform3D(0.0029960703, 0, 0.00015350466, 0, 0.003, 0, -0.00015350466, 0, 0.0029960703, -1.3907084, 1.4267894, 0.857383)
+
+[node name="RadioInteraction" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/Desk2/radio_baked"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/Desk2/radio_baked/RadioInteraction"]
+transform = Transform3D(1, 0, -7.450606e-09, 0, 1, 0, 7.450606e-09, 0, 1, -29.355957, 7.0497437, 1.9151611)
+shape = SubResource("BoxShape3D_t4t66")
+
+[node name="Desk3" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.0100965)
+
+[node name="pc_monitor_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/Desk3" instance=ExtResource("15_p1hi1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.5, 0.98, 3.6)
+
+[node name="table_large_2_42" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/Desk3" instance=ExtResource("16_3tbit")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 0, 3.5)
+
+[node name="chair_mp_3_42" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/Desk3" instance=ExtResource("17_0p4eh")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.6, 0, 3.5)
+
+[node name="pc_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Props/Desk3" instance=ExtResource("18_ixxjw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 0.98, 2.9)
+
 [node name="PC_1" parent="SubViewportContainer/SubViewport/World/Stage_1" groups=["pc_station"] instance=ExtResource("63_pc1sc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3999999, 1.8626451e-08, 3.41)
 
-[node name="Desk2" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
-
-[node name="pc_monitor_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2" instance=ExtResource("15_p1hi1")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.5, 0.98, 3.6)
-
-[node name="table_large_2_42" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2" instance=ExtResource("16_3tbit")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 0, 3.5)
-
-[node name="chair_mp_3_42" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2" instance=ExtResource("17_0p4eh")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.6, 0, 3.5)
-
-[node name="chair_mp_3_4" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2/chair_mp_3_42" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0.0999999, 0, 0)
-
-[node name="pc_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2" instance=ExtResource("18_ixxjw")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 0.98, 2.9)
-
-[node name="radio_baked" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk2" instance=ExtResource("25_krker")]
-transform = Transform3D(0.0029960703, 0, 0.00015350466, 0, 0.003, 0, -0.00015350466, 0, 0.0029960703, -1.3907084, 1.4267894, 0.857383)
-
-[node name="Desk3" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.0100965)
-
-[node name="pc_monitor_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk3" instance=ExtResource("15_p1hi1")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.5, 0.98, 3.6)
-
-[node name="table_large_2_42" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk3" instance=ExtResource("16_3tbit")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 0, 3.5)
-
-[node name="chair_mp_3_42" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk3" instance=ExtResource("17_0p4eh")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.6, 0, 3.5)
-
-[node name="pc_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Desk3" instance=ExtResource("18_ixxjw")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 0.98, 2.9)
-
-[node name="Custom" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_1"]
-
-[node name="keypad_22" parent="SubViewportContainer/SubViewport/World/Stage_1/Custom" instance=ExtResource("21_3tbit")]
-visible = false
-
-[node name="keyboard_with_separate_keys" parent="SubViewportContainer/SubViewport/World/Stage_1/Custom" instance=ExtResource("24_ixxjw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, -0.4, 4.5)
-
-[node name="GLB2" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_1"]
-
-[node name="vending_machine_12" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2" instance=ExtResource("10_p1hi1")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.6, 0, -4.7000003)
-
-[node name="Doors" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2"]
+[node name="Doors" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_1"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, -3)
 
-[node name="door_3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors"]
+[node name="door_3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Doors"]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0.5, 0, -0.03000009)
 mesh = SubResource("ArrayMesh_f3vld")
 skeleton = NodePath("")
 
-[node name="door_handle_1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors/door_3"]
+[node name="door_handle_1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Doors/door_3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.950003, 0.0769997, -1.047)
 mesh = SubResource("ArrayMesh_ado21")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors/door_3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Doors/door_3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors/door_3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Doors/door_3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_mlvne")
 
-[node name="door_2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors"]
+[node name="door_2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Doors"]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0.5, 0, -4.03)
 mesh = SubResource("ArrayMesh_f3vld")
 skeleton = NodePath("")
 
-[node name="door_handle_1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors/door_2"]
+[node name="door_handle_1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Doors/door_2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.950003, 0.0769997, -1.047)
 mesh = SubResource("ArrayMesh_ado21")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors/door_2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Doors/door_2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors/door_2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Doors/door_2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_w37v3")
 
-[node name="InteractableElevator_1" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors" instance=ExtResource("43_72u8k")]
+[node name="InteractableElevator_1" parent="SubViewportContainer/SubViewport/World/Stage_1/Doors" instance=ExtResource("43_72u8k")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.799999, 0, -1.9999999)
 
-[node name="elevator_door_4_a" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors/InteractableElevator_1/elevator_22/elevator_2" index="2"]
+[node name="elevator_door_4_a" parent="SubViewportContainer/SubViewport/World/Stage_1/Doors/InteractableElevator_1/elevator_22/elevator_2" index="2"]
 visible = false
 
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors/InteractableElevator_1/elevator_22/elevator_2/elevator_door_4_a/StaticBody3D" index="0"]
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Doors/InteractableElevator_1/elevator_22/elevator_2/elevator_door_4_a/StaticBody3D" index="0"]
 disabled = true
 
-[node name="elevator_door_4_b" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors/InteractableElevator_1/elevator_22/elevator_2" index="3"]
+[node name="elevator_door_4_b" parent="SubViewportContainer/SubViewport/World/Stage_1/Doors/InteractableElevator_1/elevator_22/elevator_2" index="3"]
 visible = false
 
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors/InteractableElevator_1/elevator_22/elevator_2/elevator_door_4_b/StaticBody3D" index="0"]
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_1/Doors/InteractableElevator_1/elevator_22/elevator_2/elevator_door_4_b/StaticBody3D" index="0"]
 disabled = true
 
-[node name="elevator_doorway_12" parent="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors" instance=ExtResource("45_l5w8t")]
+[node name="elevator_doorway_12" parent="SubViewportContainer/SubViewport/World/Stage_1/Doors" instance=ExtResource("45_l5w8t")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0, -2.0000002)
 
 [node name="Stage_2" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5, 0)
 
-[node name="GLB" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_2"]
+[node name="Lighting" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_2"]
 
-[node name="Lighting" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB"]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Lighting"]
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stage_2/Lighting"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.994371, 2.34122, 2.00756)
 light_color = Color(0.679622, 0.657677, 0.548465, 1)
 light_energy = 6.818
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Lighting"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stage_2/Lighting"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005629, 2.79026, -3.99244)
 light_color = Color(0.679622, 0.657677, 0.548465, 1)
 light_energy = 4.723
 
-[node name="Models" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Lighting"]
+[node name="Models" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_2/Lighting"]
 
-[node name="ceiling_fan_mp_1_1_light_off2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Lighting/Models" instance=ExtResource("3_0o5wo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 2)
-visible = false
-
-[node name="ceiling_fan_mp_1_1_light_on2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Lighting/Models" instance=ExtResource("4_kj1kj")]
+[node name="ceiling_fan_mp_1_1_light_on2" parent="SubViewportContainer/SubViewport/World/Stage_2/Lighting/Models" instance=ExtResource("4_kj1kj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 2)
 
-[node name="ceiling_lamp_1_on2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Lighting/Models" instance=ExtResource("5_gafn2")]
+[node name="ceiling_lamp_1_on2" parent="SubViewportContainer/SubViewport/World/Stage_2/Lighting/Models" instance=ExtResource("5_gafn2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -4)
 
-[node name="ceiling_lamp_1_off2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Lighting/Models" instance=ExtResource("6_kd7lt")]
+[node name="ceiling_lamp_1_off2" parent="SubViewportContainer/SubViewport/World/Stage_2/Lighting/Models" instance=ExtResource("6_kd7lt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -4)
 
-[node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB"]
+[node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_2"]
 
-[node name="floor_ceiling_13" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("19_67gp5")]
+[node name="floor_ceiling_13" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls" instance=ExtResource("19_67gp5")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 3, 2)
 visible = false
 
-[node name="vent_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("8_j6d3m")]
+[node name="vent_12" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls" instance=ExtResource("8_j6d3m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.6, -0.9)
 
-[node name="doorway_1_plain2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("47_nevyq")]
+[node name="doorway_1_plain2" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls" instance=ExtResource("47_nevyq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
-[node name="door_mp_6" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/doorway_1_plain2/doorway_1_plain" index="0"]
+[node name="door_mp_6" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls/doorway_1_plain2/doorway_1_plain" index="0"]
 visible = false
 
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/doorway_1_plain2/doorway_1_plain/door_mp_6/StaticBody3D" index="0"]
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls/doorway_1_plain2/doorway_1_plain/door_mp_6/StaticBody3D" index="0"]
 disabled = true
 
-[node name="doorway_1_plain3" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("47_nevyq")]
+[node name="doorway_1_plain3" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls" instance=ExtResource("47_nevyq")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, -3)
 
-[node name="door_mp_6" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/doorway_1_plain3/doorway_1_plain" index="0"]
+[node name="door_mp_6" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls/doorway_1_plain3/doorway_1_plain" index="0"]
 visible = false
 
-[node name="doorway_1_plain4" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("47_nevyq")]
+[node name="doorway_1_plain4" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls" instance=ExtResource("47_nevyq")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 2, 0, -3)
 
-[node name="door_mp_6" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/doorway_1_plain4/doorway_1_plain" index="0"]
+[node name="door_mp_6" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls/doorway_1_plain4/doorway_1_plain" index="0"]
 visible = false
 
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/doorway_1_plain4/doorway_1_plain/door_mp_6/StaticBody3D" index="0"]
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls/doorway_1_plain4/doorway_1_plain/door_mp_6/StaticBody3D" index="0"]
 disabled = true
 
-[node name="wall_1_plain2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain2" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls" instance=ExtResource("48_e78pq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, -7)
 
-[node name="wall_1_plain4" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain4" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls" instance=ExtResource("48_e78pq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 1)
 
-[node name="wall_1_plain5" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain5" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls" instance=ExtResource("48_e78pq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 5)
 
-[node name="wall_1_plain6" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain6" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls" instance=ExtResource("48_e78pq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 
-[node name="wall_1_plain7" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain7" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls" instance=ExtResource("48_e78pq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 5)
 
-[node name="wall_1_plain9" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain9" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls" instance=ExtResource("48_e78pq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -1)
 
-[node name="wall_1_plain8" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain8" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls" instance=ExtResource("48_e78pq")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, 5)
 
-[node name="wall_1_plain3" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain3" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls" instance=ExtResource("48_e78pq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0, -7)
 
-[node name="floor_ceiling_32" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("49_rohpg")]
+[node name="floor_ceiling_32" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls" instance=ExtResource("49_rohpg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, -5)
 
-[node name="floor_ceiling_35" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("49_rohpg")]
+[node name="floor_ceiling_35" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls" instance=ExtResource("49_rohpg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 3, -5)
 
-[node name="floor_ceiling_33" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("49_rohpg")]
+[node name="floor_ceiling_33" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls" instance=ExtResource("49_rohpg")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 0, 2)
 
-[node name="floor_ceiling_34" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("49_rohpg")]
+[node name="floor_ceiling_34" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls" instance=ExtResource("49_rohpg")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 3, 2)
 
-[node name="window_1_single2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls" instance=ExtResource("50_5gvna")]
+[node name="window_1_single2" parent="SubViewportContainer/SubViewport/World/Stage_2/Walls" instance=ExtResource("50_5gvna")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, 1)
 
-[node name="Doors" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB"]
+[node name="Doors" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, -3)
 
-[node name="door_keypad_1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors"]
+[node name="door_keypad_1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_2/Doors"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.5, 0, -0.03000009)
 mesh = SubResource("ArrayMesh_jfovm")
 skeleton = NodePath("")
 
-[node name="door_handle_1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/door_keypad_1"]
+[node name="door_handle_1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_2/Doors/door_keypad_1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.950003, 0.0769997, -1.047)
 mesh = SubResource("ArrayMesh_l5w8t")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/door_keypad_1"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/Doors/door_keypad_1"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/door_keypad_1/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/Doors/door_keypad_1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_oijd2")
 
-[node name="door_2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors"]
+[node name="door_2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_2/Doors"]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0.5, 0, -4.03)
 mesh = SubResource("ArrayMesh_jfovm")
 skeleton = NodePath("")
 
-[node name="door_handle_1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/door_2"]
+[node name="door_handle_1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_2/Doors/door_2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.950003, 0.0769997, -1.047)
 mesh = SubResource("ArrayMesh_l5w8t")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/door_2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_2/Doors/door_2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/door_2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/Doors/door_2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_8nkm2")
 
-[node name="InteractableElevator_2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors" instance=ExtResource("43_72u8k")]
+[node name="InteractableElevator_2" parent="SubViewportContainer/SubViewport/World/Stage_2/Doors" instance=ExtResource("43_72u8k")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.799999, 0.099999905, -2)
 elevator_name = "elevator_2"
 unlocks_after_stage = 3
 door_state = 1
 
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/InteractableElevator_2/ElevatorInteraction" index="0"]
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/Doors/InteractableElevator_2/ElevatorInteraction" index="0"]
 disabled = true
 
-[node name="elevator_door_4_a" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/InteractableElevator_2/elevator_22/elevator_2" index="2"]
+[node name="elevator_door_4_a" parent="SubViewportContainer/SubViewport/World/Stage_2/Doors/InteractableElevator_2/elevator_22/elevator_2" index="2"]
 visible = false
 
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/InteractableElevator_2/elevator_22/elevator_2/elevator_door_4_a/StaticBody3D" index="0"]
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/Doors/InteractableElevator_2/elevator_22/elevator_2/elevator_door_4_a/StaticBody3D" index="0"]
 disabled = true
 
-[node name="elevator_door_4_b" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/InteractableElevator_2/elevator_22/elevator_2" index="3"]
+[node name="elevator_door_4_b" parent="SubViewportContainer/SubViewport/World/Stage_2/Doors/InteractableElevator_2/elevator_22/elevator_2" index="3"]
 visible = false
 
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/InteractableElevator_2/elevator_22/elevator_2/elevator_door_4_b/StaticBody3D" index="0"]
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_2/Doors/InteractableElevator_2/elevator_22/elevator_2/elevator_door_4_b/StaticBody3D" index="0"]
 disabled = true
 
-[node name="elevator_doorway_32" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors" instance=ExtResource("51_i0y1e")]
+[node name="elevator_doorway_32" parent="SubViewportContainer/SubViewport/World/Stage_2/Doors" instance=ExtResource("51_i0y1e")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0, -2.0000002)
 
-[node name="Props" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB"]
+[node name="Props" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_2"]
 
-[node name="wardrobe_mp_1_42" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("9_pmrjd")]
+[node name="wardrobe_mp_1_42" parent="SubViewportContainer/SubViewport/World/Stage_2/Props" instance=ExtResource("9_pmrjd")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.5, 0, 0)
 
-[node name="vending_machine_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("10_p1hi1")]
+[node name="vending_machine_12" parent="SubViewportContainer/SubViewport/World/Stage_2/Props" instance=ExtResource("10_p1hi1")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.6, 0, -4.7999997)
 
-[node name="cardboard_box_2_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("11_3tbit")]
+[node name="cardboard_box_2_12" parent="SubViewportContainer/SubViewport/World/Stage_2/Props" instance=ExtResource("11_3tbit")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 0, 4.6)
 
-[node name="cardboard_box_2_13" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("11_3tbit")]
+[node name="cardboard_box_2_13" parent="SubViewportContainer/SubViewport/World/Stage_2/Props" instance=ExtResource("11_3tbit")]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.1, 0, 3.6)
 
-[node name="cardboard_box_2_14" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("11_3tbit")]
+[node name="cardboard_box_2_14" parent="SubViewportContainer/SubViewport/World/Stage_2/Props" instance=ExtResource("11_3tbit")]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0.4, 0, 4.4)
 
-[node name="cardboard_box_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("12_0p4eh")]
+[node name="cardboard_box_12" parent="SubViewportContainer/SubViewport/World/Stage_2/Props" instance=ExtResource("12_0p4eh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.8, 4.2)
 
-[node name="window_metal_bars_single2" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("2_oxuu8")]
+[node name="window_metal_bars_single2" parent="SubViewportContainer/SubViewport/World/Stage_2/Props" instance=ExtResource("2_oxuu8")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, 1)
 
-[node name="light_switch_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("16_p1hi1")]
+[node name="light_switch_12" parent="SubViewportContainer/SubViewport/World/Stage_2/Props" instance=ExtResource("16_p1hi1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 1.4, -0.9)
 
-[node name="clock_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("17_ixxjw")]
+[node name="clock_12" parent="SubViewportContainer/SubViewport/World/Stage_2/Props" instance=ExtResource("17_ixxjw")]
 transform = Transform3D(7.15295e-08, 1.04216e-14, 1, 0, 1, -3.55271e-15, -1, -1.19209e-07, 1.90739e-07, -3.91, 2.2, 2.5)
 
-[node name="vent_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("24_8khuf")]
+[node name="vent_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_2/Props" instance=ExtResource("24_8khuf")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.6, 1, 4.935)
 
-[node name="electrical_outlet_12" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("22_67gp5")]
+[node name="electrical_outlet_12" parent="SubViewportContainer/SubViewport/World/Stage_2/Props" instance=ExtResource("22_67gp5")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.3, 0.6, 4.925)
 
-[node name="electrical_outlet_13" parent="SubViewportContainer/SubViewport/World/Stage_2/GLB/Props" instance=ExtResource("22_67gp5")]
+[node name="electrical_outlet_13" parent="SubViewportContainer/SubViewport/World/Stage_2/Props" instance=ExtResource("22_67gp5")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.92, 0.6, 3.925)
-
-[node name="Custom" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_2"]
-
-[node name="keyboard_with_separate_keys" parent="SubViewportContainer/SubViewport/World/Stage_2/Custom" instance=ExtResource("24_ixxjw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, -0.4, 4.5)
 
 [node name="PC_2" parent="SubViewportContainer/SubViewport/World/Stage_2" groups=["pc_station"] instance=ExtResource("63_pc1sc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 0, 3.4000003)
@@ -1083,188 +1062,181 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.4, 
 transform = Transform3D(1.3113416e-07, 5.960465e-08, -1, 1.470274e-07, -1, -5.9604634e-08, -1, -1.4702742e-07, -1.3113416e-07, 0.20000005, 3, 4.4000015)
 day_number = 3
 
-[node name="GLB2" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_3"]
+[node name="Doors" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_3"]
+transform = Transform3D(-4.3711402e-08, 0, 1, -4.2351647e-22, 1, 0, -1, 0, -4.3711402e-08, 2, 0, -2.9999998)
 
-[node name="Doors" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_3/GLB2"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, -3)
-
-[node name="door_keypad_2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_3/GLB2/Doors"]
+[node name="door_keypad_2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Doors"]
 transform = Transform3D(7.54979e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -1, -7.54979e-08, -3.300118e-15, -7.9750023, 3.0000005, -4.465)
 mesh = SubResource("ArrayMesh_f3vld")
 skeleton = NodePath("")
 
-[node name="door_handle_1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_3/GLB2/Doors/door_keypad_2"]
+[node name="door_handle_1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Doors/door_keypad_2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.950003, 0.0769997, -1.047)
 mesh = SubResource("ArrayMesh_ado21")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/GLB2/Doors/door_keypad_2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Doors/door_keypad_2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/GLB2/Doors/door_keypad_2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_3/Doors/door_keypad_2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_5soqj")
 
 [node name="Stage_4" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0, 0)
 
-[node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4"]
-
-[node name="tunnel_12" parent="SubViewportContainer/SubViewport/World/Stage_4" instance=ExtResource("54_rd8gm")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 11.5, -3.5, -5)
-
-[node name="GLB" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4"]
+[node name="Lighting" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4"]
 transform = Transform3D(0, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 0, 15.470001, -3.5, -5)
 
-[node name="Lighting" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB"]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Lighting"]
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stage_4/Lighting"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.994371, 2.34122, 2.00756)
 light_color = Color(0.679622, 0.657677, 0.548465, 1)
 light_energy = 6.818
 
-[node name="OmniLight3D3" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Lighting"]
+[node name="OmniLight3D3" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stage_4/Lighting"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.605631, 1.4902601, 1.0075607)
 light_color = Color(0.679622, 0.657677, 0.548465, 1)
 light_energy = 4.723
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Lighting"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stage_4/Lighting"]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0.0056290627, 2.29026, -1.2924404)
 light_color = Color(0.679622, 0.657677, 0.548465, 1)
 light_energy = 3.0
 
-[node name="Models" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Lighting"]
+[node name="Models" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4/Lighting"]
 
-[node name="ceiling_fan_mp_1_1_light_off2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Lighting/Models" instance=ExtResource("3_0o5wo")]
+[node name="ceiling_fan_mp_1_1_light_off2" parent="SubViewportContainer/SubViewport/World/Stage_4/Lighting/Models" instance=ExtResource("3_0o5wo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 2)
 visible = false
 
-[node name="ceiling_fan_mp_1_1_light_on2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Lighting/Models" instance=ExtResource("4_kj1kj")]
+[node name="ceiling_fan_mp_1_1_light_on2" parent="SubViewportContainer/SubViewport/World/Stage_4/Lighting/Models" instance=ExtResource("4_kj1kj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 2)
 
-[node name="lamp_1_on2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Lighting/Models" instance=ExtResource("61_blsrk")]
+[node name="lamp_1_on2" parent="SubViewportContainer/SubViewport/World/Stage_4/Lighting/Models" instance=ExtResource("61_blsrk")]
 transform = Transform3D(-0.9999999, 0, 4.3711385e-08, 0, 1, 0, -4.3711385e-08, 0, -0.9999999, 0, 2.3000002, -1.0700026)
 
-[node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB"]
+[node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4"]
+transform = Transform3D(0, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 0, 15.470001, -3.5, -5)
 
-[node name="floor_ceiling_13" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("19_67gp5")]
+[node name="floor_ceiling_13" parent="SubViewportContainer/SubViewport/World/Stage_4/Walls" instance=ExtResource("19_67gp5")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 3, 2)
 visible = false
 
-[node name="vent_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("8_j6d3m")]
+[node name="vent_12" parent="SubViewportContainer/SubViewport/World/Stage_4/Walls" instance=ExtResource("8_j6d3m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.6, -0.9)
 
-[node name="doorway_1_plain2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("47_nevyq")]
+[node name="doorway_1_plain2" parent="SubViewportContainer/SubViewport/World/Stage_4/Walls" instance=ExtResource("47_nevyq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
-[node name="door_mp_6" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/doorway_1_plain2/doorway_1_plain" index="0"]
+[node name="door_mp_6" parent="SubViewportContainer/SubViewport/World/Stage_4/Walls/doorway_1_plain2/doorway_1_plain" index="0"]
 visible = false
 
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/doorway_1_plain2/doorway_1_plain/door_mp_6/StaticBody3D" index="0"]
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/Walls/doorway_1_plain2/doorway_1_plain/door_mp_6/StaticBody3D" index="0"]
 disabled = true
 
-[node name="wall_1_plain5" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain5" parent="SubViewportContainer/SubViewport/World/Stage_4/Walls" instance=ExtResource("48_e78pq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 5)
 
-[node name="wall_1_plain6" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain6" parent="SubViewportContainer/SubViewport/World/Stage_4/Walls" instance=ExtResource("48_e78pq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 
-[node name="wall_1_plain7" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain7" parent="SubViewportContainer/SubViewport/World/Stage_4/Walls" instance=ExtResource("48_e78pq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 5)
 
-[node name="wall_1_plain9" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain9" parent="SubViewportContainer/SubViewport/World/Stage_4/Walls" instance=ExtResource("48_e78pq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -1)
 
-[node name="wall_1_plain8" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("48_e78pq")]
+[node name="wall_1_plain8" parent="SubViewportContainer/SubViewport/World/Stage_4/Walls" instance=ExtResource("48_e78pq")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, 5)
 
-[node name="floor_ceiling_33" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("49_rohpg")]
+[node name="floor_ceiling_33" parent="SubViewportContainer/SubViewport/World/Stage_4/Walls" instance=ExtResource("49_rohpg")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 0, 2)
 
-[node name="floor_ceiling_34" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("49_rohpg")]
+[node name="floor_ceiling_34" parent="SubViewportContainer/SubViewport/World/Stage_4/Walls" instance=ExtResource("49_rohpg")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 3, 2)
 
-[node name="window_1_single2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls" instance=ExtResource("50_5gvna")]
+[node name="window_1_single2" parent="SubViewportContainer/SubViewport/World/Stage_4/Walls" instance=ExtResource("50_5gvna")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, 1)
 
-[node name="Doors" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, -3)
+[node name="tunnel_12" parent="SubViewportContainer/SubViewport/World/Stage_4/Walls" instance=ExtResource("54_rd8gm")]
+transform = Transform3D(0.9999999, 0, 4.3711385e-08, 0, 1, 0, -4.3711385e-08, 0, 0.9999999, 0, 0, -3.9700003)
 
-[node name="elevator_doorway_32" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors" instance=ExtResource("51_i0y1e")]
+[node name="Doors" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4"]
+transform = Transform3D(-1.0000001, 0, -4.3711402e-08, 0, 1, 0, 4.3711402e-08, 0, -1.0000001, 12.47, -3.5, -7)
+
+[node name="elevator_doorway_32" parent="SubViewportContainer/SubViewport/World/Stage_4/Doors" instance=ExtResource("51_i0y1e")]
 transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -4, 0, 0)
 
-[node name="InteractableElevator_3" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors" instance=ExtResource("43_72u8k")]
+[node name="InteractableElevator_3" parent="SubViewportContainer/SubViewport/World/Stage_4/Doors" instance=ExtResource("43_72u8k")]
 transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -1, -4, 0, 1.7999997)
 elevator_name = "elevator_3"
 unlocks_after_stage = 100
 
-[node name="TeleportMarker" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors/InteractableElevator_3" index="1"]
+[node name="TeleportMarker" parent="SubViewportContainer/SubViewport/World/Stage_4/Doors/InteractableElevator_3" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.8199997, 0.39999962)
 
-[node name="elevator_door_4_a" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors/InteractableElevator_3/elevator_22/elevator_2" index="2"]
+[node name="elevator_door_4_a" parent="SubViewportContainer/SubViewport/World/Stage_4/Doors/InteractableElevator_3/elevator_22/elevator_2" index="2"]
 visible = false
 
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors/InteractableElevator_3/elevator_22/elevator_2/elevator_door_4_a/StaticBody3D" index="0"]
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/Doors/InteractableElevator_3/elevator_22/elevator_2/elevator_door_4_a/StaticBody3D" index="0"]
 disabled = true
 
-[node name="elevator_door_4_b" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors/InteractableElevator_3/elevator_22/elevator_2" index="3"]
+[node name="elevator_door_4_b" parent="SubViewportContainer/SubViewport/World/Stage_4/Doors/InteractableElevator_3/elevator_22/elevator_2" index="3"]
 visible = false
 
-[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors/InteractableElevator_3/elevator_22/elevator_2/elevator_door_4_b/StaticBody3D" index="0"]
+[node name="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Stage_4/Doors/InteractableElevator_3/elevator_22/elevator_2/elevator_door_4_b/StaticBody3D" index="0"]
 disabled = true
 
-[node name="Props" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB"]
+[node name="Props" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4"]
+transform = Transform3D(0, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 0, 15.470001, -3.5, -5)
 
-[node name="vending_machine_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("10_p1hi1")]
+[node name="vending_machine_12" parent="SubViewportContainer/SubViewport/World/Stage_4/Props" instance=ExtResource("10_p1hi1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6, 0, -0.5)
 
-[node name="cardboard_box_2_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("11_3tbit")]
+[node name="cardboard_box_2_12" parent="SubViewportContainer/SubViewport/World/Stage_4/Props" instance=ExtResource("11_3tbit")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 0, 4.6)
 
-[node name="cardboard_box_2_13" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("11_3tbit")]
+[node name="cardboard_box_2_13" parent="SubViewportContainer/SubViewport/World/Stage_4/Props" instance=ExtResource("11_3tbit")]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.1, 0, 3.6)
 
-[node name="cardboard_box_2_14" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("11_3tbit")]
+[node name="cardboard_box_2_14" parent="SubViewportContainer/SubViewport/World/Stage_4/Props" instance=ExtResource("11_3tbit")]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0.4, 0, 4.4)
 
-[node name="cardboard_box_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("12_0p4eh")]
+[node name="cardboard_box_12" parent="SubViewportContainer/SubViewport/World/Stage_4/Props" instance=ExtResource("12_0p4eh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.8, 4.2)
 
-[node name="window_metal_bars_single2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("2_oxuu8")]
+[node name="window_metal_bars_single2" parent="SubViewportContainer/SubViewport/World/Stage_4/Props" instance=ExtResource("2_oxuu8")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, 1)
 
-[node name="light_switch_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("16_p1hi1")]
+[node name="light_switch_12" parent="SubViewportContainer/SubViewport/World/Stage_4/Props" instance=ExtResource("16_p1hi1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 1.4, -0.9)
 
-[node name="clock_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("17_ixxjw")]
+[node name="clock_12" parent="SubViewportContainer/SubViewport/World/Stage_4/Props" instance=ExtResource("17_ixxjw")]
 transform = Transform3D(7.15295e-08, 1.04216e-14, 1, 0, 1, -3.55271e-15, -1, -1.19209e-07, 1.90739e-07, -3.91, 2.2, 2.5)
 
-[node name="vent_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("24_8khuf")]
+[node name="vent_mp_12" parent="SubViewportContainer/SubViewport/World/Stage_4/Props" instance=ExtResource("24_8khuf")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.6, 1, 4.935)
 
-[node name="electrical_outlet_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("22_67gp5")]
+[node name="electrical_outlet_12" parent="SubViewportContainer/SubViewport/World/Stage_4/Props" instance=ExtResource("22_67gp5")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.3, 0.6, 4.925)
 
-[node name="electrical_outlet_13" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Props" instance=ExtResource("22_67gp5")]
+[node name="electrical_outlet_13" parent="SubViewportContainer/SubViewport/World/Stage_4/Props" instance=ExtResource("22_67gp5")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.92, 0.6, 3.925)
 
-[node name="Desk" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB"]
+[node name="Desk" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4"]
+transform = Transform3D(0, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 0, 15.470001, -3.5, -5)
 
-[node name="toilet_mp_1_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk" instance=ExtResource("55_jfovm")]
+[node name="toilet_mp_1_12" parent="SubViewportContainer/SubViewport/World/Stage_4/Desk" instance=ExtResource("55_jfovm")]
 transform = Transform3D(-4.3711385e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -4.3711385e-08, -2.5999997, 0.29999995, 3.5299997)
 
-[node name="pipe_1_corner2" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk" instance=ExtResource("58_w85uq")]
+[node name="pipe_1_corner2" parent="SubViewportContainer/SubViewport/World/Stage_4/Desk" instance=ExtResource("58_w85uq")]
 transform = Transform3D(0, 0.49999994, 2.1855692e-08, 0, -2.1855694e-08, 0.5, 0.49999994, 0, 0, -2.0299997, 0.20000005, 3.5299978)
 
-[node name="pipe_12" parent="SubViewportContainer/SubViewport/World/Stage_4/GLB/Desk" instance=ExtResource("59_l5w8t")]
+[node name="pipe_12" parent="SubViewportContainer/SubViewport/World/Stage_4/Desk" instance=ExtResource("59_l5w8t")]
 transform = Transform3D(0, 0, -0.49999994, -0.5, -2.1855694e-08, 0, -2.1855692e-08, 0.49999994, 0, -1.8800001, 0.20000005, 3.6799974)
-
-[node name="Custom" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_4"]
-
-[node name="keyboard_with_separate_keys" parent="SubViewportContainer/SubViewport/World/Stage_4/Custom" instance=ExtResource("24_ixxjw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, -0.4, 4.5)
 
 [node name="PC_4" parent="SubViewportContainer/SubViewport/World/Stage_4" groups=["pc_station"] instance=ExtResource("63_pc1sc")]
 transform = Transform3D(0, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 0, 18.870003, -3.5, -1.6000003)
 day_number = 4
+show_chair = false
 
 [node name="Stage_5" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2, -10, -6)
@@ -1272,10 +1244,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2, -10, -6)
 [node name="Lighting" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_5"]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Lighting"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.994371, 2.34122, 2.00756)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9943714, 1.4412203, 2.00756)
 light_color = Color(0.679622, 0.657677, 0.548465, 1)
-light_energy = 6.818
+light_energy = 0.25
 
 [node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Lighting"]
 transform = Transform3D(-0.0458512, 0, -0.998948, 0, 1, 0, 0.998948, 0, -0.0458512, -3.45189, 1.45133, 3.57663)
@@ -1290,16 +1261,6 @@ light_color = Color(0.81417626, 0.3289082, 3.85046e-07, 1)
 light_energy = 2.367
 spot_range = 1.319
 spot_angle = 60.3334
-
-[node name="Models" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Lighting"]
-
-[node name="ceiling_fan_mp_1_1_light_off2" parent="SubViewportContainer/SubViewport/World/Stage_5/Lighting/Models" instance=ExtResource("3_0o5wo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 2)
-visible = false
-
-[node name="ceiling_fan_mp_1_1_light_on2" parent="SubViewportContainer/SubViewport/World/Stage_5/Lighting/Models" instance=ExtResource("4_kj1kj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 2)
-visible = false
 
 [node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stage_5"]
 
@@ -1413,13 +1374,13 @@ day_number = 5
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.93, -2.2, -2.23)
 script = ExtResource("62_kpctrl")
 unlocks_stage = 3
-door_node_path = NodePath("../Stage_2/GLB/Doors/door_keypad_1")
+door_node_path = NodePath("../Stage_2/Doors/door_keypad_1")
 
 [node name="Keypad_2" parent="SubViewportContainer/SubViewport/World" groups=["keypad_station"] instance=ExtResource("60_oijd2")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.030001, -2.2, -4.13)
 script = ExtResource("62_kpctrl")
 unlocks_stage = 4
-door_node_path = NodePath("../Stage_3/GLB2/Doors/door_keypad_2")
+door_node_path = NodePath("../Stage_3/Doors/door_keypad_2")
 target_rotation_y = 0.0
 
 [node name="Keypad_3" parent="SubViewportContainer/SubViewport/World" groups=["keypad_station"] instance=ExtResource("60_oijd2")]
@@ -1427,9 +1388,9 @@ transform = Transform3D(1.0000001, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0,
 script = ExtResource("62_kpctrl")
 unlocks_stage = 5
 door_type = 1
-door_a_node_path = NodePath("../Stage_4/GLB/Doors/InteractableElevator_3/elevator_22/elevator_2/elevator_door_3_a")
-door_b_node_path = NodePath("../Stage_4/GLB/Doors/InteractableElevator_3/elevator_22/elevator_2/elevator_door_3_b")
-elevator_controller_path = NodePath("../Stage_4/GLB/Doors/InteractableElevator_3")
+door_a_node_path = NodePath("../Stage_4/Doors/InteractableElevator_3/elevator_22/elevator_2/elevator_door_3_a")
+door_b_node_path = NodePath("../Stage_4/Doors/InteractableElevator_3/elevator_22/elevator_2/elevator_door_3_b")
+elevator_controller_path = NodePath("../Stage_4/Doors/InteractableElevator_3")
 
 [node name="Audio" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 
@@ -1446,7 +1407,7 @@ max_distance = 10.0
 [node name="Radio" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/World/Audio"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.3000001, -0.69999975)
 stream = ExtResource("64_1yanm")
-volume_db = -15.0
+volume_db = -25.0
 pitch_scale = 0.8
 autoplay = true
 max_distance = 10.0
@@ -1478,6 +1439,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="EscPromptLabel" type="Label" parent="UI"]
+visible = false
 layout_mode = 0
 offset_left = 20.0
 offset_top = 20.0
@@ -1494,26 +1456,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, -1.5)
 occluder = SubResource("BoxOccluder3D_uo20v")
 
 [editable path="SubViewportContainer/SubViewport/World/Stage_1/Walls/doorway_1_12"]
-[editable path="SubViewportContainer/SubViewport/World/Stage_1/Desk2/pc_monitor_mp_12"]
-[editable path="SubViewportContainer/SubViewport/World/Stage_1/Desk2/table_large_2_42"]
-[editable path="SubViewportContainer/SubViewport/World/Stage_1/Desk2/chair_mp_3_42"]
-[editable path="SubViewportContainer/SubViewport/World/Stage_1/Custom/keyboard_with_separate_keys"]
-[editable path="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors/InteractableElevator_1"]
-[editable path="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors/InteractableElevator_1/elevator_22"]
-[editable path="SubViewportContainer/SubViewport/World/Stage_1/GLB2/Doors/elevator_doorway_12"]
-[editable path="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/doorway_1_plain2"]
-[editable path="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/doorway_1_plain3"]
-[editable path="SubViewportContainer/SubViewport/World/Stage_2/GLB/Walls/doorway_1_plain4"]
-[editable path="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/InteractableElevator_2"]
-[editable path="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/InteractableElevator_2/elevator_22"]
-[editable path="SubViewportContainer/SubViewport/World/Stage_2/GLB/Doors/elevator_doorway_32"]
-[editable path="SubViewportContainer/SubViewport/World/Stage_2/Custom/keyboard_with_separate_keys"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_1/Props/Desk2/pc_monitor_mp_12"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_1/Doors/InteractableElevator_1"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_1/Doors/InteractableElevator_1/elevator_22"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_1/Doors/elevator_doorway_12"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_2/Walls/doorway_1_plain2"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_2/Walls/doorway_1_plain3"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_2/Walls/doorway_1_plain4"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_2/Doors/InteractableElevator_2"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_2/Doors/InteractableElevator_2/elevator_22"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_2/Doors/elevator_doorway_32"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_3/Desk/pc_monitor_mp_12"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_3/Desk2/pc_monitor_mp_12"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_3/Desk3/pc_monitor_mp_12"]
-[editable path="SubViewportContainer/SubViewport/World/Stage_4/GLB/Walls/doorway_1_plain2"]
-[editable path="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors/InteractableElevator_3"]
-[editable path="SubViewportContainer/SubViewport/World/Stage_4/GLB/Doors/InteractableElevator_3/elevator_22"]
-[editable path="SubViewportContainer/SubViewport/World/Stage_4/Custom/keyboard_with_separate_keys"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_4/Walls/doorway_1_plain2"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_4/Doors/InteractableElevator_3"]
+[editable path="SubViewportContainer/SubViewport/World/Stage_4/Doors/InteractableElevator_3/elevator_22"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_5/InteractableElevator_4"]
 [editable path="SubViewportContainer/SubViewport/World/Stage_5/InteractableElevator_4/elevator_22"]

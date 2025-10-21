@@ -15,11 +15,13 @@ signal game_over_glitch_requested()  # Emitted when Day 5 game over transition s
 
 @export var day_number: int = 1  ## Which day this PC loads (1-5)
 @export var show_startup_on_first_use: bool = true  ## Show startup screen first time
+@export var show_chair: bool = true  ## Show startup screen first time
 
 @onready var interaction_marker: Marker3D = $InteractionMarker
 @onready var monitor_viewport: SubViewport = $SubViewport
 @onready var startup_sound: AudioStreamPlayer3D = $StartupSound
 @onready var working_sound: AudioStreamPlayer3D = $WorkingSound
+@onready var chair_model: Node3D = $Models/chair_mp_3_42
 
 var is_monitor_on: bool = false
 var startup_shown: bool = false
@@ -27,7 +29,10 @@ var startup_shown: bool = false
 func _ready() -> void:
 	# Add to group so main.gd can discover all PC instances
 	add_to_group("pc_station")
-
+	
+	if not show_chair:
+		chair_model.hide()
+		
 	# Start with monitor off (black screen)
 	_initialize_black_screen()
 
