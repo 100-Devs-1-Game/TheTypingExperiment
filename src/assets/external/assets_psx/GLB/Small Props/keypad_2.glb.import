@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dqnki1mfoixup"
+uid="uid://bxmioxxh5xh17"
 path="res://.godot/imported/keypad_2.glb-ca1f01f0904c024713040ebdf80cba48.scn"
 
 [deps]
@@ -38,5 +38,5 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={}
-gltf/naming_version=2
+gltf/naming_version=1
 gltf/embedded_image_handling=1

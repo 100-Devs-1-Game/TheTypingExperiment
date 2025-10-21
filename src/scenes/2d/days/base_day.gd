@@ -20,6 +20,9 @@ signal game_over_transition_starting()  # Emitted 1 second before game over scre
 @onready var progress_label: Label = %ProgressLabel
 @onready var message_overlay: Label = %MessageOverlay
 
+# Audio
+var ready_beep: AudioStreamPlayer
+
 # Typing state (identical across all days)
 var practice_text: String = ""
 var typed_characters: String = ""
@@ -47,10 +50,18 @@ var _corruption_word_cache: Dictionary = {}  # {char_pos: bool}
 var _last_cached_sentence: String = ""
 
 func _ready() -> void:
+	_setup_ready_beep()
 	_setup_connections()
 	_setup_ui_theme()
 	_setup_interface()
 	_initialize_day()
+
+func _setup_ready_beep() -> void:
+	# Create and setup ready beep audio
+	ready_beep = AudioStreamPlayer.new()
+	ready_beep.stream = load("res://assets/external/custom_sfx/beep-329314.wav")
+	ready_beep.volume_db = -25
+	add_child(ready_beep)
 
 func _process(delta: float) -> void:
 	# Update corruption animation time if using corruption
@@ -122,6 +133,10 @@ func _start_new_stage() -> void:
 	is_session_active = true
 	invisible_input.editable = true
 	invisible_input.grab_focus()
+
+	# Play beep to signal typing is ready
+	if ready_beep:
+		ready_beep.play()
 
 	# Initialize systems
 	if TypingEngine:
