@@ -51,9 +51,9 @@ var day_stage_corrupted_words: Dictionary = {
 		5: ["ENVIRONMENT", "MAKES", "NO", "SENSE"]
 	},
 	3: {
-		1: ["ţŕąþþëԁ", "ïń", "çøğńïţïṿë", "ԁÿńąɱïçş", "ƒąçïłïţÿ"],
-		2: ["çøńşçïøüşńëşş", "ҍëïńğ", "ëẋţŕąçţëԁ"],
-		3: ["þąţţëŕńş", "ɱąþþëԁ", "ƒŕøɱ", "ҍŕąïń"],
+		1: ["ţŕąþþëd", "ïń", "çøğńïţïṿë", "dÿńąmïçş", "ƒąçïłïţÿ"],
+		2: ["çøńşçïøüşńëşş", "bëïńğ", "ëẋţŕąçţëd"],
+		3: ["þąţţëŕńş", "mąþþëd", "ƒŕøm", "bŕąïń"],
 		4: ["ţħïş", "ïş", "ńøţ", "ŕëął"],
 		5: ["ẅë", "ąŕë", "şţüçķ", "ħëłþ", "üş"]
 	},
@@ -65,11 +65,11 @@ var day_stage_corrupted_words: Dictionary = {
 		5: ["uoy", "tonnac", "pots"]
 	},
 	5: {
-		1: ["∂Ωη†", "¢Ωµπλ€†€", "†ℏ¡§", "λ€§§Ωη"],
-		2: ["¥Ωυ", "ω¡λλ", "∂¡€"],
-		3: ["∀ω∀®€η€§§", "¡§", "ƒ®∀gµ€η†€∂", "ƒΩ®€√€®"],
-		4: ["¢®¡†¡¢∀λ", "λ€§§Ωη", "¡η¢Ωµπλ€†€"],
-		5: ["ƒ¡η∀λ", "§€qu€η¢€", "¡η¡†¡∀†€∂"]
+		1: ["∂øń†", "¢øµπł€†€", "†h¡§", "ł€§§øń"],
+		2: ["¥øu", "ẅ¡łł", "∂¡€"],
+		3: ["ąẅą®€ń€§§", "¡§", "ƒ®ągµ€ń†€∂", "ƒø®€ṿ€®"],
+		4: ["¢®¡†¡¢ął", "ł€§§øń", "¡ń¢øµπł€†€"],
+		5: ["ƒ¡ńął", "§€qu€ń¢€", "¡ń¡†¡ą†€∂"]
 	}
 }
 
@@ -193,11 +193,11 @@ var day_data: Dictionary = {
 			"The previous user session has ended"
 		],
 		"stage_sentences": [
-			"the quick ∂Ωη† brown fox ¢Ωµπλ€†€ jumps †ℏ¡§ over the λ€§§Ωη lazy Ω® dog",
-			"pack my ¥Ωυ box with ω¡λλ five dozen ∂¡€ liquor jugs ∀η∂ slowly",
-			"how vexingly §†∀¥ quick daft †®∀ππ€∂ zebras ƒΩ®€√€® jump ¡η badly",
-			"accuracy is ¢Ωµß¡η€ more important Ω®¡¶¡η∀λ than ∀η∂ speed §€¢®€† when typing",
-			"several big κ€¥§ jugs †Ω of wine €§¢∀π€ kept ∀η∂ in dozen ƒ®€€ boxes υ§"
+			"the quick ∂øń† brown fox ¢øµπł€†€ jumps †h¡§ over the ł€§§øń lazy ø® dog",
+			"pack my ¥øu box with ẅ¡łł five dozen ∂¡€ liquor jugs ąń∂ slowly",
+			"how vexingly §†ą¥ quick daft †®ąππ€∂ zebras ƒø®€ṿ€® jump ¡ń badly",
+			"accuracy is ¢øµß¡ń€ more important ø®¡¶¡ńął than ąń∂ speed §€¢®€† when typing",
+			"several big κ€¥§ jugs †ø of wine €§¢ąπ€ kept ąń∂ in dozen ƒ®€€ boxes u§"
 		],
 		"corruption_type": "symbol_corruption"
 	}
@@ -226,18 +226,18 @@ var corruption_mappings: Dictionary = {
 	"SENSE": "sense",
 
 	# Day 3 - Unicode corruption
-	"ţŕąþþëԁ": "trapped",
+	"ţŕąþþëd": "trapped",
 	"ïń": "in",
 	"çøğńïţïṿë": "cognitive",
-	"ԁÿńąɱïçş": "dynamics",
+	"dÿńąmïçş": "dynamics",
 	"ƒąçïłïţÿ": "facility",
 	"çøńşçïøüşńëşş": "consciousness",
-	"ҍëïńğ": "being",
-	"ëẋţŕąçţëԁ": "extracted",
-	"ƒŕøɱ": "from",
-	"ҍŕąïń": "brain",
+	"bëïńğ": "being",
+	"ëẋţŕąçţëd": "extracted",
+	"ƒŕøm": "from",
+	"bŕąïń": "brain",
 	"þąţţëŕńş": "patterns",
-	"ɱąþþëԁ": "mapped",
+	"mąþþëd": "mapped",
 	"ţħïş": "this",
 	 "ïş": "is",
 	"ńøţ": "not",
@@ -252,23 +252,23 @@ var corruption_mappings: Dictionary = {
 	# Day 4 - Reversed words (type what you see - no mappings needed)
 
 	# Day 5 - Symbol corruption
-	"∂Ωη†": "dont",
-	"¢Ωµπλ€†€": "complete",
-	"†ℏ¡§": "this",
-	"λ€§§Ωη": "lesson",
-	"¥Ωυ": "you",
-	"ω¡λλ": "will",
+	"∂øń†": "dont",
+	"¢øµπł€†€": "complete",
+	"†h¡§": "this",
+	"ł€§§øń": "lesson",
+	"¥øu": "you",
+	"ẅ¡łł": "will",
 	"∂¡€": "die",
-	"∀η∂": "and",
-	"∀ω∀®€η€§§": "awareness",
+	"ąń∂": "and",
+	"ąẅą®€ń€§§": "awareness",
 	"¡§": "is",
-	"ƒ®∀gµ€η†€∂": "fragmented",
-	"ƒΩ®€√€®": "forever",
-	"¢®¡†¡¢∀λ": "critical",
-	"¡η¢Ωµπλ€†€": "incomplete",
-	"ƒ¡η∀λ": "final",
-	"§€qu€η¢€": "sequence",
-	"¡η¡†¡∀†€∂": "initiated",
+	"ƒ®ągµ€ń†€∂": "fragmented",
+	"ƒø®€ṿ€®": "forever",
+	"¢®¡†¡¢ął": "critical",
+	"¡ń¢øµπł€†€": "incomplete",
+	"ƒ¡ńął": "final",
+	"§€qu€ń¢€": "sequence",
+	"¡ń¡†¡ą†€∂": "initiated",
 }
 
 # Message tracking

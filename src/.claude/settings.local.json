@@ -9,7 +9,8 @@
       "WebFetch(domain:github.com)",
       "Bash(dir /B \"B:\\Data\\Projects\\My Games\\TheTypingExperiment\\src\\scenes\\2d\\days\")",
       "Bash(dir /B \"B:\\Data\\Projects\\My Games\\TheTypingExperiment\\autoloads\")",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []

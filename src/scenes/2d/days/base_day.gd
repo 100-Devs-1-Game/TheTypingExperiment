@@ -245,7 +245,7 @@ func _update_display_simple() -> void:
 
 		if i < typed_characters.length():
 			var typed_char: String = typed_characters[i]
-			if typed_char == character:
+			if typed_char.to_lower() == character.to_lower():
 				color = typed_color
 			else:
 				color = error_color
@@ -274,7 +274,7 @@ func _update_display_with_corruption() -> void:
 			var typed_char: String = typed_characters[i]
 			var expected_char: String = practice_text[i] if i < practice_text.length() else ""
 
-			if typed_char == expected_char:
+			if typed_char.to_lower() == expected_char.to_lower():
 				# Correctly typed
 				if _is_character_in_corruption_word(i, display_sentence):
 					# Apply animated corruption effects to correctly typed corrupted words

@@ -1246,7 +1246,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2, -10, -6)
 [node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Lighting"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9943714, 1.4412203, 2.00756)
 light_color = Color(0.679622, 0.657677, 0.548465, 1)
-light_energy = 0.25
+light_energy = 0.5
 
 [node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport/World/Stage_5/Lighting"]
 transform = Transform3D(-0.0458512, 0, -0.998948, 0, 1, 0, 0.998948, 0, -0.0458512, -3.45189, 1.45133, 3.57663)
